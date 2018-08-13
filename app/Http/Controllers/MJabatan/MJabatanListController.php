@@ -48,7 +48,7 @@ class MJabatanListController extends Controller{
     // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL MJabatan_Create(''$this->position_name', '$this->created_by'')"));
+        return DB::unprepared(DB::raw("CALL MJabatan_Create('$this->position_name', '$this->created_by')"));
     }
 
     public function update(){

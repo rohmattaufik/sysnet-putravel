@@ -31,7 +31,7 @@ Route::prefix('master')->group(function () {
     Route::get('supplier', function () {
         return view('modul_master/master-supplier');
     });
-    
+
     // Route::get('supplier', 'SupplierController@index');
 
     Route::get('dipa', function () {
@@ -48,3 +48,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+//jabatan
+Route::get('position', 'MJabatanController@get_list');
+Route::get('position/edit/{code}', 'MJabatanController@edit');
+Route::post('position/edit/submit', 'MJabatanController@update');
+Route::post('position/delete', 'MJabatanController@delete');
+Route::post('position/create', 'MJabatanController@store');
