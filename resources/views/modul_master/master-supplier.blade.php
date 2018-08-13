@@ -28,7 +28,7 @@
 
                 <div class="box-body">
 
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="post" action="{{url('master/supplier/create')}}">
                         <div class="box-body">
                             {{--<div class="form-group">--}}
                                 {{--<label for="nama_travel" class="col-sm-2 control-label">Nama Travel</label>--}}
@@ -49,6 +49,10 @@
                                         <option value="MT" data-select2-id="15">Unit Kerja</option>
                                         <option value="NE" data-select2-id="16">Kota</option>
                                         <option value="NM" data-select2-id="17">Jenis Supplier</option>
+                                      
+                                 {{--   @foreach($jenis_suppliers as $item)
+                                            <option value="{{$item->id}}" data-select2-id="17">{{$item->supplier_type_name}}</option>
+                                        @endforeach --}}
                                     </select>
                                 </div>
                             </div>
@@ -82,6 +86,9 @@
                                         <option value="MT" data-select2-id="15">Unit Kerja</option>
                                         <option value="NE" data-select2-id="16">Kota</option>
                                         <option value="NM" data-select2-id="17">Jenis Supplier</option>
+                                        {{-- @foreach($kotas as $item)
+                                            <option value="{{$item->id}}" data-select2-id="17">{{$item->city_name}}</option>
+                                        @endforeach --}}
                                     </select>
                                 </div>
                             </div>
@@ -191,6 +198,9 @@
                 </div>
                 <div class="box-body">
                     <p>test 123</p>
+                    {{-- @foreach($suppliers as $item)
+                        <p>{{$item->supplier_name}} -- {{$item->supplier_address}} -- {{$item['jenis_supplier']->supplier_type_name}}</p>
+                    @endforeach --}}
                 </div>
             </div>
 

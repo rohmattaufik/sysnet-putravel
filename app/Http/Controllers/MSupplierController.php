@@ -11,10 +11,16 @@ use App\Http\Controllers\Controller,
 
 class MSupplierController extends Controller{
 
-    public function create(){
+    public function index(){
         $kotas              = (new MKota())->get_list();
         $jenis_suppliers    = (new MJenisSupplier())->get_list();
-        return view("")
+        $suppliers          = (new MSupplier())->get_list();
+        foreach($suppliers as $item)
+        {
+            $item['jenis_supplier'] = (new MJenisSupplier())->get_jenis_supplier($item->idJenisSupplier);
+        }
+        return view("modul_master/master-supplier")
+            ->with('suppliers',$suppliers)
             ->with('kotas',$kotas)
             ->with('jenis_suppliers',$jenis_suppliers);
     }

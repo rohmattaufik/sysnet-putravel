@@ -31,9 +31,16 @@ Route::prefix('master')->group(function () {
     Route::get('supplier', function () {
         return view('modul_master/master-supplier');
     });
+    
+    // Route::get('supplier', 'SupplierController@index');
+
     Route::get('dipa', function () {
         return view('modul_master/master-dipa');
     });
+
+    Route::post('supplier/create','MSupplierController@insert');
+
+    Route::post('data/jabatan/create','MJabatanController@insert');
 });
 
 Auth::routes();

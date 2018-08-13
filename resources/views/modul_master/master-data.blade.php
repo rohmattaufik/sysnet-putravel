@@ -55,7 +55,7 @@
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" method="post" action="{{url('master/data/jabatan/create')}}">
                             <div class="col-lg-6">
                                 <div class="box box-primary">
                                     <div class="box-header with-border">
@@ -76,7 +76,7 @@
                                             <tr>
                                                 <td>
                                                     <input type="text"
-                                                           name="name[]"
+                                                           name="jabatans[]"
                                                            placeholder="Enter your Name"
                                                            class="form-control name_list" />
                                                 </td>
@@ -87,7 +87,7 @@
                                             <tr>
                                                 <td>
                                                     <input type="text"
-                                                           name="name[]"
+                                                           name="jabatans[]"
                                                            placeholder="Enter your Name"
                                                            class="form-control name_list" />
                                                 </td>
@@ -98,7 +98,7 @@
                                             <tr>
                                                 <td>
                                                     <input type="text"
-                                                           name="name[]"
+                                                           name="jabatans[]"
                                                            placeholder="Enter your Name"
                                                            class="form-control name_list" />
                                                 </td>
@@ -109,7 +109,7 @@
                                             <tr>
                                                 <td>
                                                     <input type="text"
-                                                           name="name[]"
+                                                           name="jabatans[]"
                                                            placeholder="Enter your Name"
                                                            class="form-control name_list" />
                                                 </td>
