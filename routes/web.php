@@ -12,9 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home-admin');
+});
+
+Route::prefix('master')->group(function () {
+    Route::get('parameter', function () {
+        return view('modul_master/master-parameter');
+    });
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
