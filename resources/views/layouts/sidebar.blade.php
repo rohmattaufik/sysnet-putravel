@@ -31,7 +31,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Main Menu</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active">
+            <li>
                 <a href="{{ url('/') }}">
                     <i class="fa fa-link"></i>
                     <span>Home</span>
@@ -45,7 +45,7 @@
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('master/parameter') }}">Parameter</a></li>
+                    <li class="active"><a href="{{ url('master/parameter') }}">Parameter</a></li>
                     <li><a href="{{ url('master/data') }}">Master Data</a></li>
                     <li><a href="{{ url('master/sbu') }}">Master SBU</a></li>
                     <li><a href="{{ url('master/employee') }}">Master Employee</a></li>
