@@ -5,7 +5,7 @@ namespace App\Http\Controllers\MJabatan;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class MJabatanListController extends Controller{
 
     public $id;
@@ -40,23 +40,23 @@ class MJabatanListController extends Controller{
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MJabatan_View()"));
     }
 
-    public function get_jabatan($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_jabatan($id){
+    //     return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+    // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MJabatan_Create(''$this->position_name', '$this->created_by'')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MJabatan_Update($this->id, '$this->position_name', '$this->created_by')"));
     }
 
     public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MJabatan_Delete($this->id)"));
     }
 
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\MJenisSupplier;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class MJenisSupplierListController extends Controller{
 
     public $id;
@@ -40,23 +40,23 @@ class MJenisSupplierListController extends Controller{
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MJenisSupplier_View()"));
     }
 
-    public function get_jenis_supplier($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_jenis_supplier($id){
+    //     return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+    // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MJenisSupplier_Create('$this->supplier_type_name','$this->created_by')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MJenisSupplier_Update($this->id, '$this->supplier_type_name','$this->created_by')"));
     }
 
     public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MJenisSupplier_Delete($this->id)"));
     }
 
 }

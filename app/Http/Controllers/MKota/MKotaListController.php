@@ -5,7 +5,7 @@ namespace App\Http\Controllers\MKota;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class MKotaListController extends Controller{
 
     public $id;
@@ -40,23 +40,23 @@ class MKotaListController extends Controller{
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MKota_View()"));
     }
 
-    public function get_kota($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_kota($id){
+    //     return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+    // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MKota_Create('$this->city_name', '$this->created_by')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MKota_Update($this->id, '$this->city_name', '$this->created_by')"));
     }
 
     public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MKota_Delete($this->id)"));
     }
 
 }

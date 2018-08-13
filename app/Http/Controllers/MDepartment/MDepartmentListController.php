@@ -5,7 +5,7 @@ namespace App\Http\Controllers\MDepartment;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class MDepartmentListController extends Controller{
 
     public $id;
@@ -40,23 +40,23 @@ class MDepartmentListController extends Controller{
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MDepartment_View()"));
     }
 
-    public function get_department($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_department($id){
+    //     return DB::select(DB::raw("CALL MDepartment_Create()"));
+    // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MDepartment_Create('$this->department_name', '$this->created_by')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MDepartment_Update($this->id, '$this->department_name', '$this->updated_by')"));
     }
 
     public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MDepartment_Delete($this->id)"));
     }
 
 }

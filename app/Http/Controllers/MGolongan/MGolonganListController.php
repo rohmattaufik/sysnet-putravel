@@ -41,23 +41,23 @@ class MGolonganListController extends Controller {
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MGolongan_View()"));
     }
 
-    public function get_golongan($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_golongan($id){
+    //     return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+    // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MGolongan_Create('$this->class_name', '$this->created_by')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MGolongan_Update($this->id, '$this->class_name', '$this->created_by')"));
     }
 
     public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MGolongan_Delete($this->id)"));
     }
 
 }
