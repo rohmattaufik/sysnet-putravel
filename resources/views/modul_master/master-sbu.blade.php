@@ -28,53 +28,272 @@
 
                 <div class="box-body">
                     <div class="col-lg-8">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Kota</th>
-                                <th scope="col">Golongan</th>
-                                <th scope="col">Nilai</th>
 
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr>
-                                <td>
-                                    <select class="form-control select-data">
-
-                                        <option value="AZ" data-select2-id="12">Jabatan</option>
-                                        <option value="CO" data-select2-id="13">Golongan</option>
-                                        <option value="ID" data-select2-id="14">Departemen</option>
-                                        <option value="MT" data-select2-id="15">Unit Kerja</option>
-                                        <option value="NE" data-select2-id="16">Kota</option>
-                                        <option value="NM" data-select2-id="17">Jenis Supplier</option>
-
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="form-control select-data">
-
-                                        <option value="AZ" data-select2-id="12">Jabatan</option>
-                                        <option value="CO" data-select2-id="13">Golongan</option>
-                                        <option value="ID" data-select2-id="14">Departemen</option>
-                                        <option value="MT" data-select2-id="15">Unit Kerja</option>
-                                        <option value="NE" data-select2-id="16">Kota</option>
-                                        <option value="NM" data-select2-id="17">Jenis Supplier</option>
-
-                                    </select>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control"
-                                           id="kode_surat_tugas"
-                                           name="kode_surat_tugas" placeholder="Kode Surat Tugas">
-                                </td>
-
-                            </tr>
+                        <div class="alert alert-danger print-error-msg" style="display:none">
+                            <ul></ul>
+                        </div>
 
 
-                            </tbody>
-                        </table>
+                        <div class="alert alert-success print-success-msg" style="display:none">
+                            <ul></ul>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dynamic_field">
+                                <thead>
+                                    <th>Kota</th>
+                                    <th>Golongan</th>
+                                    <th>Nilai</th>
+                                </thead>
+                                <tr>
+                                    <td>
+                                        <select class="form-control select-data">
+                                            <option value="1" data-select2-id="1">Kota</option>
+                                            <option value="2" data-select2-id="2">Golongan</option>
+                                            <option value="3" data-select2-id="3">Departemen</option>
+                                            <option value="4" data-select2-id="4">Unit Kerja</option>
+                                            <option value="5" data-select2-id="5">Kota</option>
+                                            <option value="6" data-select2-id="6">Jenis Supplier</option>
+
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text"
+                                               name="name[]"
+                                               placeholder="Enter your Name"
+                                               class="form-control name_list" />
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text"
+                                               name="name[]"
+                                               placeholder="Enter your Name"
+                                               class="form-control name_list" />
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text"
+                                               name="name[]"
+                                               placeholder="Enter your Name"
+                                               class="form-control name_list" />
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select class="form-control select-data">
+                                            <option value="1" data-select2-id="1">Kota</option>
+                                            <option value="2" data-select2-id="2">Golongan</option>
+                                            <option value="3" data-select2-id="3">Departemen</option>
+                                            <option value="4" data-select2-id="4">Unit Kerja</option>
+                                            <option value="5" data-select2-id="5">Kota</option>
+                                            <option value="6" data-select2-id="6">Jenis Supplier</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control select-data">
+                                            <option value="1" data-select2-id="1">Kota</option>
+                                            <option value="2" data-select2-id="2">Golongan</option>
+                                            <option value="3" data-select2-id="3">Departemen</option>
+                                            <option value="4" data-select2-id="4">Unit Kerja</option>
+                                            <option value="5" data-select2-id="5">Kota</option>
+                                            <option value="6" data-select2-id="6">Jenis Supplier</option>
+
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text"
+                                               name="name[]"
+                                               placeholder="Enter your Name"
+                                               class="form-control name_list" />
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        <div class="box-footer">
+                            <button type="button" name="add" id="add" class="btn btn-success btn-block">
+                                Add Row
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+
+                        {{--<table class="table">--}}
+                            {{--<thead>--}}
+                            {{--<tr>--}}
+                                {{--<th scope="col">Kota</th>--}}
+                                {{--<th scope="col">Golongan</th>--}}
+                                {{--<th scope="col">Nilai</th>--}}
+
+                            {{--</tr>--}}
+                            {{--</thead>--}}
+                            {{--<tbody>--}}
+
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--<select class="form-control select-data">--}}
+                                        {{--<option value="1" data-select2-id="1">Kota</option>--}}
+                                        {{--<option value="2" data-select2-id="2">Golongan</option>--}}
+                                        {{--<option value="3" data-select2-id="3">Departemen</option>--}}
+                                        {{--<option value="4" data-select2-id="4">Unit Kerja</option>--}}
+                                        {{--<option value="5" data-select2-id="5">Kota</option>--}}
+                                        {{--<option value="6" data-select2-id="6">Jenis Supplier</option>--}}
+
+                                    {{--</select>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--<select class="form-control select-data">--}}
+                                        {{--<option value="11" data-select2-id="11">Golongan</option>--}}
+                                        {{--<option value="22" data-select2-id="22">Departemen</option>--}}
+                                        {{--<option value="33" data-select2-id="33">Unit Kerja</option>--}}
+                                        {{--<option value="44" data-select2-id="44">Kota</option>--}}
+                                        {{--<option value="55" data-select2-id="55">Jenis Supplier</option>--}}
+
+                                    {{--</select>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--<input type="text" class="form-control"--}}
+                                           {{--id="nilai"--}}
+                                           {{--name="nilai" placeholder="Nilai">--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--<select class="form-control select-data">--}}
+                                        {{--<option value="1" data-select2-id="1">Kota</option>--}}
+                                        {{--<option value="2" data-select2-id="2">Golongan</option>--}}
+                                        {{--<option value="3" data-select2-id="3">Departemen</option>--}}
+                                        {{--<option value="4" data-select2-id="4">Unit Kerja</option>--}}
+                                        {{--<option value="5" data-select2-id="5">Kota</option>--}}
+                                        {{--<option value="6" data-select2-id="6">Jenis Supplier</option>--}}
+
+                                    {{--</select>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--<select class="form-control select-data">--}}
+                                        {{--<option value="11" data-select2-id="11">Golongan</option>--}}
+                                        {{--<option value="22" data-select2-id="22">Departemen</option>--}}
+                                        {{--<option value="33" data-select2-id="33">Unit Kerja</option>--}}
+                                        {{--<option value="44" data-select2-id="44">Kota</option>--}}
+                                        {{--<option value="55" data-select2-id="55">Jenis Supplier</option>--}}
+
+                                    {{--</select>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--<input type="text" class="form-control"--}}
+                                           {{--id="nilai"--}}
+                                           {{--name="nilai" placeholder="Nilai">--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--<select class="form-control select-data">--}}
+                                        {{--<option value="1" data-select2-id="1">Kota</option>--}}
+                                        {{--<option value="2" data-select2-id="2">Golongan</option>--}}
+                                        {{--<option value="3" data-select2-id="3">Departemen</option>--}}
+                                        {{--<option value="4" data-select2-id="4">Unit Kerja</option>--}}
+                                        {{--<option value="5" data-select2-id="5">Kota</option>--}}
+                                        {{--<option value="6" data-select2-id="6">Jenis Supplier</option>--}}
+
+                                    {{--</select>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--<select class="form-control select-data">--}}
+                                        {{--<option value="11" data-select2-id="11">Golongan</option>--}}
+                                        {{--<option value="22" data-select2-id="22">Departemen</option>--}}
+                                        {{--<option value="33" data-select2-id="33">Unit Kerja</option>--}}
+                                        {{--<option value="44" data-select2-id="44">Kota</option>--}}
+                                        {{--<option value="55" data-select2-id="55">Jenis Supplier</option>--}}
+
+                                    {{--</select>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--<input type="text" class="form-control"--}}
+                                           {{--id="nilai"--}}
+                                           {{--name="nilai" placeholder="Nilai">--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--<select class="form-control select-data">--}}
+                                        {{--<option value="1" data-select2-id="1">Kota</option>--}}
+                                        {{--<option value="2" data-select2-id="2">Golongan</option>--}}
+                                        {{--<option value="3" data-select2-id="3">Departemen</option>--}}
+                                        {{--<option value="4" data-select2-id="4">Unit Kerja</option>--}}
+                                        {{--<option value="5" data-select2-id="5">Kota</option>--}}
+                                        {{--<option value="6" data-select2-id="6">Jenis Supplier</option>--}}
+
+                                    {{--</select>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--<select class="form-control select-data">--}}
+                                        {{--<option value="11" data-select2-id="11">Golongan</option>--}}
+                                        {{--<option value="22" data-select2-id="22">Departemen</option>--}}
+                                        {{--<option value="33" data-select2-id="33">Unit Kerja</option>--}}
+                                        {{--<option value="44" data-select2-id="44">Kota</option>--}}
+                                        {{--<option value="55" data-select2-id="55">Jenis Supplier</option>--}}
+
+                                    {{--</select>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--<input type="text" class="form-control"--}}
+                                           {{--id="nilai"--}}
+                                           {{--name="nilai" placeholder="Nilai">--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--<select class="form-control select-data">--}}
+                                        {{--<option value="1" data-select2-id="1">Kota</option>--}}
+                                        {{--<option value="2" data-select2-id="2">Golongan</option>--}}
+                                        {{--<option value="3" data-select2-id="3">Departemen</option>--}}
+                                        {{--<option value="4" data-select2-id="4">Unit Kerja</option>--}}
+                                        {{--<option value="5" data-select2-id="5">Kota</option>--}}
+                                        {{--<option value="6" data-select2-id="6">Jenis Supplier</option>--}}
+
+                                    {{--</select>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--<select class="form-control select-data">--}}
+                                        {{--<option value="11" data-select2-id="11">Golongan</option>--}}
+                                        {{--<option value="22" data-select2-id="22">Departemen</option>--}}
+                                        {{--<option value="33" data-select2-id="33">Unit Kerja</option>--}}
+                                        {{--<option value="44" data-select2-id="44">Kota</option>--}}
+                                        {{--<option value="55" data-select2-id="55">Jenis Supplier</option>--}}
+
+                                    {{--</select>--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--<input type="text" class="form-control"--}}
+                                           {{--id="nilai"--}}
+                                           {{--name="nilai" placeholder="Nilai">--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+
+                            {{--<tr>--}}
+                                {{--<td>--}}
+                                    {{--<button type="button" name="add" id="add" class="btn btn-success btn-block">--}}
+                                        {{--Add Row--}}
+                                    {{--</button>--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--</tbody>--}}
+                        {{--</table>--}}
                     </div>
                 </div>
             </div>
@@ -86,6 +305,70 @@
     <script>
         $(document).ready(function() {
             $('.select-data').select2();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var postURL = "<?php echo url('addmore'); ?>";
+            var i=1;
+
+
+            $('#add').click(function(){
+                i++;
+                $('#dynamic_field').append('' +
+                    '<tr id="row'+i+'" class="dynamic-added">' +
+                    '<td><input type="text" name="name[]" placeholder="Enter your Name" ' +
+                    'class="form-control name_list" /></td><td>' +
+                    '<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +
+                    '</td></tr>');
+            });
+
+            $(document).on('click', '.btn_remove', function(){
+                var button_id = $(this).attr("id");
+                $('#row'+button_id+'').remove();
+            });
+
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+            $('#submit').click(function(){
+                $.ajax({
+                    url:postURL,
+                    method:"POST",
+                    data:$('#add_name').serialize(),
+                    type:'json',
+                    success:function(data)
+                    {
+                        if(data.error){
+                            printErrorMsg(data.error);
+                        }else{
+                            i=1;
+                            $('.dynamic-added').remove();
+                            $('#add_name')[0].reset();
+                            $(".print-success-msg").find("ul").html('');
+                            $(".print-success-msg").css('display','block');
+                            $(".print-error-msg").css('display','none');
+                            $(".print-success-msg").find("ul").append('<li>Record Inserted Successfully.</li>');
+                        }
+                    }
+                });
+            });
+
+
+            function printErrorMsg (msg) {
+                $(".print-error-msg").find("ul").html('');
+                $(".print-error-msg").css('display','block');
+                $(".print-success-msg").css('display','none');
+                $.each( msg, function( key, value ) {
+                    $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+                });
+            }
         });
     </script>
 @stop

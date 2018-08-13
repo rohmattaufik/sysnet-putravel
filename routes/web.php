@@ -25,6 +25,15 @@ Route::prefix('master')->group(function () {
     Route::get('sbu', function () {
         return view('modul_master/master-sbu');
     });
+    Route::get('employee', function () {
+        return view('modul_master/master-employee');
+    });
+    Route::get('supplier', function () {
+        return view('modul_master/master-supplier');
+    });
+    Route::get('dipa', function () {
+        return view('modul_master/master-dipa');
+    });
 });
 
 Auth::routes();
