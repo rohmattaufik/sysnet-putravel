@@ -162,9 +162,9 @@
 
         </div>
 
-            <div class="row">
+            <!-- <div class="row"> -->
                 <div class="col-lg-10">
-
+                  <div class="box box-primary">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
 
@@ -334,10 +334,11 @@
                     </div>
 
                 </div>
+              </div>
             </div>
 
 
-        </div>
+        <!-- </div> -->
 
 
 
