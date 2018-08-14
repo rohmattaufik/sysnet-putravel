@@ -9,7 +9,9 @@
        {{ csrf_field() }}
        <div class="form-row">
          <div class="form-group col-md-12">
-           <input type="text" name="position_name" class="form-control" id="name" placeholder="position_name*" data-msg="Please enter at least 4 chars" required />
+           <input type="text" name="position_name"
+                  class="form-control" id="name" placeholder="position_name*"
+                  data-msg="Please enter at least 4 chars" required />
            <div class="validation"></div>
          </div>
        </div>

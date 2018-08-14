@@ -23,11 +23,20 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    {{--<h3 class="box-title">Quick Example</h3>--}}
+                    <h3 class="box-title">
+                    </h3>
+                    @if(Session::get('sukses'))
+                    <div class="callout callout-success">
+                        <h4>{{ Session::get('sukses') }}</h4>
+
+                        <p>Data Anda berhasil masuk database.</p>
+                    </div>
+                    @endif
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" name="add_name" id="add_name">
+                <form role="form" method="post" action="{{ url(action('MasterDataController@store')) }}">
+                    {{ csrf_field() }}
                     <div class="box-body">
 
                         <div class="form-group">
@@ -36,14 +45,14 @@
                                     <div class="col-lg-9">
                                         <label class="col-lg-2">Input Data</label>
                                         <div class="col-lg-4">
-                                            <select class="form-control select-data">
+                                            <select id="jenis_data" name="jenis_data" class="form-control select-data">
 
-                                                <option value="AZ" data-select2-id="12">Jabatan</option>
-                                                <option value="CO" data-select2-id="13">Golongan</option>
-                                                <option value="ID" data-select2-id="14">Departemen</option>
-                                                <option value="MT" data-select2-id="15">Unit Kerja</option>
-                                                <option value="NE" data-select2-id="16">Kota</option>
-                                                <option value="NM" data-select2-id="17">Jenis Supplier</option>
+                                                <option value="jabatan" data-select2-id="12">Jabatan</option>
+                                                <option value="golongan" data-select2-id="13">Golongan</option>
+                                                <option value="departemen" data-select2-id="14">Departemen</option>
+                                                <option value="unit_kerja" data-select2-id="15">Unit Kerja</option>
+                                                <option value="kota" data-select2-id="16">Kota</option>
+                                                <option value="jenis_supplier" data-select2-id="17">Jenis Supplier</option>
 
                                             </select>
                                         </div>
@@ -55,11 +64,11 @@
 
                         </div>
 
-                        <div class="form-group" method="post" action="{{url('master/data/jabatan/create')}}">
+                        <div class="form-group">
                             <div class="col-lg-6">
                                 <div class="box box-primary">
                                     <div class="box-header with-border">
-                                        <h3 class="text-center">Jabatan</h3>
+                                        <h3 id="title_jenis_data" class="text-center">Jabataaan</h3>
                                     </div>
                                     <div class="alert alert-danger print-error-msg" style="display:none">
                                         <ul></ul>
@@ -76,8 +85,8 @@
                                             <tr>
                                                 <td>
                                                     <input type="text"
-                                                           name="jabatans[]"
-                                                           placeholder="Enter your Name"
+                                                           name="inputs[]"
+                                                           placeholder="Input your data"
                                                            class="form-control name_list" />
                                                 </td>
                                                 <td>
@@ -87,8 +96,8 @@
                                             <tr>
                                                 <td>
                                                     <input type="text"
-                                                           name="jabatans[]"
-                                                           placeholder="Enter your Name"
+                                                           name="inputs[]"
+                                                           placeholder="Input your data"
                                                            class="form-control name_list" />
                                                 </td>
                                                 <td>
@@ -98,8 +107,8 @@
                                             <tr>
                                                 <td>
                                                     <input type="text"
-                                                           name="jabatans[]"
-                                                           placeholder="Enter your Name"
+                                                           name="inputs[]"
+                                                           placeholder="Input your data"
                                                            class="form-control name_list" />
                                                 </td>
                                                 <td>
@@ -109,8 +118,8 @@
                                             <tr>
                                                 <td>
                                                     <input type="text"
-                                                           name="jabatans[]"
-                                                           placeholder="Enter your Name"
+                                                           name="inputs[]"
+                                                           placeholder="Input your data"
                                                            class="form-control name_list" />
                                                 </td>
                                                 <td>
@@ -172,6 +181,19 @@
 @section('new-script')
 
     <script>
+//        var e = document.getElementById("jenis_data");
+//        var strUser = e.options[e.selectedIndex].text;
+//
+//        document.getElementById("title_jenis_data").innerHTML = strUser;
+            $(document).ready(function() {
+                $("#jenis_data").change(function() {
+                    $('#title_jenis_data').html($(this).val());
+                }).change();
+            });
+
+    </script>
+
+    <script>
         $(document).ready(function() {
             $('.select-data').select2();
         });
@@ -185,7 +207,7 @@
 
             $('#add').click(function(){
                 i++;
-                $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+                $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="inputs[]" placeholder="Input your data" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
             });
 
 

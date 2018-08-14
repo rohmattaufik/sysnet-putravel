@@ -48,15 +48,19 @@ class MUnitKerjaListController extends Controller{
     }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MUnitKerja_Create('$this->work_unit', '$this->created_by')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MUnitKerja_Update(
+                                        $this->id, 
+                                        '$this->work_unit', 
+                                        '$this->updated_by'
+                                        )"));
     }
 
     public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MUnitKerja_Delete($this->id)"));
     }
 
 }

@@ -19,9 +19,12 @@ Route::prefix('master')->group(function () {
     Route::get('parameter', function () {
         return view('modul_master/master-parameter');
     });
-    Route::get('data', function () {
-        return view('modul_master/master-data');
+
+    Route::get('data', 'MasterDataController@index');
+    Route::prefix('data')->group(function () {
+        Route::post('submit', 'MasterDataController@store');
     });
+
     Route::get('sbu', function () {
         return view('modul_master/master-sbu');
     });
