@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller,
 
 
 class MDIPAListController extends Controller {
-    
+
     public $id;
     public $DIPA_code;
     public $idDepartment;
@@ -41,22 +41,22 @@ class MDIPAListController extends Controller {
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MDIPA_View()"));
     }
 
-    public function get_dipa($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_dipa($id){
+    //     return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+    // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MDIPA_Create('$this->DIPA_code', '$this->idDepartment', '$this->created_by')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MDIPA_Update($this->id, '$this->DIPA_code', '$this->idDepartment', '$this->updated_by')"));
     }
 
-    public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function delete(){
+    //     return DB::unprepared(DB::raw("CALL MDIPA_Delete($this->id)"));
+    // }
 }

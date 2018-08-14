@@ -53,22 +53,22 @@ class MEmployeeListController extends Controller {
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MEmployee_View()"));
     }
 
-    public function get_employee($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_employee($id){
+    //     return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+    // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MEmployee_Create('$this->NIK', '$this->employee_name', $this->idUnitKerja, $this->idJabatan, $this->idGolongan, '$this->email', '$this->photo', '$this->created_by')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MEmployee_Update($this->id, '$this->NIK', '$this->employee_name', $this->idUnitKerja, $this->idJabatan, $this->idGolongan, '$this->email', '$this->photo', '$this->created_by')"));
     }
 
     public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MEmployee_Delete($this->id)"));
     }
 }

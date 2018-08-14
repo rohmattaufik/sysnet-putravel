@@ -147,7 +147,7 @@ class MasterDataController extends Controller{
 
         if($id_user) {
             $MJabatan   = new MJabatan($request->jabatan_id);
-            $MJabatan->updated_by    = $id_user;
+            $MJabatan->updated_by       = $id_user;
             $MJabatan->position_name    = $request->position_name;
             $MJabatan->update();
         }

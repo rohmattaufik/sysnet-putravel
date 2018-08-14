@@ -5,7 +5,7 @@ namespace App\Http\Controllers\MSetNumber;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class MSetNumberListController extends Controller{
 
     public $id;
@@ -42,23 +42,23 @@ class MSetNumberListController extends Controller{
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MSetNumber_View()"));
     }
 
-    public function get_set_number($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_set_number($id){
+    //     return DB::select(DB::raw("CALL MSetNumber_()"));
+    // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MSetNumber_Create('$this->transaction_type', '$this->set_number_code', '$this->created_by')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MSetNumber_Update($this->id, '$this->transaction_type', '$this->set_number_code', '$this->created_by')"));
     }
 
-    public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function delete(){
+    //     return DB::unprepared(DB::raw("CALL MSetNumber_Delete()"));
+    // }
 
 }

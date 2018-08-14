@@ -5,7 +5,7 @@ namespace App\Http\Controllers\MTravel;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class MTravelListController extends Controller{
 
     public $id;
@@ -48,23 +48,23 @@ class MTravelListController extends Controller{
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MTravel_View()"));
     }
 
-    public function get_travel($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_travel($id){
+    //     return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+    // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MTravel_Create('$this->travel_name', '$this->address', '$this->contact', '$this->contact_number', '$this->logo', '$this->created_by')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MTravel_Update($this->id, '$this->travel_name', '$this->address', '$this->contact', '$this->contact_number', '$this->logo', '$this->created_by')"));
     }
 
     public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MTravel_Delete($this->id)"));
     }
 
 }

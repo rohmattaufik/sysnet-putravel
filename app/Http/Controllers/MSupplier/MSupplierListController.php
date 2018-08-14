@@ -5,7 +5,7 @@ namespace App\Http\Controllers\MSupplier;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class MSupplierListController extends Controller{
 
     public $id;
@@ -58,23 +58,25 @@ class MSupplierListController extends Controller{
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MSupplier_View()"));
     }
 
-    public function get_supplier($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_supplier($id){
+    //     return DB::select(DB::raw("CALL MSupplier_()"));
+    // }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MSupplier_Create('$this->supplier_name', '$this->idJenisSupplier', '$this->supplier_address', '$this->idKota', '$this->email', '$this->contact_number', '$this->website',
+                                                             '$this->contact_person', '$this->contact_person_number', '$this->contact_person_address', '$this->created_by')"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MSupplier_Update($this->id, '$this->supplier_name', '$this->idJenisSupplier', '$this->supplier_address', '$this->idKota', '$this->email', '$this->contact_number', '$this->website',
+                                                             '$this->contact_person', '$this->contact_person_number', '$this->contact_person_address', '$this->created_by')"));
     }
 
     public function delete(){
-        return DB::unprepared(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::unprepared(DB::raw("CALL MSupplier_Delete($this->id)"));
     }
 
 }

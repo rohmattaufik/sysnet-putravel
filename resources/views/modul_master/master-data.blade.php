@@ -81,7 +81,7 @@
                             <div class="col-lg-12">
                                 <div class="box box-primary">
                                     <div class="box-header with-border">
-                                        <h3 id="title_jenis_data" class="text-center">Jabataaan</h3>
+                                        <h3 id="title_jenis_data" class="text-center">Jabatan</h3>
                                     </div>
                                     <div class="alert alert-danger print-error-msg" style="display:none">
                                         <ul></ul>
