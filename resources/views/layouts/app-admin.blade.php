@@ -61,6 +61,15 @@ desired effect
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
+{{--datatables--}}
+
+{{--<script src="{{ URL::asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>--}}
+<script src="{{ URL::asset('js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js" type="text/javascript"></script>
+
 @yield('new-script')
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

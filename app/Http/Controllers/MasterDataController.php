@@ -17,12 +17,15 @@ use Auth;
 class MasterDataController extends Controller{
 
     public function index() {
-        return view('modul_master/master-data');
+        $data_jabatan = (new MJabatan)->get_list();
+
+        return view('modul_master/master-data')->with('data_jabatan',$data_jabatan);
     }
 
     public function get_list(){
         $data = (new MJabatan)->get_list();
-        return view('jabatan')->with('data',$data);
+
+        return view('modul_master/master-data')->with('data',$data);
     }
 
     public function store(Request $request){
@@ -88,9 +91,10 @@ class MasterDataController extends Controller{
 
     }
 
-    public function delete(Request $request){
-        $MJabatan = new MJabatan($request->code);
+    public function delete_jabatan(Request $request){
+        $MJabatan = new MJabatan($request->jabatan_id);
         $MJabatan->delete();
+        Session::flash('sukses-delete', 'Anda berhasil menghapus data Jabatan');
         return redirect()->back();
     }
 
