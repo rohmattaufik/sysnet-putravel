@@ -22,8 +22,10 @@ Route::prefix('master')->group(function () {
 
     Route::get('data', 'MasterDataController@index');
     Route::prefix('data')->group(function () {
-        Route::post('submit', 'MasterDataController@store');
+        Route::post('submit/jabatan', 'MasterDataController@store_jabatan');
         Route::post('delete/jabatan', 'MasterDataController@delete_jabatan');
+        Route::get('edit/jabatan/{id}', 'MasterDataController@edit_jabatan');
+        Route::post('update/jabatan', 'MasterDataController@update_jabatan');
     });
 
     Route::get('sbu', function () {

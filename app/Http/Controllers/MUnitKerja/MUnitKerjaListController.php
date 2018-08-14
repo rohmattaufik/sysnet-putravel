@@ -40,7 +40,7 @@ class MUnitKerjaListController extends Controller{
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+        return DB::select(DB::raw("CALL MUnitKerja_View()"));
     }
 
     public function get_unit_kerja($id){

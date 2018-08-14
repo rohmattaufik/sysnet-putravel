@@ -48,7 +48,7 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="post" action="{{ url(action('MasterDataController@store')) }}">
+                <form role="form" method="post" action="{{ url(action('MasterDataController@store_jabatan')) }}">
                     {{ csrf_field() }}
                     <div class="box-body">
 
@@ -172,18 +172,18 @@
                             <li class="dropdown" style="cursor: pointer;">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"
                                    aria-expanded="false" style="cursor: pointer;">
-                                    Jabatan <span class="caret"></span>
+                                    Daftar Jenis Data<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
 
                                     <li role="presentation">
-                                        <a role="menuitem" tabindex="-1" href="#tab_1" data-toggle="tab">Jabatan</a>
+                                        <a role="menuitem" tabindex="-1" href="#tab_jabatan" data-toggle="tab">Jabatan</a>
                                     </li>
                                     <li role="presentation">
-                                        <a role="menuitem" tabindex="-1" href="#tab_2" data-toggle="tab">Department</a>
+                                        <a role="menuitem" tabindex="-1" href="#tab_department" data-toggle="tab">Department</a>
                                     </li>
                                     <li role="presentation">
-                                        <a role="menuitem" tabindex="-1" href="#tab_3" data-toggle="tab">Golongan</a>
+                                        <a role="menuitem" tabindex="-1" href="#tab_golongan" data-toggle="tab">Golongan</a>
                                     </li>
                                     <li role="presentation">
                                         <a role="menuitem" tabindex="-1" href="#tab_3" data-toggle="tab">Unit Kerja</a>
@@ -199,8 +199,13 @@
                             </li>
 
                         </ul>
+
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tab_1">
+
+                            <div class="tab-pane active" id="tab_jabatan">
+                                <h3 class="box-title">
+                                    Daftar Nama Jabatan
+                                </h3>
 
                                 <table id="table_jabatan" class="table display responsive no-wrap" width="100%">
                                     <thead>
@@ -222,7 +227,8 @@
                                                     <input type="hidden" name="jabatan_id" value= "{{ $data->id }}" required autofocus>
 
                                                     <td>
-                                                        <button class="btn btn-primary">Edit</button>
+                                                        <a type="button" href="{{ url(action('MasterDataController@edit_jabatan',$data->id)) }}"
+                                                           class="btn btn-primary">Edit</a>
                                                         <button class="btn btn-danger" type="submit">
                                                             Delete
                                                         </button>
@@ -237,25 +243,90 @@
                                 </table>
 
                             </div>
+
                             <!-- /.tab-pane -->
-                            <div class="tab-pane" id="tab_2">
-                                The European languages are members of the same family. Their separate existence is a myth.
-                                For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                                in their grammar, their pronunciation and their most common words. Everyone realizes why a
-                                new common language would be desirable: one could refuse to pay expensive translators. To
-                                achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-                                words. If several languages coalesce, the grammar of the resulting language is more simple
-                                and regular than that of the individual languages.
+                            <div class="tab-pane" id="tab_department">
+                                <h3 class="box-title">
+                                    Daftar Nama Department
+                                </h3>
+
+                                <table id="table_department" class="table display responsive no-wrap" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama Department</th>
+                                        <th scope="col">Action</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $count = 0; ?>
+                                    @foreach($data_department as $data)
+                                        <tr>
+                                            <form method="post" action="{{ url(action('MasterDataController@delete_jabatan')) }}">
+                                                {{ csrf_field() }}
+                                                <td scope="row"><?php echo ++$count; ?></td>
+                                                <td>{{ $data->department_name }}</td>
+                                                <input type="hidden" name="jabatan_id" value= "{{ $data->id }}" required autofocus>
+
+                                                <td>
+                                                    <a type="button" href="{{ url(action('MasterDataController@edit_jabatan',$data->id)) }}"
+                                                       class="btn btn-primary">Edit</a>
+                                                    <button class="btn btn-danger" type="submit">
+                                                        Delete
+                                                    </button>
+                                                </td>
+
+                                            </form>
+
+                                        </tr>
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+
                             </div>
                             <!-- /.tab-pane -->
-                            <div class="tab-pane" id="tab_3">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                It has survived not only five centuries, but also the leap into electronic typesetting,
-                                remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                                sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                                like Aldus PageMaker including versions of Lorem Ipsum.
+                            <div class="tab-pane" id="tab_golongan">
+                                <h3 class="box-title">
+                                    Daftar Nama Golongan
+                                </h3>
+
+                                <table id="table_golongang" class="table display responsive no-wrap" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama Golongan</th>
+                                        <th scope="col">Action</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $count = 0; ?>
+                                    @foreach($data_golongan as $data)
+                                        <tr>
+                                            <form method="post" action="{{ url(action('MasterDataController@delete_jabatan')) }}">
+                                                {{ csrf_field() }}
+                                                <td scope="row"><?php echo ++$count; ?></td>
+                                                <td>{{ $data->class_name }}</td>
+                                                <input type="hidden" name="jabatan_id" value= "{{ $data->id }}" required autofocus>
+
+                                                <td>
+                                                    <a type="button" href="{{ url(action('MasterDataController@edit_jabatan',$data->id)) }}"
+                                                       class="btn btn-primary">Edit</a>
+                                                    <button class="btn btn-danger" type="submit">
+                                                        Delete
+                                                    </button>
+                                                </td>
+
+                                            </form>
+
+                                        </tr>
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+
                             </div>
                             <!-- /.tab-pane -->
                         </div>
@@ -288,6 +359,24 @@
 
         $(document).ready(function() {
             var table = $('#table_jabatan').DataTable( {
+                responsive: true,
+                "order": [[ 0, "asc" ]]
+            } );
+
+            new $.fn.dataTable.FixedHeader( table );
+        } );
+
+        $(document).ready(function() {
+            var table = $('#table_department').DataTable( {
+                responsive: true,
+                "order": [[ 0, "asc" ]]
+            } );
+
+            new $.fn.dataTable.FixedHeader( table );
+        } );
+
+        $(document).ready(function() {
+            var table = $('#table_golongan').DataTable( {
                 responsive: true,
                 "order": [[ 0, "asc" ]]
             } );
