@@ -18,8 +18,10 @@ class MasterSupplierController extends Controller
 
         $data_kota = (new MKota)->get_list();
         $data_jenis_supplier = (new MJenisSupplier)->get_list();
-
+        $data_supplier = (new MSupplier)->get_list();
+//        dd($data_supplier);
         return view('modul_master/master_supplier/master-supplier')
+            ->with('data_supplier',$data_supplier)
             ->with('data_kota',$data_kota)
             ->with('data_jenis_supplier',$data_jenis_supplier)
             ;
