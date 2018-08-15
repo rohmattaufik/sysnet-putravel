@@ -6,12 +6,9 @@
         <section class="content-header">
             <h1>
                 Modul Master Supplier
-                <small>Add your master data : supplier</small>
+                <small>Edit your master data of supplier</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-            </ol>
+
         </section>
 
         <!-- Main content -->
@@ -20,37 +17,33 @@
             <!--------------------------
               | Your Page Content Here |
               -------------------------->
+
             <div class="row">
-                <div class="col-lg-12">
+
+                <div class="col-lg-8">
+
+
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title"></h3>
-                            @if(Session::get('sukses'))
-                                <div class="callout callout-success">
-                                    <h4>{{ Session::get('sukses') }}</h4>
-
-                                    <p>Data Anda berhasil masuk database.</p>
-                                </div>
-                            @endif
-                            @if(Session::get('sukses-delete'))
-                                <div class="callout callout-danger">
-                                    <h4>{{ Session::get('sukses-delete') }}</h4>
-
-                                    <p>Data Anda berhasil dihapus dari database.</p>
-                                </div>
-                            @endif
-                        </div>
-
-                        <div class="box-body">
-
-                            <form class="form-horizontal" method="post" action="{{url(action('MasterSupplierController@store'))}}">
+                            <h3 class="box-title">
+                                <a href="{{ url(action('MasterSupplierController@index')) }}">
+                                    <i class="fa fa-arrow-left"></i>
+                                </a>
+                                Edit Supplier
+                            </h3>
+                            <form class="form-horizontal" method="post" action="{{ url(action('MasterSupplierController@update')) }}">
                                 {{ csrf_field() }}
                                 <div class="box-body">
+
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="jenis_supplier">Jenis Supplier</label>
                                         <div class="col-lg-4">
 
                                             <select id="jenis_supplier" name="jenis_supplier" class="form-control select-data">
+                                                <option value="{{ $data_supplier->idJenisSupplier }}"
+                                                        data-select2-id="{{ $data_supplier->idJenisSupplier }}" selected>
+                                                    {{ $data_supplier->supplier_type_name }}
+                                                </option>
                                                 @foreach($data_jenis_supplier as $data)
                                                     <option value="{{ $data->id }}"
                                                             data-select2-id="{{ $data->id }}">
@@ -68,7 +61,9 @@
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control"
                                                    id="nama_supplier"
-                                                   name="nama_supplier" placeholder="Masukkan Nama Supplier">
+                                                   name="nama_supplier"
+                                                   value="{{ $data_supplier->supplier_name }}"
+                                                   placeholder="Masukkan Nama Supplier">
                                         </div>
                                     </div>
 
@@ -77,7 +72,10 @@
 
                                         <div class="col-sm-4">
                                             <textarea class="form-control" rows="3"
-                                                      id="alamat" name="alamat" placeholder="Masukkan Alamat"></textarea>
+                                                      id="alamat" name="alamat"
+                                                      value="{{ $data_supplier->supplier_address }}">
+
+                                            </textarea>
                                         </div>
                                     </div>
 
@@ -85,6 +83,10 @@
                                         <label class="col-sm-2 control-label" for="kota">Kota</label>
                                         <div class="col-lg-4">
                                             <select id="kota" name="kota" class="form-control select-data">
+                                                <option value="{{ $data_supplier->idKota }}"
+                                                        data-select2-id="{{ $data_supplier->idKota }}" selected>
+                                                    {{ $data_supplier->city_name }}
+                                                </option>
                                                 @foreach($data_kota as $data)
                                                     <option value="{{ $data->id }}"
                                                             data-select2-id="{{ $data->id }}">
@@ -101,7 +103,8 @@
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control"
                                                    id="kode_pos"
-                                                   name="kode_pos" placeholder="Masukkan Kode Pos">
+                                                   name="kode_pos"
+                                                   placeholder="Masukkan Kode Pos">
                                         </div>
                                     </div>
 
@@ -111,7 +114,9 @@
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control"
                                                    id="no_telp"
-                                                   name="no_telp" placeholder="Nomor Telepon">
+                                                   name="no_telp"
+                                                   value="{{ $data_supplier->contact_number }}"
+                                                   placeholder="Nomor Telepon">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -120,7 +125,9 @@
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control"
                                                    id="fax"
-                                                   name="fax" placeholder="Fax">
+                                                   name="fax"
+
+                                                   placeholder="Fax">
                                         </div>
                                     </div>
 
@@ -130,7 +137,9 @@
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control"
                                                    id="email"
-                                                   name="email" placeholder="E-Mail">
+                                                   name="email"
+                                                   value="{{ $data_supplier->email }}"
+                                                   placeholder="E-Mail">
                                         </div>
                                     </div>
 
@@ -139,8 +148,10 @@
 
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control"
-                                                   id="no_telp"
-                                                   name="website" placeholder="Website">
+                                                   id="website"
+                                                   name="website"
+                                                   value="{{ $data_supplier->website }}"
+                                                   placeholder="Website">
                                         </div>
                                     </div>
 
@@ -158,7 +169,9 @@
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control"
                                                    id="name_cp"
-                                                   name="name_cp" placeholder="Nama">
+                                                   name="name_cp"
+                                                   value="{{ $data_supplier->contact_person }}"
+                                                   placeholder="Nama">
                                         </div>
                                     </div>
 
@@ -168,7 +181,9 @@
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control"
                                                    id="no_telp_cp"
-                                                   name="no_telp_cp" placeholder="Nomor Telepon">
+                                                   name="no_telp_cp"
+                                                   value="{{ $data_supplier->contact_person_number }}"
+                                                   placeholder="Nomor Telepon">
                                         </div>
                                     </div>
 
@@ -177,7 +192,9 @@
 
                                         <div class="col-sm-4">
                                     <textarea class="form-control" rows="3"
-                                              id="alamat_cp" name="alamat_cp" placeholder="Masukkan Alamat">
+                                              id="alamat_cp" name="alamat_cp"
+                                              value="{{ $data_supplier->contact_person_address }}"
+                                              placeholder="Masukkan Alamat">
                                     </textarea>
                                         </div>
                                     </div>
@@ -188,106 +205,19 @@
                                     <a type="button" href="#" class="btn btn-danger btn-lg">Reset</a>
                                     <button type="submit" class="btn btn-primary btn-lg">Save</button>
                                 </div>
+
+
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-info">Update</button>
+                                </div>
                                 <!-- /.box-footer -->
                             </form>
-
                         </div>
                     </div>
                 </div>
             </div>
-
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h1 class="box-title">List of Supplier</h1>
-                        </div>
-                        <div class="box-body table-responsive no-padding">
-
-                            <table id="table_supplier" class="table display responsive no-wrap" width="100%">
-                                <thead>
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Jenis Supplier</th>
-                                    <th scope="col">Nama Supplier</th>
-                                    <th scope="col">Alamat Supplier</th>
-                                    <th scope="col">Kota</th>
-                                    <th scope="col">E-Mail</th>
-                                    <th scope="col">Contact Number</th>
-                                    <th scope="col">Website</th>
-                                    <th scope="col">Nama Contact Person</th>
-                                    <th scope="col">Nomor Telp Contact Person</th>
-                                    <th scope="col">Alamat Contact Person</th>
-                                    <th scope="col">Action</th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php $count = 0; ?>
-                                @foreach($data_supplier as $data)
-                                    <tr>
-                                        <form method="post" action="{{ url(action('MasterSupplierController@delete')) }}">
-                                            {{ csrf_field() }}
-                                            <td scope="row"><?php echo ++$count; ?></td>
-                                            <td>{{ $data->supplier_type_name }} </td>
-                                            <td>{{ $data->supplier_name }}  </td>
-                                            <td>{{ $data->supplier_address }}  </td>
-                                            <td>{{ $data->city_name }}  </td>
-                                            <td>{{ $data->email }}</td>
-                                            <td>{{ $data->contact_number}}</td>
-                                            <td>{{ $data->website  }}</td>
-                                            <td>{{ $data->contact_person }}</td>
-                                            <td>{{ $data->contact_person_number }}</td>
-                                            <td>{{ $data->contact_person_address}}  </td>
-                                            <input type="hidden" name="supplier_id" value= "{{ $data->id }}" required autofocus>
-
-                                            <td>
-                                                <a type="button" href="{{ url(action('MasterSupplierController@edit',$data->id)) }}"
-                                                   class="btn btn-primary">Edit</a>
-                                                <button class="btn btn-danger" type="submit">
-                                                    Delete
-                                                </button>
-                                            </td>
-
-                                        </form>
-
-                                    </tr>
-                                @endforeach
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </section>
     </div>
-@stop
-
-@section('new-script')
-    <script>
-        $(document).ready(function() {
-//            var table = $('#table_supplier').DataTable( {
-//                responsive: true,
-//                "order": [[ 0, "asc" ]]
-//            } );
-//
-//            new $.fn.dataTable.FixedHeader( table );
-
-        } );
-        $('#').DataTable({
-            'paging'      : true,
-            'lengthChange': true,
-            'searching'   : true,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : true,
-            'responsive' : true
-        })
-    </script>
-
 @stop

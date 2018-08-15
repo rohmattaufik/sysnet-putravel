@@ -19,7 +19,7 @@ class MasterSupplierController extends Controller
         $data_kota = (new MKota)->get_list();
         $data_jenis_supplier = (new MJenisSupplier)->get_list();
         $data_supplier = (new MSupplier)->get_list();
-//        dd($data_supplier);
+
         return view('modul_master/master_supplier/master-supplier')
             ->with('data_supplier',$data_supplier)
             ->with('data_kota',$data_kota)
@@ -48,4 +48,50 @@ class MasterSupplierController extends Controller
         Session::flash('sukses',"Data supplier berhasil diinput.");
         return redirect()->back();
     }
+
+    public function delete(Request $request)
+    {
+
+        $MSupplier = new MSupplier($request->supplier_id);
+        $MSupplier->delete();
+
+        Session::flash('sukses-delete', 'Anda berhasil menghapus data Supplier');
+        return redirect()->back();
+
+    }
+
+    public function edit($id)
+    {
+        $MSupplier = new MSupplier($id);
+        $data_kota = (new MKota)->get_list();
+        $data_jenis_supplier = (new MJenisSupplier)->get_list();
+        dd($MSupplier);
+        return view('modul_master/master_supplier/edit')
+            ->with('data_supplier', $MSupplier)
+            ->with('data_jenis_supplier', $data_jenis_supplier)
+            ->with('data_kota',$data_kota)
+            ;
+
+    }
+
+    public function update(Request $request)
+    {
+        $id_user = Auth::user()->id;
+
+        if ($id_user) {
+
+            if ($request->jenis_data == 'jabatan') {
+                $MData = new MSupplier($request->data_id);
+                $MData->updated_by = $id_user;
+                $MData->supplier_name = $request->data_content;
+                $MData->update();
+            }
+
+
+            Session::flash('sukses', 'Data ' . $request->jenis_data . ' sukses di-update');
+            return redirect(url(action('MasterDataController@index')));
+        }
+    }
+
+
 }
