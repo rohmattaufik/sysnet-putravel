@@ -17,9 +17,14 @@ Route::get('/', function () {
 
 Route::prefix('master')->group(function () {
     //master parameter
-    Route::get('parameter', function () {
-        return view('modul_master/master-parameter');
+    Route::get('parameter', 'MasterParameterController@index');
+    Route::prefix('parameter')->group(function () {
+        Route::post('submit', 'MasterParameterController@store');
+        Route::post('delete', 'MasterParameterController@delete');
+        Route::get('edit/{id}', 'MasterParameterController@edit');
+        Route::post('update', 'MasterParameterController@update');
     });
+
 
     // master data
     Route::get('data', 'MasterDataController@index');
