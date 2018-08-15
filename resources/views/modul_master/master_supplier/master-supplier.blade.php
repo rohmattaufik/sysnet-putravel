@@ -23,47 +23,44 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    {{--<h3 class="box-title">Quick Example</h3>--}}
+                    <h3 class="box-title"></h3>
+                    @if(Session::get('sukses'))
+                        <div class="callout callout-success">
+                            <h4>{{ Session::get('sukses') }}</h4>
+
+                            <p>Data Anda berhasil masuk database.</p>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="box-body">
 
-                    <form class="form-horizontal" method="post" action="{{url('master/supplier/create')}}">
+                    <form class="form-horizontal" method="post" action="{{url(action('MasterSupplierController@store'))}}">
+                        {{ csrf_field() }}
                         <div class="box-body">
-                            {{--<div class="form-group">--}}
-                                {{--<label for="nama_travel" class="col-sm-2 control-label">Nama Travel</label>--}}
-
-                                {{--<div class="col-sm-4">--}}
-                                    {{--<input type="text" class="form-control"--}}
-                                           {{--id="nama_travel"--}}
-                                           {{--name="nama_travel" placeholder="Nama Travel">--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="unit_kerja">Jenis Vendor</label>
+                                <label class="col-sm-2 control-label" for="jenis_supplier">Jenis Supplier</label>
                                 <div class="col-lg-4">
-                                    <select class="form-control select-data">
-                                        <option value="AZ" data-select2-id="12">Set Number</option>
-                                        <option value="CO" data-select2-id="13">Golongan</option>
-                                        <option value="ID" data-select2-id="14">Departemen</option>
-                                        <option value="MT" data-select2-id="15">Unit Kerja</option>
-                                        <option value="NE" data-select2-id="16">Kota</option>
-                                        <option value="NM" data-select2-id="17">Jenis Supplier</option>
-                                      
-                                 {{--   @foreach($jenis_suppliers as $item)
-                                            <option value="{{$item->id}}" data-select2-id="17">{{$item->supplier_type_name}}</option>
-                                        @endforeach --}}
+
+                                    <select id="jenis_supplier" name="jenis_supplier" class="form-control select-data">
+                                        @foreach($data_jenis_supplier as $data)
+                                            <option value="{{ $data->id }}"
+                                                    data-select2-id="{{ $data->id }}">
+                                                {{ $data->supplier_type_name }}
+                                            </option>
+                                        @endforeach
                                     </select>
+
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="nama_travel" class="col-sm-2 control-label">Nama Supplier</label>
+                                <label for="nama_supplier" class="col-sm-2 control-label">Nama Supplier</label>
 
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control"
-                                           id="nama_travel"
-                                           name="nama_travel" placeholder="Nama Supplier">
+                                           id="nama_supplier"
+                                           name="nama_supplier" placeholder="Masukkan Nama Supplier">
                                 </div>
                             </div>
 
@@ -77,29 +74,26 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="unit_kerja">Kota</label>
+                                <label class="col-sm-2 control-label" for="kota">Kota</label>
                                 <div class="col-lg-4">
-                                    <select class="form-control select-data">
-                                        <option value="AZ" data-select2-id="12">Kota</option>
-                                        <option value="CO" data-select2-id="13">Golongan</option>
-                                        <option value="ID" data-select2-id="14">Departemen</option>
-                                        <option value="MT" data-select2-id="15">Unit Kerja</option>
-                                        <option value="NE" data-select2-id="16">Kota</option>
-                                        <option value="NM" data-select2-id="17">Jenis Supplier</option>
-                                        {{-- @foreach($kotas as $item)
-                                            <option value="{{$item->id}}" data-select2-id="17">{{$item->city_name}}</option>
-                                        @endforeach --}}
+                                    <select id="kota" name="kota" class="form-control select-data">
+                                    @foreach($data_kota as $data)
+                                        <option value="{{ $data->id }}"
+                                                data-select2-id="{{ $data->id }}">
+                                            {{ $data->city_name }}
+                                        </option>
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="contact_person" class="col-sm-2 control-label">Kode Pos</label>
+                                <label for="kode_pos" class="col-sm-2 control-label">Kode Pos</label>
 
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control"
-                                           id="contact_person"
-                                           name="contact_person" placeholder="Kode Pos">
+                                           id="kode_pos"
+                                           name="kode_pos" placeholder="Masukkan Kode Pos">
                                 </div>
                             </div>
 
@@ -151,31 +145,31 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="nama_travel" class="col-sm-2 control-label">Nama</label>
+                                <label for="name_cp" class="col-sm-2 control-label">Nama</label>
 
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control"
-                                           id="nama_travel"
-                                           name="nama_travel" placeholder="Nama">
+                                           id="name_cp"
+                                           name="name_cp" placeholder="Nama">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="no_telp" class="col-sm-2 control-label">No. Telp</label>
+                                <label for="no_telp_cp" class="col-sm-2 control-label">No. Telp</label>
 
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control"
-                                           id="no_telp"
-                                           name="no_telp" placeholder="Nomor Telepon">
+                                           id="no_telp_cp"
+                                           name="no_telp_cp" placeholder="Nomor Telepon">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="alamat" class="col-sm-2 control-label">Alamat</label>
+                                <label for="alamat_cp" class="col-sm-2 control-label">Alamat</label>
 
                                 <div class="col-sm-4">
                                     <textarea class="form-control" rows="3"
-                                            id="alamat" name="alamat" placeholder="Masukkan Alamat">
+                                            id="alamat_cp" name="alamat_cp" placeholder="Masukkan Alamat">
                                     </textarea>
                                 </div>
                             </div>
@@ -183,7 +177,7 @@
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-danger btn-lg">Reset</button>
+                            <a type="button" href="#" class="btn btn-danger btn-lg">Reset</a>
                             <button type="submit" class="btn btn-primary btn-lg">Save</button>
                         </div>
                         <!-- /.box-footer -->

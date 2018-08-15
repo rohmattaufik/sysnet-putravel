@@ -16,37 +16,44 @@ Route::get('/', function () {
 });
 
 Route::prefix('master')->group(function () {
+    //master parameter
     Route::get('parameter', function () {
         return view('modul_master/master-parameter');
     });
 
+    // master data
     Route::get('data', 'MasterDataController@index');
     Route::prefix('data')->group(function () {
         Route::post('submit', 'MasterDataController@store');
-        Route::post('delete/jabatan', 'MasterDataController@delete');
+        Route::post('delete', 'MasterDataController@delete');
         Route::get('edit/{jenis_data}/{id}', 'MasterDataController@edit');
         Route::post('update', 'MasterDataController@update');
     });
 
+    //master sbu
     Route::get('sbu', function () {
         return view('modul_master/master-sbu');
     });
+
+    //master employee
     Route::get('employee', function () {
         return view('modul_master/master-employee');
     });
-    Route::get('supplier', function () {
-        return view('modul_master/master-supplier');
+
+    //master supplier
+    Route::get('supplier', 'MasterSupplierController@index');
+    Route::prefix('supplier')->group(function () {
+        Route::post('submit', 'MasterSupplierController@store');
+        Route::post('delete', 'MasterSupplierController@delete');
+        Route::get('edit/{id}', 'MasterSupplierController@edit');
+        Route::post('update', 'MasterSupplierController@update');
     });
 
-    // Route::get('supplier', 'SupplierController@index');
-
+    //master dipa
     Route::get('dipa', function () {
         return view('modul_master/master-dipa');
     });
 
-    Route::post('supplier/create','MSupplierController@insert');
-
-    Route::post('data/jabatan/create','MJabatanController@insert');
 });
 
 Auth::routes();

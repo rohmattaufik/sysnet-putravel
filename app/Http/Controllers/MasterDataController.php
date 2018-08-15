@@ -24,7 +24,7 @@ class MasterDataController extends Controller{
         $data_kota = (new MKota)->get_list();
         $data_jenis_supplier = (new MJenisSupplier)->get_list();
 
-        return view('modul_master/master-data')
+        return view('modul_master/master_data/master-data')
             ->with('data_jabatan',$data_jabatan)
             ->with('data_department',$data_department)
             ->with('data_golongan',$data_golongan)
@@ -37,7 +37,7 @@ class MasterDataController extends Controller{
     public function get_list(){
         $data = (new MJabatan)->get_list();
 
-        return view('modul_master/master-data')->with('data',$data);
+        return view('modul_master/master_data/master-data')->with('data',$data);
     }
 
     public function store(Request $request){
