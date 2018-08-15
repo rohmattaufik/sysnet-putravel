@@ -141,7 +141,10 @@
                                     </div>
                                     <!-- /.box-header -->
                                     <!-- form start -->
-                                    <form class="form-horizontal">
+                                    <div
+                                            class="form-horizontal"
+                                    >
+
                                         <div class="box-body">
                                             <div class="col-lg-8">
                                                 <table class="table">
@@ -150,83 +153,40 @@
                                                         <th scope="col">No</th>
                                                         <th scope="col">Jenis Transaksi</th>
                                                         <th scope="col">Kode</th>
+                                                        <th scope="col">Action</th>
 
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Surat Tugas</td>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                   id="kode_surat_tugas"
-                                                                   name="kode_surat_tugas" placeholder="Kode Surat Tugas">
-                                                        </td>
+                                                    @foreach($data_number as $data)
 
-                                                    </tr>
                                                     <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Pesan Tiket</td>
+                                                        <form
+                                                                method="post"
+                                                                action="{{ url(action('MasterParameterController@update')) }}"
+                                                        >
+                                                            {{ csrf_field() }}
+                                                        <th scope="row">{{ $data->id }}</th>
+                                                        <td>{{ $data->transaction_type }}</td>
                                                         <td>
+
                                                             <input type="text" class="form-control"
-                                                                   id="kode_pesan_tiket"
-                                                                   name="kode_pesan_tiket" placeholder="Kode Pesan Tiket">
+                                                                   id="type_data"
+                                                                   name="set_number_code"
+                                                                   value="{{ $data->set_number_code }}">
+                                                            <input type="hidden"
+                                                                   name="jenis_data"
+                                                                   value="code_data">
+                                                            <input type="hidden"
+                                                                   name="number_id"
+                                                                   value="{{ $data->id }}">
+
                                                         </td>
+                                                        <td><button type="submit" class="btn btn-info btn-sm">Save</button></td>
+                                                        </form>
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Pesan Hotel</td>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                   id="contact_person"
-                                                                   name="contact_person" placeholder="Kode Pesan Hotel">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">4</th>
-                                                        <td>Pesan Lain2</td>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                   id="kode_pesan_tiket"
-                                                                   name="kode_pesan_tiket" placeholder="Kode Pesan Lain2">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">5</th>
-                                                        <td>Invoice Hotel</td>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                   id="kode_pesan_tiket"
-                                                                   name="kode_pesan_tiket" placeholder="Kode Invoice Hotel">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">6</th>
-                                                        <td>Invoice Tiket</td>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                   id="kode_pesan_tiket"
-                                                                   name="kode_pesan_tiket" placeholder="Kode Invoice Tiket">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">7</th>
-                                                        <td>Voucher Hotel</td>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                   id="kode_pesan_tiket"
-                                                                   name="kode_pesan_tiket" placeholder="Kode Voucher Hotel">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">8</th>
-                                                        <td>Kwitansi</td>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                   id="kode_pesan_tiket"
-                                                                   name="kode_pesan_tiket" placeholder="Kode Kwitansi">
-                                                        </td>
-                                                    </tr>
+
+                                                    @endforeach
 
                                                     </tbody>
                                                 </table>
@@ -236,11 +196,11 @@
                                         </div>
                                         <!-- /.box-body -->
                                         <div class="box-footer">
-                                            <button type="submit" class="btn btn-danger btn-lg">Reset</button>
-                                            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                                            <a href="#" class="btn btn-danger btn-lg">Reset</a>
+                                            {{--<button type="submit" class="btn btn-info btn-lg">Save</button>--}}
                                         </div>
                                         <!-- /.box-footer -->
-                                    </form>
+                                    </div>
                                 </div>
 
 

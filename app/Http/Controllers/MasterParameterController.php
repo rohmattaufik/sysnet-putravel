@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller,
     Illuminate\Support\Facades\DB as DB,
     App\Http\Controllers\MTravel\MTravelListController as MTravel,
+    App\Http\Controllers\MSetNumber\MSetNumberListController as MSet,
     App\Http\Controllers\MKota\MKotaListController as MKota,
     App\Http\Controllers\MJenisSupplier\MJenisSupplierListController as MJenisSupplier,
     Illuminate\Http\Request;
@@ -15,9 +16,11 @@ class MasterParameterController extends Controller
 {
     public function index() {
         $data_travel = (new MTravel)->get_list();
+        $data_number = (new MSet)->get_list();
 
         return view('modul_master/master_parameter/master-parameter')
             ->with('data_travel',$data_travel)
+            ->with('data_number', $data_number)
             ;
     }
 
@@ -52,20 +55,36 @@ class MasterParameterController extends Controller
         $id_user = Auth::user()->id;
 
         if ($id_user) {
-            $new_travel                = new MTravel($request->travel_id);
-            $new_travel->travel_name = $request->nama_travel;
-            $new_travel->idJenisSupplier = $request->jenis_supplier;
-            $new_travel->supplier_address = $request->alamat;
-            $new_travel->contact = $request->contact_person;
-            $new_travel->contact_number = $request->no_telp;
 
-            $new_travel->updated_by = Auth::user()->id;
+            if ($request->jenis_data == 'code_data') {
 
-            $new_travel->update();
+                $new_set_number = new MSet($request->number_id);
+                $new_set_number->set_number_code = $request->set_number_code;
+
+                $new_set_number->updated_by = Auth::user()->id;
+
+                $new_set_number->update();
+
+                Session::flash('sukses', 'Data kode sukses di-update');
+                return redirect(url(action('MasterParameterController@index')));
+
+            } else {
+                $new_travel = new MTravel($request->travel_id);
+                $new_travel->travel_name = $request->nama_travel;
+                $new_travel->idJenisSupplier = $request->jenis_supplier;
+                $new_travel->supplier_address = $request->alamat;
+                $new_travel->contact = $request->contact_person;
+                $new_travel->contact_number = $request->no_telp;
+
+                $new_travel->updated_by = Auth::user()->id;
+
+                $new_travel->update();
+            }
 
             Session::flash('sukses', 'Data travel sukses di-update');
             return redirect(url(action('MasterParameterController@index')));
         }
+
     }
 
     public function delete(Request $request)
