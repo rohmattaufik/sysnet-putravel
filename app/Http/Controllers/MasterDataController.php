@@ -40,7 +40,7 @@ class MasterDataController extends Controller{
         return view('modul_master/master-data')->with('data',$data);
     }
 
-    public function store_jabatan(Request $request){
+    public function store(Request $request){
 //        dd($request);
         $id_user = Auth::user()->id;
 
@@ -129,75 +129,164 @@ class MasterDataController extends Controller{
 
 
 
-    public function delete_jabatan(Request $request){
-        $MJabatan = new MJabatan($request->jabatan_id);
-        $MJabatan->delete();
-        Session::flash('sukses-delete', 'Anda berhasil menghapus data Jabatan');
+    public function delete(Request $request){
+
+        if($request->jenis_data == 'jabatan') {
+            $MJabatan = new MJabatan($request->jabatan_id);
+            $MJabatan->delete();
+            Session::flash('sukses-delete', 'Anda berhasil menghapus data Jabatan');
+            return redirect()->back();
+        } else if($request->jenis_data == 'department') {
+            $MDepartment = new MDepartment($request->department_id);
+            $MDepartment->delete();
+            Session::flash('sukses-delete', 'Anda berhasil menghapus data Department');
+            return redirect()->back();
+        } else if($request->jenis_data == 'golongan') {
+            $MGolongan = new MGolongan($request->golongan_id);
+            $MGolongan->delete();
+            Session::flash('sukses-delete', 'Anda berhasil menghapus data Golongan');
+            return redirect()->back();
+        } else if($request->jenis_data == 'unit_kerja') {
+            $MUnitKerja = new MUnitKerja($request->unit_kerja_id);
+            $MUnitKerja->delete();
+            Session::flash('sukses-delete', 'Anda berhasil menghapus data Unit Kerja');
+            return redirect()->back();
+        } else if($request->jenis_data == 'kota') {
+            $MKota = new MKota($request->kota_id);
+            $MKota->delete();
+            Session::flash('sukses-delete', 'Anda berhasil menghapus data Kota');
+            return redirect()->back();
+        } else if($request->jenis_data == 'jenis_supplier') {
+            $MJenisSupplier = new MJenisSupplier($request->unit_kerja_id);
+            $MJenisSupplier->delete();
+            Session::flash('sukses-delete', 'Anda berhasil menghapus data Jenis Supplier');
+            return redirect()->back();
+        }
+
+        Session::flash('sukses-delete', 'Anda tidak menghapus apa-apa.');
         return redirect()->back();
     }
 
-    public function edit_jabatan($id){
+    public function edit($jenis_data, $id){
 
-        $MJabatan = new MJabatan($id);
-        return view('modul_master/edit-jabatan')->with('jabatan',$MJabatan);
+        if ($jenis_data == 'jabatan') {
+            $MJabatan = new MJabatan($id);
+            $jenis_data = 'Jabatan';
+            $data_id = $id;
+            $data_content = $MJabatan->position_name;
+            return view('modul_master/master_data/edit')
+                ->with('data_content',$data_content)
+                ->with('data_id',$data_id)
+                ->with('jenis_data_input','jabatan')
+                ->with('jenis_data',$jenis_data);
+
+        } else if ($jenis_data == 'department') {
+            $MDepartment = new MDepartment($id);
+            $jenis_data = 'Department';
+            $data_id = $id;
+            $data_content = $MDepartment->department_name;
+            return view('modul_master/master_data/edit')
+                ->with('data_content',$data_content)
+                ->with('data_id',$data_id)
+                ->with('jenis_data_input','department')
+                ->with('jenis_data',$jenis_data);
+
+        } else if ($jenis_data == 'golongan') {
+            $MGolongan = new MGolongan($id);
+            $jenis_data = 'Golongan';
+            $data_id = $id;
+            $data_content = $MGolongan->class_name;
+            return view('modul_master/master_data/edit')
+                ->with('data_content',$data_content)
+                ->with('data_id',$data_id)
+                ->with('jenis_data_input','golongan')
+                ->with('jenis_data',$jenis_data);
+
+        } else if ($jenis_data == 'unit_kerja') {
+            $MUnitKerja = new MUnitKerja($id);
+            $jenis_data = 'Unit Kerja';
+            $data_id = $id;
+            $data_content = $MUnitKerja->work_unit;
+            return view('modul_master/master_data/edit')
+                ->with('data_content',$data_content)
+                ->with('data_id',$data_id)
+                ->with('jenis_data_input','unit_kerja')
+                ->with('jenis_data',$jenis_data);
+
+        } else if ($jenis_data == 'kota') {
+            $MKota = new MKota($id);
+            $jenis_data = 'Kota';
+            $data_id = $id;
+            $data_content = $MKota->city_name;
+            return view('modul_master/master_data/edit')
+                ->with('data_content',$data_content)
+                ->with('data_id',$data_id)
+                ->with('jenis_data_input','kota')
+                ->with('jenis_data',$jenis_data);
+
+        } else if ($jenis_data == 'jenis_supplier') {
+            $MJenisSupplier = new MJenisSupplier($id);
+            $jenis_data = 'Jenis Supplier';
+            $data_id = $id;
+            $data_content = $MJenisSupplier->supplier_type_name;
+            return view('modul_master/master_data/edit')
+                ->with('data_content',$data_content)
+                ->with('data_id',$data_id)
+                ->with('jenis_data_input','jenis_supplier')
+                ->with('jenis_data',$jenis_data);
+
+        }
+
+        return view('modul_master/master_data/edit')->with('jabatan','salah')->with('jenis_data',$jenis_data);
     }
 
-    public function update_jabatan(Request $request){
+    public function update(Request $request){
         $id_user = Auth::user()->id;
 
         if($id_user) {
-            $MJabatan   = new MJabatan($request->jabatan_id);
-            $MJabatan->updated_by       = $id_user;
-            $MJabatan->position_name    = $request->position_name;
-            $MJabatan->update();
+
+            if ($request->jenis_data == 'jabatan') {
+                $MData = new MJabatan($request->data_id);
+                $MData->updated_by = $id_user;
+                $MData->position_name = $request->data_content;
+                $MData->update();
+
+            } else if ($request->jenis_data == 'department') {
+                $MData = new MDepartment($request->data_id);
+                $MData->updated_by = $id_user;
+                $MData->department_name = $request->data_content;
+                $MData->update();
+
+            } else if ($request->jenis_data == 'golongan') {
+                $MData = new MGolongan($request->data_id);
+                $MData->updated_by = $id_user;
+                $MData->class_name = $request->data_content;
+                $MData->update();
+
+            } else if ($request->jenis_data == 'unit_kerja') {
+                $MData = new MUnitKerja($request->data_id);
+                $MData->updated_by = $id_user;
+                $MData->work_unit = $request->data_content;
+                $MData->update();
+
+            } else if ($request->jenis_data == 'kota') {
+                $MData = new MKota($request->data_id);
+                $MData->updated_by = $id_user;
+                $MData->city_name = $request->data_content;
+                $MData->update();
+
+            } else if ($request->jenis_data == 'jenis_supplier') {
+                $MData = new MJenisSupplier($request->data_id);
+                $MData->updated_by = $id_user;
+                $MData->supplier_type_name = $request->data_content;
+                $MData->update();
+
+            }
         }
 
 
-        Session::flash('sukses','Nama Jabatan berhasil di-update');
+        Session::flash('sukses','Data '. $request->jenis_data .' sukses di-update');
         return redirect(url(action('MasterDataController@index')));
-    }
-
-
-
-    //Department
-    public function delete_department(Request $request){
-        $MDepartment = new MDepartment($request->department_id);
-        $MDepartment->delete();
-        Session::flash('sukses-delete', 'Anda berhasil menghapus data Department');
-        return redirect()->back();
-    }
-
-
-    //Golongan
-    public function delete_golongan(Request $request){
-        $MGolongan = new MGolongan($request->golongan_id);
-        $MGolongan->delete();
-        Session::flash('sukses-delete', 'Anda berhasil menghapus data Golongan');
-        return redirect()->back();
-    }
-
-    //Unit Kerja
-    public function delete_unit_kerja(Request $request){
-        $MUnitKerja = new MUnitKerja($request->unit_kerja_id);
-        $MUnitKerja->delete();
-        Session::flash('sukses-delete', 'Anda berhasil menghapus data Unit Kerja');
-        return redirect()->back();
-    }
-
-    //Jenis_supplier
-    public function delete_jenis_supplier(Request $request){
-        $MJenisSupplier = new MJenisSupplier($request->jenis_supplier_id);
-        $MJenisSupplier->delete();
-        Session::flash('sukses-delete', 'Anda berhasil menghapus data Jenis Supplier');
-        return redirect()->back();
-    }
-
-    //Kota
-    public function delete_kota(Request $request){
-        $MKota = new MKota($request->kota_id);
-        $MKota->delete();
-        Session::flash('sukses-delete', 'Anda berhasil menghapus data Kota');
-        return redirect()->back();
     }
 
 }

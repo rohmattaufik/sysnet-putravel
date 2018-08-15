@@ -22,33 +22,10 @@ Route::prefix('master')->group(function () {
 
     Route::get('data', 'MasterDataController@index');
     Route::prefix('data')->group(function () {
-        Route::post('submit/jabatan', 'MasterDataController@store_jabatan');
-
-        //Jabatan
-        Route::post('delete/jabatan', 'MasterDataController@delete_jabatan');
-        Route::get('edit/jabatan/{id}', 'MasterDataController@edit_jabatan');
-        Route::post('update/jabatan', 'MasterDataController@update_jabatan');
-
-        //Department
-        Route::post('delete/department', 'MasterDataController@delete_department');
-
-
-        //Golongan
-        Route::post('delete/golongan', 'MasterDataController@delete_golongan');
-
-
-        //Kota
-        Route::post('delete/kota', 'MasterDataController@delete_kota');
-
-
-        //Jenis Supplier
-        Route::post('delete/jenis_supplier', 'MasterDataController@delete_jenis_supplier');
-
-
-        //Unit Kerja
-        Route::post('delete/unit_kerja', 'MasterDataController@delete_unit_kerja');
-
-
+        Route::post('submit', 'MasterDataController@store');
+        Route::post('delete/jabatan', 'MasterDataController@delete');
+        Route::get('edit/{jenis_data}/{id}', 'MasterDataController@edit');
+        Route::post('update', 'MasterDataController@update');
     });
 
     Route::get('sbu', function () {
