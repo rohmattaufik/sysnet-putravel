@@ -157,4 +157,47 @@ class MasterDataController extends Controller{
         return redirect(url(action('MasterDataController@index')));
     }
 
+
+
+    //Department
+    public function delete_department(Request $request){
+        $MDepartment = new MDepartment($request->department_id);
+        $MDepartment->delete();
+        Session::flash('sukses-delete', 'Anda berhasil menghapus data Department');
+        return redirect()->back();
+    }
+
+
+    //Golongan
+    public function delete_golongan(Request $request){
+        $MGolongan = new MGolongan($request->golongan_id);
+        $MGolongan->delete();
+        Session::flash('sukses-delete', 'Anda berhasil menghapus data Golongan');
+        return redirect()->back();
+    }
+
+    //Unit Kerja
+    public function delete_unit_kerja(Request $request){
+        $MUnitKerja = new MUnitKerja($request->unit_kerja_id);
+        $MUnitKerja->delete();
+        Session::flash('sukses-delete', 'Anda berhasil menghapus data Unit Kerja');
+        return redirect()->back();
+    }
+
+    //Jenis_supplier
+    public function delete_jenis_supplier(Request $request){
+        $MJenisSupplier = new MJenisSupplier($request->jenis_supplier_id);
+        $MJenisSupplier->delete();
+        Session::flash('sukses-delete', 'Anda berhasil menghapus data Jenis Supplier');
+        return redirect()->back();
+    }
+
+    //Kota
+    public function delete_kota(Request $request){
+        $MKota = new MKota($request->kota_id);
+        $MKota->delete();
+        Session::flash('sukses-delete', 'Anda berhasil menghapus data Kota');
+        return redirect()->back();
+    }
+
 }

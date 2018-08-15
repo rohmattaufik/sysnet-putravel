@@ -186,13 +186,13 @@
                                         <a role="menuitem" tabindex="-1" href="#tab_golongan" data-toggle="tab">Golongan</a>
                                     </li>
                                     <li role="presentation">
-                                        <a role="menuitem" tabindex="-1" href="#tab_3" data-toggle="tab">Unit Kerja</a>
+                                        <a role="menuitem" tabindex="-1" href="#tab_unit_kerja" data-toggle="tab">Unit Kerja</a>
                                     </li>
                                     <li role="presentation">
-                                        <a role="menuitem" tabindex="-1" href="#tab_3" data-toggle="tab">Kota</a>
+                                        <a role="menuitem" tabindex="-1" href="#tab_kota" data-toggle="tab">Kota</a>
                                     </li>
                                     <li role="presentation">
-                                        <a role="menuitem" tabindex="-1" href="#tab_3" data-toggle="tab">Jenis Supplier</a>
+                                        <a role="menuitem" tabindex="-1" href="#tab_jenis_supplier" data-toggle="tab">Jenis Supplier</a>
                                     </li>
 
                                 </ul>
@@ -263,11 +263,11 @@
                                     <?php $count = 0; ?>
                                     @foreach($data_department as $data)
                                         <tr>
-                                            <form method="post" action="{{ url(action('MasterDataController@delete_jabatan')) }}">
+                                            <form method="post" action="{{ url(action('MasterDataController@delete_department')) }}">
                                                 {{ csrf_field() }}
                                                 <td scope="row"><?php echo ++$count; ?></td>
                                                 <td>{{ $data->department_name }}</td>
-                                                <input type="hidden" name="jabatan_id" value= "{{ $data->id }}" required autofocus>
+                                                <input type="hidden" name="department_id" value= "{{ $data->id }}" required autofocus>
 
                                                 <td>
                                                     <a type="button" href="{{ url(action('MasterDataController@edit_jabatan',$data->id)) }}"
@@ -286,13 +286,143 @@
                                 </table>
 
                             </div>
+
+                            <!-- /.tab-pane -->
+                            <div class="tab-pane" id="tab_unit_kerja">
+                                <h3 class="box-title">
+                                    Daftar Nama Unit Kerja
+                                </h3>
+
+                                <table id="table_unit_kerja" class="table display responsive no-wrap" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama Unit Kerja</th>
+                                        <th scope="col">Action</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $count = 0; ?>
+                                    @foreach($data_unit_kerja as $data)
+                                        <tr>
+                                            <form method="post" action="{{ url(action('MasterDataController@delete_unit_kerja')) }}">
+                                                {{ csrf_field() }}
+                                                <td scope="row"><?php echo ++$count; ?></td>
+                                                <td>{{ $data->work_unit }}</td>
+                                                <input type="hidden" name="unit_kerja_id" value= "{{ $data->id }}" required autofocus>
+
+                                                <td>
+                                                    <a type="button" href="{{ url(action('MasterDataController@edit_jabatan',$data->id)) }}"
+                                                       class="btn btn-primary">Edit</a>
+                                                    <button class="btn btn-danger" type="submit">
+                                                        Delete
+                                                    </button>
+                                                </td>
+
+                                            </form>
+
+                                        </tr>
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                            <!-- /.tab-pane -->
+                            <div class="tab-pane" id="tab_jenis_supplier">
+                                <h3 class="box-title">
+                                    Daftar Nama Jenis Supplier
+                                </h3>
+
+                                <table id="table_jenis_supplier" class="table display responsive no-wrap" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama Jenis Supplier</th>
+                                        <th scope="col">Action</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $count = 0; ?>
+                                    @foreach($data_jenis_supplier as $data)
+                                        <tr>
+                                            <form method="post" action="{{ url(action('MasterDataController@delete_jenis_supplier')) }}">
+                                                {{ csrf_field() }}
+                                                <td scope="row"><?php echo ++$count; ?></td>
+                                                <td>{{ $data->supplier_type_name }}</td>
+                                                <input type="hidden" name="jenis_supplier_id" value= "{{ $data->id }}" required autofocus>
+
+                                                <td>
+                                                    <a type="button" href="{{ url(action('MasterDataController@edit_jabatan',$data->id)) }}"
+                                                       class="btn btn-primary">Edit</a>
+                                                    <button class="btn btn-danger" type="submit">
+                                                        Delete
+                                                    </button>
+                                                </td>
+
+                                            </form>
+
+                                        </tr>
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                            <!-- /.tab-pane -->
+                            <div class="tab-pane" id="tab_kota">
+                                <h3 class="box-title">
+                                    Daftar Nama Kota
+                                </h3>
+
+                                <table id="table_kota" class="table display responsive no-wrap" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama Kota</th>
+                                        <th scope="col">Action</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $count = 0; ?>
+                                    @foreach($data_kota as $data)
+                                        <tr>
+                                            <form method="post" action="{{ url(action('MasterDataController@delete_kota')) }}">
+                                                {{ csrf_field() }}
+                                                <td scope="row"><?php echo ++$count; ?></td>
+                                                <td>{{ $data->city_name }}</td>
+                                                <input type="hidden" name="kota_id" value= "{{ $data->id }}" required autofocus>
+
+                                                <td>
+                                                    <a type="button" href="{{ url(action('MasterDataController@edit_jabatan',$data->id)) }}"
+                                                       class="btn btn-primary">Edit</a>
+                                                    <button class="btn btn-danger" type="submit">
+                                                        Delete
+                                                    </button>
+                                                </td>
+
+                                            </form>
+
+                                        </tr>
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
                             <!-- /.tab-pane -->
                             <div class="tab-pane" id="tab_golongan">
                                 <h3 class="box-title">
                                     Daftar Nama Golongan
                                 </h3>
 
-                                <table id="table_golongang" class="table display responsive no-wrap" width="100%">
+                                <table id="table_golongan" class="table display responsive no-wrap" width="100%">
                                     <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -369,6 +499,33 @@
 
         $(document).ready(function() {
             var table = $('#table_department').DataTable( {
+                responsive: true,
+                "order": [[ 0, "asc" ]]
+            } );
+
+            new $.fn.dataTable.FixedHeader( table );
+        } );
+
+        $(document).ready(function() {
+            var table = $('#table_unit_kerja').DataTable( {
+                responsive: true,
+                "order": [[ 0, "asc" ]]
+            } );
+
+            new $.fn.dataTable.FixedHeader( table );
+        } );
+
+        $(document).ready(function() {
+            var table = $('#table_kota').DataTable( {
+                responsive: true,
+                "order": [[ 0, "asc" ]]
+            } );
+
+            new $.fn.dataTable.FixedHeader( table );
+        } );
+
+        $(document).ready(function() {
+            var table = $('#table_jenis_supplier').DataTable( {
                 responsive: true,
                 "order": [[ 0, "asc" ]]
             } );
