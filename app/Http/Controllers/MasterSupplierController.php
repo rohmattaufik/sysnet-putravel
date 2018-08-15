@@ -62,10 +62,10 @@ class MasterSupplierController extends Controller
 
     public function edit($id)
     {
-        $MSupplier = new MSupplier($id);
+        $MSupplier = (new MSupplier($id))->get_supplier()[0];
         $data_kota = (new MKota)->get_list();
         $data_jenis_supplier = (new MJenisSupplier)->get_list();
-        dd($MSupplier);
+//        dd($MSupplier);
         return view('modul_master/master_supplier/edit')
             ->with('data_supplier', $MSupplier)
             ->with('data_jenis_supplier', $data_jenis_supplier)
@@ -79,17 +79,23 @@ class MasterSupplierController extends Controller
         $id_user = Auth::user()->id;
 
         if ($id_user) {
+            $new_supplier                = new MSupplier($request->supplier_id);
+            $new_supplier->supplier_name = $request->nama_supplier;
+            $new_supplier->idJenisSupplier = $request->jenis_supplier;
+            $new_supplier->supplier_address = $request->alamat;
+            $new_supplier->idKota = $request->kota;
+            $new_supplier->email = $request->email;
+            $new_supplier->contact_number = $request->no_telp;
+            $new_supplier->website = $request->website;
+            $new_supplier->contact_person = $request->name_cp;
+            $new_supplier->contact_person_number = $request->no_telp_cp;
+            $new_supplier->contact_person_address = $request->alamat_cp;
+            $new_supplier->updated_by = Auth::user()->id;
 
-            if ($request->jenis_data == 'jabatan') {
-                $MData = new MSupplier($request->data_id);
-                $MData->updated_by = $id_user;
-                $MData->supplier_name = $request->data_content;
-                $MData->update();
-            }
+            $new_supplier->update();
 
-
-            Session::flash('sukses', 'Data ' . $request->jenis_data . ' sukses di-update');
-            return redirect(url(action('MasterDataController@index')));
+            Session::flash('sukses', 'Data supplier sukses di-update');
+            return redirect(url(action('MasterSupplierController@index')));
         }
     }
 

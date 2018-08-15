@@ -37,7 +37,7 @@
 
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="jenis_supplier">Jenis Supplier</label>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6">
 
                                             <select id="jenis_supplier" name="jenis_supplier" class="form-control select-data">
                                                 <option value="{{ $data_supplier->idJenisSupplier }}"
@@ -58,30 +58,35 @@
                                     <div class="form-group">
                                         <label for="nama_supplier" class="col-sm-2 control-label">Nama Supplier</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="nama_supplier"
                                                    name="nama_supplier"
                                                    value="{{ $data_supplier->supplier_name }}"
                                                    placeholder="Masukkan Nama Supplier">
+                                            <input class="form-control"
+                                                   id="supplier_id"
+                                                   name="supplier_id"
+                                                   value="{{ $data_supplier->id }}"
+                                                   type="hidden"
+                                                   hidden>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="alamat" class="col-sm-2 control-label">Alamat</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <textarea class="form-control" rows="3"
-                                                      id="alamat" name="alamat"
-                                                      value="{{ $data_supplier->supplier_address }}">
-
+                                                      id="alamat" name="alamat">
+                                                {{ $data_supplier->supplier_address }}
                                             </textarea>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="kota">Kota</label>
-                                        <div class="col-lg-4">
+                                        <div class="col-sm-6">
                                             <select id="kota" name="kota" class="form-control select-data">
                                                 <option value="{{ $data_supplier->idKota }}"
                                                         data-select2-id="{{ $data_supplier->idKota }}" selected>
@@ -100,7 +105,7 @@
                                     <div class="form-group">
                                         <label for="kode_pos" class="col-sm-2 control-label">Kode Pos</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="kode_pos"
                                                    name="kode_pos"
@@ -111,7 +116,7 @@
                                     <div class="form-group">
                                         <label for="no_telp" class="col-sm-2 control-label">No. Telp</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="no_telp"
                                                    name="no_telp"
@@ -122,7 +127,7 @@
                                     <div class="form-group">
                                         <label for="fax" class="col-sm-2 control-label">Fax</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="fax"
                                                    name="fax"
@@ -134,7 +139,7 @@
                                     <div class="form-group">
                                         <label for="email" class="col-sm-2 control-label">E-Mail</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="email"
                                                    name="email"
@@ -146,7 +151,7 @@
                                     <div class="form-group">
                                         <label for="website" class="col-sm-2 control-label">Website</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="website"
                                                    name="website"
@@ -166,7 +171,7 @@
                                     <div class="form-group">
                                         <label for="name_cp" class="col-sm-2 control-label">Nama</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="name_cp"
                                                    name="name_cp"
@@ -178,7 +183,7 @@
                                     <div class="form-group">
                                         <label for="no_telp_cp" class="col-sm-2 control-label">No. Telp</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="no_telp_cp"
                                                    name="no_telp_cp"
@@ -190,11 +195,11 @@
                                     <div class="form-group">
                                         <label for="alamat_cp" class="col-sm-2 control-label">Alamat</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                     <textarea class="form-control" rows="3"
                                               id="alamat_cp" name="alamat_cp"
-                                              value="{{ $data_supplier->contact_person_address }}"
                                               placeholder="Masukkan Alamat">
+                                        {{ $data_supplier->contact_person_address }}
                                     </textarea>
                                         </div>
                                     </div>
@@ -203,15 +208,9 @@
                                 <!-- /.box-body -->
                                 <div class="box-footer">
                                     <a type="button" href="#" class="btn btn-danger btn-lg">Reset</a>
-                                    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                                    <button type="submit" class="btn btn-info btn-lg">Update</button>
                                 </div>
 
-
-                                </div>
-                                <!-- /.box-body -->
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-info">Update</button>
-                                </div>
                                 <!-- /.box-footer -->
                             </form>
                         </div>
