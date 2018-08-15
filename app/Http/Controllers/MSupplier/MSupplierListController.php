@@ -61,9 +61,9 @@ class MSupplierListController extends Controller{
         return DB::select(DB::raw("CALL MSupplier_View()"));
     }
 
-    // public function get_supplier($id){
-    //     return DB::select(DB::raw("CALL MSupplier_()"));
-    // }
+    public function get_supplier(){
+         return DB::select(DB::raw("CALL MSupplier_View_id($this->id)"));
+    }
 
     public function create(){
         return DB::unprepared(DB::raw("CALL MSupplier_Create('$this->supplier_name', '$this->idJenisSupplier', '$this->supplier_address', '$this->idKota', '$this->email', '$this->contact_number', '$this->website',
