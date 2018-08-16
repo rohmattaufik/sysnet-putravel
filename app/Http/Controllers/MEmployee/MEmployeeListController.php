@@ -38,6 +38,7 @@ class MEmployeeListController extends Controller {
                     $this->idGolongan       = $employee->idGolongan;
                     $this->email            = $employee->email;
                     $this->photo            = $employee->photo;
+                    $this->phone            = $employee->phone;
                     $this->created_at       = $employee->created_at;
                     $this->updated_at       = $employee->updated_at;
                     $this->created_by       = $employee->created_by;

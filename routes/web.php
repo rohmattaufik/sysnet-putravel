@@ -41,8 +41,12 @@ Route::prefix('master')->group(function () {
     });
 
     //master employee
-    Route::get('employee', function () {
-        return view('modul_master/master-employee');
+    Route::get('employee', 'MasterEmployeeController@index');
+    Route::prefix('employee')->group(function () {
+        Route::post('submit', 'MasterEmployeeController@store');
+        Route::post('delete', 'MasterEmployeeController@delete');
+        Route::get('edit/{id}', 'MasterEmployeeController@edit');
+        Route::post('update', 'MasterEmployeeController@update');
     });
 
     //master supplier
