@@ -38,8 +38,8 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control"
                                            id="nik"
-                                           name="nik" 
-                                           value="{{ $employee->nik }}"
+                                           name="nik"
+                                           value="{{ $employee->NIK }}"
                                            placeholder="NIK">
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control"
                                            id="nama"
-                                           name="nama" 
+                                           name="nama"
                                            value="{{ $employee->employee_name}}"
                                            placeholder="Nama">
                                 </div>
@@ -60,11 +60,11 @@
                                     <select name="unit_kerja" class="form-control select-data">
                                         @foreach ($unit_kerjas as $items)
                                             @if ($items->id == $employee->idUnitKerja)
-                                            <option value="{{ $items->id }}" 
-                                                data-select2-id="{{ $items->id }}" 
+                                            <option value="{{ $items->id }}"
+                                                data-select2-id="{{ $items->id }}"
                                                 selected="true">{{ $items->work_unit }}</option>
                                             @else
-                                            <option value="{{ $items->id }}" 
+                                            <option value="{{ $items->id }}"
                                                 data-select2-id="{{ $items->id }}">{{ $items->work_unit }}</option>
                                             @endif
                                         @endforeach
@@ -78,11 +78,11 @@
                                     <select name="jabatan" class="form-control select-data">
                                         @foreach ($jabatans as $items)
                                             @if($items->id == $employee->idJabatan)
-                                            <option value="{{ $items->id }}" 
-                                                data-select2-id="{{ $items->id }}" 
+                                            <option value="{{ $items->id }}"
+                                                data-select2-id="{{ $items->id }}"
                                                 selected="true">{{ $items->position_name }}</option>
                                             @else
-                                            <option value="{{ $items->id }}" 
+                                            <option value="{{ $items->id }}"
                                                 data-select2-id="{{ $items->id }}">{{ $items->position_name }}</option>
                                             @endif
                                         @endforeach
@@ -96,11 +96,11 @@
                                     <select name="golongan" class="form-control select-data">
                                         @foreach ($golongans as $items)
                                             @if( $items->id == $employee->idGolongan)
-                                                <option value="{{ $items->id }}" 
-                                                    data-select2-id="{{ $items->id }}" 
+                                                <option value="{{ $items->id }}"
+                                                    data-select2-id="{{ $items->id }}"
                                                     selected="true">{{ $items->class_name}}</option>
                                             @else
-                                                <option value="{{ $items->id }}" 
+                                                <option value="{{ $items->id }}"
                                                     data-select2-id="{{ $items->id }}">{{ $items->class_name}}</option>
                                             @endif
                                         @endforeach
@@ -114,7 +114,7 @@
                                 <div class="col-sm-4">
                                     <input type="email" class="form-control"
                                            id="email"
-                                           name="email" 
+                                           name="email"
                                            value="{{ $employee->email }}"
                                            placeholder="Email">
                                 </div>
@@ -126,8 +126,8 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control"
                                            id="phone"
-                                           name="phone" 
-                                           value="{{ $employee->phone }}" 
+                                           name="phone"
+                                           value="{{ $employee->phone }}"
                                            placeholder="No. Telpon">
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control"
                                            id="user_id"
-                                           name="user_id" 
+                                           name="user_id"
                                            value="{{$employee->id}}"
                                            placeholder="User ID">
                                 </div>
@@ -161,7 +161,7 @@
                                 <div class="col-sm-4">
                                     <input type="password" class="form-control"
                                            id="password"
-                                           name="password" 
+                                           name="password"
                                            placeholder="Password">
                                 </div>
                             </div>

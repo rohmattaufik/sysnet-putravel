@@ -53,7 +53,7 @@
                                 <div class="col-lg-4">
                                     <select name="unit_kerja" class="form-control select-data">
                                         @foreach ($unit_kerjas as $items)
-                                            <option value="{{ $items->id }}" 
+                                            <option value="{{ $items->id }}"
                                                 data-select2-id="{{ $items->id }}">{{ $items->work_unit }}</option>
                                         @endforeach
                                     </select>
@@ -65,7 +65,7 @@
                                 <div class="col-lg-4">
                                     <select name="jabatan" class="form-control select-data">
                                         @foreach ($jabatans as $items)
-                                        <option value="{{ $items->id }}" 
+                                        <option value="{{ $items->id }}"
                                             data-select2-id="{{ $items->id }}">{{ $items->position_name }}</option>
                                         @endforeach
                                     </select>
@@ -77,7 +77,7 @@
                                 <div class="col-lg-4">
                                     <select name="golongan" class="form-control select-data">
                                         @foreach ($golongans as $items)
-                                            <option value="{{ $items->id }}" 
+                                            <option value="{{ $items->id }}"
                                                 data-select2-id="{{ $items->id }}">{{ $items->class_name}}</option>
                                         @endforeach
                                     </select>
@@ -150,7 +150,7 @@
                 <div class="box-header with-border">
                     <h1 class="box-title">List of Employees</h1>
                 </div>
-                
+
                     <div class="box-body table-responsive no-padding">
 
                         <table id="table_employee" class="table display responsive no-wrap" width="100%">
@@ -180,6 +180,7 @@
                                         <td>{{ $person->position_name }}  </td>
                                         <td>{{ $person->class_name }}</td>
                                         <td>{{ $person->email}}</td>
+                                        <td>{{ $person->phone}}</td>
                                         <td>{{ $person->photo  }}</td>
                                         <input type="hidden" name="employee_id" value= "{{ $person->id }}" required autofocus>
 
@@ -200,7 +201,7 @@
                         </table>
 
                     </div>
-                            
+
                 </div>
             </div>
 

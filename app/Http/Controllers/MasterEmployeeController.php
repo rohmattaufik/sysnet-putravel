@@ -68,7 +68,7 @@ class MasterEmployeeController extends Controller
         $jabatans           = (new MJabatan)->get_list();
         $golongans          = (new MGolongan)->get_list();
 
-        $employee           = (new MEmployee)->get_employee( $id );
+        $employee           = (new MEmployee($id))->get_employee()[0];
 
         return view('modul_master.master_employee.edit')
             ->with('unit_kerjas' , $unit_kerjas)
@@ -93,11 +93,11 @@ class MasterEmployeeController extends Controller
             $new_employee->phone            = $request->phone;
             $new_employee->created_by       = $admin;
             $new_employee->updated_by       = $admin;
-            $new_employee->create();
+            $new_employee->edit();
 
             Session::flash('sukses-update', 'Anda berhasil mengubah data Employee');
             return redirect()->back();
         }
     }
-    
+
 }
