@@ -36,8 +36,12 @@ Route::prefix('master')->group(function () {
     });
 
     //master sbu
-    Route::get('sbu', function () {
-        return view('modul_master/master-sbu');
+    Route::get('sbu', 'MasterSBUController@index');
+    Route::prefix('sbu')->group(function () {
+        Route::post('submit', 'MasterSBUController@store');
+        Route::post('delete', 'MasterSBUController@delete');
+        Route::get('edit/{id}', 'MasterSBUController@edit');
+        Route::post('update', 'MasterSBUController@update');
     });
 
     //master employee

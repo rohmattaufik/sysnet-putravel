@@ -47,9 +47,9 @@ class MSBUListController extends Controller{
         return DB::select(DB::raw("CALL MSBU_View()"));
     }
 
-    // public function get_sbu($id){
-    //     return DB::select(DB::raw("CALL MSBU_()"));
-    // }
+    public function get_sbu($id){
+        return DB::select(DB::raw("CALL MSBU_View_Id($id)"));
+    }
 
     public function create(){
         return DB::unprepared(DB::raw("CALL MSBU_Create($this->idKota, $this->idGolongan, '$this->value', '$this->created_by')"));
@@ -59,8 +59,8 @@ class MSBUListController extends Controller{
         return DB::unprepared(DB::raw("CALL MSBU_Update($this->id, $this->idKota, $this->idGolongan, '$this->value', '$this->created_by')"));
     }
 
-    // public function delete(){
-    //     return DB::unprepared(DB::raw("CALL MSBU_Delete()"));
-    // }
+    public function delete(){
+        return DB::unprepared(DB::raw("CALL MSBU_Delete($this->id)"));
+    }
 
 }

@@ -81,6 +81,7 @@ class MasterEmployeeController extends Controller
     {
         $admin  = Auth::user()->id;
         if( !is_null($request) ){
+            $file = $request->file('photo');
             $new_employee                   = new MEmployee( $request->employee_id );
             $new_employee->id               = $request->id;
             $new_employee->NIK              = $request->nik;
@@ -89,7 +90,7 @@ class MasterEmployeeController extends Controller
             $new_employee->idJabatan        = $request->jabatan;
             $new_employee->idGolongan       = $request->golongan;
             $new_employee->email            = $request->email;
-            $new_employee->photo            = $request->file('photo');
+            $new_employee->photo            = $file->openFile()->fread($file->getSize());
             $new_employee->phone            = $request->phone;
             $new_employee->created_by       = $admin;
             $new_employee->updated_by       = $admin;
