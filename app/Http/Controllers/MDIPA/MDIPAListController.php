@@ -45,7 +45,7 @@ class MDIPAListController extends Controller {
     }
 
     public function get_dipa($id){
-         return DB::select(DB::raw("CALL MDIPA_View_id($this->id)"));
+         return DB::select(DB::raw("CALL MDIPA_View_id($id)"));
     }
 
     public function create(){
@@ -56,7 +56,7 @@ class MDIPAListController extends Controller {
         return DB::unprepared(DB::raw("CALL MDIPA_Update($this->id, '$this->DIPA_code', '$this->idDepartment', '$this->updated_by')"));
     }
 
-    // public function delete(){
-    //     return DB::unprepared(DB::raw("CALL MDIPA_Delete($this->id)"));
-    // }
+    public function delete(){
+        return DB::unprepared(DB::raw("CALL MDIPA_Delete($this->id)"));
+    }
 }

@@ -63,8 +63,12 @@ Route::prefix('master')->group(function () {
     });
 
     //master dipa
-    Route::get('dipa', function () {
-        return view('modul_master/master-dipa');
+    Route::get('dipa', 'MasterDIPAController@index');
+    Route::prefix('dipa')->group(function () {
+        Route::post('submit', 'MasterDIPAController@store');
+        Route::post('delete', 'MasterDIPAController@delete');
+        Route::get('edit/{id}', 'MasterDIPAController@edit');
+        Route::post('update', 'MasterDIPAController@update');
     });
 
 });
