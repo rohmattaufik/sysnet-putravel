@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('home-admin');
+    return view('auth/login-admin');
 });
 
 Route::prefix('master')->group(function () {

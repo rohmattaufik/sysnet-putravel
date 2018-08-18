@@ -31,8 +31,10 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Main Menu</li>
             <!-- Optionally, you can add icons to the links -->
-            <li>
-                <a href="{{ url('/') }}">
+            <li class="{{
+            Request::is('/home') ? 'active' : ''
+            }}">
+                <a href="{{ url('/home') }}">
                     <i class="fa fa-home"></i>
                     <span>Home</span>
                 </a>
@@ -54,7 +56,9 @@
 
                 <ul class="treeview-menu">
                     <li class="{{
-                     Request::is('master/parameter/*') ? 'active' : ''
+                     Request::is('master/parameter') ||
+                     Request::is('master/parameter/*')
+                     ? 'active' : ''
                      }}">
                         <a href="{{ url('master/parameter') }}">
                             Parameter
