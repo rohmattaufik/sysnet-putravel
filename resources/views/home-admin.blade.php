@@ -6,8 +6,8 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                   <h1>
-                        Page Header
-                        <small>Optional description</small>
+
+                        {{--<small>Optional description</small>--}}
                   </h1>
                   <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -21,7 +21,21 @@
                   <!--------------------------
                     | Your Page Content Here |
                     -------------------------->
-                  <h1>berhasil</h1>
+                  <div class="row">
+                        <div class="col-lg-4">
+                              <div class="box box-info">
+                                    <div class="box-header with-border">
+                                          <h1 class="box-title">
+                                                Sistem Aplikasi Surat Tugas PU - Travel
+                                          </h1>
+                                    </div>
+                                    <div class="box-body">
+                                          <p> Ini merupakan aplikasi sistem untuk surat tugas.</p>
+                                          <p>Silahkan gunakan sesuai kebutuhan Anda.</p>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
             </section>
             <!-- /.content -->
       </div>

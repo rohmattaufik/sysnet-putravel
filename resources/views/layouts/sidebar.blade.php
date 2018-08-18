@@ -9,9 +9,9 @@
                 <img src="{{ URL::asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>Luthfi Abdurrahim</p>
                 <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online - Admin PU</a>
             </div>
         </div>
 
@@ -33,24 +33,79 @@
             <!-- Optionally, you can add icons to the links -->
             <li>
                 <a href="{{ url('/') }}">
-                    <i class="fa fa-link"></i>
+                    <i class="fa fa-home"></i>
                     <span>Home</span>
                 </a>
             </li>
 
-            <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Master Modul</span>
+            <li class="treeview {{
+                     Request::is('master/*') ? 'active' : ''
+                     }}">
+                <a href="#">
+                    <i class="fa fa-database"></i>
+
+                    <span>Master Modul</span>
+
                     <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+
                 </a>
+
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ url('master/parameter') }}">Parameter</a></li>
-                    <li><a href="{{ url('master/data') }}">Master Data</a></li>
-                    <li><a href="{{ url('master/sbu') }}">Master SBU</a></li>
-                    <li><a href="{{ url('master/employee') }}">Master Employee</a></li>
-                    <li><a href="{{ url('master/supplier') }}">Master Supplier</a></li>
-                    <li><a href="{{ url('master/dipa') }}">Master DIPA</a></li>
+                    <li class="{{
+                     Request::is('master/parameter/*') ? 'active' : ''
+                     }}">
+                        <a href="{{ url('master/parameter') }}">
+                            Parameter
+                        </a>
+                    </li>
+                    <li class="{{
+                    Request::is('master/data') ||
+                     Request::is('master/data/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('master/data') }}">
+                            Master Data
+                        </a>
+                    </li>
+                    <li class="{{
+                     Request::is('master/sbu') ||
+                     Request::is('master/sbu/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('master/sbu') }}">
+                            Master SBU
+                        </a>
+                    </li>
+                    <li class="{{
+                     Request::is('master/employee') ||
+                     Request::is('master/employee/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('master/employee') }}">
+                            Master Employee
+                        </a>
+                    </li>
+                    <li class="{{
+                     Request::is('master/supplier') ||
+                     Request::is('master/supplier/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('master/supplier') }}">
+                            Master Supplier
+                        </a>
+                    </li>
+                    <li class="{{
+                     Request::is('master/dipa') ||
+                     Request::is('master/dipa/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('master/dipa') }}">
+                            Master DIPA
+                        </a>
+                    </li>
+
                 </ul>
             </li>
         </ul>
