@@ -73,6 +73,18 @@ Route::prefix('master')->group(function () {
 
 });
 
+Route::prefix('transaksi')->group(function () {
+    //master parameter
+    Route::get('surat-tugas', 'TransaksiSuratTugasController@index');
+    Route::prefix('surat-tugas')->group(function () {
+        Route::post('submit', 'TransaksiSuratTugasController@store');
+        Route::post('delete', 'TransaksiSuratTugasController@delete');
+        Route::get('edit/{id}', 'TransaksiSuratTugasController@edit');
+        Route::post('update', 'TransaksiSuratTugasController@update');
+    });
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

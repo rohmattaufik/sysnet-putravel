@@ -46,7 +46,7 @@
                 <a href="#">
                     <i class="fa fa-database"></i>
 
-                    <span>Master Modul</span>
+                    <span>Modul Master</span>
 
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -107,6 +107,43 @@
                      }}">
                         <a href="{{ url('master/dipa') }}">
                             Master DIPA
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="treeview {{
+                     Request::is('transaksi/*') ? 'active' : ''
+                     }}">
+                <a href="#">
+                    <i class="fa fa-exchange"></i>
+
+                    <span>Modul Transaksi</span>
+
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+
+                </a>
+
+                <ul class="treeview-menu">
+                    <li class="{{
+                     Request::is('transaksi/surat-tugas') ||
+                     Request::is('transaksi/surat-tugas/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('transaksi/surat-tugas') }}">
+                            Surat Tugas
+                        </a>
+                    </li>
+                    <li class="{{
+                    Request::is('master/data') ||
+                     Request::is('master/data/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('master/data') }}">
+                            Input Pesanan Surat Tugas
                         </a>
                     </li>
 
