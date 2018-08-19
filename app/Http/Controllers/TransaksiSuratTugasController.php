@@ -24,7 +24,7 @@ class TransaksiSuratTugasController extends Controller
         $data_surat_tugas_h = (new TPSuratTugasH)->get_list();
         $data_employee = (new MEmployee)->get_list();
 
-//        dd($data_surat_tugas_h);
+        // dd($data_surat_tugas_h);
 
        return view('modul_transaksi/surat_tugas/surat_tugas')
            ->with('data_kota',$data_kota)

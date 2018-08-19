@@ -25,6 +25,7 @@ class TSuratTugasHListController extends Controller{
     public $created_by;
     public $updated_by;
     public $flag_active;
+    public $suratTugasD;
     public $exist;
 
     public function __construct($id = false){
@@ -61,6 +62,37 @@ class TSuratTugasHListController extends Controller{
 
     public function get_list(){
         return DB::select(DB::raw("CALL TSuratTugas_H_View()"));
+    }
+
+    public function get_all_list(){
+        $data = [];
+        $SuratTugasH = DB::select(DB::raw("CALL TSuratTugas_H_View()"));
+        foreach($SuratTugasH as $row)
+        {
+          $item = array(
+            "id"                      => $row->id,
+            "assignment_letter_code"  => $row->assigment_letter_code,
+            "start_date"              => $row->start_date,
+            "end_date"                => $row->end_date,
+            "idKota"                  => $row->idKota,
+            "idDipa"                  => $row->idDIPA,
+            "description"             => $row->description,
+            "idDepartment"            => $row->idDepartment,
+            "description_1"           => $row->description_1,
+            "hotel_status"            => $row->hotel_status,
+            "assignment_letter_status"=> $row->assignment_letter_status,
+            "plane_status"            => $row->plane_status,
+            "city_name"               => $row->city_name,
+            "created_at"              => $row->created_at,
+            "DIPA_code"               => $row->DIPA_code,
+            "department_name"         => $row->department_name,
+            "employee_name"           => $row->employee_name,
+            "suratTugasD"             => DB::select(DB::raw("CALL TSuratTugas_D_View_id($row->id)"))
+          );
+          array_push($data,$item);
+        }
+        return $data;
+
     }
 
     public function get_last(){

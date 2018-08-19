@@ -138,11 +138,11 @@
                         </a>
                     </li>
                     <li class="{{
-                    Request::is('master/data') ||
-                     Request::is('master/data/*')
+                    Request::is('transaksi/pesanan') ||
+                     Request::is('transaksi/pesanan/*')
                      ? 'active' : ''
                      }}">
-                        <a href="{{ url('master/data') }}">
+                        <a href="{{ url('transaksi/pesanan') }}">
                             Input Pesanan Surat Tugas
                         </a>
                     </li>
