@@ -51,6 +51,10 @@ class TSuratTugasDListController extends Controller{
         return DB::select(DB::raw("CALL TSuratTugas_D_View_id($id)"));
     }
 
+    public function get_surat_tugas_d_id_h($id_h){
+        return DB::select(DB::raw("CALL TSuratTugas_D_View_idSuratH($id_h)"));
+    }
+
     public function create(){
         return DB::unprepared(DB::raw("CALL TSuratTugas_D_Create(
             $this->idSuratTugas_H, $this->idEmployee, $this->idJabatan, $this->idGolongan,
