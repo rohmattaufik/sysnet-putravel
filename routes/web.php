@@ -82,6 +82,15 @@ Route::prefix('transaksi')->group(function () {
         Route::get('edit/{id}', 'TransaksiSuratTugasController@edit');
         Route::post('update', 'TransaksiSuratTugasController@update');
     });
+
+    //pesanan surat tugas
+    Route::get('pesanan', 'TransaksiPesananController@index');
+    // Route::prefix('surat-tugas')->group(function () {
+    //     Route::post('submit', 'TransaksiSuratTugasController@store');
+    //     Route::post('delete', 'TransaksiSuratTugasController@delete');
+    //     Route::get('edit/{id}', 'TransaksiSuratTugasController@edit');
+    //     Route::post('update', 'TransaksiSuratTugasController@update');
+    // });
 });
 
 

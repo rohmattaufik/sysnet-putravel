@@ -81,7 +81,7 @@ class TransaksiSuratTugasController extends Controller
 
         $TSuratH = new TPSuratTugasH($request->surat_id);
         $TSuratD = (new TPSuratTugasD)->get_surat_tugas_d_id_h($TSuratH->id);
-        dd($TSuratD);
+  //    dd($TSuratD);
         $TSuratH->delete();
 
         Session::flash('sukses-delete', 'Anda berhasil menghapus data Supplier');
