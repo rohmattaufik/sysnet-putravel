@@ -77,7 +77,10 @@ Route::prefix('transaksi')->group(function () {
     //master parameter
     Route::get('surat-tugas', 'TransaksiSuratTugasController@index');
     Route::prefix('surat-tugas')->group(function () {
-     return null;
+        Route::post('submit', 'TransaksiSuratTugasController@store');
+        Route::post('delete', 'TransaksiSuratTugasController@delete');
+        Route::get('edit/{id}', 'TransaksiSuratTugasController@edit');
+        Route::post('update', 'TransaksiSuratTugasController@update');
     });
 });
 

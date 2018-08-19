@@ -8,10 +8,7 @@
                 Modul Transaksi Surat Tugas
                 <small>Create your Surat Tugas</small>
             </h1>
-            {{--<ol class="breadcrumb">--}}
-                {{--<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>--}}
-                {{--<li class="active">Here</li>--}}
-            {{--</ol>--}}
+
         </section>
 
         <!-- Main content -->
@@ -44,7 +41,7 @@
                         @endif
 
                         <div class="box-body">
-                            <form class="form-horizontal" method="post" action="{{url(action('MasterSupplierController@store'))}}">
+                            <form class="form-horizontal" method="post" action="{{url(action('TransaksiSuratTugasController@store'))}}">
                                 {{ csrf_field() }}
                                 <div class="box-body">
                                     <div class="form-group">
@@ -56,7 +53,7 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" class="form-control pull-right" id="datepicker1">
+                                                <input type="text" name="tanggal_surat" class="form-control pull-right" id="datepicker1">
                                             </div>
                                                 <!-- /.input group -->
                                         </div>
@@ -71,7 +68,7 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" class="form-control pull-right" id="datepicker2">
+                                                <input type="text" name="dari_tanggal" class="form-control pull-right" id="datepicker2">
                                             </div>
                                             <!-- /.input group -->
                                         </div>
@@ -86,7 +83,7 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" class="form-control pull-right" id="datepicker3">
+                                                <input type="text" name="sampai_tanggal" class="form-control pull-right" id="datepicker3">
                                             </div>
                                             <!-- /.input group -->
                                         </div>
@@ -130,9 +127,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="kota">Object Audit Kerja</label>
+                                        <label class="col-sm-2 control-label" for="department">Object Audit Kerja</label>
                                         <div class="col-lg-4">
-                                            <select id="kota" name="kota" class="form-control select-data">
+                                            <select id="department" name="department" class="form-control select-data">
                                                 @foreach($data_department as $data)
                                                     <option value="{{ $data->id }}"
                                                             data-select2-id="{{ $data->id }}">
@@ -145,10 +142,10 @@
 
                                     <div class="form-group">
                                         <label for="keterangan1" class="col-sm-2 control-label"></label>
-
                                         <div class="col-sm-4">
                                             <textarea class="form-control" rows="3"
-                                                      id="keterangan1" name="keterangan1" placeholder="Masukkan Keterangan Tambahan"></textarea>
+                                                      id="keterangan1" name="keterangan1"
+                                                      placeholder="Masukkan Keterangan Tambahan"></textarea>
                                         </div>
                                     </div>
 
@@ -175,58 +172,55 @@
                         </div>
                         <div class="box-body table-responsive no-padding">
 
-                            {{--<table id="table_supplier" class="table display responsive no-wrap" width="100%">--}}
-                                {{--<thead>--}}
-                                {{--<tr>--}}
-                                    {{--<th scope="col">No</th>--}}
-                                    {{--<th scope="col">Jenis Supplier</th>--}}
-                                    {{--<th scope="col">Nama Supplier</th>--}}
-                                    {{--<th scope="col">Alamat Supplier</th>--}}
-                                    {{--<th scope="col">Kota</th>--}}
-                                    {{--<th scope="col">E-Mail</th>--}}
-                                    {{--<th scope="col">Contact Number</th>--}}
-                                    {{--<th scope="col">Website</th>--}}
-                                    {{--<th scope="col">Nama Contact Person</th>--}}
-                                    {{--<th scope="col">Nomor Telp Contact Person</th>--}}
-                                    {{--<th scope="col">Alamat Contact Person</th>--}}
-                                    {{--<th scope="col">Action</th>--}}
+                            <table id="table_supplier" class="table display responsive no-wrap" width="100%">
+                                <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Tanggal Surat Tugas</th>
+                                    <th scope="col">Dari Tanggal</th>
+                                    <th scope="col">Sampai Tanggal</th>
+                                    <th scope="col">Kota</th>
+                                    <th scope="col">Pembebanan Anggaran</th>
+                                    <th scope="col">Keterangan</th>
+                                    <th scope="col">Object Audit Kerja</th>
+                                    <th scope="col">Keterangan Tambahan</th>
+                                    <th scope="col">Action</th>
 
-                                {{--</tr>--}}
-                                {{--</thead>--}}
-                                {{--<tbody>--}}
-                                {{--<?php $count = 0; ?>--}}
-                                {{--@foreach($data_supplier as $data)--}}
-                                    {{--<tr>--}}
-                                        {{--<form method="post" action="{{ url(action('MasterSupplierController@delete')) }}">--}}
-                                            {{--{{ csrf_field() }}--}}
-                                            {{--<td scope="row"><?php echo ++$count; ?></td>--}}
-                                            {{--<td>{{ $data->supplier_type_name }} </td>--}}
-                                            {{--<td>{{ $data->supplier_name }}  </td>--}}
-                                            {{--<td>{{ $data->supplier_address }}  </td>--}}
-                                            {{--<td>{{ $data->city_name }}  </td>--}}
-                                            {{--<td>{{ $data->email }}</td>--}}
-                                            {{--<td>{{ $data->contact_number}}</td>--}}
-                                            {{--<td>{{ $data->website  }}</td>--}}
-                                            {{--<td>{{ $data->contact_person }}</td>--}}
-                                            {{--<td>{{ $data->contact_person_number }}</td>--}}
-                                            {{--<td>{{ $data->contact_person_address}}  </td>--}}
-                                            {{--<input type="hidden" name="supplier_id" value= "{{ $data->id }}" required autofocus>--}}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php $count = 0; ?>
+                                @foreach($data_surat_tugas_h as $data)
+                                    <tr>
+                                        <form method="post" action="{{ url(action('TransaksiSuratTugasController@delete')) }}">
+                                            {{ csrf_field() }}
+                                            <td scope="row"><?php echo ++$count; ?></td>
+                                            <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} </td>
+                                            <td>{{ $data->start_date }}  </td>
+                                            <td>{{ $data->end_date }}  </td>
+                                            <td>{{ $data->city_name }}  </td>
+                                            <td>{{ $data->DIPA_code }}</td>
+                                            <td>{{ $data->description}}</td>
+                                            <td>{{ $data->department_name }}</td>
+                                            <td>{{ $data->description_1 }}</td>
+                                            <input type="hidden" name="supplier_id" value= "{{ $data->id }}" required autofocus>
 
-                                            {{--<td>--}}
-                                                {{--<a type="button" href="{{ url(action('MasterSupplierController@edit',$data->id)) }}"--}}
-                                                   {{--class="btn btn-primary">Edit</a>--}}
-                                                {{--<button class="btn btn-danger" type="submit">--}}
-                                                    {{--Delete--}}
-                                                {{--</button>--}}
-                                            {{--</td>--}}
+                                            <td>
+                                                <a type="button"
+                                                   href="{{ url(action('TransaksiSuratTugasController@edit',$data->id)) }}"
+                                                   class="btn btn-primary">Edit</a>
+                                                <button class="btn btn-danger" type="submit">
+                                                    Delete
+                                                </button>
+                                            </td>
 
-                                        {{--</form>--}}
+                                        </form>
 
-                                    {{--</tr>--}}
-                                {{--@endforeach--}}
+                                    </tr>
+                                @endforeach
 
-                                {{--</tbody>--}}
-                            {{--</table>--}}
+                                </tbody>
+                            </table>
 
                         </div>
                     </div>
