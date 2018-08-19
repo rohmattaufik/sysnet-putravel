@@ -5,7 +5,7 @@ namespace App\Http\Controllers\TPesananTiket;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class TPesananTiketHListController extends Controller{
 
     public $id;
@@ -70,7 +70,7 @@ class TPesananTiketHListController extends Controller{
         return DB::unprepared(DB::raw("CALL TPesananTiket_H_Update(
             $this->id, $this->order_code, $this->idSuratTugas_H, '$this->transaction_date',
             $this->idKota, $this->order_ticket_status, $this->idDIPA, $this->IdDepartment,
-            $this->created_by)"));
+            $this->updated_by)"));
     }
 
     public function delete(){

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\MUnitKerja;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class MUnitKerjaListController extends Controller{
 
     public $id;
@@ -43,9 +43,9 @@ class MUnitKerjaListController extends Controller{
         return DB::select(DB::raw("CALL MUnitKerja_View()"));
     }
 
-    public function get_unit_kerja($id){
-        return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
-    }
+    // public function get_unit_kerja($id){
+    //     return DB::select(DB::raw("CALL PREPARATION_DETAIL()"));
+    // }
 
     public function create(){
         return DB::unprepared(DB::raw("CALL MUnitKerja_Create('$this->work_unit', '$this->created_by')"));
@@ -53,8 +53,8 @@ class MUnitKerjaListController extends Controller{
 
     public function update(){
         return DB::unprepared(DB::raw("CALL MUnitKerja_Update(
-                                        $this->id, 
-                                        '$this->work_unit', 
+                                        $this->id,
+                                        '$this->work_unit',
                                         '$this->updated_by'
                                         )"));
     }

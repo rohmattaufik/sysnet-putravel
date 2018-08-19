@@ -5,7 +5,7 @@ namespace App\Http\Controllers\TSuratTugas;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class TSuratTugasHListController extends Controller{
 
     public $id;
@@ -80,7 +80,7 @@ class TSuratTugasHListController extends Controller{
             $this->id, '$this->assigment_letter_code', '$this->start_date', '$this->end_date',
             $this->idKota, $this->idDIPA, '$this->description', $this->idDepartment,
             '$this->description_1', '$this->hotel_status', '$this->plane_status',
-            '$this->assignment_letter_status', $this->created_by
+            '$this->assignment_letter_status', $this->updated_by
                                         )"));
     }
 

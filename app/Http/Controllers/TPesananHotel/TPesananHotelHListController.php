@@ -5,7 +5,7 @@ namespace App\Http\Controllers\TPesananHotel;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class TPesananHotelHListController extends Controller{
 
     public $id;
@@ -62,18 +62,18 @@ class TPesananHotelHListController extends Controller{
     }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL TPesananHotel_H_Create($this->idSuratTugas_H, 
+        return DB::unprepared(DB::raw("CALL TPesananHotel_H_Create($this->idSuratTugas_H,
                             '$this->suratPesan_date', $this->order_code, '$this->start_date',
-                            '$this->end_date', $this->payment_status, $this->idDipa, 
+                            '$this->end_date', $this->payment_status, $this->idDipa,
                             $this->IdDepartment, $this->created_by)"));
     }
 
     public function update(){
         return DB::unprepared(DB::raw("CALL TPesananHotel_H_Update(
-                            $this->id, $this->idSuratTugas_H, 
+                            $this->id, $this->idSuratTugas_H,
                             '$this->suratPesan_date', $this->order_code, '$this->start_date',
-                            '$this->end_date', $this->payment_status, $this->idDipa, 
-                            $this->IdDepartment, $this->created_by)"));
+                            '$this->end_date', $this->payment_status, $this->idDipa,
+                            $this->IdDepartment, $this->updated_by)"));
     }
 
     public function delete(){
