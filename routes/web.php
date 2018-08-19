@@ -73,6 +73,15 @@ Route::prefix('master')->group(function () {
 
 });
 
+Route::prefix('transaksi')->group(function () {
+    //master parameter
+    Route::get('surat-tugas', 'TransaksiSuratTugasController@index');
+    Route::prefix('surat-tugas')->group(function () {
+     return null;
+    });
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
