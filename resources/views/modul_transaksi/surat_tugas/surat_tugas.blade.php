@@ -152,14 +152,214 @@
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">
-                                    <a type="button" href="#" class="btn btn-danger btn-lg">Reset</a>
-                                    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                                    {{--<a type="button" href="#" class="btn btn-danger btn-lg">Reset</a>--}}
+                                    {{--<button type="submit" class="btn btn-primary btn-lg">Save</button>--}}
                                 </div>
                                 <!-- /.box-footer -->
-                            </form>
+
 
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="box box-primary">
+
+                            <div class="box-body">
+                                <div class="col-lg-10">
+
+                                    <div class="alert alert-danger print-error-msg" style="display:none">
+                                        <ul></ul>
+                                    </div>
+
+
+                                    <div class="alert alert-success print-success-msg" style="display:none">
+                                        <ul></ul>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dynamic_field">
+                                            <thead>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Jabatan</th>
+                                            <th>Golongan</th>
+                                            <th>Lama Penugasan</th>
+                                            </thead>
+                                            <tr>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    <select name="employee[]" class="form-control">
+                                                        <option value="0" >Choose Employee</option>
+                                                        @foreach ($data_employee as $data)
+                                                            <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text"
+                                                           name="jabatan"
+                                                           value="Marketing"
+                                                           disabled
+                                                           class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <input type="text"
+                                                           name="golongan"
+                                                           value="GOL - 23"
+                                                           disabled
+                                                           class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="lama_penugasan"
+                                                               placeholder="Lama Penugasan"
+                                                               aria-describedby="basic-addon2">
+                                                        <span class="input-group-addon" id="basic-addon2">hari</span>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    2
+                                                </td>
+                                                <td>
+                                                    <select name="employee[]" class="form-control">
+                                                        <option value="0" >Choose Employee</option>
+                                                        @foreach ($data_employee as $data)
+                                                            <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text"
+                                                           name="jabatan"
+                                                           value="Marketing"
+                                                           disabled
+                                                           class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <input type="text"
+                                                           name="golongan"
+                                                           value="GOL - 23"
+                                                           disabled
+                                                           class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="lama_penugasan"
+                                                               placeholder="Lama Penugasan"
+                                                               aria-describedby="basic-addon2">
+                                                        <span class="input-group-addon" id="basic-addon2">hari</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>
+                                                    3
+                                                </td>
+                                                <td>
+                                                    <select name="employee[]" class="form-control">
+                                                        <option value="0" >Choose Employee</option>
+                                                        @foreach ($data_employee as $data)
+                                                            <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text"
+                                                           name="jabatan"
+                                                           value="Marketing"
+                                                           disabled
+                                                           class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <input type="text"
+                                                           name="golongan"
+                                                           value="GOL - 23"
+                                                           disabled
+                                                           class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="lama_penugasan"
+                                                               placeholder="Lama Penugasan"
+                                                               aria-describedby="basic-addon2">
+                                                        <span class="input-group-addon" id="basic-addon2">hari</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>
+                                                    4
+                                                </td>
+                                                <td>
+                                                    <select name="employee[]" class="form-control">
+                                                        <option value="0" >Choose Employee</option>
+                                                        @foreach ($data_employee as $data)
+                                                            <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text"
+                                                           name="jabatan"
+                                                           value="Marketing"
+                                                           disabled
+                                                           class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <input type="text"
+                                                           name="golongan"
+                                                           value="GOL - 23"
+                                                           disabled
+                                                           class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="lama_penugasan[]"
+                                                               placeholder="Lama Penugasan"
+                                                               aria-describedby="basic-addon2">
+                                                        <span class="input-group-addon" id="basic-addon2">hari</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+
+                                    </div>
+
+                                    <div class="box-footer">
+                                        <button type="button" name="add" id="add" class="btn btn-success btn-block">
+                                            Add Row
+                                        </button>
+                                        <a href="#" type="button" class="btn btn-danger btn-block">Reset</a>
+                                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
 
@@ -196,8 +396,8 @@
                                             {{ csrf_field() }}
                                             <td scope="row"><?php echo ++$count; ?></td>
                                             <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} </td>
-                                            <td>{{ $data->start_date }}  </td>
-                                            <td>{{ $data->end_date }}  </td>
+                                            <td>{{ \Carbon\Carbon::parse($data->start_date)->format('d-m-Y') }} </td>
+                                            <td>{{ \Carbon\Carbon::parse($data->end_date)->format('d-m-Y') }} </td>
                                             <td>{{ $data->city_name }}  </td>
                                             <td>{{ $data->DIPA_code }}</td>
                                             <td>{{ $data->description}}</td>
@@ -226,6 +426,8 @@
                     </div>
                 </div>
             </div>
+
+
 
 
         </section>
@@ -273,6 +475,95 @@
             todayHighlight : true,
             todayBtn : "linked",
             format : 'yyyy-mm-dd'
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.select-data').select2();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var postURL = "<?php echo url('addmore'); ?>";
+            var i=1;
+
+
+            $('#add').click(function(){
+                i++;
+                $('#dynamic_field').append('' +
+                    {{--'<tr id="row'+i+'" class="dynamic-added">' +--}}
+                    {{--'<td>' +--}}
+                    {{--'<select name="kota[]" class="form-control">' +--}}
+                    {{--'@foreach ($kotas as $kota)' +--}}
+                    {{--'<option value="{{ $kota->id }}" >{{ $kota->city_name }}</option>'+--}}
+                    {{--'@endforeach'+--}}
+                    {{--'</select>'+--}}
+                    {{--'</td>'+--}}
+                    {{--'<td>'+--}}
+                    {{--'<select name="golongan[]" class="form-control">'+--}}
+                    {{--'@foreach ($golongans as $golongan)'+--}}
+                    {{--'<option value="{{ $golongan->id }}">{{ $golongan->class_name }}</option>'+--}}
+                    {{--'@endforeach'+--}}
+                    {{--'</select>'+--}}
+                    {{--'</td>'+--}}
+                    {{--'<td>'+--}}
+                    {{--'<input type="number"'+--}}
+                    {{--'name="value[]"'+--}}
+                    {{--'placeholder="Enter value"'+--}}
+                    {{--'class="form-control name_list" />'+--}}
+                    {{--'</td>'+--}}
+                    {{--'<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +--}}
+                    '</td></tr>');
+            });
+
+            $(document).on('click', '.btn_remove', function(){
+                var button_id = $(this).attr("id");
+                $('#row'+button_id+'').remove();
+            });
+
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+            $('#submit').click(function(){
+                $.ajax({
+                    url:postURL,
+                    method:"POST",
+                    data:$('#add_name').serialize(),
+                    type:'json',
+                    success:function(data)
+                    {
+                        if(data.error){
+                            printErrorMsg(data.error);
+                        }else{
+                            i=1;
+                            $('.dynamic-added').remove();
+                            $('#add_name')[0].reset();
+                            $(".print-success-msg").find("ul").html('');
+                            $(".print-success-msg").css('display','block');
+                            $(".print-error-msg").css('display','none');
+                            $(".print-success-msg").find("ul").append('<li>Record Inserted Successfully.</li>');
+                        }
+                    }
+                });
+            });
+
+
+            function printErrorMsg (msg) {
+                $(".print-error-msg").find("ul").html('');
+                $(".print-error-msg").css('display','block');
+                $(".print-success-msg").css('display','none');
+                $.each( msg, function( key, value ) {
+                    $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+                });
+            }
         });
     </script>
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller,
     App\Http\Controllers\TSuratTugas\TSuratTugasDListController as TPSuratTugasD,
     App\Http\Controllers\TSuratTugas\TSuratTugasHListController as TPSuratTugasH,
     App\Http\Controllers\MKota\MKotaListController as MKota,
+    App\Http\Controllers\MEmployee\MEmployeeListController as MEmployee,
     App\Http\Controllers\MDepartment\MDepartmentListController as MDepartment,
     Illuminate\Http\Request;
 use Session;
@@ -21,15 +22,18 @@ class TransaksiSuratTugasController extends Controller
         $data_dipa = (new MDIPA)->get_list();
         $data_department = (new MDepartment)->get_list();
         $data_surat_tugas_h = (new TPSuratTugasH)->get_list();
+        $data_employee = (new MEmployee)->get_list();
 //        dd($data_surat_tugas_h);
        return view('modul_transaksi/surat_tugas/surat_tugas')
            ->with('data_kota',$data_kota)
            ->with('data_dipa',$data_dipa)
+           ->with('data_employee',$data_employee)
            ->with('data_department',$data_department)
            ->with('data_surat_tugas_h',$data_surat_tugas_h)
            ;
     }
     public function store(Request $request) {
+        dd($request);
         if (!is_null($request)) {
             $new_surat_tugasH                = new TPSuratTugasH();
             $new_surat_tugasH->start_date = $request->dari_tanggal;
