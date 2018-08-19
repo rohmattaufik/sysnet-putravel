@@ -5,7 +5,7 @@ namespace App\Http\Controllers\TSuratTugas;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class TSuratTugasDListController extends Controller{
 
     public $id;
@@ -44,7 +44,7 @@ class TSuratTugasDListController extends Controller{
     }
 
     public function get_list(){
-        return DB::select(DB::raw("CALL TSuratTugas_D_Update()"));
+        return DB::select(DB::raw("CALL TSuratTugas_D_View()"));
     }
 
     public function get_surat_tugas_d($id){
