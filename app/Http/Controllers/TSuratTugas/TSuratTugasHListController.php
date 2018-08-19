@@ -63,6 +63,10 @@ class TSuratTugasHListController extends Controller{
         return DB::select(DB::raw("CALL TSuratTugas_H_View()"));
     }
 
+    public function get_last(){
+        return DB::select(DB::raw("CALL TSuratTugas_H_View_last()"));
+    }
+
     public function get_surat_tugas_h($id){
         return DB::select(DB::raw("CALL TSuratTugas_H_View_id($id)"));
     }

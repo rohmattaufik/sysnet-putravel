@@ -219,7 +219,7 @@
                                                     <div class="input-group">
                                                         <input type="text"
                                                                class="form-control"
-                                                               name="lama_penugasan"
+                                                               name="lama_penugasan[]"
                                                                placeholder="Lama Penugasan"
                                                                aria-describedby="basic-addon2">
                                                         <span class="input-group-addon" id="basic-addon2">hari</span>
@@ -258,7 +258,7 @@
                                                     <div class="input-group">
                                                         <input type="text"
                                                                class="form-control"
-                                                               name="lama_penugasan"
+                                                               name="lama_penugasan[]"
                                                                placeholder="Lama Penugasan"
                                                                aria-describedby="basic-addon2">
                                                         <span class="input-group-addon" id="basic-addon2">hari</span>
@@ -297,7 +297,7 @@
                                                     <div class="input-group">
                                                         <input type="text"
                                                                class="form-control"
-                                                               name="lama_penugasan"
+                                                               name="lama_penugasan[]"
                                                                placeholder="Lama Penugasan"
                                                                aria-describedby="basic-addon2">
                                                         <span class="input-group-addon" id="basic-addon2">hari</span>
@@ -372,7 +372,7 @@
                         </div>
                         <div class="box-body table-responsive no-padding">
 
-                            <table id="table_supplier" class="table display responsive no-wrap" width="100%">
+                            <table id="table_surat_tugas" class="table display responsive no-wrap" width="100%">
                                 <thead>
                                 <tr>
                                     <th scope="col">No</th>
@@ -403,7 +403,7 @@
                                             <td>{{ $data->description}}</td>
                                             <td>{{ $data->department_name }}</td>
                                             <td>{{ $data->description_1 }}</td>
-                                            <input type="hidden" name="supplier_id" value= "{{ $data->id }}" required autofocus>
+                                            <input type="hidden" name="surat_id" value= "{{ $data->id }}" required autofocus>
 
                                             <td>
                                                 <a type="button"
@@ -567,4 +567,16 @@
         });
     </script>
 
+    <script>
+        $('#table_surat_tugas').DataTable({
+            'paging'      : true,
+            'lengthChange': true,
+            'searching'   : true,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : true,
+            'responsive' : true,
+            "order": [[ 1, "desc" ]]
+        })
+    </script>
 @stop
