@@ -74,12 +74,24 @@
                                             <input type="hidden" name="surat_id" value= "{{ $data->id }}" required autofocus>
 
                                             <td>
-                                                <a type="button"
-                                                   href="#"
-                                                   class="btn btn-primary">Pesan Hotel</a>
-                                                   <a type="button"
-                                                      href="#"
-                                                      class="btn btn-primary">Pesan Tiket</a>
+                                              @if($data->hotel_status == 0)
+                                              <button type="button"
+                                                 class="btn btn-primary" disabled>Pesan Hotel</button>
+                                              @else
+                                              <a type="button"
+                                                 href="#"
+                                                 class="btn btn-primary">Pesan Hotel</a>
+                                              @endif
+
+                                              @if($data->plane_status == 0)
+                                              <button type="button"
+                                                 class="btn btn-primary" disabled>Pesan Tiket</button>
+                                              @else
+                                              <a type="button"
+                                                 href="#"
+                                                 class="btn btn-primary">Pesan Tiket</a>
+                                              @endif
+
                                             </td>
                                     </tr>
                                 @endforeach
