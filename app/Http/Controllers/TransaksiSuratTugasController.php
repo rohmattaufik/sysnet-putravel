@@ -78,6 +78,8 @@ class TransaksiSuratTugasController extends Controller
                         $new_surat_tugasD->idEmployee = $the_employee->id;
                         $new_surat_tugasD->idJabatan = $the_employee->idJabatan;
                         $new_surat_tugasD->idGolongan = $the_employee->idGolongan;
+                        $new_surat_tugasD->plane_status = 1;
+                        $new_surat_tugasD->hotel_status = 1;
 
                         $new_surat_tugasD->days = $request->lama_penugasan[$i];
 

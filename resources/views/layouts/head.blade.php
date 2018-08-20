@@ -41,3 +41,7 @@
 {{-- datepicker --}}
 <!-- bootstrap datepicker -->
 <link rel="stylesheet" href="{{ URL::asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+
+{{-- script --}}
+<script src="{{ URL::asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ URL::asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>

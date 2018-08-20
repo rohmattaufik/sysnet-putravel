@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller,
     Illuminate\Support\Facades\DB as DB,
     App\Http\Controllers\MDIPA\MDIPAListController as MDipa,
+    App\Http\Controllers\MSupplier\MSupplierListController as MSupplier,
     App\Http\Controllers\TSuratTugas\TSuratTugasDListController as TPSuratTugasD,
     App\Http\Controllers\TSuratTugas\TSuratTugasHListController as TPSuratTugasH,
     App\Http\Controllers\MKota\MKotaListController as MKota,
@@ -22,7 +23,11 @@ class TransaksiPesanTiket extends Controller
         $data_dipa = (new MDIPA)->get_list();
         $data_department = (new MDepartment)->get_list();
         $data_surat_tugas_h = (new TPSuratTugasH)->get_all_list();
+        $data_surat_tugas_h_one = (new TPSuratTugasH)->get_surat_tugas_h($id);
         $data_employee = (new MEmployee)->get_list();
+        $data_supplier = (new MSupplier)->get_list();
+
+//        dd($data_surat_tugas_h_one);
 
 //        foreach ($data_surat_tugas_h as $data) {
 //            dd($data[3]);
@@ -45,6 +50,8 @@ class TransaksiPesanTiket extends Controller
             ->with('data_employee',$data_employee)
             ->with('data_department',$data_department)
             ->with('data_surat_tugas_h',$data_surat_tugas_h)
+            ->with('data_surat',$data_surat_tugas_h_one)
+            ->with('data_supplier',$data_supplier)
             ;
     }
     public function store(Request $request) {

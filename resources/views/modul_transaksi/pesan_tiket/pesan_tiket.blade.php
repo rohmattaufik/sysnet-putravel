@@ -1,12 +1,25 @@
 @extends('layouts.app-admin')
 
+@section('new-style')
+<style>
+    .table td.fit,
+    .table th.fit {
+        white-space: nowrap;
+        width: 1%;
+    }
+    .table-fit {
+        width: 1px;
+    }
+</style>
+@endsection
+
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Modul Transaksi Surat Tugas
-                <small>Create your Surat Tugas</small>
+                Modul Transaksi Pesan Tiket
+                <small>Book your Ticket</small>
             </h1>
 
         </section>
@@ -46,16 +59,16 @@
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="tanggal_surat">
-                                            Tanggal Surat Tugas
+                                            Nomor Surat Tugas
                                         </label>
                                         <div class="col-lg-4">
                                             <div class="input-group date">
                                                 <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
+                                                    <i class="fa fa-sticky-note"></i>
                                                 </div>
-                                                <input type="text" name="tanggal_surat"
-                                                       value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"
-                                                       class="form-control pull-right" id="datepicker1">
+                                                <input type="text" name="no_surat_tugas"
+                                                       value="{{ $data_surat[0]['assignment_letter_code'] }}"
+                                                       class="form-control pull-right" disabled>
                                             </div>
                                             <!-- /.input group -->
                                         </div>
@@ -63,92 +76,46 @@
 
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="tanggal_surat">
-                                            Dari Tanggal
+                                            Tanggal
                                         </label>
                                         <div class="col-lg-4">
                                             <div class="input-group date">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input placeholder="Pilih Tanggal Mulai"
-                                                       type="text" name="dari_tanggal" class="form-control pull-right" id="datepicker2">
+                                                <input placeholder="Pilih Tanggal"
+                                                       type="text"
+                                                       name="tanggal_surat"
+                                                       value="{{  \Carbon\Carbon::parse($data_surat[0]['created_at'])->format('d-m-Y') }}"
+                                                       class="form-control pull-right"
+                                                       id="datepicker2" disabled>
                                             </div>
                                             <!-- /.input group -->
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="tanggal_surat">
-                                            Sampai Tanggal
+                                        <label class="col-sm-2 control-label" for="kota">
+                                            Kota Tujuan
                                         </label>
                                         <div class="col-lg-4">
                                             <div class="input-group date">
                                                 <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
+                                                    <i class="fa fa-map-pin"></i>
                                                 </div>
-                                                <input type="text" placeholder="Pilih Tanggal Berakhir"
-                                                       name="sampai_tanggal" class="form-control pull-right" id="datepicker3">
+                                                {{--<input type="text" placeholder="Pilih Kota Tujuan"--}}
+                                                       {{--name="kota" class="form-control pull-right" id="datepicker3">--}}
+                                                <select name="kota" id="kota" class="form-control select-data" disabled>
+                                                    <option value="{{ $data_surat[0]['idKota'] }}" >
+                                                        {{ $data_surat[0]['city_name'] }}
+                                                    </option>
+                                                </select>
                                             </div>
                                             <!-- /.input group -->
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="kota">Kota</label>
-                                        <div class="col-lg-4">
-                                            <select id="kota" name="kota" class="form-control select-data">
-                                                @foreach($data_kota as $data)
-                                                    <option value="{{ $data->id }}">
-                                                        {{ $data->city_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="dipa">Pembebanan Anggaran</label>
-                                        <div class="col-lg-4">
-                                            <select id="dipa" name="dipa" class="form-control select-data">
-                                                @foreach($data_dipa as $data)
-                                                    <option value="{{ $data->id }}">
-                                                        {{ $data->DIPA_code }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="keterangan" class="col-sm-2 control-label">Keterangan</label>
-
-                                        <div class="col-sm-4">
-                                            <textarea class="form-control" rows="3"
-                                                      id="keterangan" name="keterangan" placeholder="Masukkan Keterangan"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="department">Object Audit Kerja</label>
-                                        <div class="col-lg-4">
-                                            <select id="department" name="department" class="form-control select-data">
-                                                @foreach($data_department as $data)
-                                                    <option value="{{ $data->id }}">
-                                                        {{ $data->department_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="keterangan1" class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-4">
-                                            <textarea class="form-control" rows="3"
-                                                      id="keterangan1" name="keterangan1"
-                                                      placeholder="Masukkan Keterangan Tambahan"></textarea>
-                                        </div>
-                                    </div>
 
                                 </div>
                                 <!-- /.box-body -->
@@ -170,7 +137,7 @@
                     <div class="box box-primary">
 
                         <div class="box-body">
-                            <div class="col-lg-10">
+                            <div class="col-lg-12">
 
                                 <div class="alert alert-danger print-error-msg" style="display:none">
                                     <ul></ul>
@@ -182,133 +149,185 @@
                                 </div>
 
                                 <div class="table-responsive">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+
+
                                     <table class="table table-bordered" id="dynamic_field">
-                                        <thead>
-                                        <th>No</th>
-                                        <th>Nama - Jabatan - Golongan</th>
-                                        <th>Lama Penugasan</th>
+                                        <thead class="">
+                                        <th class="text-nowrap">Nama</th>
+                                        <th class="text-nowrap">Nama Maskapai</th>
+                                        <th class="text-nowrap">Booking Number</th>
+                                        <th class="text-nowrap">Tanggal Berangkat</th>
+                                        <th class="text-nowrap">Tanggal Kembali</th>
+                                        <th class="text-nowrap">Reservasi Tiket Berangkat</th>
+                                        <th class="text-nowrap">Reservasi Tiket Kembali</th>
+                                        <th class="text-nowrap">Harga Tiket (PP)</th>
+                                        <th class="text-nowrap">Harga Maskapai</th>
                                         </thead>
-                                        <tr>
-                                            <td>
-                                                1
-                                            </td>
-                                            <td>
-                                                <select name="employee[]" class="form-control select-data">
-                                                    <option value="0" >Choose Employee</option>
-                                                    @foreach ($data_employee as $data)
-                                                        <option value="{{ $data->id }}" >
-                                                            {{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
 
+                                        @for($i=0;$i<count($data_surat[0]['suratTugasD']);$i++)
+                                            <tr class="">
+                                                <td class="text-nowrap">
+                                                    <p>{{ $data_surat[0]['suratTugasD'][$i]->employee_name }}</p>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <select name="employee[]" class="form-control select-data">
+                                                        <option value="0" >Pilih Maskapai</option>
+                                                        @foreach ($data_supplier as $data)
+                                                            @if($data->idJenisSupplier == 7)
+                                                                <option value="{{ $data->id }}" >
+                                                                    {{ $data->supplier_name }}
+                                                                </option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+
+                                                <td class="text-nowrap">
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="book_number[]"
+                                                               placeholder="Booking Number">
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-nowrap">
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input placeholder="Pilih Tanggal Berangkat"
+                                                               type="text"
+                                                               name="tanggal_berangkat"
+                                                               class="form-control pull-right"
+                                                               id="datepicker1{{ $i }}">
+
+                                                        <script>
+                                                            $('#datepicker1{{ $i }}').datepicker({
+                                                                autoclose: true,
+                                                                todayHighlight : true,
+                                                                todayBtn : "linked",
+                                                                format : 'yyyy-mm-dd'
+                                                            });
+                                                        </script>
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-nowrap">
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input placeholder="Pilih Tanggal Kembali"
+                                                               type="text"
+                                                               name="tanggal_kembali"
+                                                               class="form-control pull-right"
+                                                               id="datepicker2{{ $i }}">
+
+                                                        <script>
+                                                            $('#datepicker2{{ $i }}').datepicker({
+                                                                autoclose: true,
+                                                                todayHighlight : true,
+                                                                todayBtn : "linked",
+                                                                format : 'yyyy-mm-dd'
+                                                            });
+                                                        </script>
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-nowrap">
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="reservasi_berangkat[]"
+                                                               placeholder="Reservasi Tiket Berangkat">
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-nowrap">
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="reservasi_kembali[]"
+                                                               placeholder="Reservasi Tiket Kembali">
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-nowrap">
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control uang"
+                                                               name="harga_tiket"
+                                                               placeholder="Harga Tiket (PP)">
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-nowrap">
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control uang"
+                                                               name="harga_maskapai"
+                                                               placeholder="Harga Maskapai">
+                                                    </div>
+                                                </td>
+
+                                                <td class="text-nowrap">
+                                                    {{--<div class="input-group">--}}
+                                                        {{----}}
+                                                        {{--<input type="file" value="Upload Tiket" name="upload_tiket">--}}
+                                                    {{--</div>--}}
+                                                    <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input"
+                                                               id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                        <label class="custom-file-label" for="inputGroupFile01">Upload Tiket</label>
+                                                    </div>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                        @endfor
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <p>Total</p>
+                                            </td>
                                             <td>
                                                 <div class="input-group">
                                                     <input type="text"
-                                                           class="form-control"
-                                                           name="lama_penugasan[]"
-                                                           placeholder="Lama Penugasan"
-                                                           aria-describedby="basic-addon2">
-                                                    <span class="input-group-addon" id="basic-addon2">hari</span>
+                                                           class="form-control uang"
+                                                           name="total_harga_tiket_pp"
+                                                           value="1.000.000"
+                                                           placeholder="Total Harga Tiket (PP)" disabled>
                                                 </div>
-
                                             </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                2
-                                            </td>
-                                            <td>
-                                                <select name="employee[]" class="form-control select-data">
-                                                    <option value="0" >Choose Employee</option>
-                                                    @foreach ($data_employee as $data)
-                                                        <option value="{{ $data->id }}" >
-                                                            {{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-
                                             <td>
                                                 <div class="input-group">
                                                     <input type="text"
-                                                           class="form-control"
-                                                           name="lama_penugasan[]"
-                                                           placeholder="Lama Penugasan"
-                                                           aria-describedby="basic-addon2">
-                                                    <span class="input-group-addon" id="basic-addon2">hari</span>
+                                                           class="form-control uang"
+                                                           name="total_harga_tiket_maskapai"
+                                                           value="2.000.000"
+                                                           placeholder="Total Harga Maskapai" disabled>
                                                 </div>
                                             </td>
                                         </tr>
-
-
-                                        <tr>
-                                            <td>
-                                                3
-                                            </td>
-                                            <td>
-                                                <select name="employee[]" class="form-control select-data">
-                                                    <option value="0" >Choose Employee</option>
-                                                    @foreach ($data_employee as $data)
-                                                        <option value="{{ $data->id }}" >
-                                                            {{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-
-                                            <td>
-                                                <div class="input-group">
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           name="lama_penugasan[]"
-                                                           placeholder="Lama Penugasan"
-                                                           aria-describedby="basic-addon2">
-                                                    <span class="input-group-addon" id="basic-addon2">hari</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>
-                                                4
-                                            </td>
-                                            <td>
-                                                <select name="employee[]" class="form-control select-data">
-                                                    <option value="0" >Choose Employee</option>
-                                                    @foreach ($data_employee as $data)
-                                                        <option value="{{ $data->id }}" >
-                                                            {{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-
-                                            <td>
-                                                <div class="input-group">
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           name="lama_penugasan[]"
-                                                           placeholder="Lama Penugasan"
-                                                           aria-describedby="basic-addon2">
-                                                    <span class="input-group-addon" id="basic-addon2">hari</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-
                                     </table>
+
+                                        </div>
+                                    </div>
 
                                 </div>
 
                                 <div class="box-footer">
-                                    <button type="button" name="add" id="add" class="btn btn-success btn-block">
-                                        Add Row
-                                    </button>
-                                    <a href="#" type="button" class="btn btn-danger btn-block">Reset</a>
-                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                    <a href="#" type="button" class="btn btn-danger btn-block">Batal</a>
+                                    <button type="submit" class="btn btn-primary btn-block">Pesan</button>
                                 </div>
                             </div>
                         </div>
@@ -323,60 +342,12 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h1 class="box-title">List of Surat Tugas</h1>
+                            {{--<h1 class="box-title">List of Surat Tugas</h1>--}}
                         </div>
                         <div class="box-body table-responsive no-padding">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <table id="table_surat_tugas" class="table display responsive no-wrap" width="100%">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Tanggal Surat Tugas</th>
-                                            <th scope="col">Dari Tanggal</th>
-                                            <th scope="col">Sampai Tanggal</th>
-                                            <th scope="col">Kota</th>
-                                            <th scope="col">Pembebanan Anggaran</th>
-                                            <th scope="col">Keterangan</th>
-                                            <th scope="col">Object Audit Kerja</th>
-                                            <th scope="col">Keterangan Tambahan</th>
-                                            <th scope="col">Action</th>
 
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php $count = 0; ?>
-                                        @foreach($data_surat_tugas_h as $data)
-                                            <tr>
-                                                <form method="post" action="{{ url(action('TransaksiSuratTugasController@delete')) }}">
-                                                    {{ csrf_field() }}
-                                                    <td scope="row"><?php echo ++$count; ?></td>
-                                                    <td>{{ \Carbon\Carbon::parse($data['created_at'])->format('d-m-Y') }} </td>
-                                                    <td>{{ \Carbon\Carbon::parse($data['start_date'])->format('d-m-Y') }} </td>
-                                                    <td>{{ \Carbon\Carbon::parse($data['end_date'])->format('d-m-Y') }} </td>
-                                                    <td>{{ $data['city_name'] }}  </td>
-                                                    <td>{{ $data['DIPA_code'] }}</td>
-                                                    <td>{{ $data['description']}}</td>
-                                                    <td>{{ $data['department_name'] }}</td>
-                                                    <td>{{ $data['description_1'] }}</td>
-                                                    <input type="hidden" name="surat_id" value= "{{ $data['id'] }}" required autofocus>
-
-                                                    <td>
-                                                        <a type="button"
-                                                           href="{{ url(action('TransaksiSuratTugasController@edit',$data['id'])) }}"
-                                                           class="btn btn-primary">Edit</a>
-                                                        <button class="btn btn-danger" type="submit">
-                                                            Delete
-                                                        </button>
-                                                    </td>
-
-                                                </form>
-
-                                            </tr>
-                                        @endforeach
-
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
 
@@ -393,6 +364,21 @@
 @stop
 
 @section('new-script')
+
+    <script>
+        $(document).ready(function(){
+
+            // Format mata uang.
+            $( '.uang' ).mask('0.000.000.000', {reverse: true});
+
+            // Format nomor HP.
+            $( '.no_hp' ).mask('0000−0000−0000');
+
+            // Format tahun pelajaran.
+            $( '.tapel' ).mask('0000/0000');
+        })
+    </script>
+
 
     <script>
         $(document).ready(function() {

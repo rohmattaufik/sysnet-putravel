@@ -1,5 +1,5 @@
 <!-- jQuery 3 -->
-<script src="{{ URL::asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+{{--<script src="{{ URL::asset('bower_components/jquery/dist/jquery.min.js') }}"></script>--}}
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ URL::asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
@@ -18,4 +18,4 @@
 {{--<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js" type="text/javascript"></script>--}}
 
 <!-- bootstrap datepicker -->
-<script src="{{ URL::asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+{{--<script src="{{ URL::asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>--}}
