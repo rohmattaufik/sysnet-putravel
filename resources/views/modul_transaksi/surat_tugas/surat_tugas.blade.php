@@ -98,8 +98,7 @@
                                         <div class="col-lg-4">
                                             <select id="kota" name="kota" class="form-control select-data">
                                                 @foreach($data_kota as $data)
-                                                    <option value="{{ $data->id }}"
-                                                            data-select2-id="{{ $data->id }}">
+                                                    <option value="{{ $data->id }}">
                                                         {{ $data->city_name }}
                                                     </option>
                                                 @endforeach
@@ -112,8 +111,7 @@
                                         <div class="col-lg-4">
                                             <select id="dipa" name="dipa" class="form-control select-data">
                                                 @foreach($data_dipa as $data)
-                                                    <option value="{{ $data->id }}"
-                                                            data-select2-id="{{ $data->id }}">
+                                                    <option value="{{ $data->id }}">
                                                         {{ $data->DIPA_code }}
                                                     </option>
                                                 @endforeach
@@ -135,8 +133,7 @@
                                         <div class="col-lg-4">
                                             <select id="department" name="department" class="form-control select-data">
                                                 @foreach($data_department as $data)
-                                                    <option value="{{ $data->id }}"
-                                                            data-select2-id="{{ $data->id }}">
+                                                    <option value="{{ $data->id }}">
                                                         {{ $data->department_name }}
                                                     </option>
                                                 @endforeach
@@ -188,9 +185,7 @@
                                         <table class="table table-bordered" id="dynamic_field">
                                             <thead>
                                             <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Jabatan</th>
-                                            <th>Golongan</th>
+                                            <th>Nama - Jabatan - Golongan</th>
                                             <th>Lama Penugasan</th>
                                             </thead>
                                             <tr>
@@ -198,27 +193,16 @@
                                                     1
                                                 </td>
                                                 <td>
-                                                    <select name="employee[]" class="form-control">
+                                                    <select name="employee[]" class="form-control select-data">
                                                         <option value="0" >Choose Employee</option>
                                                         @foreach ($data_employee as $data)
-                                                            <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
+                                                            <option value="{{ $data->id }}" >
+                                                                {{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                                <td>
-                                                    <input type="text"
-                                                           name="jabatan"
-                                                           value="Marketing"
-                                                           disabled
-                                                           class="form-control" />
-                                                </td>
-                                                <td>
-                                                    <input type="text"
-                                                           name="golongan"
-                                                           value="GOL - 23"
-                                                           disabled
-                                                           class="form-control" />
-                                                </td>
+
                                                 <td>
                                                     <div class="input-group">
                                                         <input type="text"
@@ -237,27 +221,16 @@
                                                     2
                                                 </td>
                                                 <td>
-                                                    <select name="employee[]" class="form-control">
+                                                    <select name="employee[]" class="form-control select-data">
                                                         <option value="0" >Choose Employee</option>
                                                         @foreach ($data_employee as $data)
-                                                            <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
+                                                            <option value="{{ $data->id }}" >
+                                                                {{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                                <td>
-                                                    <input type="text"
-                                                           name="jabatan"
-                                                           value="Marketing"
-                                                           disabled
-                                                           class="form-control" />
-                                                </td>
-                                                <td>
-                                                    <input type="text"
-                                                           name="golongan"
-                                                           value="GOL - 23"
-                                                           disabled
-                                                           class="form-control" />
-                                                </td>
+
                                                 <td>
                                                     <div class="input-group">
                                                         <input type="text"
@@ -276,27 +249,16 @@
                                                     3
                                                 </td>
                                                 <td>
-                                                    <select name="employee[]" class="form-control">
+                                                    <select name="employee[]" class="form-control select-data">
                                                         <option value="0" >Choose Employee</option>
                                                         @foreach ($data_employee as $data)
-                                                            <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
+                                                            <option value="{{ $data->id }}" >
+                                                                {{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                                <td>
-                                                    <input type="text"
-                                                           name="jabatan"
-                                                           value="Marketing"
-                                                           disabled
-                                                           class="form-control" />
-                                                </td>
-                                                <td>
-                                                    <input type="text"
-                                                           name="golongan"
-                                                           value="GOL - 23"
-                                                           disabled
-                                                           class="form-control" />
-                                                </td>
+
                                                 <td>
                                                     <div class="input-group">
                                                         <input type="text"
@@ -315,27 +277,16 @@
                                                     4
                                                 </td>
                                                 <td>
-                                                    <select name="employee[]" class="form-control">
+                                                    <select name="employee[]" class="form-control select-data">
                                                         <option value="0" >Choose Employee</option>
                                                         @foreach ($data_employee as $data)
-                                                            <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
+                                                            <option value="{{ $data->id }}" >
+                                                                {{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                                <td>
-                                                    <input type="text"
-                                                           name="jabatan"
-                                                           value="Marketing"
-                                                           disabled
-                                                           class="form-control" />
-                                                </td>
-                                                <td>
-                                                    <input type="text"
-                                                           name="golongan"
-                                                           value="GOL - 23"
-                                                           disabled
-                                                           class="form-control" />
-                                                </td>
+
                                                 <td>
                                                     <div class="input-group">
                                                         <input type="text"
@@ -442,6 +393,7 @@
 @stop
 
 @section('new-script')
+
     <script>
         $(document).ready(function() {
 //            var table = $('#table_supplier').DataTable( {
@@ -501,29 +453,36 @@
             $('#add').click(function(){
                 i++;
                 $('#dynamic_field').append('' +
-                    {{--'<tr id="row'+i+'" class="dynamic-added">' +--}}
-                    {{--'<td>' +--}}
-                    {{--'<select name="kota[]" class="form-control">' +--}}
-                    {{--'@foreach ($kotas as $kota)' +--}}
-                    {{--'<option value="{{ $kota->id }}" >{{ $kota->city_name }}</option>'+--}}
-                    {{--'@endforeach'+--}}
-                    {{--'</select>'+--}}
-                    {{--'</td>'+--}}
-                    {{--'<td>'+--}}
-                    {{--'<select name="golongan[]" class="form-control">'+--}}
-                    {{--'@foreach ($golongans as $golongan)'+--}}
-                    {{--'<option value="{{ $golongan->id }}">{{ $golongan->class_name }}</option>'+--}}
-                    {{--'@endforeach'+--}}
-                    {{--'</select>'+--}}
-                    {{--'</td>'+--}}
-                    {{--'<td>'+--}}
-                    {{--'<input type="number"'+--}}
-                    {{--'name="value[]"'+--}}
-                    {{--'placeholder="Enter value"'+--}}
-                    {{--'class="form-control name_list" />'+--}}
-                    {{--'</td>'+--}}
-                    {{--'<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +--}}
-                    '</td></tr>');
+                    '<tr id="row'+i+'">' +
+                    '<td>' +
+                    '+' +
+                    '</td>' +
+                    '<td>' +
+                    '<select name="employee[]" class="form-control select-data">' +
+                    '<option value="0" >Choose Employee</option>'+
+                    '@foreach ($data_employee as $data)' +
+                    '<option value="{{ $data->id }}" >' +
+                        '{{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}'+
+                            '</option>'+
+                    '@endforeach'+
+                    '</select>'+
+                    '</td>'+
+
+                    '<td>'+
+                    '<div class="input-group">'+
+                '<input type="text"'+
+                'class="form-control"'+
+                'name="lama_penugasan[]"'+
+                'placeholder="Lama Penugasan"'+
+                'aria-describedby="basic-addon2">'+
+                '<span class="input-group-addon" id="basic-addon2">hari</span>'+
+                '</div>'+
+                '</td>'+
+                    '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +
+                '</tr>');
+
+
+                $('.select-data').select2();
             });
 
             $(document).on('click', '.btn_remove', function(){
@@ -585,5 +544,22 @@
             'responsive' : true,
             "order": [[ 1, "desc" ]]
         })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#thebase").change(function () {
+                var val = $(this).val();
+                if (val == "item1") {
+                    $("#size").html("<option value='test'>item1: test 1</option><option value='test2'>item1: test 2</option>");
+                } else if (val == "item2") {
+                    $("#size").html("<option value='test'>item2: test 1</option><option value='test2'>item2: test 2</option>");
+                } else if (val == "item3") {
+                    $("#size").html("<option value='test'>item3: test 1</option><option value='test2'>item3: test 2</option>");
+                } else if (val == "item0") {
+                    $("#size").html("<option value=''>--select one--</option>");
+                }
+            });
+        });
     </script>
 @stop
