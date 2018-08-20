@@ -21,10 +21,23 @@ class TransaksiSuratTugasController extends Controller
         $data_kota = (new MKota)->get_list();
         $data_dipa = (new MDIPA)->get_list();
         $data_department = (new MDepartment)->get_list();
-        $data_surat_tugas_h = (new TPSuratTugasH)->get_list();
+        $data_surat_tugas_h = (new TPSuratTugasH)->get_all_list();
         $data_employee = (new MEmployee)->get_list();
 
-        // dd($data_surat_tugas_h);
+//        foreach ($data_surat_tugas_h as $data) {
+//            dd($data[3]);
+//            foreach ($data['suratTugasD'] as $data2) {
+//                dd($data2->employee_name);
+//            }
+//        }
+
+//        for ($i = 0; $i<count($data_surat_tugas_h);$i++) {
+//            dd($data_surat_tugas_h);
+//            foreach ($data_surat_tugas_h[$i]['suratTugasD'] as $data2) {
+//                dd($data2->employee_name);
+//            }
+//        }
+
 
        return view('modul_transaksi/surat_tugas/surat_tugas')
            ->with('data_kota',$data_kota)
@@ -81,7 +94,13 @@ class TransaksiSuratTugasController extends Controller
 
         $TSuratH = new TPSuratTugasH($request->surat_id);
         $TSuratD = (new TPSuratTugasD)->get_surat_tugas_d_id_h($TSuratH->id);
-  //    dd($TSuratD);
+        $TSuratD_delete = new TPSuratTugasD();
+        $count = 0;
+
+        foreach ($TSuratD as $data) {
+            (new TPSuratTugasD)->deleteByIdH($data->id, $data->idSuratTugas_H);
+            $count++;
+        }
         $TSuratH->delete();
 
         Session::flash('sukses-delete', 'Anda berhasil menghapus data Supplier');

@@ -87,7 +87,7 @@ class TSuratTugasHListController extends Controller{
             "DIPA_code"               => $row->DIPA_code,
             "department_name"         => $row->department_name,
             "employee_name"           => $row->employee_name,
-            "suratTugasD"             => DB::select(DB::raw("CALL TSuratTugas_D_View_id($row->id)"))
+            "suratTugasD"             => DB::select(DB::raw("CALL TSuratTugas_D_View_idSuratH($row->id)"))
           );
           array_push($data,$item);
         }

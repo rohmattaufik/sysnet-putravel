@@ -395,19 +395,19 @@
                                         <form method="post" action="{{ url(action('TransaksiSuratTugasController@delete')) }}">
                                             {{ csrf_field() }}
                                             <td scope="row"><?php echo ++$count; ?></td>
-                                            <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} </td>
-                                            <td>{{ \Carbon\Carbon::parse($data->start_date)->format('d-m-Y') }} </td>
-                                            <td>{{ \Carbon\Carbon::parse($data->end_date)->format('d-m-Y') }} </td>
-                                            <td>{{ $data->city_name }}  </td>
-                                            <td>{{ $data->DIPA_code }}</td>
-                                            <td>{{ $data->description}}</td>
-                                            <td>{{ $data->department_name }}</td>
-                                            <td>{{ $data->description_1 }}</td>
-                                            <input type="hidden" name="surat_id" value= "{{ $data->id }}" required autofocus>
+                                            <td>{{ \Carbon\Carbon::parse($data['created_at'])->format('d-m-Y') }} </td>
+                                            <td>{{ \Carbon\Carbon::parse($data['start_date'])->format('d-m-Y') }} </td>
+                                            <td>{{ \Carbon\Carbon::parse($data['end_date'])->format('d-m-Y') }} </td>
+                                            <td>{{ $data['city_name'] }}  </td>
+                                            <td>{{ $data['DIPA_code'] }}</td>
+                                            <td>{{ $data['description']}}</td>
+                                            <td>{{ $data['department_name'] }}</td>
+                                            <td>{{ $data['description_1'] }}</td>
+                                            <input type="hidden" name="surat_id" value= "{{ $data['id'] }}" required autofocus>
 
                                             <td>
                                                 <a type="button"
-                                                   href="{{ url(action('TransaksiSuratTugasController@edit',$data->id)) }}"
+                                                   href="{{ url(action('TransaksiSuratTugasController@edit',$data['id'])) }}"
                                                    class="btn btn-primary">Edit</a>
                                                 <button class="btn btn-danger" type="submit">
                                                     Delete
