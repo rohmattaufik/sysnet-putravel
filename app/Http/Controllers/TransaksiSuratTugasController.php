@@ -59,6 +59,10 @@ class TransaksiSuratTugasController extends Controller
             $new_surat_tugasH->idDepartment = $request->department;
             $new_surat_tugasH->description_1 = $request->keterangan1;
             $new_surat_tugasH->created_by = Auth::user()->id;
+            $new_surat_tugasH->assignment_letter_status = 1;
+            $new_surat_tugasH->hotel_status = 1;
+            $new_surat_tugasH->plane_status = 1;
+            $new_surat_tugasH->created_at = $request->tanggal_surat;
 
             $new_surat_tugasH->create();
 
@@ -94,7 +98,7 @@ class TransaksiSuratTugasController extends Controller
 
         $TSuratH = new TPSuratTugasH($request->surat_id);
         $TSuratD = (new TPSuratTugasD)->get_surat_tugas_d_id_h($TSuratH->id);
-        $TSuratD_delete = new TPSuratTugasD();
+
         $count = 0;
 
         foreach ($TSuratD as $data) {
@@ -103,21 +107,26 @@ class TransaksiSuratTugasController extends Controller
         }
         $TSuratH->delete();
 
-        Session::flash('sukses-delete', 'Anda berhasil menghapus data Supplier');
+        Session::flash('sukses-delete', 'Anda berhasil menghapus data Surat Tugas');
         return redirect()->back();
 
     }
 
     public function edit($id)
     {
-        $MSupplier = (new MSupplier($id))->get_supplier()[0];
         $data_kota = (new MKota)->get_list();
-        $data_jenis_supplier = (new MJenisSupplier)->get_list();
-//        dd($MSupplier);
-        return view('modul_master/master_supplier/edit')
-            ->with('data_supplier', $MSupplier)
-            ->with('data_jenis_supplier', $data_jenis_supplier)
-            ->with('data_kota',$data_kota)
+        $data_dipa = (new MDIPA)->get_list();
+        $data_department = (new MDepartment)->get_list();
+        $data_surat_tugas_h = (new TPSuratTugasH)->get_surat_tugas_h($id);
+        $data_employee = (new MEmployee)->get_list();
+
+//        dd($data_surat_tugas_h[0]['suratTugasD'][0]);
+        return view('modul_transaksi/surat_tugas/edit_surat_tugas')
+            ->with('data_kota', $data_kota)
+            ->with('data_dipa',$data_dipa)
+            ->with('data_department', $data_department)
+            ->with('data_employee',$data_employee)
+            ->with('data_surat',$data_surat_tugas_h)
             ;
 
     }
@@ -142,8 +151,8 @@ class TransaksiSuratTugasController extends Controller
 
             $new_supplier->update();
 
-            Session::flash('sukses', 'Data supplier sukses di-update');
-            return redirect(url(action('MasterSupplierController@index')));
+            Session::flash('sukses', 'Data Surat Tugas sukses di-update');
+            return redirect(url(action('TransaksiSuratTugasController@index')));
         }
     }
 

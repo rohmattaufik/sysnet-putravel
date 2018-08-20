@@ -6,7 +6,7 @@
         <section class="content-header">
             <h1>
                 Modul Transaksi Surat Tugas
-                <small>Create your Surat Tugas</small>
+                <small>Edit your Surat Tugas</small>
             </h1>
 
         </section>
@@ -20,19 +20,19 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="box box-primary">
-                        @if(Session::get('sukses') || Session::get('sukses-delete'))
+
                             <div class="box-header with-border">
                                 <h3 class="box-title">
-                                    <a href="{{ url(action('MasterSupplierController@index')) }}">
+                                    <a href="{{ url(action('TransaksiSuratTugasController@index')) }}">
                                         <i class="fa fa-arrow-left"></i>
                                     </a>
                                     Edit Surat Tugas
                                 </h3>
                             </div>
-                        @endif
 
                         <div class="box-body">
-                            <form class="form-horizontal" method="post" action="{{url(action('TransaksiSuratTugasController@store'))}}">
+                            <form class="form-horizontal" method="post"
+                                  action="{{url(action('TransaksiSuratTugasController@update'))}}">
                                 {{ csrf_field() }}
                                 <div class="box-body">
                                     <div class="form-group">
@@ -44,7 +44,10 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" name="tanggal_surat" class="form-control pull-right" id="datepicker1">
+                                                <input type="text"
+                                                       name="tanggal_surat"
+                                                       value="{{ \Carbon\Carbon::parse($data_surat[0]['created_at'])->format('d-m-Y') }}"
+                                                       class="form-control pull-right" id="datepicker1">
                                             </div>
                                             <!-- /.input group -->
                                         </div>
@@ -59,7 +62,11 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" name="dari_tanggal" class="form-control pull-right" id="datepicker2">
+                                                <input type="text"
+                                                       name="dari_tanggal"
+                                                       class="form-control pull-right"
+                                                       value="{{ \Carbon\Carbon::parse($data_surat[0]['start_date'])->format('d-m-Y') }}"
+                                                       id="datepicker2">
                                             </div>
                                             <!-- /.input group -->
                                         </div>
@@ -74,7 +81,10 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" name="sampai_tanggal" class="form-control pull-right" id="datepicker3">
+                                                <input type="text" name="sampai_tanggal"
+                                                       class="form-control pull-right"
+                                                       value="{{ \Carbon\Carbon::parse($data_surat[0]['end_date'])->format('d-m-Y') }}"
+                                                       id="datepicker3">
                                             </div>
                                             <!-- /.input group -->
                                         </div>
@@ -84,6 +94,10 @@
                                         <label class="col-sm-2 control-label" for="kota">Kota</label>
                                         <div class="col-lg-4">
                                             <select id="kota" name="kota" class="form-control select-data">
+                                                <option value="{{ $data_surat[0]['idKota'] }}"
+                                                        data-select2-id="{{ $data_surat[0]['city_name'] }}">
+                                                    {{ $data_surat[0]['city_name'] }}
+                                                </option>
                                                 @foreach($data_kota as $data)
                                                     <option value="{{ $data->id }}"
                                                             data-select2-id="{{ $data->id }}">
@@ -91,6 +105,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
+
                                         </div>
                                     </div>
 
@@ -98,6 +113,10 @@
                                         <label class="col-sm-2 control-label" for="dipa">Pembebanan Anggaran</label>
                                         <div class="col-lg-4">
                                             <select id="dipa" name="dipa" class="form-control select-data">
+                                                <option value="{{ $data_surat[0]['idDipa'] }}"
+                                                        data-select2-id="{{ $data_surat[0]['idDipa'] }}">
+                                                    {{ $data_surat[0]['DIPA_code'] }}
+                                                </option>
                                                 @foreach($data_dipa as $data)
                                                     <option value="{{ $data->id }}"
                                                             data-select2-id="{{ $data->id }}">
@@ -113,7 +132,9 @@
 
                                         <div class="col-sm-4">
                                             <textarea class="form-control" rows="3"
-                                                      id="keterangan" name="keterangan" placeholder="Masukkan Keterangan"></textarea>
+                                                      id="keterangan" name="keterangan">
+                                                {{ $data_surat[0]['description'] }}
+                                            </textarea>
                                         </div>
                                     </div>
 
@@ -121,6 +142,10 @@
                                         <label class="col-sm-2 control-label" for="department">Object Audit Kerja</label>
                                         <div class="col-lg-4">
                                             <select id="department" name="department" class="form-control select-data">
+                                                <option value="{{ $data_surat[0]['idDepartment'] }}"
+                                                        data-select2-id="{{ $data_surat[0]['idDepartment'] }}">
+                                                    {{ $data_surat[0]['department_name'] }}
+                                                </option>
                                                 @foreach($data_department as $data)
                                                     <option value="{{ $data->id }}"
                                                             data-select2-id="{{ $data->id }}">
@@ -135,8 +160,9 @@
                                         <label for="keterangan1" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-4">
                                             <textarea class="form-control" rows="3"
-                                                      id="keterangan1" name="keterangan1"
-                                                      placeholder="Masukkan Keterangan Tambahan"></textarea>
+                                                      id="keterangan1" name="keterangan1">
+                                                {{ $data_surat[0]['description_1'] }}
+                                            </textarea>
                                         </div>
                                     </div>
 
@@ -180,15 +206,63 @@
                                         <th>Golongan</th>
                                         <th>Lama Penugasan</th>
                                         </thead>
+                                        <tbody>
+                                        @for($j=1,$i=0;$i<count($data_surat[0]['suratTugasD']);$i++,$j++)
+                                            <tr>
+                                                <td>
+                                                    {{ $j }}
+                                                </td>
+                                                <td>
+                                                    <select name="employee[]" class="form-control select-data">
+                                                        <option
+                                                                value="{{ $data_surat[0]['suratTugasD'][$i]->idEmployee }}"
+                                                                data-select2-id="{{ $data_surat[0]['suratTugasD'][$i]->idEmployee }}">
+                                                            {{ $data_surat[0]['suratTugasD'][$i]->employee_name }}
+                                                        </option>
+                                                        @foreach ($data_employee as $data)
+                                                            <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="jabatan"
+                                                               value="{{ $data_surat[0]['suratTugasD'][$i]->position_name }}" disabled>
+                                                    </div>
+
+                                                </td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="golongan"
+                                                               value="{{ $data_surat[0]['suratTugasD'][$i]->class_name }}" disabled>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="lama_penugasan[]"
+                                                               value="{{ $data_surat[0]['suratTugasD'][$i]->days }}"
+                                                               aria-describedby="basic-addon2">
+                                                        <span class="input-group-addon" id="basic-addon2">hari</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endfor
+
                                         <tr>
                                             <td>
-                                                1
+                                                -
                                             </td>
                                             <td>
-                                                <select name="employee[]" class="form-control">
+                                                <select name="employee[]" class="form-control select-data">
                                                     <option value="0" >Choose Employee</option>
                                                     @foreach ($data_employee as $data)
-                                                        <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
+                                                        <option value="{{ $data->id }}">{{ $data->employee_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </td>
@@ -218,123 +292,7 @@
 
                                             </td>
                                         </tr>
-
-                                        <tr>
-                                            <td>
-                                                2
-                                            </td>
-                                            <td>
-                                                <select name="employee[]" class="form-control">
-                                                    <option value="0" >Choose Employee</option>
-                                                    @foreach ($data_employee as $data)
-                                                        <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="text"
-                                                       name="jabatan"
-                                                       value="Marketing"
-                                                       disabled
-                                                       class="form-control" />
-                                            </td>
-                                            <td>
-                                                <input type="text"
-                                                       name="golongan"
-                                                       value="GOL - 23"
-                                                       disabled
-                                                       class="form-control" />
-                                            </td>
-                                            <td>
-                                                <div class="input-group">
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           name="lama_penugasan[]"
-                                                           placeholder="Lama Penugasan"
-                                                           aria-describedby="basic-addon2">
-                                                    <span class="input-group-addon" id="basic-addon2">hari</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>
-                                                3
-                                            </td>
-                                            <td>
-                                                <select name="employee[]" class="form-control">
-                                                    <option value="0" >Choose Employee</option>
-                                                    @foreach ($data_employee as $data)
-                                                        <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="text"
-                                                       name="jabatan"
-                                                       value="Marketing"
-                                                       disabled
-                                                       class="form-control" />
-                                            </td>
-                                            <td>
-                                                <input type="text"
-                                                       name="golongan"
-                                                       value="GOL - 23"
-                                                       disabled
-                                                       class="form-control" />
-                                            </td>
-                                            <td>
-                                                <div class="input-group">
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           name="lama_penugasan[]"
-                                                           placeholder="Lama Penugasan"
-                                                           aria-describedby="basic-addon2">
-                                                    <span class="input-group-addon" id="basic-addon2">hari</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>
-                                                4
-                                            </td>
-                                            <td>
-                                                <select name="employee[]" class="form-control">
-                                                    <option value="0" >Choose Employee</option>
-                                                    @foreach ($data_employee as $data)
-                                                        <option value="{{ $data->id }}" >{{ $data->employee_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="text"
-                                                       name="jabatan"
-                                                       value="Marketing"
-                                                       disabled
-                                                       class="form-control" />
-                                            </td>
-                                            <td>
-                                                <input type="text"
-                                                       name="golongan"
-                                                       value="GOL - 23"
-                                                       disabled
-                                                       class="form-control" />
-                                            </td>
-                                            <td>
-                                                <div class="input-group">
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           name="lama_penugasan[]"
-                                                           placeholder="Lama Penugasan"
-                                                           aria-describedby="basic-addon2">
-                                                    <span class="input-group-addon" id="basic-addon2">hari</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-
+                                        </tbody>
                                     </table>
 
                                 </div>

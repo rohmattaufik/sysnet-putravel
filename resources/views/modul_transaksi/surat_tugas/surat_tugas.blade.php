@@ -53,7 +53,9 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" name="tanggal_surat" class="form-control pull-right" id="datepicker1">
+                                                <input type="text" name="tanggal_surat"
+                                                       value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"
+                                                       class="form-control pull-right" id="datepicker1">
                                             </div>
                                                 <!-- /.input group -->
                                         </div>
@@ -68,7 +70,8 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" name="dari_tanggal" class="form-control pull-right" id="datepicker2">
+                                                <input placeholder="Pilih Tanggal Mulai"
+                                                       type="text" name="dari_tanggal" class="form-control pull-right" id="datepicker2">
                                             </div>
                                             <!-- /.input group -->
                                         </div>
@@ -83,7 +86,8 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" name="sampai_tanggal" class="form-control pull-right" id="datepicker3">
+                                                <input type="text" placeholder="Pilih Tanggal Berakhir"
+                                                       name="sampai_tanggal" class="form-control pull-right" id="datepicker3">
                                             </div>
                                             <!-- /.input group -->
                                         </div>
@@ -371,56 +375,59 @@
                             <h1 class="box-title">List of Surat Tugas</h1>
                         </div>
                         <div class="box-body table-responsive no-padding">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <table id="table_surat_tugas" class="table display responsive no-wrap" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Tanggal Surat Tugas</th>
+                                            <th scope="col">Dari Tanggal</th>
+                                            <th scope="col">Sampai Tanggal</th>
+                                            <th scope="col">Kota</th>
+                                            <th scope="col">Pembebanan Anggaran</th>
+                                            <th scope="col">Keterangan</th>
+                                            <th scope="col">Object Audit Kerja</th>
+                                            <th scope="col">Keterangan Tambahan</th>
+                                            <th scope="col">Action</th>
 
-                            <table id="table_surat_tugas" class="table display responsive no-wrap" width="100%">
-                                <thead>
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Tanggal Surat Tugas</th>
-                                    <th scope="col">Dari Tanggal</th>
-                                    <th scope="col">Sampai Tanggal</th>
-                                    <th scope="col">Kota</th>
-                                    <th scope="col">Pembebanan Anggaran</th>
-                                    <th scope="col">Keterangan</th>
-                                    <th scope="col">Object Audit Kerja</th>
-                                    <th scope="col">Keterangan Tambahan</th>
-                                    <th scope="col">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php $count = 0; ?>
+                                        @foreach($data_surat_tugas_h as $data)
+                                            <tr>
+                                                <form method="post" action="{{ url(action('TransaksiSuratTugasController@delete')) }}">
+                                                    {{ csrf_field() }}
+                                                    <td scope="row"><?php echo ++$count; ?></td>
+                                                    <td>{{ \Carbon\Carbon::parse($data['created_at'])->format('d-m-Y') }} </td>
+                                                    <td>{{ \Carbon\Carbon::parse($data['start_date'])->format('d-m-Y') }} </td>
+                                                    <td>{{ \Carbon\Carbon::parse($data['end_date'])->format('d-m-Y') }} </td>
+                                                    <td>{{ $data['city_name'] }}  </td>
+                                                    <td>{{ $data['DIPA_code'] }}</td>
+                                                    <td>{{ $data['description']}}</td>
+                                                    <td>{{ $data['department_name'] }}</td>
+                                                    <td>{{ $data['description_1'] }}</td>
+                                                    <input type="hidden" name="surat_id" value= "{{ $data['id'] }}" required autofocus>
 
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php $count = 0; ?>
-                                @foreach($data_surat_tugas_h as $data)
-                                    <tr>
-                                        <form method="post" action="{{ url(action('TransaksiSuratTugasController@delete')) }}">
-                                            {{ csrf_field() }}
-                                            <td scope="row"><?php echo ++$count; ?></td>
-                                            <td>{{ \Carbon\Carbon::parse($data['created_at'])->format('d-m-Y') }} </td>
-                                            <td>{{ \Carbon\Carbon::parse($data['start_date'])->format('d-m-Y') }} </td>
-                                            <td>{{ \Carbon\Carbon::parse($data['end_date'])->format('d-m-Y') }} </td>
-                                            <td>{{ $data['city_name'] }}  </td>
-                                            <td>{{ $data['DIPA_code'] }}</td>
-                                            <td>{{ $data['description']}}</td>
-                                            <td>{{ $data['department_name'] }}</td>
-                                            <td>{{ $data['description_1'] }}</td>
-                                            <input type="hidden" name="surat_id" value= "{{ $data['id'] }}" required autofocus>
+                                                    <td>
+                                                        <a type="button"
+                                                           href="{{ url(action('TransaksiSuratTugasController@edit',$data['id'])) }}"
+                                                           class="btn btn-primary">Edit</a>
+                                                        <button class="btn btn-danger" type="submit">
+                                                            Delete
+                                                        </button>
+                                                    </td>
 
-                                            <td>
-                                                <a type="button"
-                                                   href="{{ url(action('TransaksiSuratTugasController@edit',$data['id'])) }}"
-                                                   class="btn btn-primary">Edit</a>
-                                                <button class="btn btn-danger" type="submit">
-                                                    Delete
-                                                </button>
-                                            </td>
+                                                </form>
 
-                                        </form>
+                                            </tr>
+                                        @endforeach
 
-                                    </tr>
-                                @endforeach
-
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
