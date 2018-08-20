@@ -74,13 +74,22 @@ Route::prefix('master')->group(function () {
 });
 
 Route::prefix('transaksi')->group(function () {
-    //master parameter
+    //Transaksi Surat Tugas
     Route::get('surat-tugas', 'TransaksiSuratTugasController@index');
     Route::prefix('surat-tugas')->group(function () {
         Route::post('submit', 'TransaksiSuratTugasController@store');
         Route::post('delete', 'TransaksiSuratTugasController@delete');
         Route::get('edit/{id}', 'TransaksiSuratTugasController@edit');
         Route::post('update', 'TransaksiSuratTugasController@update');
+    });
+
+    //Transaksi Pesan Tiket
+    Route::get('pesan-tiket/{id}', 'TransaksiPesanTiket@index');
+    Route::prefix('pesan-tiket')->group(function () {
+        Route::post('submit', 'TransaksiPesanTiket@store');
+        Route::post('delete', 'TransaksiPesanTiket@delete');
+        Route::get('edit/{id}', 'TransaksiPesanTiket@edit');
+        Route::post('update', 'TransaksiPesanTiket@update');
     });
 
     //pesanan surat tugas

@@ -84,11 +84,11 @@
                                               @endif
 
                                               @if($data->plane_status == 0)
-                                              <button type="button"
-                                                 class="btn btn-primary" disabled>Pesan Tiket</button>
+                                              <a type="button"
+                                                 class="btn btn-primary" disabled>Pesan Tiket</a>
                                               @else
                                               <a type="button"
-                                                 href="#"
+                                                 href="{{ url(action('TransaksiPesanTiket@index',$data->id)) }}"
                                                  class="btn btn-primary">Pesan Tiket</a>
                                               @endif
 
