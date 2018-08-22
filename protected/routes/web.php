@@ -84,12 +84,12 @@ Route::prefix('transaksi')->group(function () {
     });
 
     //Transaksi Pesan Tiket
-    Route::get('pesan-tiket/{id}', 'TransaksiPesanTiket@index');
+    Route::get('pesan-tiket/{id}', 'TransaksiPesanTiketController@index');
     Route::prefix('pesan-tiket')->group(function () {
-        Route::post('submit', 'TransaksiPesanTiket@store');
-        Route::post('delete', 'TransaksiPesanTiket@delete');
-        Route::get('edit/{id}', 'TransaksiPesanTiket@edit');
-        Route::post('update', 'TransaksiPesanTiket@update');
+        Route::post('submit', 'TransaksiPesanTiketController@store');
+        Route::post('delete', 'TransaksiPesanTiketController@delete');
+        Route::get('edit/{id}', 'TransaksiPesanTiketController@edit');
+        Route::post('update', 'TransaksiPesanTiketController@update');
     });
 
     //pesanan surat tugas

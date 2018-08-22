@@ -18,6 +18,9 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
+                <a href="{{ url(action('TransaksiPesananController@index')) }}">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
                 Modul Transaksi Pesan Tiket
                 <small>Book your Ticket</small>
             </h1>
@@ -54,11 +57,11 @@
                         @endif
 
                         <div class="box-body">
-                            <form class="form-horizontal" method="post" action="{{url(action('TransaksiSuratTugasController@store'))}}">
+                            <form class="form-horizontal" method="post" action="{{url(action('TransaksiPesanTiketController@store'))}}">
                                 {{ csrf_field() }}
                                 <div class="box-body">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="tanggal_surat">
+                                        <label class="col-sm-2 control-label" for="nomor_surat">
                                             Nomor Surat Tugas
                                         </label>
                                         <div class="col-lg-4">
@@ -85,7 +88,6 @@
                                                 </div>
                                                 <input placeholder="Pilih Tanggal"
                                                        type="text"
-                                                       name="tanggal_surat"
                                                        value="{{  \Carbon\Carbon::parse($data_surat[0]['created_at'])->format('d-m-Y') }}"
                                                        class="form-control pull-right"
                                                        id="datepicker2" disabled>
@@ -166,13 +168,34 @@
                                         <th class="text-nowrap">Harga Maskapai</th>
                                         </thead>
 
+                                        <tbody>
+                                        <input placeholder="Pilih Tanggal"
+                                               type="hidden"
+                                               name="tanggal_surat"
+                                               value="{{  \Carbon\Carbon::parse($data_surat[0]['created_at'])->format('Y-m-d') }}"
+                                               class="form-control pull-right"
+                                               hidden>
+                                        <input type="hidden" name="no_surat_tugas"
+                                               value="{{ $data_surat[0]['assignment_letter_code'] }}"
+                                               class="form-control pull-right" hidden>
+                                        <input type="hidden" name="idKota"
+                                               value="{{ $data_surat[0]['idKota'] }}"
+                                               class="form-control pull-right" hidden>
+                                        <input type="hidden" name="idDept"
+                                               value="{{ $data_surat[0]['idDepartment'] }}"
+                                               class="form-control pull-right" hidden>
+                                        <input type="hidden" name="idDipa"
+                                               value="{{ $data_surat[0]['idDipa'] }}"
+                                               class="form-control pull-right" hidden>
+
                                         @for($i=0;$i<count($data_surat[0]['suratTugasD']);$i++)
+                                            @if($data_surat[0]['suratTugasD'][$i]->plane_status == 1)
                                             <tr class="">
                                                 <td class="text-nowrap">
                                                     <p>{{ $data_surat[0]['suratTugasD'][$i]->employee_name }}</p>
                                                 </td>
                                                 <td class="text-nowrap">
-                                                    <select name="employee[]" class="form-control select-data">
+                                                    <select name="maskapai[]" class="form-control select-data">
                                                         <option value="0" >Pilih Maskapai</option>
                                                         @foreach ($data_supplier as $data)
                                                             @if($data->idJenisSupplier == 7)
@@ -190,6 +213,9 @@
                                                                class="form-control"
                                                                name="book_number[]"
                                                                placeholder="Booking Number">
+                                                        <input type="hidden" name="idSuratTugas_D[]"
+                                                               value="{{ $data_surat[0]['suratTugasD'][$i]->id }}"
+                                                               class="form-control pull-right" hidden>
                                                     </div>
                                                 </td>
 
@@ -200,7 +226,7 @@
                                                         </div>
                                                         <input placeholder="Pilih Tanggal Berangkat"
                                                                type="text"
-                                                               name="tanggal_berangkat"
+                                                               name="tanggal_berangkat[]"
                                                                class="form-control pull-right"
                                                                id="datepicker1{{ $i }}">
 
@@ -222,7 +248,7 @@
                                                         </div>
                                                         <input placeholder="Pilih Tanggal Kembali"
                                                                type="text"
-                                                               name="tanggal_kembali"
+                                                               name="tanggal_kembali[]"
                                                                class="form-control pull-right"
                                                                id="datepicker2{{ $i }}">
 
@@ -259,7 +285,7 @@
                                                     <div class="input-group">
                                                         <input type="text"
                                                                class="form-control uang"
-                                                               name="harga_tiket"
+                                                               name="harga_tiket[]"
                                                                placeholder="Harga Tiket (PP)">
                                                     </div>
                                                 </td>
@@ -268,7 +294,7 @@
                                                     <div class="input-group">
                                                         <input type="text"
                                                                class="form-control uang"
-                                                               name="harga_maskapai"
+                                                               name="harga_maskapai[]"
                                                                placeholder="Harga Maskapai">
                                                     </div>
                                                 </td>
@@ -281,14 +307,16 @@
                                                     <div class="input-group">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input"
-                                                               id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                               id="inputGroupFile01" name="file_tiket[]" aria-describedby="inputGroupFileAddon01">
                                                         <label class="custom-file-label" for="inputGroupFile01">Upload Tiket</label>
                                                     </div>
                                                     </div>
                                                 </td>
 
                                             </tr>
+                                            @endif
                                         @endfor
+
                                         <tr>
                                             <td></td>
                                             <td></td>
@@ -318,6 +346,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        </tbody>
                                     </table>
 
                                         </div>
@@ -332,9 +361,9 @@
                                 </div>
                             </div>
                         </div>
-                        </form>
-                    </div>
 
+                    </div>
+                    </form>
                 </div>
             </div>
 

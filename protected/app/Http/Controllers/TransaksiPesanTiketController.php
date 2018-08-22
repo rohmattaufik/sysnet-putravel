@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller,
     Illuminate\Support\Facades\DB as DB,
     App\Http\Controllers\MDIPA\MDIPAListController as MDipa,
+    App\Http\Controllers\TPesananTiket\TPesananTiketHListController as TPesananTiketH,
+    App\Http\Controllers\TPesananTiket\TPesananTiketDListController as TPesananTiketD,
     App\Http\Controllers\MSupplier\MSupplierListController as MSupplier,
     App\Http\Controllers\TSuratTugas\TSuratTugasDListController as TPSuratTugasD,
     App\Http\Controllers\TSuratTugas\TSuratTugasHListController as TPSuratTugasH,
@@ -12,10 +14,11 @@ use App\Http\Controllers\Controller,
     App\Http\Controllers\MEmployee\MEmployeeListController as MEmployee,
     App\Http\Controllers\MDepartment\MDepartmentListController as MDepartment,
     Illuminate\Http\Request;
+use Carbon\Carbon;
 use Session;
 use Auth;
 
-class TransaksiPesanTiket extends Controller
+class TransaksiPesanTiketController extends Controller
 {
     public function index($id) {
 
@@ -56,47 +59,45 @@ class TransaksiPesanTiket extends Controller
     }
     public function store(Request $request) {
 //        dd($request);
-        if (!is_null($request)) {
-            $new_surat_tugasH                = new TPSuratTugasH();
-            $new_surat_tugasH->start_date = $request->dari_tanggal;
-            $new_surat_tugasH->end_date = $request->sampai_tanggal;
-            $new_surat_tugasH->idKota = $request->kota;
-            $new_surat_tugasH->idDIPA = $request->dipa;
-            $new_surat_tugasH->description = $request->keterangan;
-            $new_surat_tugasH->idDepartment = $request->department;
-            $new_surat_tugasH->description_1 = $request->keterangan1;
-            $new_surat_tugasH->created_by = Auth::user()->id;
-            $new_surat_tugasH->assignment_letter_status = 1;
-            $new_surat_tugasH->hotel_status = 1;
-            $new_surat_tugasH->plane_status = 1;
-            $new_surat_tugasH->created_at = $request->tanggal_surat;
 
-            $new_surat_tugasH->create();
+        $new_pesan_tiket_h = new TPesananTiketH();
+        $new_pesan_tiket_h->order_code = 1;
+        $new_pesan_tiket_h->idSuratTugas_H = 1;
+        $new_pesan_tiket_h->transaction_date = $request->tanggal_surat;
+        $new_pesan_tiket_h->idKota = $request->idKota;
+        $new_pesan_tiket_h->order_ticket_status = 1;
+        $new_pesan_tiket_h->IdDepartment = $request->idDept;
+        $new_pesan_tiket_h->idDIPA = $request->idDipa;
+        $new_pesan_tiket_h->created_by = Auth::user()->id;
+        $new_pesan_tiket_h->created_at = Carbon::now();
 
-            $data_last_h = (new TPSuratTugasH())->get_last();
+        $new_pesan_tiket_h->create();
 
-            if(!is_null($request->employee) && !is_null($request->lama_penugasan)) {
-                for ($i = 0; $i< count($request->employee); $i++) {
-                    if ($request->employee[$i] != 0 && $request->lama_penugasan[$i] !=0) {
-                        $new_surat_tugasD                = new TPSuratTugasD();
-                        $new_surat_tugasD->idSuratTugas_H = $data_last_h[0]->id;
 
-                        $the_employee = new MEmployee($request->employee[$i]);
-                        $new_surat_tugasD->idEmployee = $the_employee->id;
-                        $new_surat_tugasD->idJabatan = $the_employee->idJabatan;
-                        $new_surat_tugasD->idGolongan = $the_employee->idGolongan;
+        for($i=0; $i<count($request->book_number); $i++) {
+            if(!is_null($request->book_number[$i])) {
+                $new_pesan_tiket_d = new TPesananTiketD();
+                $new_pesan_tiket_d->idSuratTugas_D = $request->idSuratTugas_D[$i];
+                $new_pesan_tiket_d->idKota = $request->idKota;
+                $new_pesan_tiket_d->idSupplier = $request->maskapai[$i];
+                $new_pesan_tiket_d->booking_code = $request->book_number[$i];
+                $new_pesan_tiket_d->departure_date = $request->tanggal_berangkat[$i];
+                $new_pesan_tiket_d->arrival_date = $request->tanggal_kembali[$i];
+                $new_pesan_tiket_d->reserve_berangkat = $request->reservasi_berangkat[$i];
+                $new_pesan_tiket_d->reserve_kembali = $request->reservasi_kembali[$i];
+                $new_pesan_tiket_d->AP_ticket_price = $request->harga_maskapai[$i];
+                $new_pesan_tiket_d->AR_ticket_price = $request->harga_tiket[$i];
+//                $new_pesan_tiket_d->margin = 1;
+                $new_pesan_tiket_d->sts = 1;
 
-                        $new_surat_tugasD->days = $request->lama_penugasan[$i];
+                $new_pesan_tiket_d->create();
 
-                        $new_surat_tugasD->create();
-                    }
-                }
             }
         }
 
 //        dd($request);
 
-        Session::flash('sukses',"Data Surat Tugas berhasil diinput.");
+        Session::flash('sukses',"Pesanan Tiket berhasil diinput.");
         return redirect()->back();
     }
 

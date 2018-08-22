@@ -24,6 +24,7 @@ class TPesananTiketDListController extends Controller{
     public $margin;
     public $flag_active;
     public $exist;
+    public $sts;
 
     public function __construct($id = false){
         if($id){
@@ -47,6 +48,7 @@ class TPesananTiketDListController extends Controller{
                     $this->margin               = $TPesananTiket_D->margin;
                     $this->flag_active          = $TPesananTiket_D->flag_active;
                     $this->exist                = true;
+                    $this->exist                = $TPesananTiket_D->sts;
                 }else{
                     $this->exist            = false;
                 }
@@ -64,17 +66,18 @@ class TPesananTiketDListController extends Controller{
     }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL TPesanTiket_D_Create('
-            $this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price, 
+        return DB::unprepared(DB::raw("CALL TPesanTiket_D_Create($this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price, 
             $this->idKota, $this->idSupplier, '$this->booking_code', '$this->departure_date',
-            '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali')"));
+            '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali', 
+            '$this->sts')"));
     }
 
     public function update(){
         return DB::unprepared(DB::raw("CALL TPesanTiket_D_Update(
             $this->id, $this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price, 
             $this->idKota, $this->idSupplier, '$this->booking_code', '$this->departure_date',
-            '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali')"));
+            '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali',
+            '$this->sts')"));
     }
 
     public function delete(){
