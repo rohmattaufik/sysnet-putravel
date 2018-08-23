@@ -148,6 +148,11 @@ class TSuratTugasHListController extends Controller{
                                         )"));
     }
 
+    public function update_plane_sts(){
+        return DB::unprepared(DB::raw("CALL TSuratTugas_H_Update_plane_sts(
+            $this->id, '$this->plane_status', $this->updated_by)"));
+    }
+
     public function delete(){
         return DB::unprepared(DB::raw("CALL TSuratTugas_H_Delete($this->id)"));
     }

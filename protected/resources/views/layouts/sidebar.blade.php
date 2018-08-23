@@ -40,6 +40,7 @@
                 </a>
             </li>
 
+            {{--Modul Master--}}
             <li class="treeview {{
                      Request::is('master/*') ? 'active' : ''
                      }}">
@@ -112,7 +113,9 @@
 
                 </ul>
             </li>
+            {{--End of Modul Master--}}
 
+            {{-- Modul Transaksi --}}
             <li class="treeview {{
                      Request::is('transaksi/*') ? 'active' : ''
                      }}">
@@ -149,6 +152,47 @@
 
                 </ul>
             </li>
+            {{--End of Modul Transaksi--}}
+
+            {{--Modul Konfirmasi--}}
+            <li class="treeview {{
+                     Request::is('konfirmasi/*') ? 'active' : ''
+                     }}">
+                <a href="#">
+                    <i class="fa fa-check-square"></i>
+
+                    <span>Modul Konfirmasi</span>
+
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+
+                </a>
+
+                <ul class="treeview-menu">
+                    <li class="{{
+                     Request::is('konfirmasi/hotel') ||
+                     Request::is('transaksi/hotel/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('transaksi/hotel') }}">
+                            Konfirmasi Hotel
+                        </a>
+                    </li>
+                    <li class="{{
+                    Request::is('konfirmasi/tiket') ||
+                     Request::is('konfirmasi/tiket/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('konfirmasi/tiket') }}">
+                            Konfirmasi Tiket
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            {{--End of Modul Konfirmasi--}}
+
         </ul>
         <!-- /.sidebar-menu -->
     </section>

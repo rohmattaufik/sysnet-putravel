@@ -67,6 +67,11 @@ class TSuratTugasDListController extends Controller{
             '$this->hotel_status', '$this->plane_status', $this->days )"));
     }
 
+    public function update_plane_sts(){
+        return DB::unprepared(DB::raw("CALL TSuratTugas_D_Update_plane_sts(
+            $this->id, '$this->plane_status' )"));
+    }
+
     public function delete(){
         return DB::unprepared(DB::raw("CALL TSuratTugas_D_Delete($this->id)"));
     }

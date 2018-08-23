@@ -37,9 +37,6 @@
 
                             <div class="tab-pane active" id="tab_1">
 
-
-
-
                                 <div class="box box-info">
 
                                     <div class="box-header with-border">

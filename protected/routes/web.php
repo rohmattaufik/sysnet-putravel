@@ -103,6 +103,36 @@ Route::prefix('transaksi')->group(function () {
 });
 
 
+Route::prefix('konfirmasi')->group(function () {
+    //Konfirmasi Hotel
+//    Route::get('hotel', 'KonfirmasiHotelController@index');
+    Route::prefix('hotel')->group(function () {
+//        Route::post('submit', 'KonfirmasiHotelController@store');
+//        Route::post('delete', 'KonfirmasiHotelController@delete');
+//        Route::get('edit/{id}', 'KonfirmasiHotelController@edit');
+//        Route::post('update', 'KonfirmasiHotelController@update');
+    });
+
+    //Konfirmasi Tiket
+    Route::get('tiket', 'KonfirmasiTiketController@index');
+    Route::prefix('tiket')->group(function () {
+        Route::post('submit', 'KonfirmasiTiketController@store');
+        Route::post('delete', 'KonfirmasiTiketController@delete');
+        Route::get('edit/{id}', 'KonfirmasiTiketController@edit');
+        Route::post('update', 'KonfirmasiTiketController@update');
+    });
+
+    //pesanan surat tugas
+    Route::get('pesanan', 'TransaksiPesananController@index');
+    // Route::prefix('surat-tugas')->group(function () {
+    //     Route::post('submit', 'TransaksiSuratTugasController@store');
+    //     Route::post('delete', 'TransaksiSuratTugasController@delete');
+    //     Route::get('edit/{id}', 'TransaksiSuratTugasController@edit');
+    //     Route::post('update', 'TransaksiSuratTugasController@update');
+    // });
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

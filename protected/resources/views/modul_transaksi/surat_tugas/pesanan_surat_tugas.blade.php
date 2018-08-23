@@ -5,8 +5,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Modul Transaksi Surat Tugas
-                <small>Create your Surat Tugas</small>
+                Modul Transaksi Pesanan Surat Tugas
+                {{--<small>Create your Surat Tugas</small>--}}
             </h1>
 
         </section>
@@ -17,38 +17,33 @@
             <!--------------------------
               | Your Page Content Here |
               -------------------------->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="box box-primary">
-                        @if(Session::get('sukses') || Session::get('sukses-delete'))
-                        <div class="box-header with-border">
-                            <h3 class="box-title"></h3>
-                            @if(Session::get('sukses'))
-                                <div class="callout callout-success">
-                                    <h4>{{ Session::get('sukses') }}</h4>
 
-                                    <p>Data Anda berhasil masuk database.</p>
-                                </div>
-                            @endif
-                            @if(Session::get('sukses-delete'))
-                                <div class="callout callout-danger">
-                                    <h4>{{ Session::get('sukses-delete') }}</h4>
-
-                                    <p>Data Anda berhasil dihapus dari database.</p>
-                                </div>
-                            @endif
-                        </div>
-                        @endif
-
-                    </div>
-                </div>
-            </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
+                            @if(Session::get('sukses') || Session::get('sukses-delete'))
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"></h3>
+                                    @if(Session::get('sukses'))
+                                        <div class="callout callout-success">
+                                            <h4>{{ Session::get('sukses') }}</h4>
+
+                                            <p>Data Anda berhasil masuk database.</p>
+                                        </div>
+                                    @endif
+                                    @if(Session::get('sukses-delete'))
+                                        <div class="callout callout-danger">
+                                            <h4>{{ Session::get('sukses-delete') }}</h4>
+
+                                            <p>Data Anda berhasil dihapus dari database.</p>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endif
                             <h1 class="box-title">List of Surat Tugas</h1>
+
                         </div>
                         <div class="box-body table-responsive no-padding">
 

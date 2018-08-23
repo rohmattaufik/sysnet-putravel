@@ -178,6 +178,9 @@
                                         <input type="hidden" name="no_surat_tugas"
                                                value="{{ $data_surat[0]['assignment_letter_code'] }}"
                                                class="form-control pull-right" hidden>
+                                        <input type="hidden" name="id_surat_h"
+                                               value="{{ $data_surat[0]['id'] }}"
+                                               class="form-control pull-right" hidden>
                                         <input type="hidden" name="idKota"
                                                value="{{ $data_surat[0]['idKota'] }}"
                                                class="form-control pull-right" hidden>

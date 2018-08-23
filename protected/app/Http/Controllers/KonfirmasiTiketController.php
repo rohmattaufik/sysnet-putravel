@@ -18,9 +18,9 @@ use Carbon\Carbon;
 use Session;
 use Auth;
 
-class TransaksiPesanTiketController extends Controller
+class KonfirmasiTiketController extends Controller
 {
-    public function index($id) {
+    public function index() {
 
         $data_kota = (new MKota)->get_list();
         $data_dipa = (new MDIPA)->get_list();
@@ -47,7 +47,7 @@ class TransaksiPesanTiketController extends Controller
 //        }
 
 
-        return view('modul_transaksi/pesan_tiket/pesan_tiket')
+        return view('modul_konfirmasi/konfirmasi_tiket')
             ->with('data_kota',$data_kota)
             ->with('data_dipa',$data_dipa)
             ->with('data_employee',$data_employee)
