@@ -37,6 +37,17 @@
                 @endif
             </div>
             @endif
+
+            @if(Session::get('gagal') )
+            <div class="box-header with-border">
+                <h3 class="box-title"></h3>
+                <div class="callout callout-danger">
+                    <h4>{{ Session::get('gagal') }}</h4>
+
+                    <p>Proses anda gagal dilakukan</p>
+                </div>
+            </div>
+            @endif
                     
          
 

@@ -45,6 +45,10 @@ class TransaksiPesanHotelController extends Controller
             //dd($data_surat_tugas_h);
             // get set number
             $set_num_tPesanHotelh = DB::table('MSetNumber')->where('transaction_type','Pesan Hotel H')->first();
+
+            @DB::table('MSetNumber')
+                                ->where('id', $set_num_tPesanHotelh->id)
+                                ->update(['set_number_code' => $set_num_tPesanHotelh->set_number_code + 1]);
             // update set number
 
             $pesanan_hotel_h                    = new TPesananHotelH();
@@ -79,12 +83,19 @@ class TransaksiPesanHotelController extends Controller
                         $data_employee  = DB::table('MEmployee')->where('id',$surat_tugas_d[0]->idEmployee)->first();
                         
                         $msbu = DB::table('MSBU')->where('idKota',$data_surat_tugas_h[0]['idKota'])->where('idGolongan',$data_employee->idGolongan)->first();
+                        if($msbu == null){
+                            Session::flash('gagal',"GAGAL : Data SBU belum ada");
+                            return redirect()->back();
+                        }
                         // dd($data_employee->idGolongan);
                         // dd($msbu);
                         // get set number
                         $set_num_tPesanHoteld = DB::table('MSetNumber')->where('transaction_type','Pesan Hotel D')->first();
 
                         // update set number
+                        @DB::table('MSetNumber')
+                                        ->where('id', $set_num_tPesanHoteld->id)
+                                        ->update(['set_number_code' => $set_num_tPesanHoteld->set_number_code + 1]);
                         // dd($request->harga[$ii]);
 
                         $pesanan_hotel_d                    = new TPesananHotelD();
@@ -95,7 +106,7 @@ class TransaksiPesanHotelController extends Controller
                         $pesanan_hotel_d->payment_status    = 1;
                         $pesanan_hotel_d->checkin_date      = $request->tanggal_check_in[$ii];
                         $pesanan_hotel_d->checkout_date     = $request->tanggal_check_out[$ii];
-                        $pesanan_hotel_d->voucher_number    = $set_num_tPesanHoteld + 1; 
+                        $pesanan_hotel_d->voucher_number    = (@$set_num_tPesanHoteld->set_number_code) + 1; 
                         $pesanan_hotel_d->AR_price          = (double) $request->harga[$ii];
                         $pesanan_hotel_d->AP_price          = $msbu->value;
                         $pesanan_hotel_d->create();
@@ -108,60 +119,60 @@ class TransaksiPesanHotelController extends Controller
                 }
             }
 
-        Session::flash('sukses',"Data Surat Tugas berhasil diinput.");
+        Session::flash('sukses',"Data Pesan Hotel berhasil diinput.");
         return redirect()->back();
     }
 
-    public function delete(Request $request)
-    {
+//     public function delete(Request $request)
+//     {
 
-        $TSuratH = new TPSuratTugasH($request->surat_id);
-        $TSuratD = (new TPSuratTugasD)->get_surat_tugas_d_id_h($TSuratH->id);
-        dd($TSuratD);
-        $TSuratH->delete();
+//         $TSuratH = new TPSuratTugasH($request->surat_id);
+//         $TSuratD = (new TPSuratTugasD)->get_surat_tugas_d_id_h($TSuratH->id);
+//         dd($TSuratD);
+//         $TSuratH->delete();
 
-        Session::flash('sukses-delete', 'Anda berhasil menghapus data Supplier');
-        return redirect()->back();
+//         Session::flash('sukses-delete', 'Anda berhasil menghapus data Supplier');
+//         return redirect()->back();
 
-    }
+//     }
 
-    public function edit($id)
-    {
-        $MSupplier = (new MSupplier($id))->get_supplier()[0];
-        $data_kota = (new MKota)->get_list();
-        $data_jenis_supplier = (new MJenisSupplier)->get_list();
-//        dd($MSupplier);
-        return view('modul_master/master_supplier/edit')
-            ->with('data_supplier', $MSupplier)
-            ->with('data_jenis_supplier', $data_jenis_supplier)
-            ->with('data_kota',$data_kota)
-            ;
+//     public function edit($id)
+//     {
+//         $MSupplier = (new MSupplier($id))->get_supplier()[0];
+//         $data_kota = (new MKota)->get_list();
+//         $data_jenis_supplier = (new MJenisSupplier)->get_list();
+// //        dd($MSupplier);
+//         return view('modul_master/master_supplier/edit')
+//             ->with('data_supplier', $MSupplier)
+//             ->with('data_jenis_supplier', $data_jenis_supplier)
+//             ->with('data_kota',$data_kota)
+//             ;
 
-    }
+//     }
 
-    public function update(Request $request)
-    {
-        $id_user = Auth::user()->id;
+//     public function update(Request $request)
+//     {
+//         $id_user = Auth::user()->id;
 
-        if ($id_user) {
-            $new_supplier                = new MSupplier($request->supplier_id);
-            $new_supplier->supplier_name = $request->nama_supplier;
-            $new_supplier->idJenisSupplier = $request->jenis_supplier;
-            $new_supplier->supplier_address = $request->alamat;
-            $new_supplier->idKota = $request->kota;
-            $new_supplier->email = $request->email;
-            $new_supplier->contact_number = $request->no_telp;
-            $new_supplier->website = $request->website;
-            $new_supplier->contact_person = $request->name_cp;
-            $new_supplier->contact_person_number = $request->no_telp_cp;
-            $new_supplier->contact_person_address = $request->alamat_cp;
-            $new_supplier->updated_by = Auth::user()->id;
+//         if ($id_user) {
+//             $new_supplier                = new MSupplier($request->supplier_id);
+//             $new_supplier->supplier_name = $request->nama_supplier;
+//             $new_supplier->idJenisSupplier = $request->jenis_supplier;
+//             $new_supplier->supplier_address = $request->alamat;
+//             $new_supplier->idKota = $request->kota;
+//             $new_supplier->email = $request->email;
+//             $new_supplier->contact_number = $request->no_telp;
+//             $new_supplier->website = $request->website;
+//             $new_supplier->contact_person = $request->name_cp;
+//             $new_supplier->contact_person_number = $request->no_telp_cp;
+//             $new_supplier->contact_person_address = $request->alamat_cp;
+//             $new_supplier->updated_by = Auth::user()->id;
 
-            $new_supplier->update();
+//             $new_supplier->update();
 
-            Session::flash('sukses', 'Data supplier sukses di-update');
-            return redirect(url(action('MasterSupplierController@index')));
-        }
-    }
+//             Session::flash('sukses', 'Data supplier sukses di-update');
+//             return redirect(url(action('MasterSupplierController@index')));
+//         }
+//     }
 
 }
