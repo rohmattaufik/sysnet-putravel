@@ -32,7 +32,7 @@ class TransaksiPesanHotelController extends Controller
         // $data_employee = (new MEmployee)->get_list();
         // dd($data_surat_tugas_h);
         // dd($data_surat_tugas_h[0]);
-       return view('modul_transaksi/surat_tugas/pesan_hotel')
+       return view('modul_transaksi/surat_tugas/pesan_hotel/pesan_hotel')
            ->with('data_kota',$data_kota)
            ->with('data_surat_tugas',$data_surat_tugas_h);
     }

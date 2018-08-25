@@ -48,7 +48,7 @@
                             <h1 class="box-title">Pesan Hotel</h1>
                         </div>
                         <div class="box-body table-responsive no-padding">
-                            <form action="{{ url('pesan_hotel/create') }}" method="post">
+                            <form action="{{ url('transaksi/pesan-hotel/submit') }}" method="post">
                             {{ csrf_field() }}
 
                             <input type="hidden" name="id_surat_tugas" value="{{ $data_surat_tugas[0]['id'] }}">

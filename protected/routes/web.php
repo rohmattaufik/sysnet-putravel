@@ -100,6 +100,15 @@ Route::prefix('transaksi')->group(function () {
     //     Route::get('edit/{id}', 'TransaksiSuratTugasController@edit');
     //     Route::post('update', 'TransaksiSuratTugasController@update');
     // });
+
+    //Transaksi Pesan Hotwl
+    Route::get('pesan-hotel/{id}', 'TransaksiPesanHotelController@index');
+    Route::prefix('pesan-hotel')->group(function () {
+        Route::post('submit', 'TransaksiPesanHotelController@store');
+        // Route::post('delete', 'TransaksiPesanTiketController@delete');
+        // Route::get('edit/{id}', 'TransaksiPesanTiketController@edit');
+        // Route::post('update', 'TransaksiPesanTiketController@update');
+    });
 });
 
 
@@ -145,10 +154,10 @@ Route::post('position/edit/submit', 'MJabatanController@update');
 Route::post('position/delete', 'MJabatanController@delete');
 Route::post('position/create', 'MJabatanController@store');
 
-Route::get('pesan_hotel', function(){
-    return view('modul_transaksi/surat_tugas/pesan_hotel');
-});
+// Route::get('pesan_hotel', function(){
+//     return view('modul_transaksi/surat_tugas/pesan_hotel');
+// });
 
-Route::get('pesan_hotel/{id}', 'TransaksiPesanHotelController@index');
+// Route::get('pesan_hotel/{id}', 'TransaksiPesanHotelController@index');
 
-Route::post('pesan_hotel/create', 'TransaksiPesanHotelController@store');
+// Route::post('pesan_hotel/create', 'TransaksiPesanHotelController@store');
