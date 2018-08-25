@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
   
-class TPesananHotelDListController extends Controller{
+class TPesanHotelDListController extends Controller{
 
     public $id;
     public $idPesananHotel;
@@ -64,13 +64,15 @@ class TPesananHotelDListController extends Controller{
     }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL TPesananHotel_D_Create(
+        //dd($this->AR_price);
+        return DB::unprepared(DB::raw("CALL TPesanHotel_D_Create(
             $this->idPesananHotel, $this->idSuratTugasD, $this->idKota, $this->idSupplier,
             '$this->payment_status', '$this->checkin_date', '$this->checkout_date', 
             '$this->voucher_number',$this->AR_price, $this->AP_price )"));
     }
 
     public function update(){
+        
         return DB::unprepared(DB::raw("CALL TPesananHotel_D_Update(
             $this->id, $this->idPesananHotel, $this->idSuratTugasD, $this->idKota, $this->idSupplier,
             '$this->payment_status', '$this->checkin_date', '$this->checkout_date', 

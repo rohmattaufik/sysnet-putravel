@@ -144,3 +144,11 @@ Route::get('position/edit/{code}', 'MJabatanController@edit');
 Route::post('position/edit/submit', 'MJabatanController@update');
 Route::post('position/delete', 'MJabatanController@delete');
 Route::post('position/create', 'MJabatanController@store');
+
+Route::get('pesan_hotel', function(){
+    return view('modul_transaksi/surat_tugas/pesan_hotel');
+});
+
+Route::get('pesan_hotel/{id}', 'TransaksiPesanHotelController@index');
+
+Route::post('pesan_hotel/create', 'TransaksiPesanHotelController@store');

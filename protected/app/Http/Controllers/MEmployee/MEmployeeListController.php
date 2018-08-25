@@ -57,8 +57,8 @@ class MEmployeeListController extends Controller {
         return DB::select(DB::raw("CALL MEmployee_View()"));
     }
 
-    public function get_employee(){
-         return DB::select(DB::raw("CALL MEmployee_View_id($this->id)"));
+    public function get_employee( $id ){
+         return DB::select(DB::raw("CALL MEmployee_View_id($id)"));
     }
 
     public function create(){
