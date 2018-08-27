@@ -25,6 +25,7 @@ class TPesananTiketDListController extends Controller{
     public $flag_active;
     public $exist;
     public $sts;
+    public $idPesanTiket_H;
 
     public function __construct($id = false){
         if($id){
@@ -48,7 +49,8 @@ class TPesananTiketDListController extends Controller{
                     $this->margin               = $TPesananTiket_D->margin;
                     $this->flag_active          = $TPesananTiket_D->flag_active;
                     $this->exist                = true;
-                    $this->exist                = $TPesananTiket_D->sts;
+                    $this->sts                = $TPesananTiket_D->sts;
+                    $this->idPesanTiket_H = $TPesananTiket_D->idPesanTiket_H;
                 }else{
                     $this->exist            = false;
                 }
@@ -65,11 +67,15 @@ class TPesananTiketDListController extends Controller{
         return DB::select(DB::raw("CALL TPesanTiket_D_View_id($id)"));
     }
 
+    public function get_by_id_emp($id){
+        return DB::select(DB::raw("CALL TPesanTiket_D_View_id_emp($id)"));
+    }
+
     public function create(){
         return DB::unprepared(DB::raw("CALL TPesanTiket_D_Create($this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price, 
             $this->idKota, $this->idSupplier, '$this->booking_code', '$this->departure_date',
             '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali', 
-            '$this->sts')"));
+            '$this->sts', $this->idPesanTiket_H)"));
     }
 
     public function update(){
@@ -77,7 +83,11 @@ class TPesananTiketDListController extends Controller{
             $this->id, $this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price, 
             $this->idKota, $this->idSupplier, '$this->booking_code', '$this->departure_date',
             '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali',
-            '$this->sts')"));
+            '$this->sts', $this->idPesanTiket_H)"));
+    }
+
+    public function update_status($id,$sts){
+        return DB::unprepared(DB::raw("CALL TPesanTiket_D_Update_status($id, '$sts')"));
     }
 
     public function delete(){

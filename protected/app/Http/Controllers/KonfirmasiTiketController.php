@@ -26,40 +26,33 @@ class KonfirmasiTiketController extends Controller
         $data_dipa = (new MDIPA)->get_list();
         $data_department = (new MDepartment)->get_list();
         $data_surat_tugas_h = (new TPSuratTugasH)->get_all_list();
-        $data_surat_tugas_h_one = (new TPSuratTugasH)->get_surat_tugas_h($id);
+        $data_tiket_surat = (new TPesananTiketH)->get_all_list_pembuat_surat();
+//        $data_surat_tugas_h_one = (new TPSuratTugasH)->get_surat_tugas_h($id);
         $data_employee = (new MEmployee)->get_list();
         $data_supplier = (new MSupplier)->get_list();
 
-//        dd($data_surat_tugas_h_one);
+        if (Auth::user()->role == 1 || Auth::user()->role == 2) {
+            $data_tiket_user = (new TPesananTiketD)->get_by_id_emp(Auth::user()->id);
+        } else {
+            $data_tiket_user = (new TPesananTiketD)->get_by_id_emp(1);
+        }
 
-//        foreach ($data_surat_tugas_h as $data) {
-//            dd($data[3]);
-//            foreach ($data['suratTugasD'] as $data2) {
-//                dd($data2->employee_name);
-//            }
-//        }
 
-//        for ($i = 0; $i<count($data_surat_tugas_h);$i++) {
-//            dd($data_surat_tugas_h);
-//            foreach ($data_surat_tugas_h[$i]['suratTugasD'] as $data2) {
-//                dd($data2->employee_name);
-//            }
-//        }
-
+//        dd($data_tiket_surat);
 
         return view('modul_konfirmasi/konfirmasi_tiket')
             ->with('data_kota',$data_kota)
             ->with('data_dipa',$data_dipa)
             ->with('data_employee',$data_employee)
             ->with('data_department',$data_department)
+            ->with('data_tiket_surat',$data_tiket_surat)
             ->with('data_surat_tugas_h',$data_surat_tugas_h)
-            ->with('data_surat',$data_surat_tugas_h_one)
+            ->with('data_tiket_user', $data_tiket_user)
             ->with('data_supplier',$data_supplier)
             ;
     }
     public function store(Request $request) {
 
-//        dd($request);
 
         $new_pesan_tiket_h = new TPesananTiketH();
 //        dd((new TPSuratTugasH)->get_surat_tugas_h($request->id_surat_h));
@@ -82,6 +75,8 @@ class KonfirmasiTiketController extends Controller
 
         $new_pesan_tiket_h->create();
 
+        $data_tiket_h_last = (new TPesananTiketH())->get_last();
+
 
         for($i=0; $i<count($request->book_number); $i++) {
             if(!is_null($request->book_number[$i])) {
@@ -98,6 +93,7 @@ class KonfirmasiTiketController extends Controller
                 $new_pesan_tiket_d->AR_ticket_price = $request->harga_tiket[$i];
 //                $new_pesan_tiket_d->margin = 1;
                 $new_pesan_tiket_d->sts = 1;
+                $new_pesan_tiket_d->idPesanTiket_H = 1;
                 $new_pesan_tiket_d->create();
 
 
@@ -156,27 +152,21 @@ class KonfirmasiTiketController extends Controller
 
     public function update(Request $request)
     {
+//        dd($request);
         $id_user = Auth::user()->id;
 
-        if ($id_user) {
-            $new_supplier                = new MSupplier($request->supplier_id);
-            $new_supplier->supplier_name = $request->nama_supplier;
-            $new_supplier->idJenisSupplier = $request->jenis_supplier;
-            $new_supplier->supplier_address = $request->alamat;
-            $new_supplier->idKota = $request->kota;
-            $new_supplier->email = $request->email;
-            $new_supplier->contact_number = $request->no_telp;
-            $new_supplier->website = $request->website;
-            $new_supplier->contact_person = $request->name_cp;
-            $new_supplier->contact_person_number = $request->no_telp_cp;
-            $new_supplier->contact_person_address = $request->alamat_cp;
-            $new_supplier->updated_by = Auth::user()->id;
-
-            $new_supplier->update();
-
-            Session::flash('sukses', 'Data Surat Tugas sukses di-update');
-            return redirect(url(action('TransaksiSuratTugasController@index')));
+        if($request->jenis == "konfirmasi_user") {
+            (new TPesananTiketD)->update_status($request->id_tiket_d, '2');
+        } elseif ($request->jenis == "konfirmasi_pembuat_surat") {
+            (new TPesananTiketD)->update_status($request->id_tiket_d, '3');
+        } elseif ($request->jenis == "konfirmasi_travel") {
+            (new TPesananTiketD)->update_status($request->id_tiket_d, '4');
         }
+
+
+        Session::flash('sukses', 'Data Tiket Anda berhasil di-approve');
+        return redirect(url(action('KonfirmasiTiketController@index')));
+
     }
 
 }

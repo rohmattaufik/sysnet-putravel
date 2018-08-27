@@ -81,6 +81,7 @@ class TransaksiPesanTiketController extends Controller
         $new_surat_tugas_h->update_plane_sts();
 
         $new_pesan_tiket_h->create();
+        $data_tiket_h_last = (new TPesananTiketH())->get_last();
 
 
         for($i=0; $i<count($request->book_number); $i++) {
@@ -98,6 +99,8 @@ class TransaksiPesanTiketController extends Controller
                 $new_pesan_tiket_d->AR_ticket_price = $request->harga_tiket[$i];
 //                $new_pesan_tiket_d->margin = 1;
                 $new_pesan_tiket_d->sts = 1;
+                $new_pesan_tiket_d->idPesanTiket_H = $data_tiket_h_last[0]->id;
+
                 $new_pesan_tiket_d->create();
 
 
