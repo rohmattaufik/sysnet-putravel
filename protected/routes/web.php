@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    if(is_null(Auth::user()->id)) {
+    if(is_null(Auth::user())) {
         return view('auth/login-admin');
     } else {
         return redirect(url(action('HomeController@index')));
