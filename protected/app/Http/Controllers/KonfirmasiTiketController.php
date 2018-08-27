@@ -27,6 +27,7 @@ class KonfirmasiTiketController extends Controller
         $data_department = (new MDepartment)->get_list();
         $data_surat_tugas_h = (new TPSuratTugasH)->get_all_list();
         $data_tiket_surat = (new TPesananTiketH)->get_all_list_pembuat_surat();
+        $data_tiket_travel = (new TPesananTiketH)->get_all_list_travel();
 //        $data_surat_tugas_h_one = (new TPSuratTugasH)->get_surat_tugas_h($id);
         $data_employee = (new MEmployee)->get_list();
         $data_supplier = (new MSupplier)->get_list();
@@ -38,6 +39,7 @@ class KonfirmasiTiketController extends Controller
         }
 
 
+
 //        dd($data_tiket_surat);
 
         return view('modul_konfirmasi/konfirmasi_tiket')
@@ -45,6 +47,7 @@ class KonfirmasiTiketController extends Controller
             ->with('data_dipa',$data_dipa)
             ->with('data_employee',$data_employee)
             ->with('data_department',$data_department)
+            ->with('data_tiket_travel', $data_tiket_travel)
             ->with('data_tiket_surat',$data_tiket_surat)
             ->with('data_surat_tugas_h',$data_surat_tugas_h)
             ->with('data_tiket_user', $data_tiket_user)
@@ -160,7 +163,7 @@ class KonfirmasiTiketController extends Controller
         } elseif ($request->jenis == "konfirmasi_pembuat_surat") {
             (new TPesananTiketH)->update_status_pembuat_surat($request->id_tiket_h, '3');
         } elseif ($request->jenis == "konfirmasi_travel") {
-            (new TPesananTiketD)->update_status($request->id_tiket_d, '4');
+            (new TPesananTiketH)->update_status_travel($request->id_tiket_h, '4');
         }
 
 

@@ -118,6 +118,35 @@ class TPesananTiketHListController extends Controller{
         return $data;
     }
 
+    public function get_all_list_travel(){
+        $data = [];
+
+        $data_tiket = DB::select(DB::raw("CALL TPesananTiket_H_View()"));
+        $count = 0;
+        foreach($data_tiket as $row) {
+            $item = array(
+                "id"  => $row->id,
+                "transaction_date"  => $row->transaction_date,
+                "idSuratTugas_H"  => $row->idSuratTugas_H,
+                "order_code"  => $row->order_code,
+                "idKota"  => $row->idKota,
+                "order_ticket_status"  => $row->order_ticket_status,
+                "idDIPA"  => $row->idDIPA,
+                "idDepartment"  => $row->idDepartment,
+                "created_at"  => $row->created_at,
+                "updated_at"  => $row->updated_at,
+                "created_by"  => $row->created_by,
+                "updated_by"  => $row->updated_by,
+                "assigment_letter_code" => $row->assigment_letter_code,
+                "pesanTiketD"             => DB::select(DB::raw("CALL TPesanTiket_D_View_idH_travel($row->id)"))
+            );
+            array_push($data,$item);
+
+            $count++;
+        }
+        return $data;
+    }
+
     public function get_pesanan_tiket_h($id){
         return DB::select(DB::raw("CALL TPesananTiket_H_View_id($id)"));
     }
@@ -130,7 +159,11 @@ class TPesananTiketHListController extends Controller{
     }
 
     public function update_status_pembuat_surat($id,$sts){
-        return DB::unprepared(DB::raw("CALL TPesananTiket_H_Update_sts($id, '$sts')"));
+        return DB::unprepared(DB::raw("CALL TPesananTiket_H_Update_sts($id, $sts)"));
+    }
+
+    public function update_status_travel($id,$sts){
+        return DB::unprepared(DB::raw("CALL TPesananTiket_H_Update_sts($id, $sts)"));
     }
 
     public function update(){

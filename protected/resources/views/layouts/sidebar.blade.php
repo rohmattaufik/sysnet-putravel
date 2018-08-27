@@ -9,9 +9,15 @@
                 <img src="{{ URL::asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Luthfi Abdurrahim</p>
+                <p>{{ Auth::user()->employee_name }}</p>
                 <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Online - Admin PU</a>
+                @if(Auth::user()->role == 1)
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online - Admin PU</a>
+                @elseif(Auth::user()->role == 2)
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online - Finance PU</a>
+                @elseif(Auth::user()->role == 3)
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online - Travel</a>
+                @endif
             </div>
         </div>
 

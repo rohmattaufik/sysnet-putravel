@@ -120,7 +120,7 @@
                     <!-- The user image in the navbar-->
                     <img src="{{ URL::asset('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                    <span class="hidden-xs">Luthfi Abdurrahim</span>
+                    <span class="hidden-xs">{{ Auth::user()->employee_name }}</span>
                 </a>
                 <ul class="dropdown-menu">
                     <!-- The user image in the menu -->
@@ -128,7 +128,16 @@
                         <img src="{{ URL::asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                         <p>
-                            Luthfi Abdurrahim - Admin PU
+                            {{ Auth::user()->employee_name }}
+                            -
+                            @if(Auth::user()->role == 1)
+                                Admin PU
+                            @elseif(Auth::user()->role == 2)
+                                Finance PU
+                            @elseif(Auth::user()->role == 3)
+                                Travel
+                            @endif
+
                             {{--<small>Member since Nov. 2012</small>--}}
                         </p>
                     </li>
