@@ -158,7 +158,7 @@ class KonfirmasiTiketController extends Controller
         if($request->jenis == "konfirmasi_user") {
             (new TPesananTiketD)->update_status($request->id_tiket_d, '2');
         } elseif ($request->jenis == "konfirmasi_pembuat_surat") {
-            (new TPesananTiketD)->update_status($request->id_tiket_d, '3');
+            (new TPesananTiketH)->update_status_pembuat_surat($request->id_tiket_h, '3');
         } elseif ($request->jenis == "konfirmasi_travel") {
             (new TPesananTiketD)->update_status($request->id_tiket_d, '4');
         }

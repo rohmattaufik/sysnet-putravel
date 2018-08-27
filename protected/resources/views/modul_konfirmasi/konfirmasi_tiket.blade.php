@@ -258,7 +258,7 @@
                                                                             <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
                                                                                 <form method="post" action="{{ url(action('KonfirmasiTiketController@update')) }}">
                                                                                     {{ csrf_field() }}
-                                                                                    <input type="hidden" name="id_tiket_d" value="{{ $data_tiket_surat[$i]['id'] }}">
+                                                                                    <input type="hidden" name="id_tiket_h" value="{{ $data_tiket_surat[$i]['id'] }}">
                                                                                     <input type="hidden" name="jenis" value="konfirmasi_pembuat_surat">
                                                                                 <button type="submit" class="btn btn-primary">
                                                                                     Approve

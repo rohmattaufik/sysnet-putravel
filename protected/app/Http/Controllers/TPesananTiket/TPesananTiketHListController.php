@@ -129,6 +129,10 @@ class TPesananTiketHListController extends Controller{
             $this->created_by)"));
     }
 
+    public function update_status_pembuat_surat($id,$sts){
+        return DB::unprepared(DB::raw("CALL TPesananTiket_H_Update_sts($id, '$sts')"));
+    }
+
     public function update(){
         return DB::unprepared(DB::raw("CALL TPesananTiket_H_Update(
             $this->id, $this->order_code, $this->idSuratTugas_H, '$this->transaction_date',
