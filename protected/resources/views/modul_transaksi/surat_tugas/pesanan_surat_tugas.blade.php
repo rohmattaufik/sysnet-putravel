@@ -74,7 +74,7 @@
                                                  class="btn btn-primary" disabled>Pesan Hotel</button>
                                               @else
                                               <a type="button"
-                                                 href="#"
+                                                 href="{{ url(action('TransaksiPesanHotelController@index',$data->id)) }}"
                                                  class="btn btn-primary">Pesan Hotel</a>
                                               @endif
 

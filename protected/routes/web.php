@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('auth/login-admin');
+    if(is_null(Auth::user())) {
+        return view('auth/login-admin');
+    } else {
+        return redirect(url(action('HomeController@index')));
+    }
 });
 
 Route::prefix('master')->group(function () {
