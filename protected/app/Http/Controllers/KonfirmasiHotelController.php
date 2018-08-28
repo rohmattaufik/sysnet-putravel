@@ -30,7 +30,6 @@ class KonfirmasiHotelController extends Controller
         if ( Auth::user()->role == 2)
         {
             $data_pesan_hotel_d_paymet_1 = (new TPesananHotelD)->get_by_payment( 1 );
-            
             $data_pesan_hotel_d_paymet_2 = (new TPesananHotelD)->get_by_payment( 2 );   
             $data_pesan_hotel_d = array_merge( $data_pesan_hotel_d_paymet_1, $data_pesan_hotel_d_paymet_2);
         }

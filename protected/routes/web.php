@@ -157,14 +157,36 @@ Route::prefix('konfirmasi-pembayaran')->group(function () {
         Route::post('update', 'KonfirmasiPembayaranTiketController@update');
     });
 
-    //pesanan surat tugas
-    Route::get('pesanan', 'TransaksiPesananController@index');
-    // Route::prefix('surat-tugas')->group(function () {
-    //     Route::post('submit', 'TransaksiSuratTugasController@store');
-    //     Route::post('delete', 'TransaksiSuratTugasController@delete');
-    //     Route::get('edit/{id}', 'TransaksiSuratTugasController@edit');
-    //     Route::post('update', 'TransaksiSuratTugasController@update');
-    // });
+    //Konfirmasi Pembayaran Hotel
+    Route::get('hotel', 'KonfirmasiPembayaranHotelController@index');
+    Route::prefix('hotel')->group(function () {
+        Route::post('submit', 'KonfirmasiPembayaranHotelController@store');
+        Route::post('delete', 'KonfirmasiPembayaranHotelController@delete');
+        Route::get('edit/{id}', 'KonfirmasiPembayaranHotelController@edit');
+        Route::post('update', 'KonfirmasiPembayaranHotelController@update');
+    });
+});
+
+Route::prefix('pelunasan-piutang')->group(function () {
+
+    //Konfirmasi Pembayaran Tiket
+    Route::get('tiket', 'PelunasanPiutangTiketController@index');
+    Route::prefix('tiket')->group(function () {
+        Route::post('pilih', 'PelunasanPiutangTiketController@pilihjenis');
+        Route::post('submit', 'PelunasanPiutangTiketController@store');
+        Route::post('delete', 'PelunasanPiutangTiketController@delete');
+        Route::get('edit/{id}', 'PelunasanPiutangTiketController@edit');
+        Route::post('update', 'PelunasanPiutangTiketController@update');
+    });
+
+    //Konfirmasi Pembayaran Hotel
+//    Route::get('hotel', 'KonfirmasiPembayaranHotelController@index');
+//    Route::prefix('hotel')->group(function () {
+//        Route::post('submit', 'KonfirmasiPembayaranHotelController@store');
+//        Route::post('delete', 'KonfirmasiPembayaranHotelController@delete');
+//        Route::get('edit/{id}', 'KonfirmasiPembayaranHotelController@edit');
+//        Route::post('update', 'KonfirmasiPembayaranHotelController@update');
+//    });
 });
 
 

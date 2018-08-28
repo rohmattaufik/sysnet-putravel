@@ -238,6 +238,45 @@
                 </ul>
             </li>
             {{--End of Modul Konfirmasi--}}
+
+            {{--Modul Pelunasan Piutang--}}
+            <li class="treeview {{
+                 Request::is('pelunasan-piutang/*') ? 'active' : ''
+                 }}">
+                <a href="#">
+                    <i class="fa fa-sticky-note"></i>
+
+                    <span>Pelunasan Piutang</span>
+
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+
+                </a>
+
+                <ul class="treeview-menu">
+                    <li class="{{
+                 Request::is('pelunasan-piutang/hotel') ||
+                 Request::is('pelunasan-piutang/hotel/*')
+                 ? 'active' : ''
+                 }}">
+                        <a href="{{ url('pelunasan-piutang/hotel') }}">
+                            Pelunasan Piutang Hotel
+                        </a>
+                    </li>
+                    <li class="{{
+                Request::is('pelunasan-piutang/tiket') ||
+                 Request::is('pelunasan-piutang/tiket/*')
+                 ? 'active' : ''
+                 }}">
+                        <a href="{{ url('pelunasan-piutang/tiket') }}">
+                            Pelunasan Piutang Tiket
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            {{--End of Modul Pelunasan Piutang--}}
             @endif
 
         </ul>
