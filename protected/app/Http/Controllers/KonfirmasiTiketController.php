@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller,
     App\Http\Controllers\MSupplier\MSupplierListController as MSupplier,
     App\Http\Controllers\TSuratTugas\TSuratTugasDListController as TPSuratTugasD,
     App\Http\Controllers\TSuratTugas\TSuratTugasHListController as TPSuratTugasH,
+    App\Http\Controllers\THutangPiutang\TPiutangListController as TPiutang,
     App\Http\Controllers\MKota\MKotaListController as MKota,
     App\Http\Controllers\MEmployee\MEmployeeListController as MEmployee,
     App\Http\Controllers\MDepartment\MDepartmentListController as MDepartment,
@@ -164,7 +165,9 @@ class KonfirmasiTiketController extends Controller
             (new TPesananTiketH)->update_status_pembuat_surat($request->id_tiket_h, '3');
         } elseif ($request->jenis == "konfirmasi_travel") {
             (new TPesananTiketH)->update_status_travel($request->id_tiket_h, '4');
+            (new TPiutang)->create($request->id_tiket_h);
         }
+
 
 
         Session::flash('sukses', 'Data Tiket Anda berhasil di-approve');
