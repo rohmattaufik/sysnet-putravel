@@ -22,7 +22,7 @@ class KonfirmasiHotelController extends Controller
 {
     public function index() {
 
-        $data_pesan_hotel_d;
+        $data_pesan_hotel_d = "";
         if( Auth::user()->role == 1)
         {
             $data_pesan_hotel_d = (new TPesananHotelD)->get_by_employee( Auth::user()->id, 1);

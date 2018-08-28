@@ -7,7 +7,7 @@
         <section class="content-header">
             <h1>
                 Modul Konfirmasi Pembayaran
-                {{--<small>Tiket Pesawat</small>--}}
+                <small>Tiket</small>
             </h1>
         </section>
 
@@ -27,7 +27,7 @@
                         <ul class="nav nav-tabs">
                             @if(Auth::user()->role == 1 || Auth::user()->role == 2)
                                 <li class="active">
-                                    <a href="#tab_2" data-toggle="tab" aria-expanded="true">Konfirmasi Pembayaran</a>
+                                    <a href="#tab_2" data-toggle="tab" aria-expanded="true">Konfirmasi Pembayaran Tiket</a>
                                 </li>
                             @endif
                             @if(Auth::user()->role == 3)
@@ -73,6 +73,7 @@
                                             <div class="box box-primary">
                                                 <div class="box-header">
                                                     <form method="post" action="{{ url(action('KonfirmasiPembayaranTiketController@pilihjenis')) }}">
+                                                        {{ csrf_field() }}
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="kota">
                                                                 Pilih Jenis
@@ -142,11 +143,21 @@
                                                                                         <div class="form-group">
                                                                                             <div class="checkbox">
                                                                                                 <label>
-                                                                                                    <input type="checkbox" name="check[]">
+                                                                                                    <input onclick="toggle{{$i}}(this)"
+                                                                                                           type="checkbox" name="title_{{$i}}" id="title_{{$i}}">
                                                                                                     Check All
                                                                                                 </label>
                                                                                             </div>
                                                                                         </div>
+                                                                                        <script>
+                                                                                            function toggle{{$i}}(source) {
+                                                                                                var checkboxes = document.querySelectorAll('input[id="title_{{$i}}"]');
+                                                                                                for (var i = 0; i < checkboxes.length; i++) {
+                                                                                                    if (checkboxes[i] != source)
+                                                                                                        checkboxes[i].checked = source.checked;
+                                                                                                }
+                                                                                            }
+                                                                                        </script>
                                                                                     </td>
                                                                                     <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
                                                                                         <div class="form-group">
@@ -210,7 +221,7 @@
                                                                                             <div class="form-group">
                                                                                                 {{--<input type="hidden" value="{{$data->id}}" name="id_tiket_d[]" hidden>--}}
                                                                                                 <div class="checkbox">
-                                                                                                    <input type="checkbox" value="{{ $data->id }}" name="id_tiket_d[]">
+                                                                                                    <input type="checkbox" value="{{ $data->id }}" name="id_tiket_d[]" id="title_{{$i}}">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </td>

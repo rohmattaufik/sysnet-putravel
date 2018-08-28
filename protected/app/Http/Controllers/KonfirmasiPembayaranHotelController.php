@@ -19,7 +19,7 @@ use Carbon\Carbon;
 use Session;
 use Auth;
 
-class KonfirmasiPembayaranTiketController extends Controller
+class KonfirmasiPembayaranHotelController extends Controller
 {
     public function index() {
 
@@ -39,7 +39,7 @@ class KonfirmasiPembayaranTiketController extends Controller
 
 //        dd($data_tiket_surat);
 
-        return view('modul_konfirmasi_pembayaran/konfirmasi_pembayaran_tiket')
+        return view('modul_konfirmasi_pembayaran/konfirmasi_pembayaran_hotel')
             ->with('data_tiket_surat',$data_tiket_surat)
             ;
     }
