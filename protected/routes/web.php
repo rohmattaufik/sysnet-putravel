@@ -145,6 +145,28 @@ Route::prefix('konfirmasi')->group(function () {
     // });
 });
 
+Route::prefix('konfirmasi-pembayaran')->group(function () {
+
+    //Konfirmasi Pembayaran Tiket
+    Route::get('tiket', 'KonfirmasiPembayaranTiketController@index');
+    Route::prefix('tiket')->group(function () {
+        Route::post('pilih', 'KonfirmasiPembayaranTiketController@pilihjenis');
+        Route::post('submit', 'KonfirmasiPembayaranTiketController@store');
+        Route::post('delete', 'KonfirmasiPembayaranTiketController@delete');
+        Route::get('edit/{id}', 'KonfirmasiPembayaranTiketController@edit');
+        Route::post('update', 'KonfirmasiPembayaranTiketController@update');
+    });
+
+    //pesanan surat tugas
+    Route::get('pesanan', 'TransaksiPesananController@index');
+    // Route::prefix('surat-tugas')->group(function () {
+    //     Route::post('submit', 'TransaksiSuratTugasController@store');
+    //     Route::post('delete', 'TransaksiSuratTugasController@delete');
+    //     Route::get('edit/{id}', 'TransaksiSuratTugasController@edit');
+    //     Route::post('update', 'TransaksiSuratTugasController@update');
+    // });
+});
+
 
 Auth::routes();
 

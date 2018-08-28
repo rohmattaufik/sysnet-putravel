@@ -199,6 +199,47 @@
             </li>
             {{--End of Modul Konfirmasi--}}
 
+            {{--Modul Konfirmasi Pembayaran--}}
+            @if(Auth::user()->role == 2)
+            <li class="treeview {{
+                     Request::is('konfirmasi-pembayaran/*') ? 'active' : ''
+                     }}">
+                <a href="#">
+                    <i class="fa fa-money"></i>
+
+                    <span>Konfirmasi Pembayaran</span>
+
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+
+                </a>
+
+                <ul class="treeview-menu">
+                    <li class="{{
+                     Request::is('konfirmasi-pembayaran/hotel') ||
+                     Request::is('konfirmasi-pembayaran/hotel/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('konfirmasi-pembayaran/hotel') }}">
+                            Konfirmasi Pembayaran Hotel
+                        </a>
+                    </li>
+                    <li class="{{
+                    Request::is('konfirmasi-pembayaran/tiket') ||
+                     Request::is('konfirmasi-pembayaran/tiket/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('konfirmasi-pembayaran/tiket') }}">
+                            Konfirmasi Pembayaran Tiket
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            {{--End of Modul Konfirmasi--}}
+            @endif
+
         </ul>
         <!-- /.sidebar-menu -->
     </section>

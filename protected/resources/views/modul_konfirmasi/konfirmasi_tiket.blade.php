@@ -323,7 +323,7 @@
                                                                     </tbody>
                                                                 </table>
                                                                         <br/>
-                                                                        <hr/>
+                                                                        <hr style="border-top: 10px solid grey;"/>
                                                                     @endif
                                                                 @endfor
 
@@ -494,7 +494,7 @@
                                                                                 </tbody>
                                                                             </table>
                                                                             <br/>
-                                                                            <hr/>
+                                                                                <hr style="border-top: 10px solid grey;"/>
                                                                         @endif
                                                                     @endfor
 
