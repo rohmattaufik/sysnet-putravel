@@ -118,9 +118,9 @@ Route::prefix('transaksi')->group(function () {
 
 Route::prefix('konfirmasi')->group(function () {
     //Konfirmasi Hotel
-//    Route::get('hotel', 'KonfirmasiHotelController@index');
+    Route::get('hotel', 'KonfirmasiHotelController@index');
     Route::prefix('hotel')->group(function () {
-//        Route::post('submit', 'KonfirmasiHotelController@store');
+        Route::post('submit', 'KonfirmasiHotelController@store');
 //        Route::post('delete', 'KonfirmasiHotelController@delete');
 //        Route::get('edit/{id}', 'KonfirmasiHotelController@edit');
 //        Route::post('update', 'KonfirmasiHotelController@update');

@@ -53,7 +53,7 @@ class TransaksiPesanHotelController extends Controller
 
             $pesanan_hotel_h                    = new TPesananHotelH();
             $pesanan_hotel_h->idSuratTugas_H    = $data_surat_tugas_h[0]['id'];
-            $pesanan_hotel_h->suratPesan_date   = $data_surat_tugas_h[0]['created_at'];
+            $pesanan_hotel_h->suratPesan_date   = $request->tanggal_surat_tugas;
             $pesanan_hotel_h->order_code        = $set_num_tPesanHotelh->set_number_code + 1;
             $pesanan_hotel_h->start_date        = $data_surat_tugas_h[0]['start_date'];
             $pesanan_hotel_h->end_date          = $data_surat_tugas_h[0]['end_date'];

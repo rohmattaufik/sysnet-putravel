@@ -83,8 +83,7 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-calendar"></i>
                                                             </div>
-                                                            <input type="text" name="tanggal_check_in[]" 
-                                                                value="{{ $data_surat_tugas[0]['start_date'] }}"
+                                                            <input type="text" name="tanggal_surat_tugas" 
                                                                 class="form-control pull-right datepicker" id="datepicker1">
                                                         </div>
                                                     </th>

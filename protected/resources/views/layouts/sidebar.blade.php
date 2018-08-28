@@ -178,10 +178,10 @@
                 <ul class="treeview-menu">
                     <li class="{{
                      Request::is('konfirmasi/hotel') ||
-                     Request::is('transaksi/hotel/*')
+                     Request::is('konfirmasi/hotel/*')
                      ? 'active' : ''
                      }}">
-                        <a href="{{ url('transaksi/hotel') }}">
+                        <a href="{{ url('konfirmasi/hotel') }}">
                             Konfirmasi Hotel
                         </a>
                     </li>

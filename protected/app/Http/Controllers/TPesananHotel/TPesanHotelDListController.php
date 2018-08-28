@@ -33,7 +33,7 @@ class TPesanHotelDListController extends Controller{
                 if($TPesananHotel_D){
                     $this->id               = $TPesananHotel_D->id;
                     $this->idPesananHotel   = $TPesananHotel_D->idPesananHotel;
-                    $this->idSuratTugasD    = $TPesananHotel_D->idSuratTugasD;
+                    $this->idSuratTugasD    = $TPesananHotel_D->idSuratTugas_D;
                     $this->idKota           = $TPesananHotel_D->idKota;
                     $this->idSupplier       = $TPesananHotel_D->idSupplier;
                     $this->payment_status   = $TPesananHotel_D->payment_status;
@@ -63,6 +63,16 @@ class TPesanHotelDListController extends Controller{
         return DB::select(DB::raw("CALL TPesananHotel_D_View_id($id)"));
     }
 
+    public function get_by_employee( $id_employee, $payment_status)
+    {
+        return DB::select(DB::raw("CALL TPesananHotel_D_get_by_employee($id_employee, $payment_status)"));
+    }
+
+    public function get_by_payment( $payment_status)
+    {
+        return DB::select(DB::raw("CALL TPesananHotel_D_get_by_payment( $payment_status)"));
+    }
+
     public function create(){
         //dd($this->AR_price);
         return DB::unprepared(DB::raw("CALL TPesanHotel_D_Create(
@@ -73,7 +83,7 @@ class TPesanHotelDListController extends Controller{
 
     public function update(){
         
-        return DB::unprepared(DB::raw("CALL TPesananHotel_D_Update(
+        return DB::unprepared(DB::raw("CALL TPesanHotel_D_Update(
             $this->id, $this->idPesananHotel, $this->idSuratTugasD, $this->idKota, $this->idSupplier,
             '$this->payment_status', '$this->checkin_date', '$this->checkout_date', 
             '$this->voucher_number',$this->AR_price, $this->AP_price)"));
