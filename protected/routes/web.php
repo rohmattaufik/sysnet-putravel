@@ -113,6 +113,15 @@ Route::prefix('transaksi')->group(function () {
         // Route::get('edit/{id}', 'TransaksiPesanTiketController@edit');
         // Route::post('update', 'TransaksiPesanTiketController@update');
     });
+
+    //Transaksi Pesan Kota
+    Route::get('pesan-kota/{id}', 'TransaksiPesanKotaController@index');
+    Route::prefix('pesan-kota')->group(function () {
+        Route::post('submit', 'TransaksiPesanKotaController@store');
+        // Route::post('delete', 'TransaksiPesanTiketController@delete');
+        // Route::get('edit/{id}', 'TransaksiPesanTiketController@edit');
+        // Route::post('update', 'TransaksiPesanTiketController@update');
+    });
 });
 
 

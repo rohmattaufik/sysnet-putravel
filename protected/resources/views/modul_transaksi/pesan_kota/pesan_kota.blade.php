@@ -74,23 +74,23 @@
                                                 <tr>
                                                 <tr>
                                                     <th>Kota Tujuan</th>
-                                                    <th>{{ $data_surat_tugas[0]['city_name']}}</th>
-                                                <tr>
-                                                <tr>
-                                                    <th>Tanggal</th>
                                                     <th>
-                                                        <div class="input-group date">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-calendar"></i>
-                                                            </div>
-                                                            <input type="text" name="tanggal_surat_tugas"
-                                                                class="form-control pull-right datepicker" id="datepicker1">
-                                                        </div>
+                                                      <select name="kota" class="form-control">
+                                                          @foreach( $data_kota as $kota)
+                                                          <option value="{{ $kota->id }}" >{{ $kota->city_name }}</option>
+                                                          @endforeach
+                                                      </select>
                                                     </th>
                                                 <tr>
                                                 <tr>
-                                                    <th>Tanggal Tugas</th>
-                                                    <th>{{ $data_surat_tugas[0]['start_date'] }} SD {{ $data_surat_tugas[0]['end_date'] }}</th>
+                                                    <th>Hotel</th>
+                                                    <th>
+                                                      <select name="hotel" class="form-control">
+                                                          @foreach( $data_supplier as $supplier)
+                                                          <option value="{{ $kota->id }}" >{{ $supplier->supplier_name }}</option>
+                                                          @endforeach
+                                                      </select>
+                                                    </th>
                                                 <tr>
                                             <thead>
                                         </table>
@@ -103,17 +103,13 @@
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Nama Hotel</th>
                                     <th scope="col">Tanggal Check In</th>
                                     <th scope="col">Tanggal Check Out</th>
-                                    <th scope="col">No Voucher</th>
                                     <th scope="col">Harga</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($data_surat_tugas[0]['suratTugasD'] as $surat_tugas)
-
-                                    @if($surat_tugas->hotel_status != 0)
                                     <!-- <input type="hidden" name="id_surat_tugas_d[]" value="{{ $surat_tugas->id }}"> -->
                                     <tr>
                                         <td>
@@ -125,13 +121,6 @@
                                             </div>
                                         </td>
                                         <td>{{$surat_tugas->employee_name}}</td>
-                                        <td>
-                                            <select name="hotel[]" class="form-control">
-                                                @foreach( $data_kota as $kota)
-                                                <option value="{{ $kota->id }}" >{{ $kota->supplier_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </td>
                                         <td>
                                             <div class="input-group date">
                                                 <div class="input-group-addon">
@@ -154,24 +143,13 @@
                                             <div class="input-group">
                                                 <input type="text"
                                                         class="form-control"
-                                                        name="voucher[]"
-                                                        placeholder="Voucher" disabled="true">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="input-group">
-                                                <input type="text"
-                                                        class="form-control"
                                                         name="harga[]"
                                                         placeholder="Harga">
                                             </div>
                                         </td>
                                     </tr>
-                                    @endif
                                     @endforeach
                                     <tr>
-                                        <td> </td>
-                                        <td> </td>
                                         <td> </td>
                                         <td> </td>
                                         <td>
