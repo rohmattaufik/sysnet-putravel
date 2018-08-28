@@ -90,13 +90,27 @@
                                                         <div class="row">
                                                             <div class="col-lg-12">
                                                             @if(count($data) > 0)
-
+                                                                @foreach($data as $data_item)
                                                                 <form action="{{ url('konfirmasi/hotel/submit') }}" method="post">
 
                                                                 {{csrf_field()}}
-                                                                Date = {{ \Carbon\Carbon::parse($data[0]['data_pesan_hotel'][0]->suratPesan_date)->format('d-m-Y')  }} <br>
-                                                                Surat Tugas = {{ $data[0]['assignment_letter_code'] }} <br>
-                                                                Kota= {{$data[0]['data_pesan_hotel'][0]->city_name }} <br>
+                                                                
+                                                                <table class="table">
+                                                                    <thead class="col-xs-12">
+                                                                    <tr>
+                                                                        <th>Date</th>
+                                                                        <td>{{ \Carbon\Carbon::parse($data_item['data_pesan_hotel'][0]->suratPesan_date)->format('d-m-Y')  }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Surat Tugas</th>
+                                                                        <td>{{ $data_item['assignment_letter_code'] }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>Kota</th>
+                                                                        <td>{{$data_item['data_pesan_hotel'][0]->city_name }}</td>
+                                                                    </tr>
+                                                                    </thead>
+                                                                </table>
 
                                                                 <table class="table table-bordered" id="dynamic_field">
                                                                     <thead class="">
@@ -110,23 +124,28 @@
                                                                         <th class="text-nowrap">Total Invoice</th>
                                                                     </thead>
                                                                     <tbody>
-                                                                    @foreach( $data[0]['data_pesan_hotel'] as $data_pesan_hotel)
+                                                                    @foreach( $data_item['data_pesan_hotel'] as $data_pesan_hotel)
                                                                     <input type="hidden" name="id_pesan_hotel_d[]" value="{{ $data_pesan_hotel->id }}">
+                                                                    <input type="hidden" name="id_employee[]" value="{{ $data_pesan_hotel->idEmployee }}">
                                                                     <tr>
                                                                         <td>{{ $data_pesan_hotel->employee_name }}</td>
                                                                         <td>{{ $data_pesan_hotel->voucher_number }}</td>
                                                                         <td>{{ \Carbon\Carbon::parse($data_pesan_hotel->checkin_date)->format('d-m-Y')  }}</td>
                                                                         <td>{{ \Carbon\Carbon::parse($data_pesan_hotel->checkout_date)->format('d-m-Y')  }}</td>
-                                                                        <td>3</td>
+                                                                        <td>{{ date_diff(new DateTime($data_pesan_hotel->checkin_date), new DateTime($data_pesan_hotel->checkout_date))->days }}</td>
                                                                         <td>1</td>
                                                                         <td>{{ $data_pesan_hotel->AR_price }}</td>
-                                                                        <td>{{ $data_pesan_hotel->AR_price * 3 }}</td>
+                                                                        <td>{{ $data_pesan_hotel->AR_price * date_diff(new DateTime($data_pesan_hotel->checkin_date), new DateTime($data_pesan_hotel->checkout_date))->days }}</td>
                                                                     </tr>
                                                                     @endforeach
-                                                                    <input type="submit" value="Approve" class="btn btn-info">
-                                                                    </form>
+                                                                    
+                                                                    
                                                                     </tbody>
                                                                 </table>
+                                                                <input type="submit" value="Approve" class="btn btn-info">
+                                                                </form>
+                                                                <hr><br>
+                                                                @endforeach
                                                             @endif
                                                             </div>
                                                         </div>

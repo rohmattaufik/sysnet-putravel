@@ -101,7 +101,7 @@ class TSuratTugasHListController extends Controller{
 
     public function get_surat_tugas_h($id){
         $surat = DB::select(DB::raw("CALL TSuratTugas_H_View_id($id)"));
-        //dd($surat);
+        // dd($surat);
         $row = $surat[0];
         $data = [];
 //        $SuratTugasH = DB::select(DB::raw("CALL TSuratTugas_H_View()"));
