@@ -18,12 +18,13 @@ use App\Http\Controllers\Controller,
 use Carbon\Carbon;
 use Session;
 use Auth;
+use function Sodium\increment;
 
 class PelunasanPiutangTiketController extends Controller
 {
     public function index() {
 
-        $data_tiket_surat = (new TPesananTiketH)->get_all_list_konfirmasi_pembayaran_tiket();
+        $data_tiket_surat = (new TPesananTiketH)->get_all_list_piutang();
 
 //        $data_surat_tugas_h_one = (new TPSuratTugasH)->get_surat_tugas_h($id);
 
@@ -53,64 +54,46 @@ class PelunasanPiutangTiketController extends Controller
     }
 
     public function store(Request $request) {
+//        dd($request);
 
 
-        $new_pesan_tiket_h = new TPesananTiketH();
-//        dd((new TPSuratTugasH)->get_surat_tugas_h($request->id_surat_h));
-        $new_pesan_tiket_h->order_code = 1;
-        $new_pesan_tiket_h->idSuratTugas_H = 1;
-        $new_pesan_tiket_h->transaction_date = $request->tanggal_surat;
-        $new_pesan_tiket_h->idKota = $request->idKota;
-        $new_pesan_tiket_h->order_ticket_status = 1;
-        $new_pesan_tiket_h->IdDepartment = $request->idDept;
-        $new_pesan_tiket_h->idDIPA = $request->idDipa;
-        $new_pesan_tiket_h->created_by = Auth::user()->id;
-        $new_pesan_tiket_h->created_at = Carbon::now();
 
-        //update surat h
-        $new_surat_tugas_h = new TPSuratTugasH();
-        $new_surat_tugas_h->id = $request->id_surat_h;
-        $new_surat_tugas_h->plane_status = 0;
-        $new_surat_tugas_h->updated_by = Auth::user()->id;
-        $new_surat_tugas_h->update_plane_sts();
+        $tiket_d = new TPesananTiketD();
+        for($i=0;$i<count($request->id_tiket_d);$i++) {
+//            dd($tiket_d->get_pesanan_tiket_d($request->id_tiket_d[$i])[0]->AP_ticket_price);
+            for($j=0;$j<count($request->nilai_bayar);$j++) {
 
-        $new_pesan_tiket_h->create();
+                $new_piutang_tiket = DB::table('TPiutang')
+                    ->where('idPesanTiketH',$request->id_tiket_h)
+                    ->where('noPesanD',$request->id_tiket_d[$j])
+                    ->first();
+//                dd($new_piutang_tiket);
 
-        $data_tiket_h_last = (new TPesananTiketH())->get_last();
+                $new_nilai_saldo = $new_piutang_tiket->nilaiSaldo - $new_piutang_tiket->nilai;
+//                dd($new_nilai_saldo);
+                if($new_nilai_saldo == 0) {
+                    DB::table('TPiutang')
+                        ->where('idPesanTiketH',$request->id_tiket_h)
+                        ->where('noPesanD',$request->id_tiket_d[$j])
+                        ->update(['sts' => '0']);
+                }
 
-
-        for($i=0; $i<count($request->book_number); $i++) {
-            if(!is_null($request->book_number[$i])) {
-                $new_pesan_tiket_d = new TPesananTiketD();
-                $new_pesan_tiket_d->idSuratTugas_D = $request->idSuratTugas_D[$i];
-                $new_pesan_tiket_d->idKota = $request->idKota;
-                $new_pesan_tiket_d->idSupplier = $request->maskapai[$i];
-                $new_pesan_tiket_d->booking_code = $request->book_number[$i];
-                $new_pesan_tiket_d->departure_date = $request->tanggal_berangkat[$i];
-                $new_pesan_tiket_d->arrival_date = $request->tanggal_kembali[$i];
-                $new_pesan_tiket_d->reserve_berangkat = $request->reservasi_berangkat[$i];
-                $new_pesan_tiket_d->reserve_kembali = $request->reservasi_kembali[$i];
-                $new_pesan_tiket_d->AP_ticket_price = $request->harga_maskapai[$i];
-                $new_pesan_tiket_d->AR_ticket_price = $request->harga_tiket[$i];
-//                $new_pesan_tiket_d->margin = 1;
-                $new_pesan_tiket_d->sts = 1;
-                $new_pesan_tiket_d->idPesanTiket_H = 1;
-                $new_pesan_tiket_d->create();
-
-
-                //update surat tugas d
-                $new_surat_tugas_d = new TPSuratTugasD();
-                $new_surat_tugas_d->id = $request->idSuratTugas_D[$i];
-                $new_surat_tugas_d->plane_status = 0;
-                $new_surat_tugas_d->update_plane_sts();
-
+                if($tiket_d->get_pesanan_tiket_d($request->id_tiket_d[$j])[0]->AP_ticket_price == $request->nilai_bayar[$j]) {
+                    DB::table('TBayar')->insert([
+                        'payment_code' => 123,
+                        'payment_date' => $request->tanggal_bayar,
+                        'jenis' => 'p',
+                        'idBanks' => 1,
+                        'idPesanTiketD' => $request->id_tiket_d[$j],
+                        'nilai' => $request->nilai_bayar[$j]
+                    ]);
+                }
             }
         }
 
-//        dd($request);
 
-        Session::flash('sukses',"Pesanan Tiket berhasil diinput.");
-        return redirect()->action('TransaksiPesananController@index');
+        Session::flash('sukses',"Pelunasan Piutang berhasil diproses.");
+        return redirect()->action('PelunasanPiutangTiketController@index');
     }
 
     public function delete(Request $request)

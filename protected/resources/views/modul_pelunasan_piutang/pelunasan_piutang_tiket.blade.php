@@ -110,7 +110,7 @@
 
                                                                     @for($j=1,$i=0;$i<count($data_tiket_surat);$i++,$j++)
                                                                         @if(count($data_tiket_surat[$i]["pesanTiketD"]) > 0)
-                                                                            <form method="post" action="{{ url(action('KonfirmasiPembayaranTiketController@update')) }}">
+                                                                            <form method="post" action="{{ url(action('PelunasanPiutangTiketController@store')) }}">
                                                                                 {{ csrf_field() }}
                                                                                 <table class="table table-bordered" id="dynamic_field">
                                                                                     <thead class="">
@@ -191,6 +191,7 @@
                                                                                             </div>
                                                                                         </td>
                                                                                         <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
+                                                                                            <input type="hidden" value="{{$data_tiket_surat[$i]["id"]}}" name="id_tiket_h" hidden>
                                                                                             <button type="submit" class="btn btn-info">
                                                                                                 Submit
                                                                                             </button>
@@ -232,6 +233,7 @@
                                                                                                 <p>{{ \Carbon\Carbon::parse($data->arrival_date)->format('d-m-Y')  }}</p>
                                                                                             </td>
                                                                                             <td class="text-nowrap">
+                                                                                                <input type="hidden" value="{{$data->AP_ticket_price}}" name="nilai_bayar[]" hidden>
                                                                                                 <p>{{ $data->AP_ticket_price }}</p>
                                                                                             </td>
                                                                                             <td>
