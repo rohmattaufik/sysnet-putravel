@@ -19,9 +19,9 @@
               -------------------------->
 
             <div class="box box-primary">
-                <div class="box-header with-border">
+                {{--<div class="box-header with-border">--}}
                     {{--<h3 class="box-title">Quick Example</h3>--}}
-                </div>
+                {{--</div>--}}
 
                 <div class="box-body">
                     <div class="box-header with-border">

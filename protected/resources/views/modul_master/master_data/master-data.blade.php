@@ -8,10 +8,7 @@
                 Modul Master Data
                 <small>Add your master data like: Jabatan, Golongan, dll</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-            </ol>
+
         </section>
 
         <!-- Main content -->
@@ -144,10 +141,17 @@
                                             </div>
 
                                             <div class="box-footer">
-                                                <button type="button" name="add" id="add" class="btn btn-success btn-block">
-                                                    Add Row
-                                                </button>
-                                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <button type="button" name="add" id="add" class="btn btn-success btn-block btn-sm">
+                                                            Add Row
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-lg-7">
+                                                        <button type="submit" class="btn btn-primary btn-block btn-sm">Submit</button>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
 
@@ -229,8 +233,8 @@
 
                                                     <td>
                                                         <a type="button" href="{{ url(action('MasterDataController@edit',['jabatan',$data->id])) }}"
-                                                           class="btn btn-primary">Edit</a>
-                                                        <button class="btn btn-danger" type="submit">
+                                                           class="btn btn-primary btn-sm">Edit</a>
+                                                        <button class="btn btn-danger btn-sm" type="submit">
                                                             Delete
                                                         </button>
                                                     </td>

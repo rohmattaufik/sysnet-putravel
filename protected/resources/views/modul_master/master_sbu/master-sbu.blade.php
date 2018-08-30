@@ -8,10 +8,7 @@
                 Modul Master SBU
                 <small>Add your master data like: Kota, Golongan, dan Nilai</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-            </ol>
+
         </section>
 
         <!-- Main content -->
@@ -62,10 +59,10 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="number"
+                                        <input type="text"
                                                name="value[]"
                                                placeholder="Enter value"
-                                               class="form-control name_list" />
+                                               class="form-control name_list uang" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -84,10 +81,10 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="number"
+                                        <input type="text"
                                                name="value[]"
                                                placeholder="Enter value"
-                                               class="form-control name_list" />
+                                               class="form-control name_list uang" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -106,10 +103,10 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="number"
+                                        <input type="text"
                                                name="value[]"
                                                placeholder="Enter value"
-                                               class="form-control name_list" />
+                                               class="form-control name_list uang" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -128,10 +125,10 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="number"
+                                        <input type="text"
                                                name="value[]"
                                                placeholder="Enter value"
-                                               class="form-control name_list" />
+                                               class="form-control name_list uang" />
                                     </td>
                                 </tr>
                                 
@@ -140,12 +137,27 @@
                         </div>
 
                         <div class="box-footer">
-                            <button type="button" name="add" id="add" class="btn btn-success btn-block">
-                                Add Row
-                            </button>
-                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <button type="button" name="add" id="add" class="btn btn-success btn-block btn-sm">
+                                        Add Row
+                                    </button>
+                                </div>
+                                <div class="col-lg-8">
+                                    <button type="submit" class="btn btn-primary btn-block btn-sm">Submit</button>
+                                </div>
+                            </div>
+
                         </div>
+
+                        {{--<div class="box-footer">--}}
+                            {{--<button type="button" name="add" id="add" class="btn btn-success btn-block">--}}
+                                {{--Add Row--}}
+                            {{--</button>--}}
+                            {{--<button type="submit" class="btn btn-primary btn-block">Submit</button>--}}
+                        {{--</div>--}}
                     </div>
+                </div>
                     </form>
             </div>
 
@@ -174,7 +186,7 @@
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $sbu->city_name }}</td>
                                     <td>{{ $sbu->class_name }}</td>
-                                    <td>{{ $sbu->value }}</td>
+                                    <td>Rp <span class="uang">{{ $sbu->value }}</span></td>
                                     <td>
 
                                         <a type="button" href="{{ url(action('MasterSBUController@edit',$sbu->id)) }}"
@@ -204,6 +216,14 @@
 @stop
 
 @section('new-script')
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            // Format mata uang.
+            $( '.uang' ).mask('000.000.000', {reverse: true});
+
+        })
+    </script>
     <script>
         $(document).ready(function() {
             $('.select-data').select2();
@@ -235,10 +255,10 @@
                         '</select>'+
                     '</td>'+
                     '<td>'+
-                        '<input type="number"'+
+                        '<input type="text"'+
                                 'name="value[]"'+
                                 'placeholder="Enter value"'+
-                                'class="form-control name_list" />'+
+                                'class="form-control name_list uang" />'+
                     '</td>'+
                     '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +
                     '</td></tr>');

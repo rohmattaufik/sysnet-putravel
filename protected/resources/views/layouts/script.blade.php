@@ -19,3 +19,6 @@
 
 <!-- bootstrap datepicker -->
 {{--<script src="{{ URL::asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>--}}
+
+{{--Masking--}}
+<script src="{{ URL::asset('js/jquery.mask.min.js') }}" type="text/javascript"></script>
