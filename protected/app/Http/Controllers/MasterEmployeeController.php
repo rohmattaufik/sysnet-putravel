@@ -33,6 +33,7 @@ class MasterEmployeeController extends Controller
     public function store( Request $request )
     {
         $admin  = Auth::user()->id;
+
         if( !is_null($request) ){
             $new_employee                   = new MEmployee();
             $new_employee->id               = $request->id;
@@ -43,12 +44,21 @@ class MasterEmployeeController extends Controller
             $new_employee->idGolongan       = $request->golongan;
             $new_employee->email            = $request->email;
             $new_employee->phone            = $request->phone;
-            $new_employee->photo            = $request->file('photo');
+
+            if(!is_null($request->file('photo'))) {
+                $destinationPath = 'Uploads';
+                $movea = $request->file('photo')->move($destinationPath,$request->file('photo')->getClientOriginalName());
+                $url_file = "Uploads/{$request->file('photo')->getClientOriginalName()}";
+                $new_employee->photo= $url_file;
+            }
+
             $new_employee->created_by       = $admin;
             $new_employee->updated_by       = $admin;
+            $new_employee->role             = $request->role;
+//            dd($new_employee);
             $new_employee->create();
 
-            Session::flash('sukses-create', 'Anda berhasil menyimpan data Employee');
+            Session::flash('sukses', 'Anda berhasil menyimpan data Employee');
             return redirect()->back();
         }
     }
@@ -73,6 +83,7 @@ class MasterEmployeeController extends Controller
         return view('modul_master.master_employee.edit')
             ->with('unit_kerjas' , $unit_kerjas)
             ->with('employee' , $employee)
+            ->with('employee_id',$id)
             ->with('jabatans' , $jabatans)
             ->with('golongans' , $golongans);
     }
@@ -80,23 +91,32 @@ class MasterEmployeeController extends Controller
     public function update( Request $request )
     {
         $admin  = Auth::user()->id;
-        if( !is_null($request) ){
-            $file = $request->file('photo');
+        if( !is_null($request->employee_id) ){
+
             $new_employee                   = new MEmployee( $request->employee_id );
-            $new_employee->id               = $request->id;
+            $new_employee->id               = $request->employee_id;
             $new_employee->NIK              = $request->nik;
             $new_employee->employee_name    = $request->nama;
             $new_employee->idUnitKerja      = $request->unit_kerja;
             $new_employee->idJabatan        = $request->jabatan;
             $new_employee->idGolongan       = $request->golongan;
             $new_employee->email            = $request->email;
-            $new_employee->photo            = $file->openFile()->fread($file->getSize());
+            if(!is_null($request->file('photo'))) {
+                $destinationPath = 'Uploads';
+                $movea = $request->file('photo')->move($destinationPath,$request->file('photo')->getClientOriginalName());
+                $url_file = "Uploads/{$request->file('photo')->getClientOriginalName()}";
+                $new_employee->photo= $url_file;
+            } else {
+                $new_employee->photo= '';
+            }
             $new_employee->phone            = $request->phone;
-            $new_employee->created_by       = $admin;
             $new_employee->updated_by       = $admin;
-            $new_employee->edit();
+//            dd($new_employee);
+            $new_employee->update();
 
-            Session::flash('sukses-update', 'Anda berhasil mengubah data Employee');
+            Session::flash('sukses', 'Anda berhasil mengubah data Employee');
+            return redirect(url(action('MasterEmployeeController@index')));
+        } else {
             return redirect()->back();
         }
     }

@@ -22,6 +22,8 @@ class MEmployeeListController extends Controller {
     public $created_by;
     public $updated_by;
     public $flag_active;
+    public $role;
+    public $phone;
     public $exist;
 
     public function __construct($id = false){
@@ -44,6 +46,7 @@ class MEmployeeListController extends Controller {
                     $this->created_by       = $employee->created_by;
                     $this->updated_by       = $employee->updated_by;
                     $this->flag_active      = $employee->flag_active;
+                    $this->role             = $employee->role;
                     $this->exist            = true;
                 }else{
                     $this->exist            = false;
@@ -62,11 +65,11 @@ class MEmployeeListController extends Controller {
     }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL MEmployee_Create('$this->NIK', '$this->employee_name', $this->idUnitKerja, $this->idJabatan, $this->idGolongan, '$this->email', '$this->photo', '$this->created_by', '$this->phone')"));
+        return DB::unprepared(DB::raw("CALL MEmployee_Create('$this->NIK', '$this->employee_name', $this->idUnitKerja, $this->idJabatan, $this->idGolongan, '$this->email', '$this->photo', '$this->created_by', '$this->phone', $this->role)"));
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL MEmployee_Update($this->id, '$this->NIK', '$this->employee_name', $this->idUnitKerja, $this->idJabatan, $this->idGolongan, '$this->email', '$this->photo', '$this->created_by', '$this->phone')"));
+        return DB::unprepared(DB::raw("CALL MEmployee_Update($this->id, '$this->NIK', '$this->employee_name', $this->idUnitKerja, $this->idJabatan, $this->idGolongan, '$this->email', '$this->photo', '$this->created_by', '$this->phone', $this->role)"));
     }
 
     public function delete(){

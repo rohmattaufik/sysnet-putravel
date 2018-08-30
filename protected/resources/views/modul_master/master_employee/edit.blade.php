@@ -8,10 +8,7 @@
                 Modul Master Employee
                 <small>Edit your master data : Employee</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-            </ol>
+
         </section>
 
         <!-- Main content -->
@@ -23,13 +20,19 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    {{--<h3 class="box-title">Quick Example</h3>--}}
+                    <h3 class="box-title">
+                        <a href="{{ url(action('MasterEmployeeController@index')) }}">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                        Edit Employee
+                    </h3>
                 </div>
 
                 <div class="box-body">
-                    <form class="form-horizontal" method="post" action="{{ url(action('MasterEmployeeController@update')) }}">
+                    <form class="form-horizontal" enctype="multipart/form-data"
+                          method="post" action="{{ url(action('MasterEmployeeController@update')) }}">
                         {{ csrf_field() }}
-                        <input type="hidden" name="employee_id" value="{{ $employee->id }}">
+
 
                         <div class="box-body">
                             <div class="form-group">
@@ -41,6 +44,7 @@
                                            name="nik"
                                            value="{{ $employee->NIK }}"
                                            placeholder="NIK">
+                                    <input type="hidden" name="employee_id" value="{{ $employee_id }}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -109,18 +113,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="nama_travel" class="col-sm-2 control-label">E-Mail</label>
-
-                                <div class="col-sm-4">
-                                    <input type="email" class="form-control"
-                                           id="email"
-                                           name="email"
-                                           value="{{ $employee->email }}"
-                                           placeholder="Email">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="phone" class="col-sm-2 control-label">Telp</label>
 
                                 <div class="col-sm-4">
@@ -135,23 +127,23 @@
                             <div class="form-group">
                                 <label for="photo" class="col-sm-2 control-label">Photo</label>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <input type="file" class="form-control"
                                            id="photo"
                                            name="photo" placeholder="Photo">
-                                    <p class="help-block">Masukkan Foto Karyawan</p>
+                                    <p class="help-block">Biarkan saja jika tidak ingin mengubah photo.</p>
+                                    <a class="help-block" href="{{ URL::asset($employee->photo) }}" target="_blank">View Current Photo</a>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="user_id" class="col-sm-2 control-label">User ID</label>
+                                <label for="nama_travel" class="col-sm-2 control-label">E-Mail</label>
 
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control"
-                                           id="user_id"
-                                           name="user_id"
-                                           value="{{$employee->id}}"
-                                           placeholder="User ID">
+                                    <input type="email" class="form-control"
+                                           id="email"
+                                           value="{{ $employee->email }}"
+                                           name="email" placeholder="Email">
                                 </div>
                             </div>
 
@@ -161,16 +153,49 @@
                                 <div class="col-sm-4">
                                     <input type="password" class="form-control"
                                            id="password"
-                                           name="password"
-                                           placeholder="Password">
+                                           name="password" placeholder="Isi Password Baru">
                                 </div>
                             </div>
+
+                            @if(Auth::user()->role == 1 || Auth::user()->role == 2)
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="role">Role</label>
+                                    <div class="col-lg-4">
+                                        <select name="role" class="form-control select-data">
+                                            <option value="1"
+                                                    data-select2-id="1">
+                                                Admin PU / Karyawan PU
+                                            </option>
+                                            <option value="2"
+                                                    data-select2-id="2">
+                                                Finance PU
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="role">Role</label>
+                                    <div class="col-lg-4">
+                                        <select name="role" class="form-control select-data">
+                                            <option value="3"
+                                                    data-select2-id="3">
+                                                Admin Travel
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            @endif
 
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-danger btn-lg">Reset</button>
-                            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    {{--<button type="submit" class="btn btn-danger btn-lg">Reset</button>--}}
+                                    <button type="submit" class="btn-block btn-primary btn">Save</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.box-footer -->
                     </form>
