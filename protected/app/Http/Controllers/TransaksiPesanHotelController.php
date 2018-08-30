@@ -27,7 +27,7 @@ class TransaksiPesanHotelController extends Controller
         // $data_dipa = (new MDIPA)->get_list();
         // $data_department = (new MDepartment)->get_list();
         $data_surat_tugas_h = (new TPSuratTugasH)->get_surat_tugas_H( $id_surat_tugas );
-        
+
         $data_kota = (new MSupplier)->get_hotel_by_town($data_surat_tugas_h[0]['idKota']);
         // $data_employee = (new MEmployee)->get_list();
         // dd($data_surat_tugas_h);
@@ -37,7 +37,7 @@ class TransaksiPesanHotelController extends Controller
            ->with('data_surat_tugas',$data_surat_tugas_h);
     }
 
-    
+
     public function store(Request $request) {
 
         if (!is_null($request)) {
@@ -81,7 +81,7 @@ class TransaksiPesanHotelController extends Controller
                         // $surat_tugas_d   = DB::table('TSuratTugas_D')->where('id',$request->id_surat_tugas_d[$ii])->get();
                         // dd($surat_tugas_d);
                         $data_employee  = DB::table('MEmployee')->where('id',$surat_tugas_d[0]->idEmployee)->first();
-                        
+
                         $msbu = DB::table('MSBU')->where('idKota',$data_surat_tugas_h[0]['idKota'])->where('idGolongan',$data_employee->idGolongan)->first();
                         if($msbu == null){
                             Session::flash('gagal',"GAGAL : Data SBU belum ada");
@@ -106,16 +106,16 @@ class TransaksiPesanHotelController extends Controller
                         $pesanan_hotel_d->payment_status    = 1;
                         $pesanan_hotel_d->checkin_date      = $request->tanggal_check_in[$ii];
                         $pesanan_hotel_d->checkout_date     = $request->tanggal_check_out[$ii];
-                        $pesanan_hotel_d->voucher_number    = (@$set_num_tPesanHoteld->set_number_code) + 1; 
+                        $pesanan_hotel_d->voucher_number    = (@$set_num_tPesanHoteld->set_number_code) + 1;
                         $pesanan_hotel_d->AR_price          = (double) $request->harga[$ii];
                         $pesanan_hotel_d->AP_price          = $msbu->value;
                         $pesanan_hotel_d->create();
-                        
+
                         DB::table('TSuratTugas_D')
                                         ->where('id', $surat_tugas_d[0]->id)
                                         ->update(['hotel_status' => 0]);
-                    }   
-                    
+                    }
+
                 }
             }
 
