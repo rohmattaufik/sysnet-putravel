@@ -25,17 +25,34 @@
                     <div class="nav-tabs-custom">
 
                         <ul class="nav nav-tabs">
-                            <li class="active">
-                                <a href="#tab_1" data-toggle="tab" aria-expanded="true">Travel Data</a>
-                            </li>
-                            <li class="">
-                                <a href="#tab_2" data-toggle="tab" aria-expanded="false">Code Data</a>
-                            </li>
+                            @if(Session::get('jenis') == 'set_number')
+                                <li class="">
+                                    <a href="#tab_1" data-toggle="tab" aria-expanded="false">Travel Data</a>
+                                </li>
+                                <li class="active">
+                                    <a href="#tab_2" data-toggle="tab" aria-expanded="true">Code Data</a>
+                                </li>
+                                @else
+                                <li class="active">
+                                    <a href="#tab_1" data-toggle="tab" aria-expanded="true">Travel Data</a>
+                                </li>
+                                <li class="">
+                                    <a href="#tab_2" data-toggle="tab" aria-expanded="false">Code Data</a>
+                                </li>
+                            @endif
+
                         </ul>
 
                         <div class="tab-content">
 
-                            <div class="tab-pane active" id="tab_1">
+                            <div class="tab-pane
+                                    @if(Session::get('jenis') == 'set_number')
+
+                                    @else
+                                    active
+                                    @endif
+                                        "
+                                 id="tab_1">
 
                                 <div class="box box-info">
 
@@ -58,7 +75,8 @@
                                     </div>
                                     <!-- /.box-header -->
                                     <!-- form start -->
-                                    <form class="form-horizontal" method="post" action="{{url(action('MasterParameterController@store'))}}">
+                                    <form class="form-horizontal" enctype="multipart/form-data"
+                                          method="post" action="{{url(action('MasterParameterController@store'))}}">
                                         {{ csrf_field() }}
                                         <div class="box-body">
                                             <div class="form-group">
@@ -96,15 +114,15 @@
                                                            name="no_telp" placeholder="Nomor Telepon">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="email" class="col-sm-2 control-label">E-Mail</label>
+                                            {{--<div class="form-group">--}}
+                                                {{--<label for="email" class="col-sm-2 control-label">E-Mail</label>--}}
 
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control"
-                                                           id="email"
-                                                           name="email" placeholder="E-Mail">
-                                                </div>
-                                            </div>
+                                                {{--<div class="col-sm-4">--}}
+                                                    {{--<input type="text" class="form-control"--}}
+                                                           {{--id="email"--}}
+                                                           {{--name="email" placeholder="E-Mail">--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
                                             <div class="form-group">
                                                 <label for="logo" class="col-sm-2 control-label">Logo</label>
 
@@ -119,7 +137,7 @@
                                         </div>
                                         <!-- /.box-body -->
                                         <div class="box-footer">
-                                            <button type="submit" class="btn btn-danger btn-lg">Reset</button>
+                                            {{--<button type="submit" class="btn btn-danger btn-lg">Reset</button>--}}
                                             <button type="submit" class="btn btn-primary btn-lg">Save</button>
                                         </div>
                                         <!-- /.box-footer -->
@@ -130,11 +148,32 @@
 
                             </div>
                             <!-- /.tab-pane -->
-                            <div class="tab-pane" id="tab_2">
+                            <div class="tab-pane
+                                @if(Session::get('jenis') == 'set_number')
+                                    active
+                                @else
+
+                                @endif
+                                    "
+                                 id="tab_2">
 
                                 <div class="box box-info">
                                     <div class="box-header with-border">
                                         {{--<h3 class="box-title">Form</h3>--}}
+                                        @if(Session::get('sukses'))
+                                            <div class="callout callout-success">
+                                                <h4>{{ Session::get('sukses') }}</h4>
+
+                                                <p>Data Anda berhasil masuk database.</p>
+                                            </div>
+                                        @endif
+                                        @if(Session::get('sukses-delete'))
+                                            <div class="callout callout-danger">
+                                                <h4>{{ Session::get('sukses-delete') }}</h4>
+
+                                                <p>Data Anda berhasil dihapus dari database.</p>
+                                            </div>
+                                        @endif
                                     </div>
                                     <!-- /.box-header -->
                                     <!-- form start -->
@@ -193,7 +232,7 @@
                                         </div>
                                         <!-- /.box-body -->
                                         <div class="box-footer">
-                                            <a href="#" class="btn btn-danger btn-lg">Reset</a>
+                                            {{--<a href="#" class="btn btn-danger btn-lg">Reset</a>--}}
                                             {{--<button type="submit" class="btn btn-info btn-lg">Save</button>--}}
                                         </div>
                                         <!-- /.box-footer -->
@@ -229,6 +268,7 @@
                                     <th scope="col">Alamat</th>
                                     <th scope="col">Contact</th>
                                     <th scope="col">No Telp</th>
+                                    <th scope="col">Logo</th>
                                     <th scope="col">Action</th>
 
                                 </tr>
@@ -244,6 +284,13 @@
                                             <td>{{ $data->address }}  </td>
                                             <td>{{ $data->contact }}  </td>
                                             <td>{{ $data->contact_number }}  </td>
+                                            <td>
+                                                @if(is_null($data->logo))
+                                                    Logo tidak ada
+                                                @else
+                                                    <a href="{{ URL::asset($data->logo) }}" target="_blank">View Logo</a>
+                                                @endif
+                                            </td>
                                             <input type="hidden" name="travel_id" value= "{{ $data->id }}" required autofocus>
 
                                             <td>

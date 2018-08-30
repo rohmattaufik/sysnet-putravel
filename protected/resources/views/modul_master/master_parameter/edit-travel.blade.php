@@ -31,14 +31,15 @@
                                 </a>
                                 Edit Travel
                             </h3>
-                            <form class="form-horizontal" method="post" action="{{ url(action('MasterParameterController@update')) }}">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data"
+                                  action="{{ url(action('MasterParameterController@update')) }}">
                                 {{ csrf_field() }}
                                 <div class="box-body">
 
                                     <div class="form-group">
                                         <label for="nama_travel" class="col-sm-2 control-label">Nama Travel</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="nama_travel"
                                                    value="{{ $data_travel->travel_name }}"
@@ -52,7 +53,7 @@
                                     <div class="form-group">
                                         <label for="alamat" class="col-sm-2 control-label">Alamat</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <textarea class="form-control" rows="3"
                                                       id="alamat" name="alamat" placeholder="Masukkan Alamat">
                                                 {{ $data_travel->address }}
@@ -62,7 +63,7 @@
                                     <div class="form-group">
                                         <label for="contact_person" class="col-sm-2 control-label">Contact Person</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="contact_person"
                                                    value="{{ $data_travel->contact }}"
@@ -72,30 +73,23 @@
                                     <div class="form-group">
                                         <label for="no_telp" class="col-sm-2 control-label">No. Telp</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control"
                                                    id="no_telp"
                                                    value="{{ $data_travel->contact_number }}"
                                                    name="no_telp" placeholder="Nomor Telepon">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">E-Mail</label>
 
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control"
-                                                   id="email"
-                                                   name="email" placeholder="E-Mail">
-                                        </div>
-                                    </div>
                                     <div class="form-group">
                                         <label for="logo" class="col-sm-2 control-label">Logo</label>
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <input type="file" class="form-control"
                                                    id="logo"
                                                    name="logo" placeholder="Logo">
-                                            <p class="help-block">Masukkan logo travel</p>
+                                            <p class="help-block">Biarkan saja jika tidak ingin mengubah logo.</p>
+                                            <a class="help-block" href="{{ URL::asset($data_travel->logo) }}" target="_blank">View Current Logo</a>
                                         </div>
                                     </div>
 

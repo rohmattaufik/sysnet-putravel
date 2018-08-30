@@ -60,7 +60,7 @@ class MTravelListController extends Controller{
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL MTravel_Update($this->id, '$this->travel_name', '$this->address', '$this->contact', '$this->contact_number', '$this->logo', '$this->created_by')"));
+        return DB::unprepared(DB::raw("CALL MTravel_Update($this->id, '$this->travel_name', '$this->address', '$this->contact', '$this->contact_number', '$this->logo', '$this->updated_by')"));
     }
 
     public function delete(){

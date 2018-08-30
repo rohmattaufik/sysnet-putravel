@@ -68,8 +68,8 @@ class MasterEmployeeController extends Controller
         $jabatans           = (new MJabatan)->get_list();
         $golongans          = (new MGolongan)->get_list();
 
-        $employee           = (new MEmployee($id))->get_employee()[0];
-
+        $employee           = new MEmployee($id);
+//        dd($employee);
         return view('modul_master.master_employee.edit')
             ->with('unit_kerjas' , $unit_kerjas)
             ->with('employee' , $employee)

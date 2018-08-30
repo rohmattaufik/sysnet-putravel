@@ -59,7 +59,7 @@ class TransaksiPesanTiketController extends Controller
     }
     public function store(Request $request) {
 
-//        dd($request);
+        dd($request);
 
         $new_pesan_tiket_h = new TPesananTiketH();
 //        dd((new TPSuratTugasH)->get_surat_tugas_h($request->id_surat_h));

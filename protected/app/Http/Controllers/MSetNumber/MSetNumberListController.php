@@ -54,7 +54,7 @@ class MSetNumberListController extends Controller{
     }
 
     public function update(){
-        return DB::unprepared(DB::raw("CALL MSetNumber_Update($this->id, '$this->transaction_type', '$this->set_number_code', '$this->created_by')"));
+        return DB::unprepared(DB::raw("CALL MSetNumber_Update($this->id, '$this->transaction_type', '$this->set_number_code', $this->updated_by)"));
     }
 
     // public function delete(){

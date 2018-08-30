@@ -54,7 +54,7 @@ class KonfirmasiHotelController extends Controller
                 }
             }
             if( $in == false)
-            {
+            {5
                 $item_h = (new TPSuratTugasH)->get_surat_tugas_h($data_d->id_surat_tugas_h);
                 $item_h[0]['data_pesan_hotel'][0] = $data_d;
                 array_push($data_surat_tugas_h , $item_h[0]);
