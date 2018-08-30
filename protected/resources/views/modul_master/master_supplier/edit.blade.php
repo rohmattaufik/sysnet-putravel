@@ -207,7 +207,7 @@
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">
-                                    <a type="button" href="#" class="btn btn-danger btn-lg">Reset</a>
+                                    {{--<a type="button" href="#" class="btn btn-danger btn-lg">Reset</a>--}}
                                     <button type="submit" class="btn btn-info btn-lg">Update</button>
                                 </div>
 

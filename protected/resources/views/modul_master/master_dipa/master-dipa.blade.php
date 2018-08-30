@@ -103,14 +103,22 @@
                         </div>
 
                         <div class="box-footer">
-                            <button type="button" name="add" id="add" class="btn btn-success btn-block">
-                                Add Row
-                            </button>
-                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <button type="button" name="add" id="add" class="btn btn-success btn-block btn-sm">
+                                        Add Row
+                                    </button>
+                                </div>
+                                <div class="col-lg-8">
+                                    <button type="submit" class="btn btn-primary btn-block btn-sm">Submit</button>
+                                </div>
+                            </div>
                         </div>
                         </form>
                     </div>
+
                 </div>
+
             </div>
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -139,11 +147,11 @@
                                     <td>
 
                                         <a type="button" href="{{ url(action('MasterDIPAController@edit',$dipa->id)) }}"
-                                                class="btn btn-primary">Edit</a>
+                                                class="btn btn-primary btn-sm">Edit</a>
                                         
                                             {{ csrf_field() }}
                                             <input type="hidden" name="id_dipa" value="{{ $dipa->id }}">
-                                            <button class="btn btn-danger" type="submit">
+                                            <button class="btn btn-danger btn-sm" type="submit">
                                                 Delete
                                             </button>
                                     
