@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller,
     App\Http\Controllers\MKota\MKotaListController as MKota,
     App\Http\Controllers\MEmployee\MEmployeeListController as MEmployee,
     App\Http\Controllers\MDepartment\MDepartmentListController as MDepartment,
+    App\Http\Controllers\MSetNumber\MSetNumberListController as MSetNumber,
     Illuminate\Http\Request;
 use Session;
 use Auth;
@@ -18,9 +19,6 @@ class TransaksiPesananController extends Controller
 {
     public function index() {
         $data_surat_tugas_h = (new TPSuratTugasH)->get_list();
-
-//        dd($data_surat_tugas_h);
-
        return view('modul_transaksi/surat_tugas/pesanan_surat_tugas')
            ->with('data_surat_tugas_h',$data_surat_tugas_h)
            ;

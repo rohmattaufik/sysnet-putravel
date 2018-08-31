@@ -57,6 +57,24 @@ class MSetNumberListController extends Controller{
         return DB::unprepared(DB::raw("CALL MSetNumber_Update($this->id, '$this->transaction_type', '$this->set_number_code', $this->updated_by)"));
     }
 
+    public function generateNumber($transactionType){
+      $id = 0;
+      $setNumberCode = "";
+      $MSetNumberIdCode = DB::select(DB::raw("CALL MSetNumber_View_by_type('$transactionType')"));
+      foreach($MSetNumberIdCode as $row){
+        $id = $row->id;
+        $setNumberCode = $row->set_number_code;
+      }
+
+      DB::unprepared(DB::raw("CALL Number_Create('$id', '$setNumberCode')"));
+      $codes = DB::select(DB::raw("CALL MSetNumber_Genarate_Number('$setNumberCode')"));
+      $order_code ="";
+      foreach($codes as $row){
+        $order_code = $row->Code;;
+      }
+      return $order_code;
+    }
+
     // public function delete(){
     //     return DB::unprepared(DB::raw("CALL MSetNumber_Delete()"));
     // }
