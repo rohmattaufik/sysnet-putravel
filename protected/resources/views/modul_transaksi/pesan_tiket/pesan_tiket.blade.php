@@ -53,6 +53,13 @@
                                         <p>Data Anda berhasil dihapus dari database.</p>
                                     </div>
                                 @endif
+                                @if(Session::get('gagal'))
+                                    <div class="callout callout-danger">
+                                        <h4>{{ Session::get('gagal') }}</h4>
+
+                                        <p>Silahkan input ulang data Anda.</p>
+                                    </div>
+                                @endif
                             </div>
                         @endif
 
@@ -132,7 +139,8 @@
                                                 <input type="number"
                                                        class="form-control"
                                                        name="term"
-                                                       placeholder="Term">
+                                                       placeholder="Term" required>
+                                                <input type="hidden" name="id_surat_h" value="{{ $id_surat_h }}">
                                             </div>
                                             <!-- /.input group -->
                                         </div>
@@ -344,8 +352,8 @@
                                                     <div class="input-group">
 
                                                         <input type="file" class="custom-file-input"
-                                                               id="inputGroupFile01" name="file_tiket[]" aria-describedby="inputGroupFileAddon01" required>
-                                                        <label class="custom-file-label" for="inputGroupFile01">Upload Tiket* (wajib di upload)</label>
+                                                               id="inputGroupFile01" name="file_tiket[]" aria-describedby="inputGroupFileAddon01">
+                                                        <label class="custom-file-label" for="inputGroupFile01">Upload Tiket</label>
 
                                                     </div>
                                                 </td>

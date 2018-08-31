@@ -213,7 +213,7 @@ class TPesananTiketHListController extends Controller{
 
     public function create(){
         return DB::unprepared(DB::raw("CALL TPesananTiket_H_Create(
-            $this->order_code, $this->idSuratTugas_H, '$this->transaction_date',
+            '$this->order_code', $this->idSuratTugas_H, '$this->transaction_date',
             $this->idKota, $this->order_ticket_status, $this->idDIPA, $this->IdDepartment,
             $this->created_by, $this->term)"));
     }

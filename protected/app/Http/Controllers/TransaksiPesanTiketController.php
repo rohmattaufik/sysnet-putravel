@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller,
     Illuminate\Support\Facades\DB as DB,
     App\Http\Controllers\MDIPA\MDIPAListController as MDipa,
+    App\Http\Controllers\MSetNumber\MSetNumberListController as MSetNumber,
     App\Http\Controllers\TPesananTiket\TPesananTiketHListController as TPesananTiketH,
     App\Http\Controllers\TPesananTiket\TPesananTiketDListController as TPesananTiketD,
     App\Http\Controllers\MSupplier\MSupplierListController as MSupplier,
@@ -54,17 +55,17 @@ class TransaksiPesanTiketController extends Controller
             ->with('data_department',$data_department)
             ->with('data_surat_tugas_h',$data_surat_tugas_h)
             ->with('data_surat',$data_surat_tugas_h_one)
+            ->with('id_surat_h',$id)
             ->with('data_supplier',$data_supplier)
             ;
     }
-    public function store(Request $request) {
 
-//        dd($request->file('file_tiket')[1]);
+    public function store(Request $request) {
 
         $new_pesan_tiket_h = new TPesananTiketH();
 //        dd((new TPSuratTugasH)->get_surat_tugas_h($request->id_surat_h));
-        $new_pesan_tiket_h->order_code = 1;
-        $new_pesan_tiket_h->idSuratTugas_H = 1;
+        $new_pesan_tiket_h->order_code = (new MSetNumber)->generateNumber("Pesan Tiket");
+        $new_pesan_tiket_h->idSuratTugas_H = $request->id_surat_h;
         $new_pesan_tiket_h->transaction_date = $request->tanggal_surat;
         $new_pesan_tiket_h->idKota = $request->idKota;
         $new_pesan_tiket_h->order_ticket_status = 1;
@@ -74,16 +75,8 @@ class TransaksiPesanTiketController extends Controller
         $new_pesan_tiket_h->created_at = Carbon::now();
         $new_pesan_tiket_h->term = $request->term;
 
-        //update surat h
-        $new_surat_tugas_h = new TPSuratTugasH();
-        $new_surat_tugas_h->id = $request->id_surat_h;
-        $new_surat_tugas_h->plane_status = 0;
-        $new_surat_tugas_h->updated_by = Auth::user()->id;
-        $new_surat_tugas_h->update_plane_sts();
-
         $new_pesan_tiket_h->create();
         $data_tiket_h_last = (new TPesananTiketH())->get_last();
-
 
         for($i=0; $i<count($request->file('file_tiket')); $i++) {
             if(!is_null($request->book_number[$i])) {
@@ -108,10 +101,11 @@ class TransaksiPesanTiketController extends Controller
                     $url_file = "Uploads/{$request->book_number[$i]}{$request->file('file_tiket')[$i]->getClientOriginalName()}";
                     $new_pesan_tiket_d->file_tiket= $url_file;
                 } else {
-                    $new_pesan_tiket_d->file_tiket= '';
+
+                    Session::flash('gagal', 'Tiket harap di upload');
+                    return redirect()->back();
                 }
 
-//                dd($new_pesan_tiket_d);
                 $new_pesan_tiket_d->create();
 
 
@@ -123,6 +117,13 @@ class TransaksiPesanTiketController extends Controller
 
             }
         }
+
+        //update surat h
+        $new_surat_tugas_h = new TPSuratTugasH();
+        $new_surat_tugas_h->id = $request->id_surat_h;
+        $new_surat_tugas_h->plane_status = 0;
+        $new_surat_tugas_h->updated_by = Auth::user()->id;
+        $new_surat_tugas_h->update_plane_sts();
 
 //        dd($request);
 
