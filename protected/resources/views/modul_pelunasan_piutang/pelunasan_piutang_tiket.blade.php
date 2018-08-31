@@ -27,7 +27,7 @@
                         <ul class="nav nav-tabs">
                             @if(Auth::user()->role == 1 || Auth::user()->role == 2)
                                 <li class="active">
-                                    <a href="#tab_2" data-toggle="tab" aria-expanded="true">Pelunasn Piutang Tiket</a>
+                                    <a href="#tab_2" data-toggle="tab" aria-expanded="true">Pelunasan Piutang Tiket</a>
                                 </li>
                             @endif
                         </ul>
@@ -57,6 +57,18 @@
                                                     <h4>{{ Session::get('sukses-delete') }}</h4>
 
                                                     <p>Data Anda berhasil dihapus dari database.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if(Session::get('gagal'))
+                                        <div class="box box-info">
+
+                                            <div class="box-header with-border">
+                                                <div class="callout callout-danger">
+                                                    <h4>{{ Session::get('gagal') }}</h4>
+
+                                                    <p>Submit Anda gagal, silahkan ulangi kembali.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -161,11 +173,11 @@
                                                                                         </td>
                                                                                         <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
                                                                                             <div class="form-group">
-                                                                                                <select id="kota" name="bank" class="form-control select-data" style="width: 100%;">
-                                                                                                    <option value="bni">
+                                                                                                <select id="kota" name="idBank" class="form-control select-data" style="width: 100%;">
+                                                                                                    <option value="1">
                                                                                                         Bank BNI
                                                                                                     </option>
-                                                                                                    <option value="mandiri">
+                                                                                                    <option value="2">
                                                                                                         Bank Mandiri
                                                                                                     </option>
                                                                                                 </select>
@@ -180,7 +192,7 @@
                                                                                                        type="text"
                                                                                                        name="tanggal_bayar"
                                                                                                        class="form-control pull-right"
-                                                                                                       id="datepicker1{{ $i }}">
+                                                                                                       id="datepicker1{{ $i }}" required>
 
                                                                                                 <script>
                                                                                                     $('#datepicker1{{ $i }}').datepicker({
@@ -211,7 +223,7 @@
                                                                                     <th class="text-nowrap">Maskapai</th>
                                                                                     <th class="text-nowrap">Tanggal Berangkat</th>
                                                                                     <th class="text-nowrap">Tanggal Kembali</th>
-                                                                                    <th class="text-nowrap">Harga Per Tiket (PP)</th>
+                                                                                    <th class="text-nowrap">Harga Per Tiket (PP) (Saldo)</th>
                                                                                     <th class="text-nowrap" style="padding-left: 50px; padding-right: 50px;">
                                                                                         Harga Bayar</th>
                                                                                     <th class="text-nowrap">Check</th>
@@ -238,7 +250,7 @@
                                                                                             </td>
                                                                                             <td class="text-nowrap">
                                                                                                 {{--<input type="hidden" value="{{$data->AP_ticket_price}}" name="nilai_bayar[]" hidden>--}}
-                                                                                                <p>Rp <span class="uang">{{ $data->AP_ticket_price }}</span></p>
+                                                                                                <p>Rp <span class="uang">{{ $data->nilaiSaldo }}</span></p>
                                                                                             </td>
                                                                                             <td class="text-nowrap">
                                                                                                 {{--<input type="text"--}}
@@ -246,7 +258,7 @@
                                                                                                        {{--name="nilai_bayar[]"/>--}}
                                                                                                 <div class="input-group" style="width: 100%; ">
                                                                                                     <input type="text"
-                                                                                                           name="nilai_bayar[]"
+                                                                                                           name="nilai_bayar[{{ $data->id }}]"
                                                                                                            placeholder="Isi Harga Bayar"
                                                                                                            value=""
                                                                                                            class="form-control name_list uang" aria-describedby="basic-addon2" />
@@ -258,7 +270,9 @@
                                                                                             <td>
                                                                                                 <div class="form-group">
                                                                                                     {{--<input type="hidden" value="{{$data->id}}" name="id_tiket_d[]" hidden>--}}
-                                                                                                    <p><input type="checkbox" value="{{ $data->id }}" id="title_{{$i}}" name="id_tiket_d[]"></p>
+                                                                                                    <p>
+                                                                                                        <input type="checkbox" value="{{ $data->id }}" id="title_{{$i}}" name="id_tiket_d[]">
+                                                                                                    </p>
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>

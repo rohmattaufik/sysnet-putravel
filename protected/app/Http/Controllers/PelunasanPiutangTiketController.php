@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller,
     App\Http\Controllers\MDIPA\MDIPAListController as MDipa,
     App\Http\Controllers\TPesananTiket\TPesananTiketHListController as TPesananTiketH,
     App\Http\Controllers\TPesananTiket\TPesananTiketDListController as TPesananTiketD,
+    App\Http\Controllers\MSetNumber\MSetNumberListController as MSetNumber,
     App\Http\Controllers\MSupplier\MSupplierListController as MSupplier,
     App\Http\Controllers\TSuratTugas\TSuratTugasDListController as TPSuratTugasD,
     App\Http\Controllers\TSuratTugas\TSuratTugasHListController as TPSuratTugasH,
@@ -25,7 +26,7 @@ class PelunasanPiutangTiketController extends Controller
     public function index() {
 
         $data_tiket_surat = (new TPesananTiketH)->get_all_list_piutang();
-
+//        dd($data_tiket_surat);
 //        $data_surat_tugas_h_one = (new TPSuratTugasH)->get_surat_tugas_h($id);
 
 
@@ -67,44 +68,58 @@ class PelunasanPiutangTiketController extends Controller
         }
     }
 
-    public function store(Request $request) {
-//        dd($request);
+    public function store(Request $request)
+    {
 
+        if (count($request->nilai_bayar) != count($request->id_tiket_d)) {
+            Session::flash('gagal', 'Isi Harga Bayar dan Checklist harus di isi bersamaan atau tidak sama sekali');
 
-
-        $tiket_d = new TPesananTiketD();
-        for($i=0;$i<count($request->id_tiket_d);$i++) {
-//            dd($tiket_d->get_pesanan_tiket_d($request->id_tiket_d[$i])[0]->AP_ticket_price);
-            for($j=0;$j<count($request->nilai_bayar);$j++) {
-
-                $new_piutang_tiket = DB::table('TPiutang')
-                    ->where('idPesanTiketH',$request->id_tiket_h)
-                    ->where('noPesanD',$request->id_tiket_d[$j])
-                    ->first();
-//                dd($new_piutang_tiket);
-
-                $new_nilai_saldo = $new_piutang_tiket->nilaiSaldo - $new_piutang_tiket->nilai;
-//                dd($new_nilai_saldo);
-                if($new_nilai_saldo == 0) {
-                    DB::table('TPiutang')
-                        ->where('idPesanTiketH',$request->id_tiket_h)
-                        ->where('noPesanD',$request->id_tiket_d[$j])
-                        ->update(['sts' => '0']);
-                }
-
-                if($tiket_d->get_pesanan_tiket_d($request->id_tiket_d[$j])[0]->AP_ticket_price == $request->nilai_bayar[$j]) {
-                    DB::table('TBayar')->insert([
-                        'payment_code' => 123,
-                        'payment_date' => $request->tanggal_bayar,
-                        'jenis' => 'p',
-                        'idBanks' => 1,
-                        'idPesanTiketD' => $request->id_tiket_d[$j],
-                        'nilai' => $request->nilai_bayar[$j]
-                    ]);
-                }
-            }
+            return redirect()->back();
         }
 
+
+        for ($j = 0; $j < count($request->id_tiket_d); $j++) {
+
+            if(is_null($request->nilai_bayar[$request->id_tiket_d[$j]])) {
+                Session::flash('gagal', 'Isi Harga Bayar dan Checklist harus di isi bersamaan atau tidak sama sekali');
+
+                return redirect()->back();
+            }
+
+            $new_piutang_tiket = DB::table('TPiutang')
+                ->where('idPesanTiketH', $request->id_tiket_h)
+                ->where('noPesanD', $request->id_tiket_d[$j])
+                ->first();
+
+            $new_nilai_saldo = $new_piutang_tiket->nilaiSaldo - str_replace('.','',$request->nilai_bayar[$request->id_tiket_d[$j]]);
+
+            if ($new_nilai_saldo == 0) {
+                DB::table('TPiutang')
+                    ->where('idPesanTiketH', $request->id_tiket_h)
+                    ->where('noPesanD', $request->id_tiket_d[$j])
+                    ->update(['nilaiSaldo' => 0, 'sts' => '0']);
+
+                DB::table('TPesanTiket_D')
+                    ->where('id', $request->id_tiket_d[$j])
+                    ->update(['sts' => '0']);
+
+            } else {
+                DB::table('TPiutang')
+                    ->where('idPesanTiketH', $request->id_tiket_h)
+                    ->where('noPesanD', $request->id_tiket_d[$j])
+                    ->update(['nilaiSaldo' => $new_nilai_saldo]);
+            }
+
+            DB::table('TBayar')->insert([
+                'payment_code' => (new MSetNumber)->generateNumber("Pesan Tiket"),
+                'payment_date' => $request->tanggal_bayar,
+                'jenis' => 'p',
+                'idBanks' => $request->idBank,
+                'idPesanTiketD' => $request->id_tiket_d[$j],
+                'nilai' => $request->nilai_bayar[$request->id_tiket_d[$j]]
+            ]);
+
+        }
 
         Session::flash('sukses',"Pelunasan Piutang berhasil diproses.");
         return redirect()->action('PelunasanPiutangTiketController@index');

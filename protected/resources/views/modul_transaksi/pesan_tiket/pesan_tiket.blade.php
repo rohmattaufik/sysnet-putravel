@@ -118,6 +118,26 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="kota">
+                                            Term
+                                        </label>
+                                        <div class="col-lg-4">
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-sticky-note"></i>
+                                                </div>
+                                                {{--<input type="text" placeholder="Pilih Kota Tujuan"--}}
+                                                {{--name="kota" class="form-control pull-right" id="datepicker3">--}}
+                                                <input type="number"
+                                                       class="form-control"
+                                                       name="term"
+                                                       placeholder="Term">
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+                                    </div>
+
 
 
                                 </div>
@@ -322,9 +342,11 @@
                                                         {{--<input type="file" value="Upload Tiket" name="upload_tiket">--}}
                                                     {{--</div>--}}
                                                     <div class="input-group">
+
                                                         <input type="file" class="custom-file-input"
                                                                id="inputGroupFile01" name="file_tiket[]" aria-describedby="inputGroupFileAddon01" required>
                                                         <label class="custom-file-label" for="inputGroupFile01">Upload Tiket* (wajib di upload)</label>
+
                                                     </div>
                                                 </td>
 

@@ -72,6 +72,7 @@ class TransaksiPesanTiketController extends Controller
         $new_pesan_tiket_h->idDIPA = $request->idDipa;
         $new_pesan_tiket_h->created_by = Auth::user()->id;
         $new_pesan_tiket_h->created_at = Carbon::now();
+        $new_pesan_tiket_h->term = $request->term;
 
         //update surat h
         $new_surat_tugas_h = new TPSuratTugasH();
@@ -104,7 +105,7 @@ class TransaksiPesanTiketController extends Controller
                 if(!is_null($request->file('file_tiket')[$i])) {
                     $destinationPath = "Uploads/{$request->book_number[$i]}";
                     $movea = $request->file('file_tiket')[$i]->move($destinationPath,$request->file('file_tiket')[$i]->getClientOriginalName());
-                    $url_file = "Uploads/{$request->book_number[$i]}/{$request->file('file_tiket')[$i]->getClientOriginalName()}";
+                    $url_file = "Uploads/{$request->book_number[$i]}{$request->file('file_tiket')[$i]->getClientOriginalName()}";
                     $new_pesan_tiket_d->file_tiket= $url_file;
                 } else {
                     $new_pesan_tiket_d->file_tiket= '';
