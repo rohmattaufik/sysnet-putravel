@@ -3,16 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="144eb6d5-51ab-492e-b453-2e272e86344f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/app/Http/Controllers/MasterEmployeeController.php" afterPath="$PROJECT_DIR$/protected/app/Http/Controllers/MasterEmployeeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/app/Http/Controllers/MasterParameterController.php" afterPath="$PROJECT_DIR$/protected/app/Http/Controllers/MasterParameterController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/app/Http/Controllers/MasterSBUController.php" afterPath="$PROJECT_DIR$/protected/app/Http/Controllers/MasterSBUController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/app/Http/Controllers/TPesananTiket/TPesananTiketDListController.php" afterPath="$PROJECT_DIR$/protected/app/Http/Controllers/TPesananTiket/TPesananTiketDListController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/app/Http/Controllers/TransaksiPesanTiketController.php" afterPath="$PROJECT_DIR$/protected/app/Http/Controllers/TransaksiPesanTiketController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php" afterPath="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/edit.blade.php" afterPath="$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/edit.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/master-sbu.blade.php" afterPath="$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/master-sbu.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/resources/views/modul_transaksi/pesan_tiket/pesan_tiket.blade.php" afterPath="$PROJECT_DIR$/protected/resources/views/modul_transaksi/pesan_tiket/pesan_tiket.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/resources/views/modul_transaksi/surat_tugas/pesanan_surat_tugas.blade.php" afterPath="$PROJECT_DIR$/protected/resources/views/modul_transaksi/surat_tugas/pesanan_surat_tugas.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/resources/views/modul_master/master_supplier/master-supplier.blade.php" afterPath="$PROJECT_DIR$/protected/resources/views/modul_master/master_supplier/master-supplier.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,11 +18,31 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="surat_tugas.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="surat_tugas.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_transaksi/surat_tugas/surat_tugas.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="363">
               <caret line="408" column="33" lean-forward="false" selection-start-line="408" selection-start-column="31" selection-end-line="408" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pesan_tiket.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_transaksi/pesan_tiket/pesan_tiket.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="308" column="52" lean-forward="false" selection-start-line="308" selection-start-column="52" selection-end-line="308" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="master-employee.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_employee/master-employee.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="448">
+              <caret line="42" column="26" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="42" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -47,8 +61,28 @@
       <file leaf-file-name="MasterSBUController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/MasterSBUController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="71" column="75" lean-forward="true" selection-start-line="71" selection-start-column="75" selection-end-line="71" selection-end-column="75" />
+            <state relative-caret-position="1099">
+              <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="master-supplier.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_supplier/master-supplier.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="831">
+              <caret line="186" column="63" lean-forward="false" selection-start-line="186" selection-start-column="63" selection-end-line="186" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="konfirmasi_tiket.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="327" column="82" lean-forward="false" selection-start-line="327" selection-start-column="80" selection-end-line="327" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -57,9 +91,24 @@
       <file leaf-file-name="master-sbu.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/master-sbu.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="224" column="11" lean-forward="false" selection-start-line="224" selection-start-column="11" selection-end-line="224" selection-end-column="11" />
-              <folding />
+            <state relative-caret-position="691">
+              <caret line="251" column="13" lean-forward="true" selection-start-line="244" selection-start-column="3" selection-end-line="251" selection-end-column="13" />
+              <folding>
+                <element signature="e#2039#2059#0#HTML" expanded="true" />
+                <element signature="e#2279#2326#0#HTML" expanded="true" />
+                <element signature="e#2572#2592#0#HTML" expanded="true" />
+                <element signature="e#3066#3086#0#HTML" expanded="true" />
+                <element signature="e#3542#3562#0#HTML" expanded="true" />
+                <element signature="e#4301#4321#0#HTML" expanded="true" />
+                <element signature="e#4796#4816#0#HTML" expanded="true" />
+                <element signature="e#5272#5292#0#HTML" expanded="true" />
+                <element signature="e#6031#6051#0#HTML" expanded="true" />
+                <element signature="e#6525#6545#0#HTML" expanded="true" />
+                <element signature="e#7001#7021#0#HTML" expanded="true" />
+                <element signature="e#7760#7780#0#HTML" expanded="true" />
+                <element signature="e#8255#8275#0#HTML" expanded="true" />
+                <element signature="e#8732#8752#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,8 +116,8 @@
       <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="79" column="85" lean-forward="true" selection-start-line="79" selection-start-column="85" selection-end-line="79" selection-end-column="85" />
+            <state relative-caret-position="230">
+              <caret line="82" column="46" lean-forward="true" selection-start-line="75" selection-start-column="40" selection-end-line="82" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -84,80 +133,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/resources/views/layouts/sidebar.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="150" column="55" lean-forward="true" selection-start-line="150" selection-start-column="55" selection-end-line="150" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MasterParameterController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/MasterParameterController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="92" column="49" lean-forward="true" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TPesananTiketHListController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/TPesananTiket/TPesananTiketHListController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="25" column="28" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MasterEmployeeController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/MasterEmployeeController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="106" column="70" lean-forward="false" selection-start-line="106" selection-start-column="70" selection-end-line="106" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>choose</find>
-      <find>lama penu</find>
-      <find>&lt;div class=&quot;table-responsive&quot;&gt;</find>
-      <find>arrow</find>
-      <find>batal</find>
-      <find>tanggal bera</find>
-      <find>width=&quot;100%&quot;</find>
-      <find>wid</find>
-      <find>widt</find>
-      <find>&lt;selec</find>
-      <find>&lt;sele</find>
-      <find>harga</find>
-      <find>hari</find>
-      <find>upload ti</find>
-      <find>total</find>
-      <find>multi</find>
-      <find>&lt;form</find>
-      <find>uplo</find>
-      <find>actio</find>
-      <find>pengguna</find>
-      <find>get_by_id_emp</find>
       <find>data_surat_tu</find>
       <find>pesanan</find>
       <find>str</find>
       <find>arr</find>
-      <find>uang</find>
       <find>header</find>
       <find>submi</find>
       <find>nilai</find>
       <find>rupiah</find>
+      <find>ru</find>
+      <find>delete</find>
+      <find>sukses</find>
+      <find>edit</find>
+      <find>value[</find>
+      <find>select2</find>
+      <find>&lt;select</find>
+      <find>&lt;sele</find>
+      <find>&lt;div class=&quot;input-group&quot;&gt;</find>
+      <find>rupia</find>
+      <find>&lt;input</find>
+      <find>wid</find>
+      <find>150</find>
+      <find>15</find>
+      <find>150%</find>
+      <find>rupi</find>
+      <find>reset</find>
+      <find>file_</find>
+      <find>@if</find>
+      <find>uang</find>
+      <find>&lt;td&gt;Rp &lt;span class=&quot;uang&quot;&gt;{{ $sbu-&gt;value }}&lt;/span&gt;&lt;/td&gt;</find>
+      <find>rp</find>
     </findStrings>
     <replaceStrings>
       <replace>col-sm-4</replace>
@@ -182,6 +191,7 @@
       <replace>$data_tiket_user</replace>
       <replace>&lt;th class=&quot;text-nowrap&quot;</replace>
       <replace>&lt;td class=&quot;text-nowrap&quot;&gt;</replace>
+      <replace>120%</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -227,20 +237,20 @@
         <option value="$PROJECT_DIR$/protected/resources/views/modul_master/master_employee/master-employee.blade.php" />
         <option value="$PROJECT_DIR$/protected/resources/views/modul_master/master_data/master-data.blade.php" />
         <option value="$PROJECT_DIR$/protected/resources/views/layouts/script.blade.php" />
-        <option value="$PROJECT_DIR$/protected/resources/views/modul_master/master_supplier/master-supplier.blade.php" />
         <option value="$PROJECT_DIR$/protected/resources/views/modul_master/master_dipa/master-dipa.blade.php" />
         <option value="$PROJECT_DIR$/protected/resources/views/modul_master/master_supplier/edit.blade.php" />
         <option value="$PROJECT_DIR$/protected/resources/views/modul_transaksi/surat_tugas/surat_tugas.blade.php" />
         <option value="$PROJECT_DIR$/protected/resources/views/modul_transaksi/surat_tugas/pesanan_surat_tugas.blade.php" />
         <option value="$PROJECT_DIR$/protected/resources/views/modul_transaksi/pesan_tiket/pesan_tiket.blade.php" />
         <option value="$PROJECT_DIR$/protected/app/Http/Controllers/TPesananTiket/TPesananTiketDListController.php" />
-        <option value="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php" />
         <option value="$PROJECT_DIR$/protected/app/Http/Controllers/TransaksiPesanTiketController.php" />
         <option value="$PROJECT_DIR$/protected/app/Http/Controllers/MasterParameterController.php" />
         <option value="$PROJECT_DIR$/protected/app/Http/Controllers/MasterEmployeeController.php" />
         <option value="$PROJECT_DIR$/protected/app/Http/Controllers/MasterSBUController.php" />
-        <option value="$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/master-sbu.blade.php" />
         <option value="$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/edit.blade.php" />
+        <option value="$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/master-sbu.blade.php" />
+        <option value="$PROJECT_DIR$/protected/resources/views/modul_master/master_supplier/master-supplier.blade.php" />
+        <option value="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php" />
       </list>
     </option>
   </component>
@@ -735,12 +745,12 @@
       <workItem from="1535343570428" duration="45153000" />
       <workItem from="1535527202192" duration="3589000" />
       <workItem from="1535547469560" duration="16027000" />
-      <workItem from="1535683374714" duration="5293000" />
+      <workItem from="1535683374714" duration="7896000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="216272000" />
+    <option name="totallyTimeSpent" value="218875000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -750,10 +760,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -762,7 +773,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1051,37 +1061,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_supplier/master-supplier.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="52" column="50" lean-forward="false" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_employee/master-employee.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="219" column="93" lean-forward="false" selection-start-line="219" selection-start-column="64" selection-end-line="219" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiPembayaranHotelController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="41" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="154" column="88" lean-forward="false" selection-start-line="154" selection-start-column="88" selection-end-line="154" selection-end-column="88" />
-          <folding>
-            <element signature="e#23324#23360#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1098,20 +1082,6 @@
         <state relative-caret-position="316">
           <caret line="36" column="66" lean-forward="false" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="66" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_transaksi/pesan_tiket/pesan_tiket.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="310" column="87" lean-forward="false" selection-start-line="310" selection-start-column="83" selection-end-line="310" selection-end-column="87" />
-          <folding>
-            <element signature="e#8113#8161#0#HTML" expanded="true" />
-            <element signature="e#8335#8383#0#HTML" expanded="true" />
-            <element signature="e#8743#8791#0#HTML" expanded="true" />
-            <element signature="e#8964#9012#0#HTML" expanded="true" />
-            <element signature="e#11638#11658#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1155,18 +1125,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/MasterSBUController.php">
+    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_transaksi/surat_tugas/surat_tugas.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="71" column="75" lean-forward="true" selection-start-line="71" selection-start-column="75" selection-end-line="71" selection-end-column="75" />
+        <state relative-caret-position="363">
+          <caret line="408" column="33" lean-forward="false" selection-start-line="408" selection-start-column="31" selection-end-line="408" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/master-sbu.blade.php">
+    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_transaksi/pesan_tiket/pesan_tiket.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="224" column="11" lean-forward="false" selection-start-line="224" selection-start-column="11" selection-end-line="224" selection-end-column="11" />
+        <state relative-caret-position="108">
+          <caret line="308" column="52" lean-forward="false" selection-start-line="308" selection-start-column="52" selection-end-line="308" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_employee/master-employee.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="42" column="26" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="42" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1181,16 +1159,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="79" column="85" lean-forward="true" selection-start-line="79" selection-start-column="85" selection-end-line="79" selection-end-column="85" />
+        <state relative-caret-position="230">
+          <caret line="82" column="46" lean-forward="true" selection-start-line="75" selection-start-column="40" selection-end-line="82" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_transaksi/surat_tugas/surat_tugas.blade.php">
+    <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/MasterSBUController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="408" column="33" lean-forward="false" selection-start-line="408" selection-start-column="31" selection-end-line="408" selection-end-column="33" />
+        <state relative-caret-position="1099">
+          <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_supplier/master-supplier.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="831">
+          <caret line="186" column="63" lean-forward="false" selection-start-line="186" selection-start-column="63" selection-end-line="186" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/master-sbu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="691">
+          <caret line="251" column="13" lean-forward="true" selection-start-line="244" selection-start-column="3" selection-end-line="251" selection-end-column="13" />
+          <folding>
+            <element signature="e#2039#2059#0#HTML" expanded="true" />
+            <element signature="e#2279#2326#0#HTML" expanded="true" />
+            <element signature="e#2572#2592#0#HTML" expanded="true" />
+            <element signature="e#3066#3086#0#HTML" expanded="true" />
+            <element signature="e#3542#3562#0#HTML" expanded="true" />
+            <element signature="e#4301#4321#0#HTML" expanded="true" />
+            <element signature="e#4796#4816#0#HTML" expanded="true" />
+            <element signature="e#5272#5292#0#HTML" expanded="true" />
+            <element signature="e#6031#6051#0#HTML" expanded="true" />
+            <element signature="e#6525#6545#0#HTML" expanded="true" />
+            <element signature="e#7001#7021#0#HTML" expanded="true" />
+            <element signature="e#7760#7780#0#HTML" expanded="true" />
+            <element signature="e#8255#8275#0#HTML" expanded="true" />
+            <element signature="e#8732#8752#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="327" column="82" lean-forward="false" selection-start-line="327" selection-start-column="80" selection-end-line="327" selection-end-column="82" />
           <folding />
         </state>
       </provider>

@@ -149,7 +149,7 @@
                                                                                 <p>{{ $data_tiket_user[$i]->AP_ticket_price }}</p>
                                                                             </td>
                                                                             <td class="text-nowrap">
-                                                                                @if(!is_null($data_tiket_user[$i]))
+                                                                                @if(!is_null($data_tiket_user[$i]->file_tiket))
                                                                                     <a href="{{ URL::asset($data_tiket_user[$i]->file_tiket) }}" target="_blank">View Tiket</a>
                                                                                     @else
                                                                                     <p>Tidak ada tiket</p>
@@ -295,6 +295,7 @@
                                                                     <th class="text-nowrap">Tanggal Kembali</th>
                                                                     <th class="text-nowrap">Reservasi Tiket Kembali</th>
                                                                     <th class="text-nowrap">Selling Price</th>
+                                                                    <th class="text-nowrap">Tiket</th>
                                                                     </thead>
                                                                     <tbody>
 
@@ -324,7 +325,14 @@
                                                                                 <p>{{ $data->reserve_kembali }}</p>
                                                                             </td>
                                                                             <td class="text-nowrap">
-                                                                                <p>{{ $data->AP_ticket_price }}</p>
+                                                                                Rp <span class="uang">{{ $data->AP_ticket_price }}</span>
+                                                                            </td>
+                                                                            <td class="text-nowrap">
+                                                                                @if(!is_null($data->file_tiket))
+                                                                                    <a href="{{ URL::asset($data->file_tiket) }}" target="_blank">View Tiket</a>
+                                                                                @else
+                                                                                    <p>Tidak ada tiket</p>
+                                                                                @endif
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach
@@ -559,4 +567,15 @@
     </div>
     <!-- /.content-wrapper -->
 
+@stop
+
+@section('new-script')
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            // Format mata uang.
+            $( '.uang' ).mask('000.000.000', {reverse: true});
+
+        });
+    </script>
 @stop

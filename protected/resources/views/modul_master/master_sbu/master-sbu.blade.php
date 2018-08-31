@@ -20,7 +20,21 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    {{--<h3 class="box-title">Quick Example</h3>--}}
+                    {{--<h3 class="box-title">Form</h3>--}}
+                    @if(Session::get('sukses'))
+                        <div class="callout callout-success">
+                            <h4>{{ Session::get('sukses') }}</h4>
+
+                            <p>Data Anda berhasil masuk database.</p>
+                        </div>
+                    @endif
+                    @if(Session::get('sukses-delete'))
+                        <div class="callout callout-danger">
+                            <h4>{{ Session::get('sukses-delete') }}</h4>
+
+                            <p>Data Anda berhasil dihapus dari database.</p>
+                        </div>
+                    @endif
                 </div>
                 <form method="post" action="{{ url(action('MasterSBUController@store'))}}">
                 {{ csrf_field() }}
@@ -37,98 +51,110 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dynamic_field">
+                            <table class="table table-bordered" id="dynamic_field" style="width: 100%;">
                                 <thead>
-                                    <th>Kota</th>
-                                    <th>Golongan</th>
-                                    <th>Nilai</th>
+                                    <th class="col-lg-4">Kota</th>
+                                    <th class="col-lg-4">Golongan</th>
+                                    <th style="padding-right: 10px; padding-left:10px;">Nilai</th>
                                 </thead>
                                 <tr>
-                                    <td>
-                                        <select name="kota[]" class="form-control">
+                                    <td class="text-nowrap">
+                                        <select name="kota[]" class="form-control select-data" style="width: 100%;">
                                             @foreach ($kotas as $kota)
                                                 <option value="{{ $kota->id }}" >{{ $kota->city_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="golongan[]" class="form-control">
+                                        <select name="golongan[]" class="form-control select-data" style="width: 100%;">
                                             @foreach ($golongans as $golongan)
                                                 <option value="{{ $golongan->id }}">{{ $golongan->class_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text"
-                                               name="value[]"
-                                               placeholder="Enter value"
-                                               class="form-control name_list uang" />
+                                        <div class="input-group" style="width: 120%;">
+                                            <input type="text"
+                                                   name="value[]"
+                                                   placeholder="Enter value"
+                                                   class="form-control name_list uang" aria-describedby="basic-addon2" />
+                                            <span class="input-group-addon" id="basic-addon2">Rupiah</span>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <select name="kota[]" class="form-control">
+                                        <select name="kota[]" class="form-control select-data"  style="width: 100%;">
                                             @foreach ($kotas as $kota)
                                                 <option value="{{ $kota->id }}" >{{ $kota->city_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="golongan[]" class="form-control">
+                                        <select name="golongan[]" class="form-control select-data"  style="width: 100%;">
                                             @foreach ($golongans as $golongan)
                                                 <option value="{{ $golongan->id }}">{{ $golongan->class_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text"
-                                               name="value[]"
-                                               placeholder="Enter value"
-                                               class="form-control name_list uang" />
+                                        <div class="input-group" style="width: 120%;">
+                                            <input type="text"
+                                                   name="value[]"
+                                                   placeholder="Enter value"
+                                                   class="form-control name_list uang" aria-describedby="basic-addon2" />
+                                            <span class="input-group-addon" id="basic-addon2">Rupiah</span>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <select name="kota[]" class="form-control">
+                                        <select name="kota[]" class="form-control select-data"  style="width: 100%;">
                                             @foreach ($kotas as $kota)
                                                 <option value="{{ $kota->id }}" >{{ $kota->city_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="golongan[]" class="form-control">
+                                        <select name="golongan[]" class="form-control select-data" style="width: 100%;">
                                             @foreach ($golongans as $golongan)
                                                 <option value="{{ $golongan->id }}">{{ $golongan->class_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text"
-                                               name="value[]"
-                                               placeholder="Enter value"
-                                               class="form-control name_list uang" />
+                                        <div class="input-group" style="width: 120%;">
+                                            <input type="text"
+                                                   name="value[]"
+                                                   placeholder="Enter value"
+                                                   class="form-control name_list uang" aria-describedby="basic-addon2" />
+                                            <span class="input-group-addon" id="basic-addon2">Rupiah</span>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <select name="kota[]" class="form-control">
+                                        <select name="kota[]" class="form-control select-data"  style="width: 100%;">
                                             @foreach ($kotas as $kota)
                                                 <option value="{{ $kota->id }}" >{{ $kota->city_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="golongan[]" class="form-control">
+                                        <select name="golongan[]" class="form-control select-data"  style="width: 100%;">
                                             @foreach ($golongans as $golongan)
                                                 <option  value="{{ $golongan->id }}">{{ $golongan->class_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text"
-                                               name="value[]"
-                                               placeholder="Enter value"
-                                               class="form-control name_list uang" />
+                                        <div class="input-group" style="width: 120%;">
+                                            <input type="text"
+                                                   name="value[]"
+                                                   placeholder="Enter value"
+                                                   class="form-control name_list uang" aria-describedby="basic-addon2" />
+                                            <span class="input-group-addon" id="basic-addon2">Rupiah</span>
+                                        </div>
                                     </td>
                                 </tr>
                                 
@@ -190,11 +216,11 @@
                                     <td>
 
                                         <a type="button" href="{{ url(action('MasterSBUController@edit',$sbu->id)) }}"
-                                                class="btn btn-primary">Edit</a>
+                                                class="btn btn-primary btn-sm">Edit</a>
                                         
                                             {{ csrf_field() }}
                                             <input type="hidden" name="id_sbu" value="{{ $sbu->id }}">
-                                            <button class="btn btn-danger" type="submit">
+                                            <button class="btn btn-danger btn-sm" type="submit">
                                                 Delete
                                             </button>
                                     
@@ -241,24 +267,27 @@
                 $('#dynamic_field').append('' +
                     '<tr id="row'+i+'" class="dynamic-added">' +
                     '<td>' +
-                        '<select name="kota[]" class="form-control">' +
+                        '<select name="kota[]" class="form-control select-data">' +
                             '@foreach ($kotas as $kota)' +
                                 '<option value="{{ $kota->id }}" >{{ $kota->city_name }}</option>'+
                             '@endforeach'+
                         '</select>'+
                     '</td>'+
                     '<td>'+
-                        '<select name="golongan[]" class="form-control">'+
+                        '<select name="golongan[]" class="form-control select-data">'+
                             '@foreach ($golongans as $golongan)'+
                                 '<option value="{{ $golongan->id }}">{{ $golongan->class_name }}</option>'+
                             '@endforeach'+
                         '</select>'+
                     '</td>'+
                     '<td>'+
+                        '<div class="input-group">'+
                         '<input type="text"'+
                                 'name="value[]"'+
                                 'placeholder="Enter value"'+
-                                'class="form-control name_list uang" />'+
+                                'class="form-control name_list uang" aria-describedby="basic-addon2" />'+
+                                '<span class="input-group-addon" id="basic-addon2">Rupiah</span>'+
+                        '</div>'+
                     '</td>'+
                     '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +
                     '</td></tr>');

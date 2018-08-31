@@ -184,9 +184,8 @@
 
                                 </div>
                                 <!-- /.box-body -->
-                                <div class="box-footer">
-                                    <a type="button" href="#" class="btn btn-danger btn-lg">Reset</a>
-                                    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                                <div class="box-footer col-lg-6">
+                                    <button type="submit" class="btn btn-sm btn-primary btn-block">Save</button>
                                 </div>
                                 <!-- /.box-footer -->
                             </form>

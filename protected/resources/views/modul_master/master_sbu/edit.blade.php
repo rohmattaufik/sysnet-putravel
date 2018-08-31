@@ -12,7 +12,7 @@
         </section>
 
         <!-- Main content -->
-        <section class="content container-fluid">
+        <section class="content container-fluid col-lg-6">
 
             <!--------------------------
               | Your Page Content Here |
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="box-body">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
 
                         <div class="alert alert-danger print-error-msg" style="display:none">
                             <ul></ul>
@@ -47,7 +47,7 @@
                                 <thead>
                                     <th>Kota</th>
                                     <th>Golongan</th>
-                                    <th>Nilai</th>
+                                    <th class="col-lg-4">Nilai</th>
                                 </thead>
                                 <tr>
                                     <td>
@@ -73,11 +73,14 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text"
-                                               name="value"
-                                               placeholder="Enter value"
-                                               value="{{$sbu[0]->value}}"
-                                               class="form-control name_list uang" />
+                                        <div class="input-group">
+                                            <input type="text"
+                                                   name="value"
+                                                   placeholder="Enter value"
+                                                   value="{{$sbu[0]->value}}"
+                                                   class="form-control name_list uang" aria-describedby="basic-addon2" />
+                                            <span class="input-group-addon" id="basic-addon2">Rupiah</span>
+                                        </div>
                                     </td>
                                 </tr>
                                 
