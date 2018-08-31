@@ -61,7 +61,6 @@ class KonfirmasiPembayaranTiketController extends Controller
             ->with('index',$index)
             ->with('indextotal',$indextotal = 0)
             ->with('totalarr',$totalarr)
-            ->with('total',$total)
             ;
     }
 

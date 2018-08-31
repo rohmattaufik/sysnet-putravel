@@ -118,8 +118,11 @@
                                                                                     <th class="text-nowrap">No Surat Tugas</th>
                                                                                     <th class="text-nowrap">Total Harga</th>
                                                                                     <th class="text-nowrap">Check All</th>
-                                                                                    <th class="text-nowrap">Bank</th>
-                                                                                    <th class="text-nowrap">Tanggal Bayar</th>
+                                                                                    <th class="text-nowrap" style="padding-right: 50px; padding-left: 50px">
+                                                                                        Bank
+                                                                                    </th>
+                                                                                    <th class="text-nowrap" style="padding-right: 50px; padding-left: 50px">
+                                                                                        Tanggal Bayar</th>
                                                                                     <th class="text-nowrap">Action</th>
                                                                                     </thead>
 
@@ -127,13 +130,14 @@
 
                                                                                     <tr>
                                                                                         <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
-                                                                                            {{ $j }}
+                                                                                            {{ $index++ }}
                                                                                         </td>
                                                                                         <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
                                                                                             <p>{{ $data_tiket_surat[$i]["assigment_letter_code"] }}</p>
                                                                                         </td>
                                                                                         <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
-                                                                                            Rp 5.000.000
+                                                                                            {{--Rp 5.000.000--}}
+                                                                                            <p>Rp <span class="uang">{{ $totalarr[$indextotal++] }}</span></p>
                                                                                         </td>
                                                                                         <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
                                                                                             <div class="form-group">
@@ -157,16 +161,14 @@
                                                                                         </td>
                                                                                         <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
                                                                                             <div class="form-group">
-                                                                                                <div class="col-lg-12">
-                                                                                                    <select id="kota" name="bank" class="form-control select-data">
-                                                                                                        <option value="bni">
-                                                                                                            Bank BNI
-                                                                                                        </option>
-                                                                                                        <option value="mandiri">
-                                                                                                            Bank Mandiri
-                                                                                                        </option>
-                                                                                                    </select>
-                                                                                                </div>
+                                                                                                <select id="kota" name="bank" class="form-control select-data" style="width: 100%;">
+                                                                                                    <option value="bni">
+                                                                                                        Bank BNI
+                                                                                                    </option>
+                                                                                                    <option value="mandiri">
+                                                                                                        Bank Mandiri
+                                                                                                    </option>
+                                                                                                </select>
                                                                                             </div>
                                                                                         </td>
                                                                                         <td class="text-nowrap">
@@ -210,6 +212,8 @@
                                                                                     <th class="text-nowrap">Tanggal Berangkat</th>
                                                                                     <th class="text-nowrap">Tanggal Kembali</th>
                                                                                     <th class="text-nowrap">Harga Per Tiket (PP)</th>
+                                                                                    <th class="text-nowrap" style="padding-left: 50px; padding-right: 50px;">
+                                                                                        Harga Bayar</th>
                                                                                     <th class="text-nowrap">Check</th>
                                                                                     </thead>
                                                                                     <tbody>
@@ -233,15 +237,28 @@
                                                                                                 <p>{{ \Carbon\Carbon::parse($data->arrival_date)->format('d-m-Y')  }}</p>
                                                                                             </td>
                                                                                             <td class="text-nowrap">
-                                                                                                <input type="hidden" value="{{$data->AP_ticket_price}}" name="nilai_bayar[]" hidden>
-                                                                                                <p>{{ $data->AP_ticket_price }}</p>
+                                                                                                {{--<input type="hidden" value="{{$data->AP_ticket_price}}" name="nilai_bayar[]" hidden>--}}
+                                                                                                <p>Rp <span class="uang">{{ $data->AP_ticket_price }}</span></p>
+                                                                                            </td>
+                                                                                            <td class="text-nowrap">
+                                                                                                {{--<input type="text"--}}
+                                                                                                       {{--placeholder="Isi Harga Bayar" --}}
+                                                                                                       {{--name="nilai_bayar[]"/>--}}
+                                                                                                <div class="input-group" style="width: 100%; ">
+                                                                                                    <input type="text"
+                                                                                                           name="nilai_bayar[]"
+                                                                                                           placeholder="Isi Harga Bayar"
+                                                                                                           value=""
+                                                                                                           class="form-control name_list uang" aria-describedby="basic-addon2" />
+                                                                                                    <span class="input-group-addon" id="basic-addon2">Rupiah</span>
+                                                                                                </div>
+
+{{--                                                                                                <p>Rp <span class="uang">{{ $data->AP_ticket_price }}</span></p>--}}
                                                                                             </td>
                                                                                             <td>
                                                                                                 <div class="form-group">
                                                                                                     {{--<input type="hidden" value="{{$data->id}}" name="id_tiket_d[]" hidden>--}}
-                                                                                                    <div class="checkbox">
-                                                                                                        <input type="checkbox" value="{{ $data->id }}" id="title_{{$i}}" name="id_tiket_d[]">
-                                                                                                    </div>
+                                                                                                    <p><input type="checkbox" value="{{ $data->id }}" id="title_{{$i}}" name="id_tiket_d[]"></p>
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>
@@ -314,6 +331,16 @@
 @stop
 
 @section('new-script')
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            // Format mata uang.
+            $( '.uang' ).mask('000.000.000', {reverse: true});
+
+        });
+    </script>
+
 {{--<script>--}}
     {{--$(document).ready(function() {--}}
         {{--$('input[name="all"],input[id="title"]').bind('click', function() {--}}

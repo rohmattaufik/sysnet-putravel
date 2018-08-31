@@ -35,14 +35,28 @@ class PelunasanPiutangTiketController extends Controller
 //        } else {
 //            $data_tiket_user = (new TPesananTiketD)->get_by_id_emp(1);
 //        }
+        $index =1;
 
+        $totalarr = [];
+        for($j=1,$i=0;$i<count($data_tiket_surat);$i++,$j++) {
+            if(count($data_tiket_surat[$i]["pesanTiketD"]) > 0) {
+                $total = 0;
+                foreach($data_tiket_surat[$i]["pesanTiketD"] as $row) {
+//                dd($total += $row->AP_ticket_price);
+                    $total += $row->AP_ticket_price;
+                }
+                array_push($totalarr,$total);
+            }
 
-
-//        dd($data_tiket_surat);
+        }
+//        dd($totalarr);
+//        dd(count($data_tiket_surat[$i]["pesanTiketD"]));
 
         return view('modul_pelunasan_piutang/pelunasan_piutang_tiket')
             ->with('data_tiket_surat',$data_tiket_surat)
-            ;
+            ->with('index',$index)
+            ->with('indextotal',$indextotal = 0)
+            ->with('totalarr',$totalarr);
     }
 
     public function pilihjenis(Request $request) {

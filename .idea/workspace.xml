@@ -4,9 +4,8 @@
     <list default="true" id="144eb6d5-51ab-492e-b453-2e272e86344f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiPembayaranTiketController.php" afterPath="$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiPembayaranTiketController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiTiketController.php" afterPath="$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiTiketController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php" afterPath="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi_pembayaran/konfirmasi_pembayaran_tiket.blade.php" afterPath="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi_pembayaran/konfirmasi_pembayaran_tiket.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/app/Http/Controllers/PelunasanPiutangTiketController.php" afterPath="$PROJECT_DIR$/protected/app/Http/Controllers/PelunasanPiutangTiketController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/resources/views/modul_pelunasan_piutang/pelunasan_piutang_tiket.blade.php" afterPath="$PROJECT_DIR$/protected/resources/views/modul_pelunasan_piutang/pelunasan_piutang_tiket.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,19 +20,55 @@
       <file leaf-file-name="konfirmasi_pembayaran_tiket.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_konfirmasi_pembayaran/konfirmasi_pembayaran_tiket.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="218" column="142" lean-forward="false" selection-start-line="218" selection-start-column="127" selection-end-line="218" selection-end-column="142" />
+            <state relative-caret-position="238">
+              <caret line="140" column="154" lean-forward="true" selection-start-line="140" selection-start-column="154" selection-end-line="140" selection-end-column="154" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KonfirmasiPembayaranTiketController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KonfirmasiPembayaranTiketController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiPembayaranTiketController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="48" column="27" lean-forward="false" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+            <state relative-caret-position="440">
+              <caret line="62" column="40" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="62" selection-end-column="40" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PelunasanPiutangTiketController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/PelunasanPiutangTiketController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="438">
+              <caret line="58" column="41" lean-forward="false" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="master-sbu.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/master-sbu.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="227">
+              <caret line="81" column="46" lean-forward="true" selection-start-line="75" selection-start-column="40" selection-end-line="81" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pelunasan_piutang_tiket.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_pelunasan_piutang/pelunasan_piutang_tiket.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="482">
+              <caret line="250" column="114" lean-forward="false" selection-start-line="250" selection-start-column="114" selection-end-line="250" selection-end-column="114" />
+              <folding>
+                <element signature="e#7141#7188#0#HTML" expanded="true" />
+                <element signature="e#7481#7528#0#HTML" expanded="true" />
+                <element signature="e#12286#12306#0#HTML" expanded="true" />
+                <element signature="e#17847#17895#0#HTML" expanded="true" />
+                <element signature="e#21545#21566#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -41,7 +76,7 @@
       <file leaf-file-name="konfirmasi_tiket.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2921">
+            <state relative-caret-position="473">
               <caret line="588" column="5" lean-forward="true" selection-start-line="579" selection-start-column="0" selection-end-line="588" selection-end-column="5" />
               <folding />
             </state>
@@ -52,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/TPesananTiket/TPesananTiketHListController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="419">
-              <caret line="87" column="9" lean-forward="true" selection-start-line="67" selection-start-column="8" selection-end-line="87" selection-end-column="9" />
+              <caret line="87" column="9" lean-forward="false" selection-start-line="67" selection-start-column="8" selection-end-line="87" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -62,17 +97,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rupiah</find>
-      <find>ru</find>
-      <find>delete</find>
-      <find>sukses</find>
-      <find>edit</find>
       <find>value[</find>
       <find>select2</find>
       <find>&lt;select</find>
       <find>&lt;sele</find>
       <find>&lt;div class=&quot;input-group&quot;&gt;</find>
-      <find>rupia</find>
       <find>&lt;input</find>
       <find>wid</find>
       <find>150</find>
@@ -87,11 +116,17 @@
       <find>file_t</find>
       <find>Rp</find>
       <find>&lt;p&gt;Rp &lt;span class=&quot;uang&quot;&gt;{{ $data-&gt;AP_ticket_price }}&lt;/span&gt;&lt;/p&gt;</find>
-      <find>rp</find>
       <find>Harga</find>
       <find>$j</find>
       <find>uang</find>
       <find>pilih j</find>
+      <find>bank</find>
+      <find>rp</find>
+      <find>.uang</find>
+      <find>totalar</find>
+      <find>total har</find>
+      <find>rupia</find>
+      <find>12</find>
     </findStrings>
     <replaceStrings>
       <replace>col-sm-4</replace>
@@ -147,8 +182,6 @@
         <option value="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi_pembayaran/konfirmasi_pembayaran_hotel.blade.php" />
         <option value="$PROJECT_DIR$/protected/app/Http/Controllers/TPesananTiket/TPesananTiketHListController.php" />
         <option value="$PROJECT_DIR$/protected/app/Http/Controllers/THutangPiutang/TPiutangListController.php" />
-        <option value="$PROJECT_DIR$/protected/resources/views/modul_pelunasan_piutang/pelunasan_piutang_tiket.blade.php" />
-        <option value="$PROJECT_DIR$/protected/app/Http/Controllers/PelunasanPiutangTiketController.php" />
         <option value="$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiHotelController.php" />
         <option value="$PROJECT_DIR$/protected/app/Http/Controllers/MSetNumber/MSetNumberListController.php" />
         <option value="$PROJECT_DIR$/protected/resources/views/modul_master/master_parameter/master-parameter.blade.php" />
@@ -176,6 +209,8 @@
         <option value="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php" />
         <option value="$PROJECT_DIR$/protected/resources/views/modul_konfirmasi_pembayaran/konfirmasi_pembayaran_tiket.blade.php" />
         <option value="$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiPembayaranTiketController.php" />
+        <option value="$PROJECT_DIR$/protected/app/Http/Controllers/PelunasanPiutangTiketController.php" />
+        <option value="$PROJECT_DIR$/protected/resources/views/modul_pelunasan_piutang/pelunasan_piutang_tiket.blade.php" />
       </list>
     </option>
   </component>
@@ -670,15 +705,16 @@
       <workItem from="1535343570428" duration="45153000" />
       <workItem from="1535527202192" duration="3589000" />
       <workItem from="1535547469560" duration="16027000" />
-      <workItem from="1535683374714" duration="11486000" />
+      <workItem from="1535683374714" duration="13690000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222465000" />
+    <option name="totallyTimeSpent" value="224669000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17377399" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -688,7 +724,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -842,16 +878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/PelunasanPiutangTiketController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="75" column="37" lean-forward="false" selection-start-line="75" selection-start-column="37" selection-end-line="75" selection-end-column="37" />
-          <folding>
-            <element signature="e#40#907#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiHotelController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -891,13 +917,6 @@
         <state relative-caret-position="337">
           <caret line="62" column="105" lean-forward="false" selection-start-line="62" selection-start-column="105" selection-end-line="62" selection-end-column="105" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_pelunasan_piutang/pelunasan_piutang_tiket.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="108" column="87" lean-forward="true" selection-start-line="106" selection-start-column="56" selection-end-line="108" selection-end-column="87" />
         </state>
       </provider>
     </entry>
@@ -1064,29 +1083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/master-sbu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="691">
-          <caret line="251" column="13" lean-forward="true" selection-start-line="244" selection-start-column="3" selection-end-line="251" selection-end-column="13" />
-          <folding>
-            <element signature="e#2039#2059#0#HTML" expanded="true" />
-            <element signature="e#2279#2326#0#HTML" expanded="true" />
-            <element signature="e#2572#2592#0#HTML" expanded="true" />
-            <element signature="e#3066#3086#0#HTML" expanded="true" />
-            <element signature="e#3542#3562#0#HTML" expanded="true" />
-            <element signature="e#4301#4321#0#HTML" expanded="true" />
-            <element signature="e#4796#4816#0#HTML" expanded="true" />
-            <element signature="e#5272#5292#0#HTML" expanded="true" />
-            <element signature="e#6031#6051#0#HTML" expanded="true" />
-            <element signature="e#6525#6545#0#HTML" expanded="true" />
-            <element signature="e#7001#7021#0#HTML" expanded="true" />
-            <element signature="e#7760#7780#0#HTML" expanded="true" />
-            <element signature="e#8255#8275#0#HTML" expanded="true" />
-            <element signature="e#8732#8752#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiTiketController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="530">
@@ -1106,32 +1102,62 @@
     <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/TPesananTiket/TPesananTiketHListController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
-          <caret line="87" column="9" lean-forward="true" selection-start-line="67" selection-start-column="8" selection-end-line="87" selection-end-column="9" />
+          <caret line="87" column="9" lean-forward="false" selection-start-line="67" selection-start-column="8" selection-end-line="87" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_konfirmasi/konfirmasi_tiket.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2921">
+        <state relative-caret-position="473">
           <caret line="588" column="5" lean-forward="true" selection-start-line="579" selection-start-column="0" selection-end-line="588" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_konfirmasi_pembayaran/konfirmasi_pembayaran_tiket.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="218" column="142" lean-forward="false" selection-start-line="218" selection-start-column="127" selection-end-line="218" selection-end-column="142" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/KonfirmasiPembayaranTiketController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="48" column="27" lean-forward="false" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+        <state relative-caret-position="440">
+          <caret line="62" column="40" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="62" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_konfirmasi_pembayaran/konfirmasi_pembayaran_tiket.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="140" column="154" lean-forward="true" selection-start-line="140" selection-start-column="154" selection-end-line="140" selection-end-column="154" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/app/Http/Controllers/PelunasanPiutangTiketController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="58" column="41" lean-forward="false" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_master/master_sbu/master-sbu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="81" column="46" lean-forward="true" selection-start-line="75" selection-start-column="40" selection-end-line="81" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/resources/views/modul_pelunasan_piutang/pelunasan_piutang_tiket.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="250" column="114" lean-forward="false" selection-start-line="250" selection-start-column="114" selection-end-line="250" selection-end-column="114" />
+          <folding>
+            <element signature="e#7141#7188#0#HTML" expanded="true" />
+            <element signature="e#7481#7528#0#HTML" expanded="true" />
+            <element signature="e#12286#12306#0#HTML" expanded="true" />
+            <element signature="e#17847#17895#0#HTML" expanded="true" />
+            <element signature="e#21545#21566#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
