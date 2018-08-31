@@ -59,7 +59,7 @@ class TransaksiPesanTiketController extends Controller
     }
     public function store(Request $request) {
 
-        dd($request);
+//        dd($request->file('file_tiket')[1]);
 
         $new_pesan_tiket_h = new TPesananTiketH();
 //        dd((new TPSuratTugasH)->get_surat_tugas_h($request->id_surat_h));
@@ -84,7 +84,7 @@ class TransaksiPesanTiketController extends Controller
         $data_tiket_h_last = (new TPesananTiketH())->get_last();
 
 
-        for($i=0; $i<count($request->book_number); $i++) {
+        for($i=0; $i<count($request->file('file_tiket')); $i++) {
             if(!is_null($request->book_number[$i])) {
                 $new_pesan_tiket_d = new TPesananTiketD();
                 $new_pesan_tiket_d->idSuratTugas_D = $request->idSuratTugas_D[$i];
@@ -95,12 +95,22 @@ class TransaksiPesanTiketController extends Controller
                 $new_pesan_tiket_d->arrival_date = $request->tanggal_kembali[$i];
                 $new_pesan_tiket_d->reserve_berangkat = $request->reservasi_berangkat[$i];
                 $new_pesan_tiket_d->reserve_kembali = $request->reservasi_kembali[$i];
-                $new_pesan_tiket_d->AP_ticket_price = $request->harga_maskapai[$i];
-                $new_pesan_tiket_d->AR_ticket_price = $request->harga_tiket[$i];
+                $new_pesan_tiket_d->AP_ticket_price = str_replace('.','',$request->harga_maskapai[$i]);
+                $new_pesan_tiket_d->AR_ticket_price = str_replace('.','',$request->harga_tiket[$i]);
 //                $new_pesan_tiket_d->margin = 1;
                 $new_pesan_tiket_d->sts = 1;
                 $new_pesan_tiket_d->idPesanTiket_H = $data_tiket_h_last[0]->id;
 
+                if(!is_null($request->file('file_tiket')[$i])) {
+                    $destinationPath = "Uploads/{$request->book_number[$i]}";
+                    $movea = $request->file('file_tiket')[$i]->move($destinationPath,$request->file('file_tiket')[$i]->getClientOriginalName());
+                    $url_file = "Uploads/{$request->book_number[$i]}/{$request->file('file_tiket')[$i]->getClientOriginalName()}";
+                    $new_pesan_tiket_d->file_tiket= $url_file;
+                } else {
+                    $new_pesan_tiket_d->file_tiket= '';
+                }
+
+//                dd($new_pesan_tiket_d);
                 $new_pesan_tiket_d->create();
 
 

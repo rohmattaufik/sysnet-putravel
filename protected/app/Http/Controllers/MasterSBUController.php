@@ -37,7 +37,7 @@ class MasterSBUController extends Controller
                     $new_sbu                   = new MSBU();
                     $new_sbu->idKota           = $request->kota[$i];
                     $new_sbu->idGolongan       = $request->golongan[$i];
-                    $new_sbu->value            = $request->value[$i];
+                    $new_sbu->value            = str_replace('.','',$request->value[$i]);
                     $new_sbu->created_by       = $admin;
                     $new_sbu->updated_by       = $admin;
                     $new_sbu->create();
@@ -69,7 +69,7 @@ class MasterSBUController extends Controller
             $new_sbu                   = new MSBU($request->id);
             $new_sbu->idKota           = $request->kota;
             $new_sbu->idGolongan       = $request->golongan;
-            $new_sbu->value            = $request->value;
+            $new_sbu->value            = str_replace('.','',$request->value);
             $new_sbu->created_by       = $admin;
             $new_sbu->updated_by       = $admin;
             $new_sbu->update();

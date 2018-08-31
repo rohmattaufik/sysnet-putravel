@@ -105,6 +105,7 @@
                                                                     <th class="text-nowrap">Tanggal Kembali</th>
                                                                     <th class="text-nowrap">Reservasi Tiket Kembali</th>
                                                                     <th class="text-nowrap">Selling Price</th>
+                                                                    <th class="text-nowrap">File Tiket</th>
                                                                     <th class="text-nowrap">Action</th>
                                                                     </thead>
 
@@ -146,6 +147,13 @@
                                                                             </td>
                                                                             <td class="text-nowrap">
                                                                                 <p>{{ $data_tiket_user[$i]->AP_ticket_price }}</p>
+                                                                            </td>
+                                                                            <td class="text-nowrap">
+                                                                                @if(!is_null($data_tiket_user[$i]))
+                                                                                    <a href="{{ URL::asset($data_tiket_user[$i]->file_tiket) }}" target="_blank">View Tiket</a>
+                                                                                    @else
+                                                                                    <p>Tidak ada tiket</p>
+                                                                                @endif
                                                                             </td>
                                                                             <td class="text-nowrap">
                                                                                 <button type="submit" class="btn btn-primary">

@@ -102,9 +102,9 @@ class MasterEmployeeController extends Controller
             $new_employee->idGolongan       = $request->golongan;
             $new_employee->email            = $request->email;
             if(!is_null($request->file('photo'))) {
-                $destinationPath = 'Uploads';
+                $destinationPath = "Uploads/employee/{$request->employee_id}";
                 $movea = $request->file('photo')->move($destinationPath,$request->file('photo')->getClientOriginalName());
-                $url_file = "Uploads/{$request->file('photo')->getClientOriginalName()}";
+                $url_file = "Uploads/employee/{$request->employee_id}/{$request->file('photo')->getClientOriginalName()}";
                 $new_employee->photo= $url_file;
             } else {
                 $new_employee->photo= '';
