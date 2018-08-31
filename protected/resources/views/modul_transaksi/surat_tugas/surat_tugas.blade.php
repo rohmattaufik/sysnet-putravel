@@ -185,15 +185,15 @@
                                         <table class="table table-bordered" id="dynamic_field">
                                             <thead>
                                             <th>No</th>
-                                            <th>Nama - Jabatan - Golongan</th>
-                                            <th>Lama Penugasan</th>
+                                            <th  style="width: 100%;" class="text-nowrap">Nama - Jabatan - Golongan</th>
+                                            <th  style="width: 100%;" class="text-nowrap">Lama Penugasan</th>
                                             </thead>
                                             <tr>
-                                                <td>
+                                                <td class="text-nowrap">
                                                     1
                                                 </td>
-                                                <td>
-                                                    <select name="employee[]" class="form-control select-data">
+                                                <td class="text-nowrap">
+                                                    <select name="employee[]" class="form-control select-data" style="width: 100%;">
                                                         <option value="0" >Choose Employee</option>
                                                         @foreach ($data_employee as $data)
                                                             <option value="{{ $data->id }}" >
@@ -203,7 +203,7 @@
                                                     </select>
                                                 </td>
 
-                                                <td>
+                                                <td class="text-nowrap">
                                                     <div class="input-group">
                                                         <input type="text"
                                                                class="form-control"
@@ -217,11 +217,11 @@
                                             </tr>
 
                                             <tr>
-                                                <td>
+                                                <td class="text-nowrap">
                                                     2
                                                 </td>
-                                                <td>
-                                                    <select name="employee[]" class="form-control select-data">
+                                                <td class="text-nowrap">
+                                                    <select name="employee[]" class="form-control select-data" style="width: 100%;">
                                                         <option value="0" >Choose Employee</option>
                                                         @foreach ($data_employee as $data)
                                                             <option value="{{ $data->id }}" >
@@ -231,7 +231,7 @@
                                                     </select>
                                                 </td>
 
-                                                <td>
+                                                <td class="text-nowrap">
                                                     <div class="input-group">
                                                         <input type="text"
                                                                class="form-control"
@@ -245,11 +245,11 @@
 
 
                                             <tr>
-                                                <td>
+                                                <td class="text-nowrap">
                                                     3
                                                 </td>
-                                                <td>
-                                                    <select name="employee[]" class="form-control select-data">
+                                                <td class="text-nowrap">
+                                                    <select name="employee[]" class="form-control select-data" style="width: 100%;">
                                                         <option value="0" >Choose Employee</option>
                                                         @foreach ($data_employee as $data)
                                                             <option value="{{ $data->id }}" >
@@ -259,7 +259,7 @@
                                                     </select>
                                                 </td>
 
-                                                <td>
+                                                <td class="text-nowrap">
                                                     <div class="input-group">
                                                         <input type="text"
                                                                class="form-control"
@@ -273,11 +273,11 @@
 
 
                                             <tr>
-                                                <td>
+                                                <td class="text-nowrap">
                                                     4
                                                 </td>
-                                                <td>
-                                                    <select name="employee[]" class="form-control select-data">
+                                                <td class="text-nowrap">
+                                                    <select name="employee[]" class="form-control select-data" style="width: 100%;">
                                                         <option value="0" >Choose Employee</option>
                                                         @foreach ($data_employee as $data)
                                                             <option value="{{ $data->id }}" >
@@ -287,7 +287,7 @@
                                                     </select>
                                                 </td>
 
-                                                <td>
+                                                <td class="text-nowrap">
                                                     <div class="input-group">
                                                         <input type="text"
                                                                class="form-control"
@@ -304,11 +304,20 @@
                                     </div>
 
                                     <div class="box-footer">
-                                        <button type="button" name="add" id="add" class="btn btn-success btn-block">
-                                            Add Row
-                                        </button>
-                                        <a href="#" type="button" class="btn btn-danger btn-block">Reset</a>
-                                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <button type="button" name="add" id="add" class="btn btn-success btn-block btn-sm">
+                                                    Add Row
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <button type="submit" class="btn btn-primary btn-block btn-sm">Submit</button>
+                                            </div>
+                                        </div>
+                                        {{--<button type="button" name="add" id="add" class="btn btn-success btn-block">--}}
+                                            {{--Add Row--}}
+                                        {{--</button>--}}
+                                        {{--<button type="submit" class="btn btn-primary btn-block">Submit</button>--}}
                                     </div>
                                 </div>
                             </div>
@@ -351,21 +360,21 @@
                                                 <form method="post" action="{{ url(action('TransaksiSuratTugasController@delete')) }}">
                                                     {{ csrf_field() }}
                                                     <td scope="row"><?php echo ++$count; ?></td>
-                                                    <td>{{ \Carbon\Carbon::parse($data['created_at'])->format('d-m-Y') }} </td>
-                                                    <td>{{ \Carbon\Carbon::parse($data['start_date'])->format('d-m-Y') }} </td>
-                                                    <td>{{ \Carbon\Carbon::parse($data['end_date'])->format('d-m-Y') }} </td>
-                                                    <td>{{ $data['city_name'] }}  </td>
-                                                    <td>{{ $data['DIPA_code'] }}</td>
-                                                    <td>{{ $data['description']}}</td>
-                                                    <td>{{ $data['department_name'] }}</td>
-                                                    <td>{{ $data['description_1'] }}</td>
+                                                    <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['created_at'])->format('d-m-Y') }} </td>
+                                                    <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['start_date'])->format('d-m-Y') }} </td>
+                                                    <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['end_date'])->format('d-m-Y') }} </td>
+                                                    <td class="text-nowrap">{{ $data['city_name'] }}  </td>
+                                                    <td class="text-nowrap">{{ $data['DIPA_code'] }}</td>
+                                                    <td class="text-nowrap">{{ $data['description']}}</td>
+                                                    <td class="text-nowrap">{{ $data['department_name'] }}</td>
+                                                    <td class="text-nowrap">{{ $data['description_1'] }}</td>
                                                     <input type="hidden" name="surat_id" value= "{{ $data['id'] }}" required autofocus>
 
-                                                    <td>
+                                                    <td class="text-nowrap">
                                                         <a type="button"
                                                            href="{{ url(action('TransaksiSuratTugasController@edit',$data['id'])) }}"
-                                                           class="btn btn-primary">Edit</a>
-                                                        <button class="btn btn-danger" type="submit">
+                                                           class="btn btn-sm btn-primary">Edit</a>
+                                                        <button class="btn btn-sm btn-danger" type="submit">
                                                             Delete
                                                         </button>
                                                     </td>
@@ -454,11 +463,11 @@
                 i++;
                 $('#dynamic_field').append('' +
                     '<tr id="row'+i+'">' +
-                    '<td>' +
+                    '<td class="text-nowrap">' +
                     '+' +
                     '</td>' +
-                    '<td>' +
-                    '<select name="employee[]" class="form-control select-data">' +
+                    '<td class="text-nowrap">' +
+                    '<select name="employee[]" class="form-control select-data style="width: 100%;">' +
                     '<option value="0" >Choose Employee</option>'+
                     '@foreach ($data_employee as $data)' +
                     '<option value="{{ $data->id }}" >' +
@@ -468,7 +477,7 @@
                     '</select>'+
                     '</td>'+
 
-                    '<td>'+
+                    '<td class="text-nowrap">'+
                     '<div class="input-group">'+
                 '<input type="text"'+
                 'class="form-control"'+
@@ -478,7 +487,7 @@
                 '<span class="input-group-addon" id="basic-addon2">hari</span>'+
                 '</div>'+
                 '</td>'+
-                    '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +
+                    '<td class="text-nowrap"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +
                 '</tr>');
 
 

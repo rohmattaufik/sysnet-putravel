@@ -208,18 +208,18 @@
                             <table id="table_supplier" class="table display responsive no-wrap" width="100%">
                                 <thead>
                                 <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Jenis Supplier</th>
-                                    <th scope="col">Nama Supplier</th>
-                                    <th scope="col">Alamat Supplier</th>
-                                    <th scope="col">Kota</th>
-                                    <th scope="col">E-Mail</th>
-                                    <th scope="col">Contact Number</th>
-                                    <th scope="col">Website</th>
-                                    <th scope="col">Nama Contact Person</th>
-                                    <th scope="col">Nomor Telp Contact Person</th>
-                                    <th scope="col">Alamat Contact Person</th>
-                                    <th scope="col">Action</th>
+                                    <th class="text-nowrap" scope="col">No</th>
+                                    <th class="text-nowrap" scope="col">Jenis Supplier</th>
+                                    <th class="text-nowrap" scope="col">Nama Supplier</th>
+                                    <th class="text-nowrap" scope="col">Alamat Supplier</th>
+                                    <th class="text-nowrap" scope="col">Kota</th>
+                                    <th class="text-nowrap" scope="col">E-Mail</th>
+                                    <th class="text-nowrap" scope="col">Contact Number</th>
+                                    <th class="text-nowrap" scope="col">Website</th>
+                                    <th class="text-nowrap" scope="col">Nama Contact Person</th>
+                                    <th class="text-nowrap" scope="col">Nomor Telp Contact Person</th>
+                                    <th class="text-nowrap" scope="col">Alamat Contact Person</th>
+                                    <th class="text-nowrap" scope="col">Action</th>
 
                                 </tr>
                                 </thead>
@@ -230,22 +230,22 @@
                                         <form method="post" action="{{ url(action('MasterSupplierController@delete')) }}">
                                             {{ csrf_field() }}
                                             <td scope="row"><?php echo ++$count; ?></td>
-                                            <td>{{ $data->supplier_type_name }} </td>
-                                            <td>{{ $data->supplier_name }}  </td>
-                                            <td>{{ $data->supplier_address }}  </td>
-                                            <td>{{ $data->city_name }}  </td>
-                                            <td>{{ $data->email }}</td>
-                                            <td>{{ $data->contact_number}}</td>
-                                            <td>{{ $data->website  }}</td>
-                                            <td>{{ $data->contact_person }}</td>
-                                            <td>{{ $data->contact_person_number }}</td>
-                                            <td>{{ $data->contact_person_address}}  </td>
+                                            <td class="text-nowrap">{{ $data->supplier_type_name }} </td>
+                                            <td class="text-nowrap">{{ $data->supplier_name }}  </td>
+                                            <td class="text-nowrap">{{ $data->supplier_address }}  </td>
+                                            <td class="text-nowrap">{{ $data->city_name }}  </td>
+                                            <td class="text-nowrap">{{ $data->email }}</td>
+                                            <td class="text-nowrap">{{ $data->contact_number}}</td>
+                                            <td class="text-nowrap">{{ $data->website  }}</td>
+                                            <td class="text-nowrap">{{ $data->contact_person }}</td>
+                                            <td class="text-nowrap">{{ $data->contact_person_number }}</td>
+                                            <td class="text-nowrap">{{ $data->contact_person_address}}  </td>
                                             <input type="hidden" name="supplier_id" value= "{{ $data->id }}" required autofocus>
 
-                                            <td>
+                                            <td class="text-nowrap">
                                                 <a type="button" href="{{ url(action('MasterSupplierController@edit',$data->id)) }}"
-                                                   class="btn btn-primary">Edit</a>
-                                                <button class="btn btn-danger" type="submit">
+                                                   class="btn btn-sm btn-primary">Edit</a>
+                                                <button class="btn btn-sm btn-danger" type="submit">
                                                     Delete
                                                 </button>
                                             </td>
