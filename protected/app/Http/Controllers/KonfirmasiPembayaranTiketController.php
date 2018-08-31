@@ -39,8 +39,29 @@ class KonfirmasiPembayaranTiketController extends Controller
 
 //        dd($data_tiket_surat);
 
+        $index =1;
+
+        $totalarr = [];
+        for($j=1,$i=0;$i<count($data_tiket_surat);$i++,$j++) {
+            if(count($data_tiket_surat[$i]["pesanTiketD"]) > 0) {
+                $total = 0;
+                foreach($data_tiket_surat[$i]["pesanTiketD"] as $row) {
+//                dd($total += $row->AP_ticket_price);
+                    $total += $row->AP_ticket_price;
+                }
+                array_push($totalarr,$total);
+            }
+
+        }
+//        dd($totalarr);
+//        dd(count($data_tiket_surat[$i]["pesanTiketD"]));
+
         return view('modul_konfirmasi_pembayaran/konfirmasi_pembayaran_tiket')
             ->with('data_tiket_surat',$data_tiket_surat)
+            ->with('index',$index)
+            ->with('indextotal',$indextotal = 0)
+            ->with('totalarr',$totalarr)
+            ->with('total',$total)
             ;
     }
 
