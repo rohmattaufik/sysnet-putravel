@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller,
     Illuminate\Support\Facades\DB as DB,
     App\Http\Controllers\MDIPA\MDIPAListController as MDipa,
-    App\Http\Controllers\TPesananTiket\TPesananTiketHListController as TPesananTiketH,
-    App\Http\Controllers\TPesananTiket\TPesananTiketDListController as TPesananTiketD,
+    App\Http\Controllers\TPesananHotel\TPesananHoteltHListController as TPesananHotelH,
+    App\Http\Controllers\TPesananHotel\TPesanHotelDListController as TPesananHotelD,
     App\Http\Controllers\MSupplier\MSupplierListController as MSupplier,
     App\Http\Controllers\TSuratTugas\TSuratTugasDListController as TPSuratTugasD,
     App\Http\Controllers\TSuratTugas\TSuratTugasHListController as TPSuratTugasH,
-    App\Http\Controllers\THutangPiutang\TPiutangListController as TPiutang,
     App\Http\Controllers\MKota\MKotaListController as MKota,
     App\Http\Controllers\MEmployee\MEmployeeListController as MEmployee,
     App\Http\Controllers\MDepartment\MDepartmentListController as MDepartment,
@@ -23,24 +22,37 @@ class KonfirmasiPembayaranHotelController extends Controller
 {
     public function index() {
 
-        $data_tiket_surat = (new TPesananTiketH)->get_all_list_konfirmasi_pembayaran_tiket();
+        $data_pesan_hotel_d = (new TPesananHotelD)->get_by_payment( 4 );
+        $data_surat_tugas_h = array();
+        foreach ( $data_pesan_hotel_d as $data_d)
+        {
+            $in = false;
+            for( $ii = 0; $ii < count($data_surat_tugas_h); $ii++ ){
+                if($data_surat_tugas_h[$ii]['id'] == $data_d->id_surat_tugas_h)
+                {
+                    $in = true;
+                    $data_surat_tugas_h[$ii]['data_pesan_hotel'][count($data_surat_tugas_h[$ii]['data_pesan_hotel'])] = $data_d;
+                }
+            }
+            if( $in == false)
+            {
+                $item_h = (new TPSuratTugasH)->get_surat_tugas_h($data_d->id_surat_tugas_h);
+                $item_h[0]['data_pesan_hotel'][0] = $data_d;
+                array_push($data_surat_tugas_h , $item_h[0]);
+            }
+        }
 
-//        $data_surat_tugas_h_one = (new TPSuratTugasH)->get_surat_tugas_h($id);
-
-
-
-//        if (Auth::user()->role == 1 || Auth::user()->role == 2) {
-//            $data_tiket_user = (new TPesananTiketD)->get_by_id_emp(Auth::user()->id);
-//        } else {
-//            $data_tiket_user = (new TPesananTiketD)->get_by_id_emp(1);
-//        }
-
-
-
-//        dd($data_tiket_surat);
-
+        for ($jj = 0; $jj < count($data_surat_tugas_h); $jj++){
+            $total_payment = 0;
+            foreach( $data_surat_tugas_h[$jj]['data_pesan_hotel'] as $data_pesan_hotel)
+            {
+                $total_payment += $data_pesan_hotel->AR_price;
+            }
+            $data_surat_tugas_h[$jj]['total_payment'] = $total_payment;
+        }
+       
         return view('modul_konfirmasi_pembayaran/konfirmasi_pembayaran_hotel')
-            ->with('data_tiket_surat',$data_tiket_surat)
+            ->with('data',$data_surat_tugas_h)
             ;
     }
 
@@ -156,13 +168,16 @@ class KonfirmasiPembayaranHotelController extends Controller
 //        dd($request);
         $id_user = Auth::user()->id;
 
-        for($i=0;$i<count($request->id_tiket_d);$i++) {
-            (new TPesananTiketD)->update_status($request->id_tiket_d[$i], '5');
+        foreach ( $request->id_hotel_d as $id_hotel_d)
+            {
+            $pesan_hotel_d = new TPesananHotelD( $id_hotel_d);
+            $pesan_hotel_d->payment_status = 5;
+            $pesan_hotel_d->update();
         }
 
 
-        Session::flash('sukses', 'Data Tiket Anda berhasil di-update');
-        return redirect(url(action('KonfirmasiPembayaranTiketController@index')));
+        Session::flash('sukses', 'Data Hotel Anda berhasil di-update');
+        return redirect(url(action('KonfirmasiPembayaranHotelController@index')));
 
     }
 

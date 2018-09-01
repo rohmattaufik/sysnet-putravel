@@ -108,9 +108,9 @@
                                                             <div class="row">
                                                                 <div class="col-lg-12">
 
-                                                                    @for($j=1,$i=0;$i<count($data_tiket_surat);$i++,$j++)
-                                                                        @if(count($data_tiket_surat[$i]["pesanTiketD"]) > 0)
-                                                                            <form method="post" action="{{ url(action('KonfirmasiPembayaranTiketController@update')) }}">
+                                                                    @for($j=1,$i=0;$i<count($data);$i++,$j++)
+                                                                        @if(count($data[$i]) > 0)
+                                                                            <form method="post" action="{{ url(action('KonfirmasiPembayaranHotelController@update')) }}">
                                                                                 {{ csrf_field() }}
                                                                                 <table class="table table-bordered" id="dynamic_field">
                                                                                     <thead class="">
@@ -125,16 +125,16 @@
                                                                                     <tbody>
 
                                                                                     <tr>
-                                                                                        <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
+                                                                                        <td class="text-nowrap" rowspan="{{ count($data[$i]) }}">
                                                                                             {{ $j }}
                                                                                         </td>
-                                                                                        <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
-                                                                                            <p>{{ $data_tiket_surat[$i]["assigment_letter_code"] }}</p>
+                                                                                        <td class="text-nowrap" rowspan="{{ count($data[$i]) }}">
+                                                                                            <p>{{ $data[$i]["assignment_letter_code"] }}</p>
                                                                                         </td>
-                                                                                        <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
-                                                                                            Rp 5.000.000
+                                                                                        <td class="text-nowrap" rowspan="{{ count($data[$i]) }}">
+                                                                                            Rp {{ $data[$i]["total_payment"] }},-
                                                                                         </td>
-                                                                                        <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
+                                                                                        <td class="text-nowrap" rowspan="{{ count($data[$i]) }}">
                                                                                             <div class="form-group">
                                                                                                 <div class="checkbox">
                                                                                                     <label>
@@ -144,7 +144,7 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </td>
-                                                                                        <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
+                                                                                        <td class="text-nowrap" rowspan="{{ count($data[$i]) }}">
                                                                                             <div class="form-group">
                                                                                                 <div class="col-lg-12">
                                                                                                     <select id="kota" name="bank" class="form-control select-data">
@@ -158,7 +158,7 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </td>
-                                                                                        <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
+                                                                                        <td class="text-nowrap" rowspan="{{ count($data[$i]) }}">
                                                                                             <button type="submit" class="btn btn-info">
                                                                                                 Submit
                                                                                             </button>
@@ -173,42 +173,45 @@
                                                                                     <thead class="">
                                                                                     <th class="text-nowrap">Nama</th>
                                                                                     <th class="text-nowrap">Kota</th>
-                                                                                    <th class="text-nowrap">Maskapai</th>
-                                                                                    <th class="text-nowrap">Tanggal Berangkat</th>
-                                                                                    <th class="text-nowrap">Tanggal Kembali</th>
-                                                                                    <th class="text-nowrap">Harga Per Tiket (PP)</th>
+                                                                                    <th class="text-nowrap">Hotel</th>
+                                                                                    <th class="text-nowrap">Tanggal Checkin</th>
+                                                                                    <th class="text-nowrap">Tanggal Checkout</th>
+                                                                                    <th class="text-nowrap">Harga Per Malam</th>
                                                                                     <th class="text-nowrap">Check</th>
+                                                                                    <th class="text-nowrap">Nilai Bayar</th>
                                                                                     </thead>
                                                                                     <tbody>
 
 
-                                                                                    @foreach($data_tiket_surat[$i]["pesanTiketD"] as $data)
+                                                                                    @foreach($data[$i]["data_pesan_hotel"] as $pesan_hotel)
                                                                                         <tr>
                                                                                             <td class="text-nowrap">
-                                                                                                <p>{{ $data->employee_name}}</p>
+                                                                                                <p>{{ $pesan_hotel->employee_name}}</p>
                                                                                             </td>
                                                                                             <td class="text-nowrap">
-                                                                                                <p>{{ $data->city_name }}</p>
+                                                                                                <p>{{ $pesan_hotel->city_name }}</p>
                                                                                             </td>
                                                                                             <td class="text-nowrap">
-                                                                                                <p>{{ $data->supplier_name }}</p>
+                                                                                                <p>{{ $pesan_hotel->supplier_name }}</p>
                                                                                             </td>
                                                                                             <td class="text-nowrap">
-                                                                                                <p>{{ \Carbon\Carbon::parse($data->departure_date)->format('d-m-Y')  }}</p>
+                                                                                                <p>{{ \Carbon\Carbon::parse($pesan_hotel->checkin_date)->format('d-m-Y')  }}</p>
                                                                                             </td>
                                                                                             <td class="text-nowrap">
-                                                                                                <p>{{ \Carbon\Carbon::parse($data->arrival_date)->format('d-m-Y')  }}</p>
+                                                                                                <p>{{ \Carbon\Carbon::parse($pesan_hotel->checkout_date)->format('d-m-Y')  }}</p>
                                                                                             </td>
                                                                                             <td class="text-nowrap">
-                                                                                                <p>{{ $data->AP_ticket_price }}</p>
+                                                                                                <p>{{ $pesan_hotel->AR_price }}</p>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <div class="form-group">
-                                                                                                    {{--<input type="hidden" value="{{$data->id}}" name="id_tiket_d[]" hidden>--}}
-                                                                                                    <div class="checkbox">
-                                                                                                        <input type="checkbox" value="{{ $data->id }}" name="id_tiket_d[]">
-                                                                                                    </div>
-                                                                                                </div>
+                                                                                                <!-- <div class="form-group"> -->
+                                                                                                    <!-- <div class="checkbox"> -->
+                                                                                                        <input type="checkbox" value="{{ $pesan_hotel->id }}" name="id_hotel_d[]">
+                                                                                                    <!-- </div> -->
+                                                                                                <!-- </div> -->
+                                                                                            </td>
+                                                                                            <td class="text-nowrap">
+                                                                                                <p>{{ $pesan_hotel->AR_price }}</p>
                                                                                             </td>
                                                                                         </tr>
                                                                                     @endforeach
