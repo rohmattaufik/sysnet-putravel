@@ -48,7 +48,7 @@ class TransaksiSuratTugasController extends Controller
            ;
     }
     public function store(Request $request) {
-//        dd($request);
+        dd($request);
         if (!is_null($request)) {
             $new_surat_tugasH                = new TPSuratTugasH();
             $new_surat_tugasH->start_date = $request->dari_tanggal;
@@ -135,6 +135,7 @@ class TransaksiSuratTugasController extends Controller
 
     public function update(Request $request)
     {
+        dd($request);
         $id_user = Auth::user()->id;
 
         if ($id_user) {
