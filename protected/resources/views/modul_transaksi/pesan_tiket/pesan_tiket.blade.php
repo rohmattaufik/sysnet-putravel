@@ -53,11 +53,19 @@
                                         <p>Data Anda berhasil dihapus dari database.</p>
                                     </div>
                                 @endif
+                                @if(Session::get('gagal'))
+                                    <div class="callout callout-danger">
+                                        <h4>{{ Session::get('gagal') }}</h4>
+
+                                        <p>Silahkan input ulang data Anda.</p>
+                                    </div>
+                                @endif
                             </div>
                         @endif
 
                         <div class="box-body">
-                            <form class="form-horizontal" method="post" action="{{url(action('TransaksiPesanTiketController@store'))}}">
+                            <form enctype="multipart/form-data" class="form-horizontal"
+                                  method="post" action="{{url(action('TransaksiPesanTiketController@store'))}}">
                                 {{ csrf_field() }}
                                 <div class="box-body">
                                     <div class="form-group">
@@ -117,6 +125,27 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="kota">
+                                            Term
+                                        </label>
+                                        <div class="col-lg-4">
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-sticky-note"></i>
+                                                </div>
+                                                {{--<input type="text" placeholder="Pilih Kota Tujuan"--}}
+                                                {{--name="kota" class="form-control pull-right" id="datepicker3">--}}
+                                                <input type="number"
+                                                       class="form-control"
+                                                       name="term"
+                                                       placeholder="Term" required>
+                                                <input type="hidden" name="id_surat_h" value="{{ $id_surat_h }}">
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+                                    </div>
+
 
 
                                 </div>
@@ -155,17 +184,25 @@
                                         <div class="col-lg-12">
 
 
-                                    <table class="table table-bordered" id="dynamic_field">
+                                    <table class="table table-bordered" id="dynamic_field" width="100%">
                                         <thead class="">
                                         <th class="text-nowrap">Nama</th>
                                         <th class="text-nowrap">Nama Maskapai</th>
                                         <th class="text-nowrap">Booking Number</th>
-                                        <th class="text-nowrap">Tanggal Berangkat</th>
-                                        <th class="text-nowrap">Tanggal Kembali</th>
+                                        <th class="text-nowrap" style="padding-left: 50px; padding-right: 50px;">
+                                            Tanggal Berangkat
+                                        </th>
+                                        <th class="text-nowrap" style="padding-left: 50px; padding-right: 50px;">
+                                            Tanggal Kembali
+                                        </th>
                                         <th class="text-nowrap">Reservasi Tiket Berangkat</th>
                                         <th class="text-nowrap">Reservasi Tiket Kembali</th>
-                                        <th class="text-nowrap">Harga Tiket (PP)</th>
-                                        <th class="text-nowrap">Harga Maskapai</th>
+                                        <th class="text-nowrap" style="padding-left: 50px; padding-right: 50px;">
+                                            Harga Tiket (PP)
+                                        </th>
+                                        <th class="text-nowrap" style="padding-left: 50px; padding-right: 50px;">
+                                            Harga Maskapai
+                                        </th>
                                         </thead>
 
                                         <tbody>
@@ -198,7 +235,7 @@
                                                     <p>{{ $data_surat[0]['suratTugasD'][$i]->employee_name }}</p>
                                                 </td>
                                                 <td class="text-nowrap">
-                                                    <select name="maskapai[]" class="form-control select-data">
+                                                    <select name="maskapai[]" class="form-control select-data" style="width: 100%;">
                                                         <option value="0" >Pilih Maskapai</option>
                                                         @foreach ($data_supplier as $data)
                                                             @if($data->idJenisSupplier == 7)
@@ -229,6 +266,7 @@
                                                         </div>
                                                         <input placeholder="Pilih Tanggal Berangkat"
                                                                type="text"
+
                                                                name="tanggal_berangkat[]"
                                                                class="form-control pull-right"
                                                                id="datepicker1{{ $i }}">
@@ -289,7 +327,9 @@
                                                         <input type="text"
                                                                class="form-control uang"
                                                                name="harga_tiket[]"
-                                                               placeholder="Harga Tiket (PP)">
+                                                               placeholder="Harga Tiket (PP)"
+                                                               aria-describedby="basic-addon2">
+                                                        <span class="input-group-addon" id="basic-addon2">Rupiah</span>
                                                     </div>
                                                 </td>
 
@@ -298,7 +338,9 @@
                                                         <input type="text"
                                                                class="form-control uang"
                                                                name="harga_maskapai[]"
-                                                               placeholder="Harga Maskapai">
+                                                               placeholder="Harga Maskapai"
+                                                               aria-describedby="basic-addon2">
+                                                        <span class="input-group-addon" id="basic-addon2">Rupiah</span>
                                                     </div>
                                                 </td>
 
@@ -308,11 +350,11 @@
                                                         {{--<input type="file" value="Upload Tiket" name="upload_tiket">--}}
                                                     {{--</div>--}}
                                                     <div class="input-group">
-                                                    <div class="custom-file">
+
                                                         <input type="file" class="custom-file-input"
                                                                id="inputGroupFile01" name="file_tiket[]" aria-describedby="inputGroupFileAddon01">
                                                         <label class="custom-file-label" for="inputGroupFile01">Upload Tiket</label>
-                                                    </div>
+
                                                     </div>
                                                 </td>
 
@@ -327,9 +369,9 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td>
+                                            <th class="text-nowrap">
                                                 <p>Total</p>
-                                            </td>
+                                            </th>
                                             <td>
                                                 <div class="input-group">
                                                     <input type="text"
@@ -358,9 +400,15 @@
                                 </div>
 
                                 <div class="box-footer">
-                                    <a href="{{ url(action('TransaksiPesananController@index')) }}"
-                                       type="button" class="btn btn-danger btn-block">Batal</a>
-                                    <button type="submit" class="btn btn-primary btn-block">Pesan</button>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <a href="{{ url(action('TransaksiPesananController@index')) }}"
+                                               type="button" class="btn btn-danger btn-block btn-sm">Batal</a>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <button type="submit" class="btn btn-primary btn-block btn-sm">Pesan</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

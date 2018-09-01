@@ -105,6 +105,7 @@
                                                                     <th class="text-nowrap">Tanggal Kembali</th>
                                                                     <th class="text-nowrap">Reservasi Tiket Kembali</th>
                                                                     <th class="text-nowrap">Selling Price</th>
+                                                                    <th class="text-nowrap">File Tiket</th>
                                                                     <th class="text-nowrap">Action</th>
                                                                     </thead>
 
@@ -118,7 +119,7 @@
                                                                                 <input type="hidden" name="jenis" value="konfirmasi_user">
                                                                         <tr>
                                                                             <td class="text-nowrap">
-                                                                                {{ $j }}
+                                                                                {{ $index_user++ }}
                                                                             </td>
                                                                             <td class="text-nowrap">
                                                                                 <p>{{ $data_tiket_user[$i]->assigment_letter_code }}</p>
@@ -145,7 +146,14 @@
                                                                                 <p>{{ $data_tiket_user[$i]->reserve_kembali }}</p>
                                                                             </td>
                                                                             <td class="text-nowrap">
-                                                                                <p>{{ $data_tiket_user[$i]->AP_ticket_price }}</p>
+                                                                                <p>Rp <span class="uang">{{ $data_tiket_user[$i]->AP_ticket_price }}</span></p>
+                                                                            </td>
+                                                                            <td class="text-nowrap">
+                                                                                @if(!is_null($data_tiket_user[$i]->file_tiket))
+                                                                                    <a href="{{ URL::asset($data_tiket_user[$i]->file_tiket) }}" target="_blank">View Tiket</a>
+                                                                                    @else
+                                                                                    <p>Tidak ada tiket</p>
+                                                                                @endif
                                                                             </td>
                                                                             <td class="text-nowrap">
                                                                                 <button type="submit" class="btn btn-primary">
@@ -266,7 +274,7 @@
                                                                                 </form>
                                                                             </td>
                                                                             <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
-                                                                                {{ $j }}
+                                                                                {{ $index_pembuat_surat++ }}
                                                                             </td>
                                                                             <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
                                                                                 <p>{{ $data_tiket_surat[$i]["assigment_letter_code"] }}</p>
@@ -287,6 +295,7 @@
                                                                     <th class="text-nowrap">Tanggal Kembali</th>
                                                                     <th class="text-nowrap">Reservasi Tiket Kembali</th>
                                                                     <th class="text-nowrap">Selling Price</th>
+                                                                    <th class="text-nowrap">Tiket</th>
                                                                     </thead>
                                                                     <tbody>
 
@@ -316,7 +325,14 @@
                                                                                 <p>{{ $data->reserve_kembali }}</p>
                                                                             </td>
                                                                             <td class="text-nowrap">
-                                                                                <p>{{ $data->AP_ticket_price }}</p>
+                                                                                <p>Rp <span class="uang">{{ $data->AP_ticket_price }}</span></p>
+                                                                            </td>
+                                                                            <td class="text-nowrap">
+                                                                                @if(!is_null($data->file_tiket))
+                                                                                    <a href="{{ URL::asset($data->file_tiket) }}" target="_blank">View Tiket</a>
+                                                                                @else
+                                                                                    <p>Tidak ada tiket</p>
+                                                                                @endif
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach
@@ -388,10 +404,10 @@
                                         <div class="col-lg-12">
 
                                             <div class="box box-primary">
-                                                <div class="box-title">
-                                                    <h3>
-                                                        Konfirmasi Travel
-                                                    </h3>
+                                                <div class="box-header">
+                                                    <h1 class="box-title">
+                                                        Konfirmasi Tiket - Travel
+                                                    </h1>
                                                 </div>
 
                                                 <div class="box-body">
@@ -437,7 +453,7 @@
                                                                                         </form>
                                                                                     </td>
                                                                                     <td class="text-nowrap" rowspan="{{ count($data_tiket_travel[$i]["pesanTiketD"]) }}">
-                                                                                        {{ $j }}
+                                                                                        {{ $index_travel++ }}
                                                                                     </td>
                                                                                     <td class="text-nowrap" rowspan="{{ count($data_tiket_travel[$i]["pesanTiketD"]) }}">
                                                                                         <p>{{ $data_tiket_travel[$i]["assigment_letter_code"] }}</p>
@@ -458,6 +474,7 @@
                                                                                 <th class="text-nowrap">Tanggal Kembali</th>
                                                                                 <th class="text-nowrap">Reservasi Tiket Kembali</th>
                                                                                 <th class="text-nowrap">Selling Price</th>
+                                                                                <th class="text-nowrap">Tiket</th>
                                                                                 </thead>
                                                                                 <tbody>
 
@@ -487,7 +504,14 @@
                                                                                             <p>{{ $data->reserve_kembali }}</p>
                                                                                         </td>
                                                                                         <td class="text-nowrap">
-                                                                                            <p>{{ $data->AP_ticket_price }}</p>
+                                                                                            <p>Rp <span class="uang">{{ $data->AP_ticket_price }}</span></p>
+                                                                                        </td>
+                                                                                        <td class="text-nowrap">
+                                                                                            @if(!is_null($data->file_tiket))
+                                                                                                <a href="{{ URL::asset($data->file_tiket) }}" target="_blank">View Tiket</a>
+                                                                                            @else
+                                                                                                <p>Tidak ada tiket</p>
+                                                                                            @endif
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
@@ -551,4 +575,15 @@
     </div>
     <!-- /.content-wrapper -->
 
+@stop
+
+@section('new-script')
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            // Format mata uang.
+            $( '.uang' ).mask('000.000.000', {reverse: true});
+
+        });
+    </script>
 @stop

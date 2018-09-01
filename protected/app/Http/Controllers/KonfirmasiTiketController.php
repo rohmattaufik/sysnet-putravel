@@ -39,6 +39,9 @@ class KonfirmasiTiketController extends Controller
             $data_tiket_user = (new TPesananTiketD)->get_by_id_emp(1);
         }
 
+        $index_travel = 1;
+        $index_user = 1;
+        $index_pembuat_surat = 1;
 
 
 //        dd($data_tiket_surat);
@@ -53,6 +56,9 @@ class KonfirmasiTiketController extends Controller
             ->with('data_surat_tugas_h',$data_surat_tugas_h)
             ->with('data_tiket_user', $data_tiket_user)
             ->with('data_supplier',$data_supplier)
+            ->with('index_travel', $index_travel)
+            ->with('index_user', $index_user)
+            ->with('index_pembuat_surat', $index_pembuat_surat)
             ;
     }
     public function store(Request $request) {

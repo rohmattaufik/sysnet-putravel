@@ -87,9 +87,9 @@ class MasterParameterController extends Controller
                 $new_travel->contact_number = $request->no_telp;
 
                 if(!is_null($request->file('logo'))) {
-                    $destinationPath = 'Uploads';
+                    $destinationPath = "Uploads/travel-logo/{$request->travel_id}";
                     $movea = $request->file('logo')->move($destinationPath,$request->file('logo')->getClientOriginalName());
-                    $url_file = "Uploads/{$request->file('logo')->getClientOriginalName()}";
+                    $url_file = "Uploads/travel-logo/{$request->travel_id}/{$request->file('logo')->getClientOriginalName()}";
                     $new_travel->logo= $url_file;
                 }
 

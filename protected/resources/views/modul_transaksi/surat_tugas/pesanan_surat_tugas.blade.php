@@ -45,54 +45,62 @@
                             <h1 class="box-title">List of Surat Tugas</h1>
 
                         </div>
-                        <div class="box-body table-responsive no-padding">
+                        <div class="box-body">
 
-                            <table id="table_surat_tugas" class="table display responsive no-wrap" width="100%">
-                                <thead>
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Surat Tugas</th>
-                                    <th scope="col">Kota</th>
-                                    <th scope="col">Tanggal Surat Tugas</th>
-                                    <th scope="col">Action</th>
+                            <div class="table-responsive">
+                                <div class="row">
+                                    <div class="col-lg-12">
 
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php $count = 0; ?>
-                                @foreach($data_surat_tugas_h as $data)
-                                    <tr>
-                                            <td scope="row"><?php echo ++$count; ?></td>
-                                            <td>{{ $data->assigment_letter_code }}  </td>
-                                            <td>{{ $data->city_name }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} </td>
-                                            <input type="hidden" name="surat_id" value= "{{ $data->id }}" required autofocus>
+                                        <table id="table_surat_tugas" class="table display responsive no-wrap" width="100%">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Surat Tugas</th>
+                                                <th scope="col">Kota</th>
+                                                <th scope="col">Tanggal Surat Tugas</th>
+                                                <th scope="col">Action</th>
 
-                                            <td>
-                                              @if($data->hotel_status == 0)
-                                              <button type="button"
-                                                 class="btn btn-primary" disabled>Pesan Hotel</button>
-                                              @else
-                                              <a type="button"
-                                                 href="{{ url(action('TransaksiPesanHotelController@index',$data->id)) }}"
-                                                 class="btn btn-primary">Pesan Hotel</a>
-                                              @endif
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php $count = 0; ?>
+                                            @foreach($data_surat_tugas_h as $data)
+                                                <tr>
+                                                    <td scope="row"><?php echo ++$count; ?></td>
+                                                    <td>{{ $data->assigment_letter_code }}  </td>
+                                                    <td>{{ $data->city_name }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} </td>
+                                                    <input type="hidden" name="surat_id" value= "{{ $data->id }}" required autofocus>
 
-                                              @if($data->plane_status == 0)
-                                              <a type="button"
-                                                 class="btn btn-primary" disabled>Pesan Tiket</a>
-                                              @else
-                                              <a type="button"
-                                                 href="{{ url(action('TransaksiPesanTiketController@index',$data->id)) }}"
-                                                 class="btn btn-primary">Pesan Tiket</a>
-                                              @endif
+                                                    <td>
+                                                        @if($data->hotel_status == 0)
+                                                            <button type="button"
+                                                                    class="btn btn-primary" disabled>Pesan Hotel</button>
+                                                        @else
+                                                            <a type="button"
+                                                               href="{{ url(action('TransaksiPesanHotelController@index',$data->id)) }}"
+                                                               class="btn btn-primary">Pesan Hotel</a>
+                                                        @endif
 
-                                            </td>
-                                    </tr>
-                                @endforeach
+                                                        @if($data->plane_status == 0)
+                                                            <a type="button"
+                                                               class="btn btn-primary" disabled>Pesan Tiket</a>
+                                                        @else
+                                                            <a type="button"
+                                                               href="{{ url(action('TransaksiPesanTiketController@index',$data->id)) }}"
+                                                               class="btn btn-primary">Pesan Tiket</a>
+                                                        @endif
 
-                                </tbody>
-                            </table>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

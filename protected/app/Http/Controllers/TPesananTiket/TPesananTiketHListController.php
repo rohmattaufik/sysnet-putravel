@@ -22,6 +22,7 @@ class TPesananTiketHListController extends Controller{
     public $updated_by;
     public $flag_active;
     public $exist;
+    public $term;
 
     public function __construct($id = false){
         if($id){
@@ -37,6 +38,7 @@ class TPesananTiketHListController extends Controller{
                     $this->order_ticket_status  = $TPesananTiket_H->order_ticket_status;
                     $this->idDIPA               = $TPesananTiket_H->idDIPA;
                     $this->IdDepartment         = $TPesananTiket_H->IdDepartment;
+                    $this->term                 = $TPesananTiket_H->term;
                     $this->created_at           = $TPesananTiket_H->created_at;
                     $this->updated_at           = $TPesananTiket_H->updated_at;
                     $this->created_by           = $TPesananTiket_H->created_by;
@@ -211,9 +213,9 @@ class TPesananTiketHListController extends Controller{
 
     public function create(){
         return DB::unprepared(DB::raw("CALL TPesananTiket_H_Create(
-            $this->order_code, $this->idSuratTugas_H, '$this->transaction_date',
+            '$this->order_code', $this->idSuratTugas_H, '$this->transaction_date',
             $this->idKota, $this->order_ticket_status, $this->idDIPA, $this->IdDepartment,
-            $this->created_by)"));
+            $this->created_by, $this->term)"));
     }
 
     public function update_status_pembuat_surat($id,$sts){

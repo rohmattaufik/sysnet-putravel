@@ -26,6 +26,7 @@ class TPesananTiketDListController extends Controller{
     public $exist;
     public $sts;
     public $idPesanTiket_H;
+    public $file_tiket;
 
     public function __construct($id = false){
         if($id){
@@ -51,6 +52,7 @@ class TPesananTiketDListController extends Controller{
                     $this->exist                = true;
                     $this->sts                = $TPesananTiket_D->sts;
                     $this->idPesanTiket_H = $TPesananTiket_D->idPesanTiket_H;
+                    $this->file_tiket           = $TPesananTiket_D->file_tiket;
                 }else{
                     $this->exist            = false;
                 }
@@ -75,7 +77,7 @@ class TPesananTiketDListController extends Controller{
         return DB::unprepared(DB::raw("CALL TPesanTiket_D_Create($this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price, 
             $this->idKota, $this->idSupplier, '$this->booking_code', '$this->departure_date',
             '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali', 
-            '$this->sts', $this->idPesanTiket_H)"));
+            '$this->sts', $this->idPesanTiket_H, '$this->file_tiket')"));
     }
 
     public function update(){
@@ -83,7 +85,7 @@ class TPesananTiketDListController extends Controller{
             $this->id, $this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price, 
             $this->idKota, $this->idSupplier, '$this->booking_code', '$this->departure_date',
             '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali',
-            '$this->sts', $this->idPesanTiket_H)"));
+            '$this->sts', $this->idPesanTiket_H, '$this->file_tiket')"));
     }
 
     public function update_status($id,$sts){

@@ -5,17 +5,14 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Modul Master SBU
+                Edit Modul Master SBU
                 <small>Add your master data like: Kota, Golongan, dan Nilai</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                <li class="active">Here</li>
-            </ol>
+
         </section>
 
         <!-- Main content -->
-        <section class="content container-fluid">
+        <section class="content container-fluid col-lg-6">
 
             <!--------------------------
               | Your Page Content Here |
@@ -23,11 +20,16 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    {{--<h3 class="box-title">Quick Example</h3>--}}
+                    <h3 class="box-title">
+                        <a href="{{ url(action('MasterSBUController@index')) }}">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                        Edit SBU
+                    </h3>
                 </div>
 
                 <div class="box-body">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
 
                         <div class="alert alert-danger print-error-msg" style="display:none">
                             <ul></ul>
@@ -45,7 +47,7 @@
                                 <thead>
                                     <th>Kota</th>
                                     <th>Golongan</th>
-                                    <th>Nilai</th>
+                                    <th class="col-lg-4">Nilai</th>
                                 </thead>
                                 <tr>
                                     <td>
@@ -71,11 +73,14 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text"
-                                               name="value"
-                                               placeholder="Enter value"
-                                               value="{{$sbu[0]->value}}"
-                                               class="form-control name_list" />
+                                        <div class="input-group">
+                                            <input type="text"
+                                                   name="value"
+                                                   placeholder="Enter value"
+                                                   value="{{$sbu[0]->value}}"
+                                                   class="form-control name_list uang" aria-describedby="basic-addon2" />
+                                            <span class="input-group-addon" id="basic-addon2">Rupiah</span>
+                                        </div>
                                     </td>
                                 </tr>
                                 
@@ -85,7 +90,7 @@
 
                         <div class="box-footer">
                             
-                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-block">Update</button>
                         </div>
                         </form>
                     </div>
@@ -96,3 +101,13 @@
     </div>
 @stop
 
+@section('new-script')
+    <script>
+        $(document).ready(function(){
+
+            // Format mata uang.
+            $( '.uang' ).mask('000.000.000', {reverse: true});
+
+        })
+    </script>
+@stop
