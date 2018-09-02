@@ -109,4 +109,8 @@ class TPesananHotelHListController extends Controller{
         return DB::unprepared(DB::raw("CALL TPesananHotel_H_Delete($this->id)"));
     }
 
+    public function checkStatus($id){
+        return DB::unprepared(DB::raw("CALL TPesanHotel_Check($id)"));
+    }
+
 }

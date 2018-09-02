@@ -237,4 +237,10 @@ class TPesananTiketHListController extends Controller{
         return DB::unprepared(DB::raw("CALL TPesananTiket_H_Delete($this->id)"));
     }
 
+    public function checkStatus($id){
+        return DB::unprepared(DB::raw("CALL TPesanTiket_Check($id)"));
+    }
+
+
+
 }

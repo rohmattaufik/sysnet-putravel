@@ -116,6 +116,15 @@
                             Master DIPA
                         </a>
                     </li>
+                    <li class="{{
+                     Request::is('master/bank') ||
+                     Request::is('master/bank/*')
+                     ? 'active' : ''
+                     }}">
+                        <a href="{{ url('master/bank') }}">
+                            Master Bank
+                        </a>
+                    </li>
 
                 </ul>
             </li>

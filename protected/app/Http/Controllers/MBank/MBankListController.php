@@ -33,4 +33,20 @@ class MBankListController extends Controller {
 
         }
     }
+
+    public function get_list(){
+        return DB::select(DB::raw("CALL MBank_View()"));
+    }
+
+    public function create(){
+        return DB::unprepared(DB::raw("CALL MBank_Create('$this->account_number', '$this->account_holder', '$this->bank_name')"));
+    }
+
+    public function update(){
+        return DB::unprepared(DB::raw("CALL MBank_Update($this->id, '$this->account_number', '$this->account_holder', '$this->bank_name')"));
+    }
+
+    public function delete(){
+        return DB::unprepared(DB::raw("CALL MBank_Delete($this->id)"));
+    }
 }
