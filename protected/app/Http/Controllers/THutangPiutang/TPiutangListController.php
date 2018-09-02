@@ -53,4 +53,14 @@ class TPiutangListController extends Controller{
           }
           return $count;
       }
+
+      public function createHotel($idH){
+            $data_tiket_H = DB::select(DB::raw("CALL TPesanHotel_D_View_idH($idH)"));
+            $count = 0;
+            foreach($data_tiket_H as $row) {
+                DB::unprepared(DB::raw("CALL TPiutang_Hotel_Create($row->id)"));
+            }
+            return $count;
+        }
+
 }
