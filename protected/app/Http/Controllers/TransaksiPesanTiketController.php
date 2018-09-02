@@ -119,10 +119,10 @@ class TransaksiPesanTiketController extends Controller
         }
         //update surat h
         $new_surat_tugas_h = new TPSuratTugasH();
-        $new_surat_tugas_h->id = $request->id_surat_h;
-        $new_surat_tugas_h->plane_status = 0;
-        $new_surat_tugas_h->updated_by = Auth::user()->id;
-        $new_surat_tugas_h->update_plane_sts();
+        // $new_surat_tugas_h->id = $request->id_surat_h;
+        // $new_surat_tugas_h->plane_status = 0;
+        // $new_surat_tugas_h->updated_by = Auth::user()->id;
+        // $new_surat_tugas_h->update_plane_sts();
         $new_pesan_tiket_h->checkStatus($request->id_surat_h);
 //        dd($request);
 

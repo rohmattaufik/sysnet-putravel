@@ -119,7 +119,7 @@ class TransaksiPesanHotelController extends Controller
 
                 }
             }
-
+        
         Session::flash('sukses',"Data Pesan Hotel berhasil diinput.");
         return redirect()->back();
     }
