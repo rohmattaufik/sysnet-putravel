@@ -54,7 +54,7 @@ class TransaksiPesanHotelController extends Controller
             $pesanan_hotel_h                    = new TPesananHotelH();
             $pesanan_hotel_h->idSuratTugas_H    = $data_surat_tugas_h[0]['id'];
             $pesanan_hotel_h->suratPesan_date   = $request->tanggal_surat_tugas;
-            $pesanan_hotel_h->order_code        = $set_num_tPesanHotelh->set_number_code + 1;
+            $pesanan_hotel_h->order_code        =  1;//$set_num_tPesanHotelh->set_number_code + 1;
             $pesanan_hotel_h->start_date        = $data_surat_tugas_h[0]['start_date'];
             $pesanan_hotel_h->end_date          = $data_surat_tugas_h[0]['end_date'];
             // if ( count( $request->harga) < count( $data_surat_tugas_h['suratTugasD'] ) ){
@@ -71,7 +71,8 @@ class TransaksiPesanHotelController extends Controller
 
             // get pesanan_hotel_h by order code
                 $pesanan_hotel_h_inserted   = DB::table('TPesananHotel_H')->where('idSuratTugas_H',$data_surat_tugas_h[0]['id'])
-                                                ->where('order_code',$set_num_tPesanHotelh->set_number_code + 1)->first();
+                                                //->where('order_code',$set_num_tPesanHotelh->set_number_code + 1)->first();
+                                                ->where('order_code', 1)->first();
 
                 for ( $ii = 0 ; $ii < count( $request->harga ) ; $ii++ )
                 {
@@ -99,14 +100,14 @@ class TransaksiPesanHotelController extends Controller
                         // dd($request->harga[$ii]);
 
                         $pesanan_hotel_d                    = new TPesananHotelD();
-                        $pesanan_hotel_d->idPesananHotel    = $surat_tugas_d[0]->id;
+                        $pesanan_hotel_d->idPesananHotel    = $pesanan_hotel_h_inserted->id;
                         $pesanan_hotel_d->idSuratTugasD     = $surat_tugas_d[0]->id;
                         $pesanan_hotel_d->idKota            = $data_surat_tugas_h[0]['idKota'];
                         $pesanan_hotel_d->idSupplier        = $request->hotel[$ii];
                         $pesanan_hotel_d->payment_status    = 1;
                         $pesanan_hotel_d->checkin_date      = $request->tanggal_check_in[$ii];
                         $pesanan_hotel_d->checkout_date     = $request->tanggal_check_out[$ii];
-                        $pesanan_hotel_d->voucher_number    = (@$set_num_tPesanHoteld->set_number_code) + 1;
+                        $pesanan_hotel_d->voucher_number    = 1;//(@$set_num_tPesanHoteld->set_number_code) + 1;
                         $pesanan_hotel_d->AR_price          = (double) $request->harga[$ii];
                         $pesanan_hotel_d->AP_price          = $msbu->value;
                         $pesanan_hotel_d->create();

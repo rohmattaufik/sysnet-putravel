@@ -23,21 +23,21 @@ class KonfirmasiHotelController extends Controller
     public function index() {
 
         $data_pesan_hotel_d;
-        if( Auth::user()->role == 1  )
+        if( Auth::user()->role == 1 or Auth::user()->role == 2 )
         {
             $data_pesan_hotel_d = (new TPesananHotelD)->get_by_payment( 1 );
         }
-        if ( Auth::user()->role == 2)
+        if ( Auth::user()->role == 3 )
         {
-            $data_pesan_hotel_d_paymet_1 = (new TPesananHotelD)->get_by_payment( 1 );
-            $data_pesan_hotel_d_paymet_2 = (new TPesananHotelD)->get_by_payment( 2 );   
+            $data_pesan_hotel_d_paymet_1 = (new TPesananHotelD)->get_by_payment( 2 );
+            $data_pesan_hotel_d_paymet_2 = (new TPesananHotelD)->get_by_payment( 3 );   
             $data_pesan_hotel_d = array_merge( $data_pesan_hotel_d_paymet_1, $data_pesan_hotel_d_paymet_2);
         }
         
-        if ( Auth::user()->role == 3)
-        {
-            $data_pesan_hotel_d = (new TPesananHotelD)->get_by_payment( 3 );
-        }
+        // if ( )
+        // {
+        //     $data_pesan_hotel_d = (new TPesananHotelD)->get_by_payment( 3 );
+        // }
         // dd($data_pesan_hotel_d);
         $data_surat_tugas_h = array();
         foreach ( $data_pesan_hotel_d as $data_d)
@@ -54,7 +54,7 @@ class KonfirmasiHotelController extends Controller
                 }
             }
             if( $in == false)
-            {5
+            {
                 $item_h = (new TPSuratTugasH)->get_surat_tugas_h($data_d->id_surat_tugas_h);
                 $item_h[0]['data_pesan_hotel'][0] = $data_d;
                 array_push($data_surat_tugas_h , $item_h[0]);
@@ -69,7 +69,7 @@ class KonfirmasiHotelController extends Controller
 
     public function store( Request $request)
     {
-        if ( Auth::user()->role == 1)
+        if ( Auth::user()->role == 1 || Auth::user()->role == 2)
         {
             for ( $ii = 0; $ii < count($request->id_pesan_hotel_d); $ii++ )
             {
@@ -80,16 +80,6 @@ class KonfirmasiHotelController extends Controller
                 } else {
                     $pesan_hotel_d->payment_status = 2;
                 }
-                $pesan_hotel_d->update();
-            }
-        }
-
-        if ( Auth::user()->role == 2)
-        {
-            foreach ( $request->id_pesan_hotel_d as $id_pesan_hotel_d)
-            {
-                $pesan_hotel_d = new TPesananHotelD( $id_pesan_hotel_d);
-                $pesan_hotel_d->payment_status = 3;
                 $pesan_hotel_d->update();
             }
         }
