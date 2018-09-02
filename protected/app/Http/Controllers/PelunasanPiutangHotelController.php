@@ -68,58 +68,58 @@ class PelunasanPiutangHotelController extends Controller
     public function store(Request $request)
     {
 
-        if (count($request->nilai_bayar) != count($request->id_tiket_d)) {
+        if (count($request->nilai_bayar) != count($request->id_hotel_d)) {
             Session::flash('gagal', 'Isi Harga Bayar dan Checklist harus di isi bersamaan atau tidak sama sekali');
 
             return redirect()->back();
         }
 
 
-        for ($j = 0; $j < count($request->id_tiket_d); $j++) {
+        for ($j = 0; $j < count($request->id_hotel_d); $j++) {
 
-            if(is_null($request->nilai_bayar[$request->id_tiket_d[$j]])) {
+            if(is_null($request->nilai_bayar[$request->id_hotel_d[$j]])) {
                 Session::flash('gagal', 'Isi Harga Bayar dan Checklist harus di isi bersamaan atau tidak sama sekali');
 
                 return redirect()->back();
             }
 
-            $new_piutang_tiket = DB::table('TPiutang')
-                ->where('idPesanTiketH', $request->id_tiket_h)
-                ->where('noPesanD', $request->id_tiket_d[$j])
+            $new_piutang_hotel = DB::table('TPiutang')
+                ->where('idPesanTiketH', $request->id_hotel_h)
+                ->where('noPesanD', $request->id_hotel_d[$j])
                 ->first();
 
-            $new_nilai_saldo = $new_piutang_tiket->nilaiSaldo - str_replace('.','',$request->nilai_bayar[$request->id_tiket_d[$j]]);
+            $new_nilai_saldo = $new_piutang_hotel->nilaiSaldo - str_replace('.','',$request->nilai_bayar[$request->id_hotel_d[$j]]);
 
             if ($new_nilai_saldo == 0) {
                 DB::table('TPiutang')
-                    ->where('idPesanTiketH', $request->id_tiket_h)
-                    ->where('noPesanD', $request->id_tiket_d[$j])
+                    ->where('idPesanTiketH', $request->id_hotel_h)
+                    ->where('noPesanD', $request->id_hotel_d[$j])
                     ->update(['nilaiSaldo' => 0, 'sts' => '0']);
 
-                DB::table('TPesanTiket_D')
-                    ->where('id', $request->id_tiket_d[$j])
-                    ->update(['sts' => '0']);
+                DB::table('TPesanHotel_D')
+                    ->where('id', $request->id_hotel_d[$j])
+                    ->update(['payment_status' => '0']);
 
             } else {
                 DB::table('TPiutang')
-                    ->where('idPesanTiketH', $request->id_tiket_h)
-                    ->where('noPesanD', $request->id_tiket_d[$j])
+                    ->where('idPesanTiketH', $request->id_hotel_h)
+                    ->where('noPesanD', $request->id_hotel_d[$j])
                     ->update(['nilaiSaldo' => $new_nilai_saldo]);
             }
 
             DB::table('TBayar')->insert([
-                'payment_code' => (new MSetNumber)->generateNumber("Pesan Tiket"),
+                'payment_code' => (new MSetNumber)->generateNumber("Pesan Hotel"),
                 'payment_date' => $request->tanggal_bayar,
                 'jenis' => 'p',
                 'idBanks' => $request->idBank,
-                'idPesanTiketD' => $request->id_tiket_d[$j],
-                'nilai' => $request->nilai_bayar[$request->id_tiket_d[$j]]
+                'idPesanTiketD' => $request->id_hotel_d[$j],
+                'nilai' => $request->nilai_bayar[$request->id_hotel_d[$j]]
             ]);
 
         }
 
         Session::flash('sukses',"Pelunasan Piutang berhasil diproses.");
-        return redirect()->action('PelunasanPiutangTiketController@index');
+        return redirect()->action('PelunasanPiutangHotelController@index');
     }
 
     public function delete(Request $request)
