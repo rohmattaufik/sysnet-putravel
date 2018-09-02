@@ -23,15 +23,9 @@ class TransaksiPesanHotelController extends Controller
 {
     public function index( $id_surat_tugas ) {
 
-        // $data_kota = (new MKota)->get_list();
-        // $data_dipa = (new MDIPA)->get_list();
-        // $data_department = (new MDepartment)->get_list();
         $data_surat_tugas_h = (new TPSuratTugasH)->get_surat_tugas_H( $id_surat_tugas );
-
         $data_kota = (new MSupplier)->get_hotel_by_town($data_surat_tugas_h[0]['idKota']);
-        // $data_employee = (new MEmployee)->get_list();
-        // dd($data_surat_tugas_h);
-        // dd($data_surat_tugas_h[0]);
+ 
        return view('modul_transaksi/surat_tugas/pesan_hotel/pesan_hotel')
            ->with('data_kota',$data_kota)
            ->with('data_surat_tugas',$data_surat_tugas_h);
@@ -42,14 +36,6 @@ class TransaksiPesanHotelController extends Controller
 
         if (!is_null($request)) {
             $data_surat_tugas_h = (new TPSuratTugasH)->get_surat_tugas_H( $request->id_surat_tugas );
-            //dd($data_surat_tugas_h);
-            // get set number
-            // $set_num_tPesanHotelh = DB::table('MSetNumber')->where('transaction_type','Pesan Hotel H')->first();
-
-            // @DB::table('MSetNumber')
-            //                     ->where('id', $set_num_tPesanHotelh->id)
-            //                     ->update(['set_number_code' => $set_num_tPesanHotelh->set_number_code + 1]);
-            // update set number
             $generate_number = (new MSetNumber)->generateNumber("Pesan Hotel");
 
             $check_hotel_h   = DB::table('TPesananHotel_H')->where('idSuratTugas_H',$data_surat_tugas_h[0]['id'])->first();
@@ -69,10 +55,8 @@ class TransaksiPesanHotelController extends Controller
                 $pesanan_hotel_h->create();
 
                  // get pesanan_hotel_h by order code
-                 $pesanan_hotel_h_inserted   = DB::table('TPesananHotel_H')->where('idSuratTugas_H',$data_surat_tugas_h[0]['id'])
+                $pesanan_hotel_h_inserted   = DB::table('TPesananHotel_H')->where('idSuratTugas_H',$data_surat_tugas_h[0]['id'])
                                                 ->where('order_code',$generate_number)->first();
-                                                //->where('order_code', 1)->first();
-
             } else {
                 $pesanan_hotel_h_inserted = $check_hotel_h; 
             }
@@ -82,10 +66,7 @@ class TransaksiPesanHotelController extends Controller
             for ( $ii = 0 ; $ii < count( $request->harga ) ; $ii++ )
             {
                 if($request->harga[$ii] != null or $request->harga[$ii] != ""){
-                    //dd($request->id_surat_tugas_d[$ii]);
                     $surat_tugas_d    = (new TPSuratTugasD)->get_surat_tugas_d($request->id_surat_tugas_d[$ii]);
-                    // $surat_tugas_d   = DB::table('TSuratTugas_D')->where('id',$request->id_surat_tugas_d[$ii])->get();
-                    // dd($surat_tugas_d);
                     $data_employee  = DB::table('MEmployee')->where('id',$surat_tugas_d[0]->idEmployee)->first();
 
                     $msbu = DB::table('MSBU')->where('idKota',$data_surat_tugas_h[0]['idKota'])->where('idGolongan',$data_employee->idGolongan)->first();
@@ -93,19 +74,9 @@ class TransaksiPesanHotelController extends Controller
                         Session::flash('gagal',"GAGAL : Data SBU belum ada");
                         return redirect()->back();
                     }
-                    // dd($data_employee->idGolongan);
-                    // dd($msbu);
-                    // get set number
-
+                    
                     $generate_voucher = (new MSetNumber)->generateNumber("Voucher Hotel");
-                    //$set_num_tPesanHoteld = DB::table('MSetNumber')->where('transaction_type','Pesan Hotel D')->first();
-
-                    // update set number
-                    // @DB::table('MSetNumber')
-                    //                 ->where('id', $set_num_tPesanHoteld->id)
-                    //                 ->update(['set_number_code' => $set_num_tPesanHoteld->set_number_code + 1]);
-                    // dd($request->harga[$ii]);
-
+                    
                     $pesanan_hotel_d                    = new TPesananHotelD();
                     $pesanan_hotel_d->idPesananHotel    = $pesanan_hotel_h_inserted->id;
                     $pesanan_hotel_d->idSuratTugasD     = $surat_tugas_d[0]->id;
