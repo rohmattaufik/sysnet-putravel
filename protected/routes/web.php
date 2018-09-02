@@ -188,14 +188,14 @@ Route::prefix('pelunasan-piutang')->group(function () {
         Route::post('update', 'PelunasanPiutangTiketController@update');
     });
 
-    //Konfirmasi Pembayaran Hotel
-//    Route::get('hotel', 'KonfirmasiPembayaranHotelController@index');
-//    Route::prefix('hotel')->group(function () {
-//        Route::post('submit', 'KonfirmasiPembayaranHotelController@store');
-//        Route::post('delete', 'KonfirmasiPembayaranHotelController@delete');
-//        Route::get('edit/{id}', 'KonfirmasiPembayaranHotelController@edit');
-//        Route::post('update', 'KonfirmasiPembayaranHotelController@update');
-//    });
+ // Konfirmasi Pembayaran Hotel
+   Route::get('hotel', 'PelunasanPiutangHotelController@index');
+   Route::prefix('hotel')->group(function () {
+       Route::post('submit', 'PelunasanPiutangHotelController@store');
+       Route::post('delete', 'PelunasanPiutangHotelController@delete');
+       Route::get('edit/{id}', 'PelunasanPiutangHotelController@edit');
+       Route::post('update', 'PelunasanPiutangHotelController@update');
+   });
 });
 
 

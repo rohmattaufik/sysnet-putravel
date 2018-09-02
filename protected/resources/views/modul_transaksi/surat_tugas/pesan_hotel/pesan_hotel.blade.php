@@ -84,13 +84,13 @@
                                                                 <i class="fa fa-calendar"></i>
                                                             </div>
                                                             <input type="text" name="tanggal_surat_tugas"
-                                                                class="form-control pull-right datepicker" id="datepicker1">
+                                                                class="form-control pull-right datepicker" id="datepicker1" required="true">
                                                         </div>
                                                     </th>
                                                 <tr>
                                                 <tr>
                                                     <th>Tanggal Tugas</th>
-                                                    <th>{{ $data_surat_tugas[0]['start_date'] }} SD {{ $data_surat_tugas[0]['end_date'] }}</th>
+                                                    <th>{{ \Carbon\Carbon::parse($data_surat_tugas[0]['start_date'])->format('d-m-Y')  }} SD {{ \Carbon\Carbon::parse($data_surat_tugas[0]['end_date'])->format('d-m-Y')  }}</th>
                                                 <tr>
                                             <thead>
                                         </table>
@@ -106,7 +106,7 @@
                                     <th scope="col">Nama Hotel</th>
                                     <th scope="col">Tanggal Check In</th>
                                     <th scope="col">Tanggal Check Out</th>
-                                    <th scope="col">No Voucher</th>
+                                    <th scope="col">Term</th>
                                     <th scope="col">Harga</th>
                                 </tr>
                                 </thead>
@@ -138,7 +138,7 @@
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
                                                 <input type="text" name="tanggal_check_in[]"
-                                                    value="{{ $data_surat_tugas[0]['start_date']}}" class="form-control pull-right datepicker" id="datepicker1">
+                                                    value="{{ $data_surat_tugas[0]['start_date']  }}" class="form-control pull-right datepicker" id="datepicker1">
                                             </div>
                                         </td>
                                         <td>
@@ -147,15 +147,15 @@
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
                                                 <input type="text" name="tanggal_check_out[]"
-                                                    value="{{ $data_surat_tugas[0]['end_date']}}" class="form-control pull-right datepicker" id="datepicker1">
+                                                    value="{{ $data_surat_tugas[0]['end_date']  }}" class="form-control pull-right datepicker" id="datepicker1">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="input-group">
-                                                <input type="text"
+                                                <input type="number"
                                                         class="form-control"
-                                                        name="voucher[]"
-                                                        placeholder="Voucher" disabled="true">
+                                                        name="term[]"
+                                                        placeholder="term" >
                                             </div>
                                         </td>
                                         <td>

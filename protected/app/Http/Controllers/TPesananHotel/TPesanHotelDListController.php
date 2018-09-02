@@ -22,6 +22,7 @@ class TPesanHotelDListController extends Controller{
     public $margin_double;
     public $created_at;
     public $updated_at;
+    public $term;
     public $flag_active;
     public $exist;
 
@@ -46,6 +47,7 @@ class TPesanHotelDListController extends Controller{
                     $this->AP_price         = $TPesananHotel_D->AP_price;
                     $this->margin_double    = $TPesananHotel_D->margin_double;
                     $this->flag_active      = $TPesananHotel_D->flag_active;
+                    $this->term             = $TPesananHotel_D->term;
                     $this->exist            = true;
                 }else{
                     $this->exist            = false;
@@ -78,7 +80,7 @@ class TPesanHotelDListController extends Controller{
         return DB::unprepared(DB::raw("CALL TPesanHotel_D_Create(
             $this->idPesananHotel, $this->idSuratTugasD, $this->idKota, $this->idSupplier,
             '$this->payment_status', '$this->checkin_date', '$this->checkout_date', 
-            '$this->voucher_number',$this->AR_price, $this->AP_price )"));
+            '$this->voucher_number',$this->AR_price, $this->AP_price, $this->term )"));
     }
 
     public function update(){
@@ -86,7 +88,7 @@ class TPesanHotelDListController extends Controller{
         return DB::unprepared(DB::raw("CALL TPesanHotel_D_Update(
             $this->id, $this->idPesananHotel, $this->idSuratTugasD, $this->idKota, $this->idSupplier,
             '$this->payment_status', '$this->checkin_date', '$this->checkout_date', 
-            '$this->voucher_number',$this->AR_price, $this->AP_price)"));
+            '$this->voucher_number',$this->AR_price, $this->AP_price, $this->term)"));
     }
 
     public function delete(){

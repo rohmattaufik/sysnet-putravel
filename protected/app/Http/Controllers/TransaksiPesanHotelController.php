@@ -104,6 +104,7 @@ class TransaksiPesanHotelController extends Controller
                         $pesanan_hotel_d->idSuratTugasD     = $surat_tugas_d[0]->id;
                         $pesanan_hotel_d->idKota            = $data_surat_tugas_h[0]['idKota'];
                         $pesanan_hotel_d->idSupplier        = $request->hotel[$ii];
+                        $pesanan_hotel_d->term              = $request->term[$ii];
                         $pesanan_hotel_d->payment_status    = 1;
                         $pesanan_hotel_d->checkin_date      = $request->tanggal_check_in[$ii];
                         $pesanan_hotel_d->checkout_date     = $request->tanggal_check_out[$ii];
