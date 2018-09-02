@@ -75,6 +75,15 @@ Route::prefix('master')->group(function () {
         Route::post('update', 'MasterDIPAController@update');
     });
 
+    //master bank
+    Route::get('bank', 'MasterBankController@index');
+    Route::prefix('bank')->group(function () {
+        Route::post('submit', 'MasterBankController@store');
+        Route::post('delete', 'MasterBankController@delete');
+        Route::get('edit/{id}', 'MasterBankController@edit');
+        Route::post('update', 'MasterBankController@update');
+    });
+
 });
 
 Route::prefix('transaksi')->group(function () {

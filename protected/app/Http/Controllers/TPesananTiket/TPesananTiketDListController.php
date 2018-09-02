@@ -5,7 +5,7 @@ namespace App\Http\Controllers\TPesananTiket;
 use App\Http\Controllers\Controller,
   Illuminate\Support\Facades\DB as DB,
   Illuminate\Http\Request;
-  
+
 class TPesananTiketDListController extends Controller{
 
     public $id;
@@ -74,21 +74,21 @@ class TPesananTiketDListController extends Controller{
     }
 
     public function create(){
-        return DB::unprepared(DB::raw("CALL TPesanTiket_D_Create($this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price, 
-            $this->idKota, $this->idSupplier, '$this->booking_code', '$this->departure_date',
-            '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali', 
-            '$this->sts', $this->idPesanTiket_H, '$this->file_tiket')"));
-    }
-
-    public function update(){
-        return DB::unprepared(DB::raw("CALL TPesanTiket_D_Update(
-            $this->id, $this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price, 
+        return DB::unprepared(DB::raw("CALL TPesanTiket_D_Create($this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price,
             $this->idKota, $this->idSupplier, '$this->booking_code', '$this->departure_date',
             '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali',
             '$this->sts', $this->idPesanTiket_H, '$this->file_tiket')"));
     }
 
-    public function update_status($id,$sts){
+    public function update(){
+        return DB::unprepared(DB::raw("CALL TPesanTiket_D_Update(
+            $this->id, $this->idSuratTugas_D, $this->AR_ticket_price, $this->AP_ticket_price,
+            $this->idKota, $this->idSupplier, '$this->booking_code', '$this->departure_date',
+            '$this->arrival_date', '$this->reserve_berangkat', '$this->reserve_kembali',
+            '$this->sts', $this->idPesanTiket_H, '$this->file_tiket')"));
+    }
+
+    public function update_status($id, $sts){
         return DB::unprepared(DB::raw("CALL TPesanTiket_D_Update_status($id, '$sts')"));
     }
 
