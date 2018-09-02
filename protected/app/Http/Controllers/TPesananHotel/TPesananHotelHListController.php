@@ -92,7 +92,7 @@ class TPesananHotelHListController extends Controller{
 
     public function create(){
         return DB::unprepared(DB::raw("CALL TPesananHotel_H_Create($this->idSuratTugas_H,
-                            '$this->suratPesan_date', $this->order_code, '$this->start_date',
+                            '$this->suratPesan_date', '$this->order_code', '$this->start_date',
                             '$this->end_date', $this->payment_status, $this->idDIPA,
                             $this->IdDepartment, $this->created_by)"));
     }
@@ -100,7 +100,7 @@ class TPesananHotelHListController extends Controller{
     public function update(){
         return DB::unprepared(DB::raw("CALL TPesananHotel_H_Update(
                             $this->id, $this->idSuratTugas_H,
-                            '$this->suratPesan_date', $this->order_code, '$this->start_date',
+                            '$this->suratPesan_date', '$this->order_code', '$this->start_date',
                             '$this->end_date', $this->payment_status, $this->idDIPA,
                             $this->IdDepartment, $this->updated_by)"));
     }

@@ -44,137 +44,95 @@ class TransaksiPesanHotelController extends Controller
             $data_surat_tugas_h = (new TPSuratTugasH)->get_surat_tugas_H( $request->id_surat_tugas );
             //dd($data_surat_tugas_h);
             // get set number
-            $set_num_tPesanHotelh = DB::table('MSetNumber')->where('transaction_type','Pesan Hotel H')->first();
+            // $set_num_tPesanHotelh = DB::table('MSetNumber')->where('transaction_type','Pesan Hotel H')->first();
 
-            @DB::table('MSetNumber')
-                                ->where('id', $set_num_tPesanHotelh->id)
-                                ->update(['set_number_code' => $set_num_tPesanHotelh->set_number_code + 1]);
+            // @DB::table('MSetNumber')
+            //                     ->where('id', $set_num_tPesanHotelh->id)
+            //                     ->update(['set_number_code' => $set_num_tPesanHotelh->set_number_code + 1]);
             // update set number
+            $generate_number = (new MSetNumber)->generateNumber("Pesan Hotel");
 
-            $pesanan_hotel_h                    = new TPesananHotelH();
-            $pesanan_hotel_h->idSuratTugas_H    = $data_surat_tugas_h[0]['id'];
-            $pesanan_hotel_h->suratPesan_date   = $request->tanggal_surat_tugas;
-            $pesanan_hotel_h->order_code        =  1;//$set_num_tPesanHotelh->set_number_code + 1;
-            $pesanan_hotel_h->start_date        = $data_surat_tugas_h[0]['start_date'];
-            $pesanan_hotel_h->end_date          = $data_surat_tugas_h[0]['end_date'];
-            // if ( count( $request->harga) < count( $data_surat_tugas_h['suratTugasD'] ) ){
-            //     $pesanan_hotel_h->payment_status    = 0;
-            // } else {
+            $check_hotel_h   = DB::table('TPesananHotel_H')->where('idSuratTugas_H',$data_surat_tugas_h[0]['id'])->first();
+            $pesanan_hotel_h_inserted;
+            if($check_hotel_h == null){
+                $pesanan_hotel_h                    = new TPesananHotelH();
+                $pesanan_hotel_h->idSuratTugas_H    = $data_surat_tugas_h[0]['id'];
+                $pesanan_hotel_h->suratPesan_date   = $request->tanggal_surat_tugas;
+                $pesanan_hotel_h->order_code        = $generate_number; 
+                $pesanan_hotel_h->start_date        = $data_surat_tugas_h[0]['start_date'];
+                $pesanan_hotel_h->end_date          = $data_surat_tugas_h[0]['end_date'];
                 $pesanan_hotel_h->payment_status    = 1;
-            // }
-            $pesanan_hotel_h->idDIPA            = $data_surat_tugas_h[0]['idDipa'];
-            $pesanan_hotel_h->IdDepartment      = $data_surat_tugas_h[0]['idDepartment'];
-            $pesanan_hotel_h->created_by        = Auth::user()->id;
-            $pesanan_hotel_h->updated_by        = Auth::user()->id;
-            $pesanan_hotel_h->create();
+                $pesanan_hotel_h->idDIPA            = $data_surat_tugas_h[0]['idDipa'];
+                $pesanan_hotel_h->IdDepartment      = $data_surat_tugas_h[0]['idDepartment'];
+                $pesanan_hotel_h->created_by        = Auth::user()->id;
+                $pesanan_hotel_h->updated_by        = Auth::user()->id;
+                $pesanan_hotel_h->create();
 
+                 // get pesanan_hotel_h by order code
+                 $pesanan_hotel_h_inserted   = DB::table('TPesananHotel_H')->where('idSuratTugas_H',$data_surat_tugas_h[0]['id'])
+                                                ->where('order_code',$generate_number)->first();
+                                                //->where('order_code', 1)->first();
 
-            // get pesanan_hotel_h by order code
-                $pesanan_hotel_h_inserted   = DB::table('TPesananHotel_H')->where('idSuratTugas_H',$data_surat_tugas_h[0]['id'])
-                                                //->where('order_code',$set_num_tPesanHotelh->set_number_code + 1)->first();
-                                                ->where('order_code', 1)->first();
-
-                for ( $ii = 0 ; $ii < count( $request->harga ) ; $ii++ )
-                {
-                    if($request->harga[$ii] != null or $request->harga[$ii] != ""){
-                        //dd($request->id_surat_tugas_d[$ii]);
-                        $surat_tugas_d    = (new TPSuratTugasD)->get_surat_tugas_d($request->id_surat_tugas_d[$ii]);
-                        // $surat_tugas_d   = DB::table('TSuratTugas_D')->where('id',$request->id_surat_tugas_d[$ii])->get();
-                        // dd($surat_tugas_d);
-                        $data_employee  = DB::table('MEmployee')->where('id',$surat_tugas_d[0]->idEmployee)->first();
-
-                        $msbu = DB::table('MSBU')->where('idKota',$data_surat_tugas_h[0]['idKota'])->where('idGolongan',$data_employee->idGolongan)->first();
-                        if($msbu == null){
-                            Session::flash('gagal',"GAGAL : Data SBU belum ada");
-                            return redirect()->back();
-                        }
-                        // dd($data_employee->idGolongan);
-                        // dd($msbu);
-                        // get set number
-                        $set_num_tPesanHoteld = DB::table('MSetNumber')->where('transaction_type','Pesan Hotel D')->first();
-
-                        // update set number
-                        @DB::table('MSetNumber')
-                                        ->where('id', $set_num_tPesanHoteld->id)
-                                        ->update(['set_number_code' => $set_num_tPesanHoteld->set_number_code + 1]);
-                        // dd($request->harga[$ii]);
-
-                        $pesanan_hotel_d                    = new TPesananHotelD();
-                        $pesanan_hotel_d->idPesananHotel    = $pesanan_hotel_h_inserted->id;
-                        $pesanan_hotel_d->idSuratTugasD     = $surat_tugas_d[0]->id;
-                        $pesanan_hotel_d->idKota            = $data_surat_tugas_h[0]['idKota'];
-                        $pesanan_hotel_d->idSupplier        = $request->hotel[$ii];
-                        $pesanan_hotel_d->term              = $request->term[$ii];
-                        $pesanan_hotel_d->payment_status    = 1;
-                        $pesanan_hotel_d->checkin_date      = $request->tanggal_check_in[$ii];
-                        $pesanan_hotel_d->checkout_date     = $request->tanggal_check_out[$ii];
-                        $pesanan_hotel_d->voucher_number    = 1;//(@$set_num_tPesanHoteld->set_number_code) + 1;
-                        $pesanan_hotel_d->AR_price          = (double) $request->harga[$ii];
-                        $pesanan_hotel_d->AP_price          = $msbu->value;
-                        $pesanan_hotel_d->create();
-
-                        DB::table('TSuratTugas_D')
-                                        ->where('id', $surat_tugas_d[0]->id)
-                                        ->update(['hotel_status' => 0]);
-                    }
-
-                }
+            } else {
+                $pesanan_hotel_h_inserted = $check_hotel_h; 
             }
-        
+            
+           
+
+            for ( $ii = 0 ; $ii < count( $request->harga ) ; $ii++ )
+            {
+                if($request->harga[$ii] != null or $request->harga[$ii] != ""){
+                    //dd($request->id_surat_tugas_d[$ii]);
+                    $surat_tugas_d    = (new TPSuratTugasD)->get_surat_tugas_d($request->id_surat_tugas_d[$ii]);
+                    // $surat_tugas_d   = DB::table('TSuratTugas_D')->where('id',$request->id_surat_tugas_d[$ii])->get();
+                    // dd($surat_tugas_d);
+                    $data_employee  = DB::table('MEmployee')->where('id',$surat_tugas_d[0]->idEmployee)->first();
+
+                    $msbu = DB::table('MSBU')->where('idKota',$data_surat_tugas_h[0]['idKota'])->where('idGolongan',$data_employee->idGolongan)->first();
+                    if($msbu == null){
+                        Session::flash('gagal',"GAGAL : Data SBU belum ada");
+                        return redirect()->back();
+                    }
+                    // dd($data_employee->idGolongan);
+                    // dd($msbu);
+                    // get set number
+
+                    $generate_voucher = (new MSetNumber)->generateNumber("Voucher Hotel");
+                    //$set_num_tPesanHoteld = DB::table('MSetNumber')->where('transaction_type','Pesan Hotel D')->first();
+
+                    // update set number
+                    // @DB::table('MSetNumber')
+                    //                 ->where('id', $set_num_tPesanHoteld->id)
+                    //                 ->update(['set_number_code' => $set_num_tPesanHoteld->set_number_code + 1]);
+                    // dd($request->harga[$ii]);
+
+                    $pesanan_hotel_d                    = new TPesananHotelD();
+                    $pesanan_hotel_d->idPesananHotel    = $pesanan_hotel_h_inserted->id;
+                    $pesanan_hotel_d->idSuratTugasD     = $surat_tugas_d[0]->id;
+                    $pesanan_hotel_d->idKota            = $data_surat_tugas_h[0]['idKota'];
+                    $pesanan_hotel_d->idSupplier        = $request->hotel[$ii];
+                    $pesanan_hotel_d->term              = $request->term[$ii];
+                    $pesanan_hotel_d->payment_status    = 1;
+                    $pesanan_hotel_d->checkin_date      = $request->tanggal_check_in[$ii];
+                    $pesanan_hotel_d->checkout_date     = $request->tanggal_check_out[$ii];
+                    $pesanan_hotel_d->voucher_number    = $generate_voucher;
+                    $pesanan_hotel_d->AR_price          = (double) $request->harga[$ii];
+                    $pesanan_hotel_d->AP_price          = $msbu->value;
+                    $pesanan_hotel_d->create();
+
+                    DB::table('TSuratTugas_D')
+                                    ->where('id', $surat_tugas_d[0]->id)
+                                    ->update(['hotel_status' => 0]);
+                }
+
+            }
+        }
+
+        (new TPesananHotelH)->checkStatus($data_surat_tugas_h[0]['id']);
+    
         Session::flash('sukses',"Data Pesan Hotel berhasil diinput.");
         return redirect()->back();
     }
 
-//     public function delete(Request $request)
-//     {
-
-//         $TSuratH = new TPSuratTugasH($request->surat_id);
-//         $TSuratD = (new TPSuratTugasD)->get_surat_tugas_d_id_h($TSuratH->id);
-//         dd($TSuratD);
-//         $TSuratH->delete();
-
-//         Session::flash('sukses-delete', 'Anda berhasil menghapus data Supplier');
-//         return redirect()->back();
-
-//     }
-
-//     public function edit($id)
-//     {
-//         $MSupplier = (new MSupplier($id))->get_supplier()[0];
-//         $data_kota = (new MKota)->get_list();
-//         $data_jenis_supplier = (new MJenisSupplier)->get_list();
-// //        dd($MSupplier);
-//         return view('modul_master/master_supplier/edit')
-//             ->with('data_supplier', $MSupplier)
-//             ->with('data_jenis_supplier', $data_jenis_supplier)
-//             ->with('data_kota',$data_kota)
-//             ;
-
-//     }
-
-//     public function update(Request $request)
-//     {
-//         $id_user = Auth::user()->id;
-
-//         if ($id_user) {
-//             $new_supplier                = new MSupplier($request->supplier_id);
-//             $new_supplier->supplier_name = $request->nama_supplier;
-//             $new_supplier->idJenisSupplier = $request->jenis_supplier;
-//             $new_supplier->supplier_address = $request->alamat;
-//             $new_supplier->idKota = $request->kota;
-//             $new_supplier->email = $request->email;
-//             $new_supplier->contact_number = $request->no_telp;
-//             $new_supplier->website = $request->website;
-//             $new_supplier->contact_person = $request->name_cp;
-//             $new_supplier->contact_person_number = $request->no_telp_cp;
-//             $new_supplier->contact_person_address = $request->alamat_cp;
-//             $new_supplier->updated_by = Auth::user()->id;
-
-//             $new_supplier->update();
-
-//             Session::flash('sukses', 'Data supplier sukses di-update');
-//             return redirect(url(action('MasterSupplierController@index')));
-//         }
-//     }
 
 }
