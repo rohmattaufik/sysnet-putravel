@@ -16,7 +16,7 @@ class MasterDIPAController extends Controller
     public function index()
     {
         $departments        = (new MDepartment)->get_list();
-        
+
         $dipas              = (new MDIPA)->get_list();
 
         return view('modul_master.master_dipa.master-dipa')
@@ -48,7 +48,7 @@ class MasterDIPAController extends Controller
     public function edit( $id )
     {
         $departments        = (new MDepartment)->get_list();
-        
+
         $dipa              = (new MDIPA)->get_dipa($id);
 
         return view('modul_master.master_dipa.edit')

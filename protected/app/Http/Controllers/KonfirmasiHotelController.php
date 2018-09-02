@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller,
     App\Http\Controllers\MSupplier\MSupplierListController as MSupplier,
     App\Http\Controllers\TSuratTugas\TSuratTugasDListController as TPSuratTugasD,
     App\Http\Controllers\TSuratTugas\TSuratTugasHListController as TPSuratTugasH,
+    App\Http\Controllers\THutangPiutang\TPiutangListController as TPiutang,
     App\Http\Controllers\MKota\MKotaListController as MKota,
     App\Http\Controllers\MEmployee\MEmployeeListController as MEmployee,
     App\Http\Controllers\MDepartment\MDepartmentListController as MDepartment,
@@ -30,10 +31,10 @@ class KonfirmasiHotelController extends Controller
         if ( Auth::user()->role == 3 )
         {
             $data_pesan_hotel_d_paymet_1 = (new TPesananHotelD)->get_by_payment( 2 );
-            $data_pesan_hotel_d_paymet_2 = (new TPesananHotelD)->get_by_payment( 3 );   
+            $data_pesan_hotel_d_paymet_2 = (new TPesananHotelD)->get_by_payment( 3 );
             $data_pesan_hotel_d = array_merge( $data_pesan_hotel_d_paymet_1, $data_pesan_hotel_d_paymet_2);
         }
-        
+
         // if ( )
         // {
         //     $data_pesan_hotel_d = (new TPesananHotelD)->get_by_payment( 3 );
@@ -63,7 +64,7 @@ class KonfirmasiHotelController extends Controller
          // dd($data_surat_tugas_h);
         return view('modul_konfirmasi.konfirmasi_hotel')
                         ->with('data', $data_surat_tugas_h);
-        
+
 
     }
 
@@ -91,11 +92,13 @@ class KonfirmasiHotelController extends Controller
                 $pesan_hotel_d = new TPesananHotelD( $id_pesan_hotel_d);
                 $pesan_hotel_d->payment_status = 4;
                 $pesan_hotel_d->update();
+                (new TPiutang)->createHotel($pesan_hotel_d->idPesananHotel);
+
             }
         }
 
         return redirect('konfirmasi/hotel');
     }
-    
+
 
 }
