@@ -57,12 +57,24 @@
                                                 <div class="col-lg-4">
                                                     <select id="jenis_data" name="jenis_data" class="form-control select-data">
 
-                                                        <option value="jabatan" data-select2-id="12">Jabatan</option>
-                                                        <option value="golongan" data-select2-id="13">Golongan</option>
-                                                        <option value="departemen" data-select2-id="14">Departemen</option>
-                                                        <option value="unit_kerja" data-select2-id="15">Unit Kerja</option>
-                                                        <option value="kota" data-select2-id="16">Kota</option>
-                                                        <option value="jenis_supplier" data-select2-id="17">Jenis Supplier</option>
+                                                        <option value="jabatan"
+                                                                @if(Session::get('sukses-jabatan')) selected @endif
+                                                                data-select2-id="12" >Jabatan</option>
+                                                        <option value="golongan"
+                                                                @if(Session::get('sukses-golongan')) selected @endif
+                                                                data-select2-id="13">Golongan</option>
+                                                        <option value="departemen"
+                                                                @if(Session::get('sukses-departemen')) selected @endif
+                                                                data-select2-id="14">Departemen</option>
+                                                        <option value="unit_kerja"
+                                                                @if(Session::get('sukses-unit-kerja')) selected @endif
+                                                                data-select2-id="15">Unit Kerja</option>
+                                                        <option value="kota"
+                                                                @if(Session::get('sukses-kota')) selected @endif
+                                                                data-select2-id="16">Kota</option>
+                                                        <option value="jenis_supplier"
+                                                                @if(Session::get('sukses-jenis-supplier')) selected @endif
+                                                                data-select2-id="17">Jenis Supplier</option>
 
                                                     </select>
                                                 </div>
@@ -173,9 +185,9 @@
                             <ul class="nav nav-tabs">
 
 
-                                <li class="dropdown" style="cursor: pointer;">
+                                <li class="dropdown active" style="cursor: pointer;">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-                                       aria-expanded="false" style="cursor: pointer;">
+                                       aria-expanded="true" style="cursor: pointer;">
                                         Daftar Jenis Data<span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
@@ -206,7 +218,10 @@
 
                             <div class="tab-content">
 
-                                <div class="tab-pane active" id="tab_jabatan">
+                                <div class="tab-pane @if(Session::get('sukses-jabatan')) active @elseif(!Session::get('sukses-jabatan')
+                                && !Session::get('sukses-jenis-supplier') && !Session::get('sukses-kota') && !Session::get('sukses-unit-kerja')
+                                && !Session::get('sukses-golongan')) active @endif"
+                                     id="tab_jabatan">
                                     <h3 class="box-title">
                                         Daftar Nama Jabatan
                                     </h3>
@@ -250,7 +265,7 @@
                                 </div>
 
                                 <!-- /.tab-pane -->
-                                <div class="tab-pane" id="tab_department">
+                                <div class="tab-pane @if(Session::get('sukses-departemen')) active @endif" id="tab_department">
                                     <h3 class="box-title">
                                         Daftar Nama Department
                                     </h3>
@@ -293,7 +308,7 @@
 
                                 </div>
                                 <!-- /.tab-pane -->
-                                <div class="tab-pane" id="tab_golongan">
+                                <div class="tab-pane @if(Session::get('sukses-golongan')) active @endif" id="tab_golongan">
                                     <h3 class="box-title">
                                         Daftar Nama Golongan
                                     </h3>
@@ -336,7 +351,7 @@
 
                                 </div>
                                 <!-- /.tab-pane -->
-                                <div class="tab-pane" id="tab_unit_kerja">
+                                <div class="tab-pane @if(Session::get('sukses-unit-kerja')) active @endif" id="tab_unit_kerja">
                                     <h3 class="box-title">
                                         Daftar Nama Unit Kerja
                                     </h3>
@@ -379,7 +394,7 @@
 
                                 </div>
 
-                                <div class="tab-pane" id="tab_kota">
+                                <div class="tab-pane @if(Session::get('sukses-kota')) active @endif" id="tab_kota">
                                     <h3 class="box-title">
                                         Daftar Nama Kota
                                     </h3>
@@ -421,7 +436,7 @@
 
                                 </div>
 
-                                <div class="tab-pane" id="tab_jenis_supplier">
+                                <div class="tab-pane @if(Session::get('sukses-jenis-supplier')) active @endif" id="tab_jenis_supplier">
                                     <h3 class="box-title">
                                         Daftar Nama Jenis Supplier
                                     </h3>

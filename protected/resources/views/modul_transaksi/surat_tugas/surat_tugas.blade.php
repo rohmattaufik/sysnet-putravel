@@ -41,6 +41,7 @@
                         @endif
 
                         <div class="box-body">
+                            {{--<form class="form-horizontal" id="add_name" name="add_name" >--}}
                             <form class="form-horizontal" method="post" action="{{url(action('TransaksiSuratTugasController@store'))}}">
                                 {{ csrf_field() }}
                                 <div class="box-body">
@@ -311,7 +312,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-lg-8">
-                                                <button type="submit" class="btn btn-primary btn-block btn-sm">Submit</button>
+                                                <button type="submit" id="submit" class="btn btn-primary btn-block btn-sm">Submit</button>
                                             </div>
                                         </div>
                                         {{--<button type="button" name="add" id="add" class="btn btn-success btn-block">--}}
@@ -455,7 +456,8 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            var postURL = "<?php echo url('addmore'); ?>";
+            //var postURL = "<?php echo url('addmore'); ?>";
+            var postURL = "{{url(action('TransaksiSuratTugasController@store'))}}";
             var i=1;
 
 
@@ -508,10 +510,11 @@
 
 
             $('#submit').click(function(){
+                console.log(('#add_name').serialize());
                 $.ajax({
                     url:postURL,
                     method:"POST",
-                    data:$('#add_name').serialize(),
+                    data:$('#row').serialize(),
                     type:'json',
                     success:function(data)
                     {

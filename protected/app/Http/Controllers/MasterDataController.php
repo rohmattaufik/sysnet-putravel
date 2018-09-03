@@ -57,6 +57,10 @@ class MasterDataController extends Controller{
                         $new_jabatan->create();
                     }
                 }
+                Session::flash('sukses-jabatan', "Data $request->jenis_data berhasil diinput.");
+                Session::flash('sukses',"Data $request->jenis_data berhasil diinput.");
+                return redirect()->back();
+
             } else if($request->jenis_data == 'golongan') {
                 foreach($request->inputs as $golongan){
                     if(is_null($golongan)) {
@@ -69,6 +73,10 @@ class MasterDataController extends Controller{
                         $new_golongan->create();
                     }
                 }
+                Session::flash('sukses-golongan', "Data $request->jenis_data berhasil diinput.");
+                Session::flash('sukses',"Data $request->jenis_data berhasil diinput.");
+                return redirect()->back();
+
             } else if($request->jenis_data == 'departemen') {
                 foreach($request->inputs as $department){
                     if(is_null($department)) {
@@ -81,6 +89,10 @@ class MasterDataController extends Controller{
                         $new_department->create();
                     }
                 }
+                Session::flash('sukses-departemen', "Data $request->jenis_data berhasil diinput.");
+                Session::flash('sukses',"Data $request->jenis_data berhasil diinput.");
+                return redirect()->back();
+
             } else if($request->jenis_data == 'unit_kerja') {
                 foreach($request->inputs as $unit_kerja){
                     if(is_null($unit_kerja)) {
@@ -93,6 +105,10 @@ class MasterDataController extends Controller{
                         $new_unit_kerja->create();
                     }
                 }
+                Session::flash('sukses-unit-kerja', "Data $request->jenis_data berhasil diinput.");
+                Session::flash('sukses',"Data $request->jenis_data berhasil diinput.");
+                return redirect()->back();
+
             } else if($request->jenis_data == 'kota') {
                 foreach($request->inputs as $kota){
                     if(is_null($kota)) {
@@ -105,6 +121,10 @@ class MasterDataController extends Controller{
                         $new_kota->create();
                     }
                 }
+                Session::flash('sukses-kota', "Data $request->jenis_data berhasil diinput.");
+                Session::flash('sukses',"Data $request->jenis_data berhasil diinput.");
+                return redirect()->back();
+
             } else if($request->jenis_data == 'jenis_supplier') {
                 foreach($request->inputs as $jenis_supplier){
                     if(is_null($jenis_supplier)) {
@@ -117,6 +137,10 @@ class MasterDataController extends Controller{
                         $new_jenis_supplier->create();
                     }
                 }
+                Session::flash('sukses-jenis-supplier', "Data $request->jenis_data berhasil diinput.");
+                Session::flash('sukses',"Data $request->jenis_data berhasil diinput.");
+                return redirect()->back();
+
             }
 
 

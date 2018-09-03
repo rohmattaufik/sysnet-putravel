@@ -21,6 +21,7 @@ class MasterBankController extends Controller
 
     public function store( Request $request )
     {
+//        dd($request);
         $admin  = Auth::user()->id;
         if( !is_null($request) ){
             for( $i = 0; $i < count($request->account_number); $i++){
