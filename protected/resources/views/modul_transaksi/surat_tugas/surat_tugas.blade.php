@@ -18,31 +18,32 @@
               | Your Page Content Here |
               -------------------------->
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="box box-primary">
-                        @if(Session::get('sukses') || Session::get('sukses-delete'))
-                        <div class="box-header with-border">
-                            <h3 class="box-title"></h3>
-                            @if(Session::get('sukses'))
-                                <div class="callout callout-success">
-                                    <h4>{{ Session::get('sukses') }}</h4>
+                <form class="form-horizontal" method="post" action="{{url(action('TransaksiSuratTugasController@store'))}}">
 
-                                    <p>Data Anda berhasil masuk database.</p>
+                    <div class="col-lg-12">
+                        <div class="box box-primary">
+                            @if(Session::get('sukses') || Session::get('sukses-delete'))
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"></h3>
+                                    @if(Session::get('sukses'))
+                                        <div class="callout callout-success">
+                                            <h4>{{ Session::get('sukses') }}</h4>
+
+                                            <p>Data Anda berhasil masuk database.</p>
+                                        </div>
+                                    @endif
+                                    @if(Session::get('sukses-delete'))
+                                        <div class="callout callout-danger">
+                                            <h4>{{ Session::get('sukses-delete') }}</h4>
+
+                                            <p>Data Anda berhasil dihapus dari database.</p>
+                                        </div>
+                                    @endif
                                 </div>
                             @endif
-                            @if(Session::get('sukses-delete'))
-                                <div class="callout callout-danger">
-                                    <h4>{{ Session::get('sukses-delete') }}</h4>
 
-                                    <p>Data Anda berhasil dihapus dari database.</p>
-                                </div>
-                            @endif
-                        </div>
-                        @endif
-
-                        <div class="box-body">
-                            {{--<form class="form-horizontal" id="add_name" name="add_name" >--}}
-                            <form class="form-horizontal" method="post" action="{{url(action('TransaksiSuratTugasController@store'))}}">
+                            <div class="box-body">
+                                {{--<form class="form-horizontal" id="add_name" name="add_name" >--}}
                                 {{ csrf_field() }}
                                 <div class="box-body">
                                     <div class="form-group">
@@ -58,7 +59,7 @@
                                                        value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"
                                                        class="form-control pull-right" id="datepicker1">
                                             </div>
-                                                <!-- /.input group -->
+                                            <!-- /.input group -->
                                         </div>
                                     </div>
 
@@ -124,7 +125,7 @@
                                         <label for="keterangan" class="col-sm-2 control-label">Keterangan</label>
 
                                         <div class="col-sm-4">
-                                            <textarea class="form-control" rows="3"
+											<textarea class="form-control" rows="3"
                                                       id="keterangan" name="keterangan" placeholder="Masukkan Keterangan"></textarea>
                                         </div>
                                     </div>
@@ -145,7 +146,7 @@
                                     <div class="form-group">
                                         <label for="keterangan1" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-4">
-                                            <textarea class="form-control" rows="3"
+											<textarea class="form-control" rows="3"
                                                       id="keterangan1" name="keterangan1"
                                                       placeholder="Masukkan Keterangan Tambahan"></textarea>
                                         </div>
@@ -160,15 +161,12 @@
                                 <!-- /.box-footer -->
 
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="col-lg-12">
 
-            <div class="row">
-                <div class="col-lg-12">
-
-                    <div class="box box-primary">
+                        <div class="box box-primary">
 
                             <div class="box-body">
                                 <div class="col-lg-10">
@@ -316,18 +314,17 @@
                                             </div>
                                         </div>
                                         {{--<button type="button" name="add" id="add" class="btn btn-success btn-block">--}}
-                                            {{--Add Row--}}
+                                        {{--Add Row--}}
                                         {{--</button>--}}
                                         {{--<button type="submit" class="btn btn-primary btn-block">Submit</button>--}}
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+
                     </div>
-
-                </div>
+                </form>
             </div>
-
 
             <div class="row">
                 <div class="col-lg-12">
@@ -358,30 +355,25 @@
                                         <?php $count = 0; ?>
                                         @foreach($data_surat_tugas_h as $data)
                                             <tr>
-                                                <form method="post" action="{{ url(action('TransaksiSuratTugasController@delete')) }}">
-                                                    {{ csrf_field() }}
-                                                    <td scope="row"><?php echo ++$count; ?></td>
-                                                    <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['created_at'])->format('d-m-Y') }} </td>
-                                                    <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['start_date'])->format('d-m-Y') }} </td>
-                                                    <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['end_date'])->format('d-m-Y') }} </td>
-                                                    <td class="text-nowrap">{{ $data['city_name'] }}  </td>
-                                                    <td class="text-nowrap">{{ $data['DIPA_code'] }}</td>
-                                                    <td class="text-nowrap">{{ $data['description']}}</td>
-                                                    <td class="text-nowrap">{{ $data['department_name'] }}</td>
-                                                    <td class="text-nowrap">{{ $data['description_1'] }}</td>
-                                                    <input type="hidden" name="surat_id" value= "{{ $data['id'] }}" required autofocus>
+                                                <td scope="row"><?php echo ++$count; ?></td>
+                                                <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['created_at'])->format('d-m-Y') }} </td>
+                                                <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['start_date'])->format('d-m-Y') }} </td>
+                                                <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['end_date'])->format('d-m-Y') }} </td>
+                                                <td class="text-nowrap">{{ $data['city_name'] }}  </td>
+                                                <td class="text-nowrap">{{ $data['DIPA_code'] }}</td>
+                                                <td class="text-nowrap">{{ $data['description']}}</td>
+                                                <td class="text-nowrap">{{ $data['department_name'] }}</td>
+                                                <td class="text-nowrap">{{ $data['description_1'] }}</td>
+                                                <input type="hidden" name="surat_id" value= "{{ $data['id'] }}" required autofocus>
 
-                                                    <td class="text-nowrap">
-                                                        <a type="button"
-                                                           href="{{ url(action('TransaksiSuratTugasController@edit',$data['id'])) }}"
-                                                           class="btn btn-sm btn-primary">Edit</a>
-                                                        <button class="btn btn-sm btn-danger" type="submit">
-                                                            Delete
-                                                        </button>
-                                                    </td>
-
-                                                </form>
-
+                                                <td class="text-nowrap">
+                                                    <a type="button"
+                                                       href="{{ url(action('TransaksiSuratTugasController@edit',$data['id'])) }}"
+                                                       class="btn btn-sm btn-primary">Edit</a>
+                                                    <button class="btn btn-sm btn-danger" type="submit">
+                                                        Delete
+                                                    </button>
+                                                </td>
                                             </tr>
                                         @endforeach
 
@@ -473,24 +465,24 @@
                     '<option value="0" >Choose Employee</option>'+
                     '@foreach ($data_employee as $data)' +
                     '<option value="{{ $data->id }}" >' +
-                        '{{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}'+
-                            '</option>'+
+                    '{{ $data->employee_name.' - '.$data->position_name .' - '.$data->class_name }}'+
+                    '</option>'+
                     '@endforeach'+
                     '</select>'+
                     '</td>'+
 
                     '<td class="text-nowrap">'+
                     '<div class="input-group">'+
-                '<input type="text"'+
-                'class="form-control"'+
-                'name="lama_penugasan[]"'+
-                'placeholder="Lama Penugasan"'+
-                'aria-describedby="basic-addon2">'+
-                '<span class="input-group-addon" id="basic-addon2">hari</span>'+
-                '</div>'+
-                '</td>'+
+                    '<input type="text"'+
+                    'class="form-control"'+
+                    'name="lama_penugasan[]"'+
+                    'placeholder="Lama Penugasan"'+
+                    'aria-describedby="basic-addon2">'+
+                    '<span class="input-group-addon" id="basic-addon2">hari</span>'+
+                    '</div>'+
+                    '</td>'+
                     '<td class="text-nowrap"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +
-                '</tr>');
+                    '</tr>');
 
 
                 $('.select-data').select2();
