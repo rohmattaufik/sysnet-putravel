@@ -158,31 +158,37 @@ class MasterDataController extends Controller{
         if($request->jenis_data == 'jabatan') {
             $MJabatan = new MJabatan($request->jabatan_id);
             $MJabatan->delete();
+            Session::flash('sukses-jabatan', "Anda berhasil menghapus data $request->jenis_data.");
             Session::flash('sukses-delete', 'Anda berhasil menghapus data Jabatan');
             return redirect()->back();
         } else if($request->jenis_data == 'department') {
             $MDepartment = new MDepartment($request->department_id);
             $MDepartment->delete();
+            Session::flash('sukses-departemen', "Anda berhasil menghapus data $request->jenis_data.");
             Session::flash('sukses-delete', 'Anda berhasil menghapus data Department');
             return redirect()->back();
         } else if($request->jenis_data == 'golongan') {
             $MGolongan = new MGolongan($request->golongan_id);
             $MGolongan->delete();
+            Session::flash('sukses-golongan', "Anda berhasil menghapus data $request->jenis_data.");
             Session::flash('sukses-delete', 'Anda berhasil menghapus data Golongan');
             return redirect()->back();
         } else if($request->jenis_data == 'unit_kerja') {
             $MUnitKerja = new MUnitKerja($request->unit_kerja_id);
             $MUnitKerja->delete();
+            Session::flash('sukses-unit-kerja', "Anda berhasil menghapus data $request->jenis_data.");
             Session::flash('sukses-delete', 'Anda berhasil menghapus data Unit Kerja');
             return redirect()->back();
         } else if($request->jenis_data == 'kota') {
             $MKota = new MKota($request->kota_id);
             $MKota->delete();
+            Session::flash('sukses-kota', "Anda berhasil menghapus data $request->jenis_data.");
             Session::flash('sukses-delete', 'Anda berhasil menghapus data Kota');
             return redirect()->back();
         } else if($request->jenis_data == 'jenis_supplier') {
             $MJenisSupplier = new MJenisSupplier($request->unit_kerja_id);
             $MJenisSupplier->delete();
+            Session::flash('sukses-jenis-supplier', "Anda berhasil menghapus data $request->jenis_data.");
             Session::flash('sukses-delete', 'Anda berhasil menghapus data Jenis Supplier');
             return redirect()->back();
         }
