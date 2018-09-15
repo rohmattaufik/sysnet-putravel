@@ -50,6 +50,7 @@ class TransaksiPesanHotelController extends Controller
                 $pesanan_hotel_h->payment_status    = 1;
                 $pesanan_hotel_h->idDIPA            = $data_surat_tugas_h[0]['idDipa'];
                 $pesanan_hotel_h->IdDepartment      = $data_surat_tugas_h[0]['idDepartment'];
+                $pesanan_hotel_h->term              = $request->term;
                 $pesanan_hotel_h->created_by        = Auth::user()->id;
                 $pesanan_hotel_h->updated_by        = Auth::user()->id;
                 $pesanan_hotel_h->create();
@@ -87,7 +88,7 @@ class TransaksiPesanHotelController extends Controller
                     $pesanan_hotel_d->checkin_date      = $request->tanggal_check_in[$ii];
                     $pesanan_hotel_d->checkout_date     = $request->tanggal_check_out[$ii];
                     $pesanan_hotel_d->voucher_number    = $generate_voucher;
-                    $pesanan_hotel_d->AR_price          = (double) $request->harga[$ii];
+                    $pesanan_hotel_d->AR_price          = (double) str_replace('.','',$request->harga[$ii]);
                     $pesanan_hotel_d->AP_price          = $msbu->value;
                     $pesanan_hotel_d->create();
 

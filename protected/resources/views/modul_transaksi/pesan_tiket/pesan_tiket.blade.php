@@ -325,7 +325,8 @@
                                                 <td class="text-nowrap">
                                                     <div class="input-group">
                                                         <input type="text"
-                                                               class="form-control uang"
+                                                               class="form-control hargapp uang"
+                                                               onchange="autosums_pp()"
                                                                name="harga_tiket[]"
                                                                placeholder="Harga Tiket (PP)"
                                                                aria-describedby="basic-addon2">
@@ -336,7 +337,8 @@
                                                 <td class="text-nowrap">
                                                     <div class="input-group">
                                                         <input type="text"
-                                                               class="form-control uang"
+                                                               class="form-control hargamaskapai uang"
+                                                               onchange="autosums_maskapai()"
                                                                name="harga_maskapai[]"
                                                                placeholder="Harga Maskapai"
                                                                aria-describedby="basic-addon2">
@@ -377,7 +379,8 @@
                                                     <input type="text"
                                                            class="form-control uang"
                                                            name="total_harga_tiket_pp"
-                                                           value="1.000.000"
+                                                           value="0"
+                                                           id="totalpp"
                                                            placeholder="Total Harga Tiket (PP)" disabled>
                                                 </div>
                                             </td>
@@ -386,7 +389,8 @@
                                                     <input type="text"
                                                            class="form-control uang"
                                                            name="total_harga_tiket_maskapai"
-                                                           value="2.000.000"
+                                                           value="0"
+                                                           id="totalmaskapai"
                                                            placeholder="Total Harga Maskapai" disabled>
                                                 </div>
                                             </td>
@@ -628,5 +632,43 @@
                 }
             });
         });
+    </script>
+    <script>
+        function autosums_pp() {
+            var totalpp = 0;
+            var hargapp = [];
+            for(var i = 0;i<document.getElementsByClassName("hargapp").length; i++) {
+                hargapp[i] = document.getElementsByClassName("hargapp")[i].value;
+                if(!hargapp[i]) {
+                    hargapp[i] = '0.0';
+                }
+                str = hargapp[i];
+                strchange = str.replace('.','');
+                totalpp += Number(strchange);
+            }
+            var tostring = totalpp+'';
+            document.getElementById("totalpp").value = tostring.replace('.','');
+            $('#totalpp').mask('0.000.000.000', {reverse: true});
+//            document.getElementById("totalpp").mask('0.000.000.000', {reverse: true});
+        }
+    </script>
+    <script>
+        function autosums_maskapai() {
+            var totalmaskapai = 0;
+            var hargamaskapai = [];
+            for(var i = 0;i<document.getElementsByClassName("hargamaskapai").length; i++) {
+                hargamaskapai[i] = document.getElementsByClassName("hargamaskapai")[i].value;
+                if(!hargamaskapai[i]) {
+                    hargamaskapai[i] = '0.0';
+                }
+                str = hargamaskapai[i];
+                strchange = str.replace('.','');
+                totalmaskapai += Number(strchange);
+            }
+            var tostring = totalmaskapai+'';
+            document.getElementById("totalmaskapai").value = tostring.replace('.','');
+            $('#totalmaskapai').mask('0.000.000.000', {reverse: true});
+//            document.getElementById("totalpp").mask('0.000.000.000', {reverse: true});
+        }
     </script>
 @stop
