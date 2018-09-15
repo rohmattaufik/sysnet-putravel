@@ -365,15 +365,20 @@
                                                 <td class="text-nowrap">{{ $data['department_name'] }}</td>
                                                 <td class="text-nowrap">{{ $data['description_1'] }}</td>
                                                 <input type="hidden" name="surat_id" value= "{{ $data['id'] }}" required autofocus>
-
+                                                <form method="post" action="{{url(action('TransaksiSuratTugasController@delete'))}}">
                                                 <td class="text-nowrap">
                                                     <a type="button"
                                                        href="{{ url(action('TransaksiSuratTugasController@edit',$data['id'])) }}"
                                                        class="btn btn-sm btn-primary">Edit</a>
+                                                    
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="surat_id" value="{{ $data['id'] }}">
                                                     <button class="btn btn-sm btn-danger" type="submit">
                                                         Delete
                                                     </button>
+                                                    
                                                 </td>
+                                                </form>
                                             </tr>
                                         @endforeach
 

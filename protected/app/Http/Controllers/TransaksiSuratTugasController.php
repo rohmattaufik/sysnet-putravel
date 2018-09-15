@@ -139,7 +139,7 @@ class TransaksiSuratTugasController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request);
+     //   dd($request);
         $id_user = Auth::user()->id;
 
         if ($id_user) {
