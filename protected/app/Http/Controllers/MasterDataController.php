@@ -186,7 +186,7 @@ class MasterDataController extends Controller{
             Session::flash('sukses-delete', 'Anda berhasil menghapus data Kota');
             return redirect()->back();
         } else if($request->jenis_data == 'jenis_supplier') {
-            $MJenisSupplier = new MJenisSupplier($request->unit_kerja_id);
+            $MJenisSupplier = new MJenisSupplier($request->jenis_supplier_id);
             $MJenisSupplier->delete();
             Session::flash('sukses-jenis-supplier', "Anda berhasil menghapus data $request->jenis_data.");
             Session::flash('sukses-delete', 'Anda berhasil menghapus data Jenis Supplier');

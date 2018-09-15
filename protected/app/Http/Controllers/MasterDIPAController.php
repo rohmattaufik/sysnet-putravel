@@ -40,7 +40,7 @@ class MasterDIPAController extends Controller
                 }
             }
 
-            Session::flash('sukses-create', 'Anda berhasil menyimpan data DIPA');
+            Session::flash('sukses', 'Anda berhasil menyimpan data DIPA');
             return redirect()->back();
         }
     }
@@ -67,7 +67,7 @@ class MasterDIPAController extends Controller
             $new_dipa->updated_by       = $admin;
             $new_dipa->update();
 
-            Session::flash('sukses-update', 'Anda berhasil mengubah data DIPA');
+            Session::flash('sukses', 'Anda berhasil mengubah data DIPA');
             return redirect('master/dipa');
         }
     }

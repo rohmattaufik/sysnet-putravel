@@ -23,7 +23,20 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    {{--<h3 class="box-title">Quick Example</h3>--}}
+                    @if(Session::get('sukses'))
+                        <div class="callout callout-success">
+                            <h4>{{ Session::get('sukses') }}</h4>
+
+                            <p>Data Anda berhasil masuk database.</p>
+                        </div>
+                    @endif
+                    @if(Session::get('sukses-delete'))
+                        <div class="callout callout-danger">
+                            <h4>{{ Session::get('sukses-delete') }}</h4>
+
+                            <p>Data Anda berhasil dihapus dari database.</p>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="box-body">

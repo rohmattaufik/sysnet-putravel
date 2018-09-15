@@ -95,15 +95,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="kode_pos" class="col-sm-2 control-label">Kode Pos</label>
+                                    {{--<div class="form-group">--}}
+                                        {{--<label for="kode_pos" class="col-sm-2 control-label">Kode Pos</label>--}}
 
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control"
-                                                   id="kode_pos"
-                                                   name="kode_pos" placeholder="Masukkan Kode Pos">
-                                        </div>
-                                    </div>
+                                        {{--<div class="col-sm-4">--}}
+                                            {{--<input type="text" class="form-control"--}}
+                                                   {{--id="kode_pos"--}}
+                                                   {{--name="kode_pos" placeholder="Masukkan Kode Pos">--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
 
                                     <div class="form-group">
                                         <label for="no_telp" class="col-sm-2 control-label">No. Telp</label>
@@ -287,6 +287,15 @@
             'autoWidth'   : true,
             'responsive' : true
         })
+    </script>
+
+    <script src="{{ URL::asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#table_supplier').DataTable();
+        } );
     </script>
 
 @stop

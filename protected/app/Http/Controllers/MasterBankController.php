@@ -35,7 +35,7 @@ class MasterBankController extends Controller
                 }
             }
 
-            Session::flash('sukses-create', 'Anda berhasil menyimpan data Bank');
+            Session::flash('sukses', 'Anda berhasil menyimpan data Bank');
             return redirect()->back();
         }
     }
@@ -58,7 +58,7 @@ class MasterBankController extends Controller
             $new_bank->account_holder       = $request->account_holder;
             $new_bank->update();
 
-            Session::flash('sukses-create', 'Anda berhasil menyimpan data Bank');
+            Session::flash('sukses', 'Anda berhasil menyimpan data Bank');
             return redirect('master/bank');
         }
     }

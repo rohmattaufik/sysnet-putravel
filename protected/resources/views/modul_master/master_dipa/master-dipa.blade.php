@@ -24,6 +24,20 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     {{--<h3 class="box-title">Quick Example</h3>--}}
+                    @if(Session::get('sukses'))
+                        <div class="callout callout-success">
+                            <h4>{{ Session::get('sukses') }}</h4>
+
+                            <p>Data Anda berhasil masuk database.</p>
+                        </div>
+                    @endif
+                    @if(Session::get('sukses-delete'))
+                        <div class="callout callout-danger">
+                            <h4>{{ Session::get('sukses-delete') }}</h4>
+
+                            <p>Data Anda berhasil dihapus dari database.</p>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="box-body">
@@ -51,7 +65,7 @@
                                 <tr>
                                     <td>1</td>
                                     <td>
-                                        <select name="department[]" class="form-control">
+                                        <select name="department[]" class="form-control select-data" style="width: 100%;">
                                             @foreach( $departments as $department)
                                             <option value="{{ $department->id}}">{{$department->department_name}}</option>
                                             @endforeach
@@ -67,7 +81,7 @@
                                 <tr>
                                     <td>2</td>
                                     <td>
-                                        <select name="department[]" class="form-control">
+                                        <select name="department[]" class="form-control select-data" style="width: 100%;">
                                             @foreach( $departments as $department)
                                             <option value="{{ $department->id}}">{{$department->department_name}}</option>
                                             @endforeach
@@ -83,7 +97,7 @@
                                 <tr>
                                     <td>3</td>
                                     <td>
-                                        <select name="department[]" class="form-control">
+                                        <select name="department[]" class="form-control select-data" style="width: 100%;">
                                             @foreach( $departments as $department)
                                             <option value="{{ $department->id}}">{{$department->department_name}}</option>
                                             @endforeach
@@ -193,7 +207,7 @@
                     '<tr id="row'+i+'" class="dynamic-added">' +
                         '<td>'+count+'</td>'+
                         '<td>'+
-                            '<select name="department[]" class="form-control">'+
+                            '<select name="department[]" class="form-control select-data" style="width: 100%;">'+
                                 '@foreach( $departments as $department)'+
                                 '<option value="{{ $department->id}}">{{$department->department_name}}</option>'+
                                 '@endforeach'+
@@ -207,6 +221,7 @@
                         '</td>'+
                     '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +
                     '</td></tr>');
+                $('.select-data').select2();
             });
 
             $(document).on('click', '.btn_remove', function(){

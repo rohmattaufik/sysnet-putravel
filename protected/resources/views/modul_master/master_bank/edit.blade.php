@@ -23,7 +23,14 @@
 
               <div class="box box-primary">
                   <div class="box-header with-border">
-                      {{--<h3 class="box-title">Quick Example</h3>--}}
+                      <div class="box-header with-border">
+                          <h3 class="box-title">
+                              <a href="{{ url(action('MasterEmployeeController@index')) }}">
+                                  <i class="fa fa-arrow-left"></i>
+                              </a>
+                              Edit Bank
+                          </h3>
+                      </div>
                   </div>
 
                   <div class="box-body">

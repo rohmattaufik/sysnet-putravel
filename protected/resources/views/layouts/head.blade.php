@@ -34,9 +34,9 @@
 
 {{--datatables--}}
 <link href="{{ URL::asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
-{{--<link href="{{ URL::asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">--}}
-{{--<link href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap.min.css" rel="stylesheet">--}}
-{{--<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css" rel="stylesheet">--}}
+<link href="{{ URL::asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
+<link href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css" rel="stylesheet">
 
 {{-- datepicker --}}
 <!-- bootstrap datepicker -->

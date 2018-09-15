@@ -23,7 +23,12 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    {{--<h3 class="box-title">Quick Example</h3>--}}
+                    <h3 class="box-title">
+                        <a href="{{ url(action('MasterDIPAController@index')) }}">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                        Edit DIPA
+                    </h3>
                 </div>
 
                 <div class="box-body">

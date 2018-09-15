@@ -188,7 +188,7 @@
                                 <li class="dropdown active" style="cursor: pointer;">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"
                                        aria-expanded="true" style="cursor: pointer;">
-                                        Daftar Jenis Data<span class="caret"></span>
+                                        Pilih Daftar Jenis Data<span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
 
@@ -218,7 +218,7 @@
 
                             <div class="tab-content">
 
-                                <div class="tab-pane @if(Session::get('sukses-jabatan')) active @elseif(!Session::get('sukses-jabatan')
+                                <div class="tab-pane @if(Session::get('sukses-jabatan')) active @elseif(!Session::get('sukses-departemen')
                                 && !Session::get('sukses-jenis-supplier') && !Session::get('sukses-kota') && !Session::get('sukses-unit-kerja')
                                 && !Session::get('sukses-golongan')) active @endif"
                                      id="tab_jabatan">
