@@ -44,7 +44,7 @@ class MasterSBUController extends Controller
                 }
             }
 
-            Session::flash('sukses-create', 'Anda berhasil menyimpan data SBU');
+            Session::flash('sukses', 'Anda berhasil menyimpan data SBU');
             return redirect()->back();
         }
     }
@@ -74,7 +74,7 @@ class MasterSBUController extends Controller
             $new_sbu->updated_by       = $admin;
             $new_sbu->update();
 
-            Session::flash('sukses-create', 'Anda berhasil menyimpan data SBU');
+            Session::flash('sukses', 'Anda berhasil menyimpan data SBU');
             return redirect('master/sbu');
         }
     }

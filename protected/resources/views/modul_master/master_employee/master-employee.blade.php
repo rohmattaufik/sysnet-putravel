@@ -232,7 +232,7 @@
                                                     @if(is_null($person->photo))
                                                         Foto tidak ada
                                                     @else
-                                                        <a href="{{ URL::asset($person->photo) }}" target="_blank">View Logo</a>
+                                                        <a href="{{ URL::asset($person->photo) }}" target="_blank">View Photo</a>
                                                     @endif
                                                 </td>
                                                 <input type="hidden" name="employee_id" value= "{{ $person->id }}" required autofocus>
@@ -273,4 +273,15 @@
 
         </section>
     </div>
+@stop
+
+@section('new-script')
+    <script src="{{ URL::asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#table_employee').DataTable();
+        } );
+    </script>
 @stop

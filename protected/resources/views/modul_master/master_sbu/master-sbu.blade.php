@@ -1,6 +1,8 @@
 @extends('layouts.app-admin')
 
 @section('content')
+
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -51,7 +53,7 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dynamic_field" style="width: 100%;">
+                            <table class="table table-bordered" id="dynamic_field" style="width: 100%; ">
                                 <thead>
                                     <th class="col-lg-4">Kota</th>
                                     <th class="col-lg-4">Golongan</th>
@@ -194,7 +196,7 @@
 
                     <div class="box-body table-responsive no-padding">
                         
-                        <table id="table_employee" class="table display responsive no-wrap" width="100%">
+                        <table id="table_sbu" class="table display responsive no-wrap" width="100%">
                             <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -291,6 +293,8 @@
                     '</td>'+
                     '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +
                     '</td></tr>');
+                $('.select-data').select2();
+                $( '.uang' ).mask('000.000.000', {reverse: true});
             });
 
             $(document).on('click', '.btn_remove', function(){
@@ -339,5 +343,13 @@
                 });
             }
         });
+    </script>
+    <script src="{{ URL::asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#table_sbu').DataTable();
+        } );
     </script>
 @stop
