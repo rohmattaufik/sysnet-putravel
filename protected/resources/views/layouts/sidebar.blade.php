@@ -157,7 +157,9 @@
                     </li>
                     <li class="{{
                     Request::is('transaksi/pesanan') ||
-                     Request::is('transaksi/pesanan/*')
+                     Request::is('transaksi/pesanan/*') ||
+                     Request::is('transaksi/pesan-tiket/*') ||
+                     Request::is('transaksi/pesan-hotel/*')
                      ? 'active' : ''
                      }}">
                         <a href="{{ url('transaksi/pesanan') }}">
@@ -247,7 +249,9 @@
                 </ul>
             </li>
             {{--End of Modul Konfirmasi--}}
+            @endif
 
+            @if(Auth::user()->role == 3)
             {{--Modul Pelunasan Piutang--}}
             <li class="treeview {{
                  Request::is('pelunasan-piutang/*') ? 'active' : ''

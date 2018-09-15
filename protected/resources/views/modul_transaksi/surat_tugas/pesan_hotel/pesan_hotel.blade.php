@@ -3,10 +3,21 @@
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+        {{--<section class="content-header">--}}
+            {{--<h1>--}}
+                {{--Pesan Hotel--}}
+                {{--<small>Pesan Hotel</small>--}}
+            {{--</h1>--}}
+
+        {{--</section>--}}
+
         <section class="content-header">
             <h1>
-                Pesan Hotel
-                <small>Pesan Hotel</small>
+                <a href="{{ url(action('TransaksiPesananController@index')) }}">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+                Modul Transaksi Pesan Hotel
+                <small>Book your Hotel</small>
             </h1>
 
         </section>
@@ -56,7 +67,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h1 class="box-title">Pesan Hotel</h1>
+                            {{--<h1 class="box-title">Pesan Hotel</h1>--}}
                         </div>
                         <div class="box-body table-responsive no-padding">
                             <form action="{{ url('transaksi/pesan-hotel/submit') }}" method="post">
@@ -70,44 +81,65 @@
                                             <thead>
                                                 <tr>
                                                     <th>Nomor Surat Tugas</th>
-                                                    <th>{{ $data_surat_tugas[0]['assignment_letter_code']}}</th>
+                                                    <td>{{ $data_surat_tugas[0]['assignment_letter_code']}}</td>
                                                 <tr>
                                                 <tr>
                                                     <th>Kota Tujuan</th>
-                                                    <th>{{ $data_surat_tugas[0]['city_name']}}</th>
+                                                    <td>{{ $data_surat_tugas[0]['city_name']}}</td>
                                                 <tr>
                                                 <tr>
                                                     <th>Tanggal</th>
-                                                    <th>
+                                                    <td>
                                                         <div class="input-group date">
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-calendar"></i>
                                                             </div>
                                                             <input type="text" name="tanggal_surat_tugas"
-                                                                class="form-control pull-right datepicker" id="datepicker1" required="true">
+                                                                class="form-control pull-right datepicker" id="datepicker1" required="true" placeholder="Masukkan Tanggal">
                                                         </div>
-                                                    </th>
+                                                    </td>
                                                 <tr>
                                                 <tr>
                                                     <th>Tanggal Tugas</th>
-                                                    <th>{{ \Carbon\Carbon::parse($data_surat_tugas[0]['start_date'])->format('d-m-Y')  }} SD {{ \Carbon\Carbon::parse($data_surat_tugas[0]['end_date'])->format('d-m-Y')  }}</th>
+                                                    <td>{{ \Carbon\Carbon::parse($data_surat_tugas[0]['start_date'])->format('d-m-Y')  }} SD {{ \Carbon\Carbon::parse($data_surat_tugas[0]['end_date'])->format('d-m-Y')  }}</td>
                                                 <tr>
+                                                <tr>
+                                                    <th>Term</th>
+                                                    <td>
+
+
+
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-sticky-note"></i>
+                                                            </div>
+                                                            {{--<input type="text" placeholder="Pilih Kota Tujuan"--}}
+                                                            {{--name="kota" class="form-control pull-right" id="datepicker3">--}}
+                                                            <input type="number"
+                                                                   class="form-control"
+                                                                   name="term"
+                                                                   placeholder="Term" required>
+                                                        </div>
+                                                        <!-- /.input group -->
+
+                                                    </td>
+                                                </tr>
                                             <thead>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                             <br>
-                            <table id="table_surat_tugas" class="table display responsive no-wrap" width="100%">
+                            <table id="table_surat_tuga" class="table display responsive no-wrap" width="100%">
                                 <thead>
                                 <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Nama Hotel</th>
-                                    <th scope="col">Tanggal Check In</th>
-                                    <th scope="col">Tanggal Check Out</th>
-                                    <th scope="col">Term</th>
-                                    <th scope="col">Harga</th>
+                                    <th class="text-nowrap" scope="col"></th>
+                                    <th class="text-nowrap" scope="col">Nama</th>
+                                    <th class="text-nowrap" scope="col">Nama Hotel</th>
+                                    <th class="text-nowrap" scope="col">Tanggal Check In</th>
+                                    <th class="text-nowrap" scope="col">Tanggal Check Out</th>
+                                    <th class="text-nowrap" scope="col">Term</th>
+                                    <th class="text-nowrap" scope="col">Harga</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -161,7 +193,8 @@
                                         <td>
                                             <div class="input-group">
                                                 <input type="text"
-                                                        class="form-control"
+                                                        class="form-control hargahotel uang"
+                                                       onchange="autosums_hotel()"
                                                         name="harga[]"
                                                         placeholder="Harga">
                                             </div>
@@ -174,6 +207,7 @@
                                         <td> </td>
                                         <td> </td>
                                         <td> </td>
+                                        <td></td>
                                         <td>
                                             Total
                                         </td>
@@ -181,8 +215,10 @@
                                             <div class="input-group">
                                                 <input type="text"
                                                         class="form-control"
+                                                       id="totalhotel"
                                                         name="harga[]"
-                                                        placeholder="Harga">
+                                                       value="0"
+                                                        placeholder="Harga" disabled>
                                             </div>
                                         </td>
                                     </tr>
@@ -366,5 +402,37 @@
             'responsive' : true,
             "order": [[ 1, "desc" ]]
         })
+    </script>
+    <script>
+        $(document).ready(function(){
+
+            // Format mata uang.
+            $( '.uang' ).mask('0.000.000.000', {reverse: true});
+
+            // Format nomor HP.
+            $( '.no_hp' ).mask('0000−0000−0000');
+
+            // Format tahun pelajaran.
+            $( '.tapel' ).mask('0000/0000');
+        })
+    </script>
+    <script>
+        function autosums_hotel() {
+            var totalhotel = 0;
+            var hargahotel = [];
+            for(var i = 0;i<document.getElementsByClassName("hargahotel").length; i++) {
+                hargahotel[i] = document.getElementsByClassName("hargahotel")[i].value;
+                if(!hargahotel[i]) {
+                    hargahotel[i] = '0.0';
+                }
+                str = hargahotel[i];
+                strchange = str.replace('.','');
+                totalhotel += Number(strchange);
+            }
+            var tostring = totalhotel+'';
+            document.getElementById("totalhotel").value = tostring.replace('.','');
+            $('#totalhotel').mask('0.000.000.000', {reverse: true});
+//            document.getElementById("totalpp").mask('0.000.000.000', {reverse: true});
+        }
     </script>
 @stop

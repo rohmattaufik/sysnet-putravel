@@ -22,6 +22,7 @@ class TPesananHotelHListController extends Controller{
     public $created_by;
     public $updated_by;
     public $flag_active;
+    public $term;
     public $exist;
 
     public function __construct($id = false){
@@ -44,6 +45,7 @@ class TPesananHotelHListController extends Controller{
                     $this->created_by       = $TPesananHotel_H->created_by;
                     $this->updated_by       = $TPesananHotel_H->updated_by;
                     $this->flag_active      = $TPesananHotel_H->flag_active;
+                    $this->term             = $TPesananHotel_H->term;
                     $this->exist            = true;
                 }else{
                     $this->exist            = false;
@@ -94,7 +96,7 @@ class TPesananHotelHListController extends Controller{
         return DB::unprepared(DB::raw("CALL TPesananHotel_H_Create($this->idSuratTugas_H,
                             '$this->suratPesan_date', '$this->order_code', '$this->start_date',
                             '$this->end_date', $this->payment_status, $this->idDIPA,
-                            $this->IdDepartment, $this->created_by)"));
+                            $this->IdDepartment, $this->created_by, $this->term)"));
     }
 
     public function update(){

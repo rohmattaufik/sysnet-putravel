@@ -153,14 +153,6 @@ Route::prefix('konfirmasi')->group(function () {
         Route::post('update', 'KonfirmasiTiketController@update');
     });
 
-    //pesanan surat tugas
-    Route::get('pesanan', 'TransaksiPesananController@index');
-    // Route::prefix('surat-tugas')->group(function () {
-    //     Route::post('submit', 'TransaksiSuratTugasController@store');
-    //     Route::post('delete', 'TransaksiSuratTugasController@delete');
-    //     Route::get('edit/{id}', 'TransaksiSuratTugasController@edit');
-    //     Route::post('update', 'TransaksiSuratTugasController@update');
-    // });
 });
 
 Route::prefix('konfirmasi-pembayaran')->group(function () {
