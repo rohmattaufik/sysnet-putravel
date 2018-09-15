@@ -370,6 +370,7 @@
                             <form class="form-horizontal" method="post"
                                   action="{{url(action('TransaksiSuratTugasController@update'))}}">
                                 {{ csrf_field() }}
+                                <input type="hidden" name="id" value="{{ $data_surat[0]['id'] }}">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="tanggal_surat">
@@ -469,7 +470,7 @@
                                         <div class="col-sm-4">
                                             <textarea class="form-control" rows="3"
                                                       id="keterangan" name="keterangan">
-                                                {{ $data_surat[0]['description'] }}
+                                                {!! html_entity_decode($data_surat[0]['description']) !!}
                                             </textarea>
                                         </div>
                                     </div>
@@ -550,7 +551,7 @@
                                                 </td>
                                                 <td class="text-nowrap">
                                                     <select name="employee[]" class="form-control select-data" style="width: 100%;">
-                                                        <option value="{{ $data_surat[0]['suratTugasD'][$i]->id }}" >
+                                                        <option value="{{ $data_surat[0]['suratTugasD'][$i]->idEmployee }}" >
                                                             {{ $data_surat[0]['suratTugasD'][$i]->employee_name.' - '
                                                                 .$data_surat[0]['suratTugasD'][$i]->position_name .' - '
                                                                 .$data_surat[0]['suratTugasD'][$i]->class_name }}
@@ -701,7 +702,7 @@
                     '+' +
                     '</td>' +
                     '<td class="text-nowrap">' +
-                    '<select name="employee[]" class="form-control select-data'+i+' style="width: 100%;">' +
+                    '<select name="employee[]" class="form-control select-data style="width: 100%;">' +
                     '<option value="0" >Choose Employee</option>'+
                     '@foreach ($data_employee as $data)' +
                     '<option value="{{ $data->id }}" >' +
@@ -722,18 +723,17 @@
                     '</div>'+
                     '</td>'+
                     '<td class="text-nowrap"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button>' +
-                    '</tr>'
-                );
-                $('.select-data'+i).select2();
-//                $('.select-data+i+').select2();
+                    '</tr>');
 
+
+                $('.select-data').select2();
             });
 
             $(document).on('click', '.btn_remove', function(){
                 var button_id = $(this).attr("id");
                 $('#row'+button_id+'').remove();
             });
-
+            
 
             $.ajaxSetup({
                 headers: {

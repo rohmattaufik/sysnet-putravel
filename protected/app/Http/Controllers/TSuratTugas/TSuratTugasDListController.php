@@ -80,4 +80,9 @@ class TSuratTugasDListController extends Controller{
         return DB::unprepared(DB::raw("CALL TSuratTugas_D_Delete_idH($id, $idH)"));
     }
 
+    public function deleteAllByIdH($idH)
+    {
+        return DB::unprepared(DB::raw("CALL TSuratTugas_D_delete_all_by_idh($idH)"));
+    }
+
 }

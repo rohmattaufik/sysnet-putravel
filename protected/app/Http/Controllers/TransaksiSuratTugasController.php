@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller,
     App\Http\Controllers\MKota\MKotaListController as MKota,
     App\Http\Controllers\MEmployee\MEmployeeListController as MEmployee,
     App\Http\Controllers\MDepartment\MDepartmentListController as MDepartment,
+    App\Http\Controllers\MSetNumber\MSetNumberListController as MSetNumber,
+    App\Http\Controllers\MSupplier\MSupplierListController as MSupplier,
     Illuminate\Http\Request;
 use Session;
 use Auth;
@@ -50,19 +52,22 @@ class TransaksiSuratTugasController extends Controller
     public function store(Request $request) {
 //        dd($request);
         if (!is_null($request)) {
-            $new_surat_tugasH                = new TPSuratTugasH();
-            $new_surat_tugasH->start_date = $request->dari_tanggal;
-            $new_surat_tugasH->end_date = $request->sampai_tanggal;
-            $new_surat_tugasH->idKota = $request->kota;
-            $new_surat_tugasH->idDIPA = $request->dipa;
-            $new_surat_tugasH->description = $request->keterangan;
-            $new_surat_tugasH->idDepartment = $request->department;
-            $new_surat_tugasH->description_1 = $request->keterangan1;
-            $new_surat_tugasH->created_by = Auth::user()->id;
+            $MSetNumber     = (new MSetNumber())->generateNumber("Surat Tugas");
+
+            $new_surat_tugasH                           = new TPSuratTugasH();
+            $new_surat_tugasH->assigment_letter_code    = $MSetNumber;
+            $new_surat_tugasH->start_date               = $request->dari_tanggal;
+            $new_surat_tugasH->end_date                 = $request->sampai_tanggal;
+            $new_surat_tugasH->idKota                   = $request->kota;
+            $new_surat_tugasH->idDIPA                   = $request->dipa;
+            $new_surat_tugasH->description              = $request->keterangan;
+            $new_surat_tugasH->idDepartment             = $request->department;
+            $new_surat_tugasH->description_1            = $request->keterangan1;
+            $new_surat_tugasH->created_by               = Auth::user()->id;
             $new_surat_tugasH->assignment_letter_status = 1;
-            $new_surat_tugasH->hotel_status = 1;
-            $new_surat_tugasH->plane_status = 1;
-            $new_surat_tugasH->created_at = $request->tanggal_surat;
+            $new_surat_tugasH->hotel_status             = 1;
+            $new_surat_tugasH->plane_status             = 1;
+            $new_surat_tugasH->created_at               = $request->tanggal_surat;
 
             $new_surat_tugasH->create();
 
@@ -116,13 +121,12 @@ class TransaksiSuratTugasController extends Controller
 
     public function edit($id)
     {
-        $data_kota = (new MKota)->get_list();
-        $data_dipa = (new MDIPA)->get_list();
-        $data_department = (new MDepartment)->get_list();
-        $data_surat_tugas_h = (new TPSuratTugasH)->get_surat_tugas_h($id);
-        $data_employee = (new MEmployee)->get_list();
-
-//        dd($data_surat_tugas_h[0]['suratTugasD'][0]);
+        $data_kota              = (new MKota)->get_list();
+        $data_dipa              = (new MDIPA)->get_list();
+        $data_department        = (new MDepartment)->get_list();
+        $data_surat_tugas_h     = (new TPSuratTugasH)->get_surat_tugas_h($id);
+        $data_employee          = (new MEmployee)->get_list();
+        // dd($data_surat_tugas_h);
         return view('modul_transaksi/surat_tugas/edit_surat_tugas')
             ->with('data_kota', $data_kota)
             ->with('data_dipa',$data_dipa)
@@ -135,24 +139,49 @@ class TransaksiSuratTugasController extends Controller
 
     public function update(Request $request)
     {
-        dd($request);
+        // dd($request);
         $id_user = Auth::user()->id;
 
         if ($id_user) {
-            $new_supplier                = new MSupplier($request->supplier_id);
-            $new_supplier->supplier_name = $request->nama_supplier;
-            $new_supplier->idJenisSupplier = $request->jenis_supplier;
-            $new_supplier->supplier_address = $request->alamat;
-            $new_supplier->idKota = $request->kota;
-            $new_supplier->email = $request->email;
-            $new_supplier->contact_number = $request->no_telp;
-            $new_supplier->website = $request->website;
-            $new_supplier->contact_person = $request->name_cp;
-            $new_supplier->contact_person_number = $request->no_telp_cp;
-            $new_supplier->contact_person_address = $request->alamat_cp;
-            $new_supplier->updated_by = Auth::user()->id;
 
-            $new_supplier->update();
+            $new_surat_tugasH                           = new TPSuratTugasH($request->id);
+            $new_surat_tugasH->start_date               = $request->dari_tanggal;
+            $new_surat_tugasH->end_date                 = $request->sampai_tanggal;
+            $new_surat_tugasH->idKota                   = $request->kota;
+            $new_surat_tugasH->idDIPA                   = $request->dipa;
+            $new_surat_tugasH->description              = $request->keterangan;
+            $new_surat_tugasH->idDepartment             = $request->department;
+            $new_surat_tugasH->description_1            = $request->keterangan1;
+            $new_surat_tugasH->created_by               = Auth::user()->id;
+            $new_surat_tugasH->assignment_letter_status = 1;
+            $new_surat_tugasH->hotel_status             = 1;
+            $new_surat_tugasH->plane_status             = 1;
+            $new_surat_tugasH->created_at               = $request->tanggal_surat;
+
+            $new_surat_tugasH->update();
+
+            $surat_tugas_d                  = (new TPSuratTugasD())->deleteAllByIdH($request->id);
+
+            if(!is_null($request->employee) && !is_null($request->lama_penugasan)) {
+                for ($i = 0; $i< count($request->employee); $i++) {
+                    if ($request->employee[$i] != 0 && $request->lama_penugasan[$i] !=0) {
+                        $new_surat_tugasD                   = new TPSuratTugasD();
+                        $new_surat_tugasD->idSuratTugas_H   = $request->id;
+
+                        $the_employee                   = new MEmployee($request->employee[$i]);
+                        // dd($request->employee);
+                        $new_surat_tugasD->idEmployee   = $the_employee->id;
+                        $new_surat_tugasD->idJabatan    = $the_employee->idJabatan;
+                        $new_surat_tugasD->idGolongan   = $the_employee->idGolongan;
+                        $new_surat_tugasD->plane_status = 1;
+                        $new_surat_tugasD->hotel_status = 1;
+
+                        $new_surat_tugasD->days         = $request->lama_penugasan[$i];
+
+                        $new_surat_tugasD->create();
+                    }
+                }
+            }
 
             Session::flash('sukses', 'Data Surat Tugas sukses di-update');
             return redirect(url(action('TransaksiSuratTugasController@index')));
