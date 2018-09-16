@@ -338,16 +338,17 @@
                                     <table id="table_surat_tugas" class="table display responsive no-wrap" width="100%">
                                         <thead>
                                         <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Tanggal Surat Tugas</th>
-                                            <th scope="col">Dari Tanggal</th>
-                                            <th scope="col">Sampai Tanggal</th>
-                                            <th scope="col">Kota</th>
-                                            <th scope="col">Pembebanan Anggaran</th>
-                                            <th scope="col">Keterangan</th>
-                                            <th scope="col">Object Audit Kerja</th>
-                                            <th scope="col">Keterangan Tambahan</th>
-                                            <th scope="col">Action</th>
+                                            <th class="text-nowrap" scope="col">No</th>
+                                            <th class="text-nowrap" scope="col">No. Surat Tugas</th>
+                                            <th class="text-nowrap" scope="col">Tanggal Surat Tugas</th>
+                                            <th class="text-nowrap" scope="col">Dari Tanggal</th>
+                                            <th class="text-nowrap" scope="col">Sampai Tanggal</th>
+                                            <th class="text-nowrap" scope="col">Kota</th>
+                                            <th class="text-nowrap" scope="col">Pembebanan Anggaran</th>
+                                            <th class="text-nowrap" scope="col">Keterangan</th>
+                                            <th class="text-nowrap" scope="col">Object Audit Kerja</th>
+                                            <th class="text-nowrap" scope="col">Keterangan Tambahan</th>
+                                            <th class="text-nowrap" scope="col">Action</th>
 
                                         </tr>
                                         </thead>
@@ -356,6 +357,7 @@
                                         @foreach($data_surat_tugas_h as $data)
                                             <tr>
                                                 <td scope="row"><?php echo ++$count; ?></td>
+                                                <td class="text-nowrap">{{ $data['assignment_letter_code'] }}  </td>
                                                 <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['created_at'])->format('d-m-Y') }} </td>
                                                 <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['start_date'])->format('d-m-Y') }} </td>
                                                 <td class="text-nowrap">{{ \Carbon\Carbon::parse($data['end_date'])->format('d-m-Y') }} </td>
@@ -365,20 +367,19 @@
                                                 <td class="text-nowrap">{{ $data['department_name'] }}</td>
                                                 <td class="text-nowrap">{{ $data['description_1'] }}</td>
                                                 <input type="hidden" name="surat_id" value= "{{ $data['id'] }}" required autofocus>
-                                                <form method="post" action="{{url(action('TransaksiSuratTugasController@delete'))}}">
+
                                                 <td class="text-nowrap">
-                                                    <a type="button"
-                                                       href="{{ url(action('TransaksiSuratTugasController@edit',$data['id'])) }}"
-                                                       class="btn btn-sm btn-primary">Edit</a>
-                                                    
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" name="surat_id" value="{{ $data['id'] }}">
-                                                    <button class="btn btn-sm btn-danger" type="submit">
-                                                        Delete
-                                                    </button>
-                                                    
+                                                    <form action="{{ url(action('TransaksiSuratTugasController@delete')) }}" method="post">
+                                                        {{ csrf_field() }}
+                                                        <a type="button"
+                                                           href="{{ url(action('TransaksiSuratTugasController@edit',$data['id'])) }}"
+                                                           class="btn btn-sm btn-primary">Edit</a>
+                                                        <input type="hidden" name="surat_id" value= "{{ $data['id'] }}" required autofocus>
+                                                        <button class="btn btn-sm btn-danger" type="submit">
+                                                            Delete
+                                                        </button>
+                                                    </form>
                                                 </td>
-                                                </form>
                                             </tr>
                                         @endforeach
 
