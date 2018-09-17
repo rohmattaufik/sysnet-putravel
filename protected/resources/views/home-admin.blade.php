@@ -26,7 +26,7 @@
                               <div class="box box-info">
                                     <div class="box-header with-border">
                                           <h1 class="box-title">
-                                                Sistem Aplikasi Surat Tugas PU - Travel
+                                                Sistem Aplikasi Surat Tugas Online
                                           </h1>
                                     </div>
                                     <div class="box-body">

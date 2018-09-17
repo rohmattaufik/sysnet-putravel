@@ -98,7 +98,7 @@ class TransaksiPesanTiketController extends Controller
                 if(!is_null($request->file('file_tiket')[$i])) {
                     $destinationPath = "Uploads/{$request->book_number[$i]}";
                     $movea = $request->file('file_tiket')[$i]->move($destinationPath,$request->file('file_tiket')[$i]->getClientOriginalName());
-                    $url_file = "Uploads/{$request->book_number[$i]}{$request->file('file_tiket')[$i]->getClientOriginalName()}";
+                    $url_file = "Uploads/{$request->book_number[$i]}/{$request->file('file_tiket')[$i]->getClientOriginalName()}";
                     $new_pesan_tiket_d->file_tiket= $url_file;
                 } else {
 

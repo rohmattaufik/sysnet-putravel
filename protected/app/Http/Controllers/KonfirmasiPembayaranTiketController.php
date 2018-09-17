@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller,
     App\Http\Controllers\MDIPA\MDIPAListController as MDipa,
     App\Http\Controllers\TPesananTiket\TPesananTiketHListController as TPesananTiketH,
     App\Http\Controllers\TPesananTiket\TPesananTiketDListController as TPesananTiketD,
+    App\Http\Controllers\MBank\MBankListController as MBank,
     App\Http\Controllers\MSupplier\MSupplierListController as MSupplier,
     App\Http\Controllers\TSuratTugas\TSuratTugasDListController as TPSuratTugasD,
     App\Http\Controllers\TSuratTugas\TSuratTugasHListController as TPSuratTugasH,
@@ -25,20 +26,6 @@ class KonfirmasiPembayaranTiketController extends Controller
 
         $data_tiket_surat = (new TPesananTiketH)->get_all_list_konfirmasi_pembayaran_tiket();
 
-//        $data_surat_tugas_h_one = (new TPSuratTugasH)->get_surat_tugas_h($id);
-
-
-
-//        if (Auth::user()->role == 1 || Auth::user()->role == 2) {
-//            $data_tiket_user = (new TPesananTiketD)->get_by_id_emp(Auth::user()->id);
-//        } else {
-//            $data_tiket_user = (new TPesananTiketD)->get_by_id_emp(1);
-//        }
-
-
-
-//        dd($data_tiket_surat);
-
         $index =1;
 
         $totalarr = [];
@@ -46,19 +33,20 @@ class KonfirmasiPembayaranTiketController extends Controller
             if(count($data_tiket_surat[$i]["pesanTiketD"]) > 0) {
                 $total = 0;
                 foreach($data_tiket_surat[$i]["pesanTiketD"] as $row) {
-//                dd($total += $row->AP_ticket_price);
+
                     $total += $row->AP_ticket_price;
                 }
                 array_push($totalarr,$total);
             }
 
         }
-//        dd($totalarr);
-//        dd(count($data_tiket_surat[$i]["pesanTiketD"]));
+
+        $mbank = (new MBank)->get_list();
 
         return view('modul_konfirmasi_pembayaran/konfirmasi_pembayaran_tiket')
             ->with('data_tiket_surat',$data_tiket_surat)
             ->with('index',$index)
+            ->with('mbank',$mbank)
             ->with('indextotal',$indextotal = 0)
             ->with('totalarr',$totalarr)
             ;

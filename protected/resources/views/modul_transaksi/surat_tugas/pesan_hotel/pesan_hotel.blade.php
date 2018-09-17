@@ -426,13 +426,15 @@
                     hargahotel[i] = '0.0';
                 }
                 str = hargahotel[i];
-                strchange = str.replace('.','');
+                strchange = str.replace(/\./g,'');
                 totalhotel += Number(strchange);
             }
-            var tostring = totalhotel+'';
-            document.getElementById("totalhotel").value = tostring.replace('.','');
-            $('#totalhotel').mask('0.000.000.000', {reverse: true});
-//            document.getElementById("totalpp").mask('0.000.000.000', {reverse: true});
+            document.getElementById("totalhotel").value = format1(totalhotel, 'Rp. ');
+        }
+        function format1(n, currency) {
+            return currency + n.toFixed(0).replace(/./g, function(c, i, a) {
+                    return i > 0 && c !== "," && (a.length - i) % 3 === 0 ? "." + c : c;
+                });
         }
     </script>
 @stop

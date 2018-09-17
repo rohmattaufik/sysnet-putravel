@@ -6,15 +6,17 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ URL::asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                <img src="{{ URL::asset( Auth::user()->photo ) }}" class="img-circle"
+
+                     alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::user()->employee_name }}</p>
                 <!-- Status -->
                 @if(Auth::user()->role == 1)
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online - Admin PU</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online - Admin</a>
                 @elseif(Auth::user()->role == 2)
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online - Finance PU</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online - Finance</a>
                 @elseif(Auth::user()->role == 3)
                     <a href="#"><i class="fa fa-circle text-success"></i> Online - Travel</a>
                 @endif

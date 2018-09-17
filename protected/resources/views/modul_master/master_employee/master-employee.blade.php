@@ -124,28 +124,28 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="nama_travel" class="col-sm-2 control-label">E-Mail</label>
+                                <label for="nama_travel" class="col-sm-2 control-label">E-Mail*</label>
 
                                 <div class="col-sm-4">
                                     <input type="email" class="form-control"
                                            id="email"
-                                           name="email" placeholder="Email">
+                                           name="email" placeholder="Email" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="password" class="col-sm-2 control-label">Password</label>
+                                <label for="password" class="col-sm-2 control-label">Password*</label>
 
                                 <div class="col-sm-4">
                                     <input type="password" class="form-control"
                                            id="password"
-                                           name="password" placeholder="Password">
+                                           name="password" placeholder="Password" required>
                                 </div>
                             </div>
 
                             @if(Auth::user()->role == 1 || Auth::user()->role == 2)
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="role">Role</label>
+                                <label class="col-sm-2 control-label" for="role">Role*</label>
                                 <div class="col-lg-4">
                                     <select name="role" class="form-control select-data">
                                         <option value="1"

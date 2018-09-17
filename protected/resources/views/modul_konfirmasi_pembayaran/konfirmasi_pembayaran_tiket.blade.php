@@ -143,13 +143,12 @@
                                                                                     <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
                                                                                         <div class="form-group">
                                                                                             <div class="col-lg-12">
-                                                                                                <select id="kota" name="bank" class="form-control select-data">
-                                                                                                    <option value="bni">
-                                                                                                        Bank BNI
-                                                                                                    </option>
-                                                                                                    <option value="mandiri">
-                                                                                                        Bank Mandiri
-                                                                                                    </option>
+                                                                                                <select id="bank" name="bank" class="form-control select-data">
+                                                                                                    @foreach($mbank as $data)
+                                                                                                        <option value="{{ $data->id }}">
+                                                                                                            {{ $data->bank_name }}
+                                                                                                        </option>
+                                                                                                    @endforeach
                                                                                                 </select>
                                                                                             </div>
                                                                                         </div>
@@ -176,7 +175,7 @@
                                                                                     </td>
                                                                                     <td class="text-nowrap" rowspan="{{ count($data_tiket_surat[$i]["pesanTiketD"]) }}">
                                                                                         <button type="submit" class="btn btn-info">
-                                                                                            Submit
+                                                                                            Confirm Payment
                                                                                         </button>
                                                                                     </td>
                                                                                 </tr>

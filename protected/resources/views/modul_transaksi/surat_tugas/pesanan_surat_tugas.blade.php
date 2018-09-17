@@ -55,7 +55,7 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">No</th>
-                                                <th scope="col">Surat Tugas</th>
+                                                <th scope="col">No Surat Tugas</th>
                                                 <th scope="col">Kota</th>
                                                 <th scope="col">Tanggal Surat Tugas</th>
                                                 <th scope="col">Action</th>

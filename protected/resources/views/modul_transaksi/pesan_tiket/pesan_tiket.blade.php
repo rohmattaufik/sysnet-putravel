@@ -643,16 +643,12 @@
                     hargapp[i] = '0.0';
                 }
                 str = hargapp[i];
-                strchange = str.replace('.','');
+                strchange = str.replace(/\./g,'');
                 totalpp += Number(strchange);
             }
-            var tostring = totalpp+'';
-            document.getElementById("totalpp").value = tostring.replace('.','');
-            $('#totalpp').mask('0.000.000.000', {reverse: true});
-//            document.getElementById("totalpp").mask('0.000.000.000', {reverse: true});
+            document.getElementById("totalpp").value = format1(totalpp, 'Rp. ');
         }
-    </script>
-    <script>
+
         function autosums_maskapai() {
             var totalmaskapai = 0;
             var hargamaskapai = [];
@@ -662,13 +658,17 @@
                     hargamaskapai[i] = '0.0';
                 }
                 str = hargamaskapai[i];
-                strchange = str.replace('.','');
+                strchange = str.replace(/\./g,'');
                 totalmaskapai += Number(strchange);
             }
-            var tostring = totalmaskapai+'';
-            document.getElementById("totalmaskapai").value = tostring.replace('.','');
-            $('#totalmaskapai').mask('0.000.000.000', {reverse: true});
-//            document.getElementById("totalpp").mask('0.000.000.000', {reverse: true});
+
+            document.getElementById("totalmaskapai").value = format1(totalmaskapai, 'Rp. ');
+
+        }
+        function format1(n, currency) {
+            return currency + n.toFixed(0).replace(/./g, function(c, i, a) {
+                    return i > 0 && c !== "," && (a.length - i) % 3 === 0 ? "." + c : c;
+                });
         }
     </script>
 @stop

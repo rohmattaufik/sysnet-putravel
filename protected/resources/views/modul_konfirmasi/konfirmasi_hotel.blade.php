@@ -154,7 +154,7 @@
 
                                                     <div class="box-footer">
                                                         <div class="callout callout-info">
-                                                            Silahkan Approve tiket yang sesuai pada tombol paling kanan di atas.
+                                                            Silahkan Approve tiket yang sesuai pada tombol Approve di atas.
                                                         </div>
                                                         {{--<a href="{{ url(action('TransaksiPesananController@index')) }}"--}}
                                                            {{--type="button" class="btn btn-danger btn-block">Batal</a>--}}
