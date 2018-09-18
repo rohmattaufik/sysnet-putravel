@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller,
     App\Http\Controllers\TSuratTugas\TSuratTugasDListController as TPSuratTugasD,
     App\Http\Controllers\TSuratTugas\TSuratTugasHListController as TPSuratTugasH,
     App\Http\Controllers\MKota\MKotaListController as MKota,
+    App\Http\Controllers\MUnitKerja\MUnitKerjaListController as MUnitKerja,
     App\Http\Controllers\MEmployee\MEmployeeListController as MEmployee,
     App\Http\Controllers\MDepartment\MDepartmentListController as MDepartment,
     App\Http\Controllers\MSetNumber\MSetNumberListController as MSetNumber,
@@ -25,6 +26,7 @@ class TransaksiSuratTugasController extends Controller
         $data_department = (new MDepartment)->get_list();
         $data_surat_tugas_h = (new TPSuratTugasH)->get_all_list();
         $data_employee = (new MEmployee)->get_list();
+        $data_work_unit = (new MUnitKerja)->get_list();
 
 //        foreach ($data_surat_tugas_h as $data) {
 //            dd($data[3]);
@@ -43,6 +45,7 @@ class TransaksiSuratTugasController extends Controller
 
        return view('modul_transaksi/surat_tugas/surat_tugas')
            ->with('data_kota',$data_kota)
+           ->with('data_work_unit',$data_work_unit)
            ->with('data_dipa',$data_dipa)
            ->with('data_employee',$data_employee)
            ->with('data_department',$data_department)

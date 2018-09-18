@@ -235,12 +235,12 @@
                                                     <p>{{ $data_surat[0]['suratTugasD'][$i]->employee_name }}</p>
                                                 </td>
                                                 <td class="text-nowrap">
-                                                    <select name="maskapai[]" class="form-control select-data" style="width: 100%;">
+                                                    <select name="maskapai[]" class="form-control select-data text-nowrap" style="width: 100%;">
                                                         <option value="0" >Pilih Maskapai</option>
                                                         @foreach ($data_supplier as $data)
-                                                            @if($data->idJenisSupplier == 7)
+                                                            @if($data->idJenisSupplier == 7 || $data->idJenisSupplier == 8)
                                                                 <option value="{{ $data->id }}" >
-                                                                    {{ $data->supplier_name }}
+                                                                    {{ $data->supplier_name }} - {{ $data->city_name }}
                                                                 </option>
                                                             @endif
                                                         @endforeach
