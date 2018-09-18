@@ -1,6 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('content')
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         {{--<section class="content-header">--}}
@@ -94,8 +95,8 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-calendar"></i>
                                                             </div>
-                                                            <input type="text" name="tanggal_surat_tugas"
-                                                                class="form-control pull-right datepicker" id="datepicker1" required="true" placeholder="Masukkan Tanggal">
+                                                            <input type="text" name="tanggal_surat_tugas" value="{{ (\Carbon\Carbon::now()->toDateTimeString())  }}"
+                                                                class="form-control pull-right datepicker" required="true" placeholder="Masukkan Tanggal">
                                                         </div>
                                                     </td>
                                                 <tr>
@@ -138,12 +139,13 @@
                                     <th class="text-nowrap" scope="col">Nama Hotel</th>
                                     <th class="text-nowrap" scope="col">Tanggal Check In</th>
                                     <th class="text-nowrap" scope="col">Tanggal Check Out</th>
-                                    <th class="text-nowrap" scope="col">Term</th>
+                                    <th class="text-nowrap" scope="col">Jumlah Hari</th>
                                     <th class="text-nowrap" scope="col">Harga</th>
+                                    <th class="text-nowrap" scope="col">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($data_surat_tugas[0]['suratTugasD'] as $surat_tugas)
+                                    @foreach($data_surat_tugas[0]['suratTugasD'] as $key=> $surat_tugas)
 
                                     @if($surat_tugas->hotel_status != 0)
                                     <!-- <input type="hidden" name="id_surat_tugas_d[]" value="{{ $surat_tugas->id }}"> -->
@@ -169,8 +171,8 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" name="tanggal_check_in[]"
-                                                    value="{{ $data_surat_tugas[0]['start_date']  }}" class="form-control pull-right datepicker" id="datepicker1">
+                                                <input type="text" name="tanggal_check_in[]" id="start_date" onchange="changeDate()"
+                                                    value="{{ \Carbon\Carbon::parse($data_surat_tugas[0]['start_date'])  }}" class="form-control pull-right check-in datepicker" id="datepicker1">
                                             </div>
                                         </td>
                                         <td>
@@ -178,25 +180,34 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" name="tanggal_check_out[]"
-                                                    value="{{ $data_surat_tugas[0]['end_date']  }}" class="form-control pull-right datepicker" id="datepicker1">
+                                                <input type="text" name="tanggal_check_out[]" id="end_date" onchange="changeDate()"
+                                                    value="{{ \Carbon\Carbon::parse($data_surat_tugas[0]['end_date'])  }}" class="form-control pull-right check-out datepicker" id="datepicker1">
                                             </div>
                                         </td>
                                         <td>
                                             <div class="input-group">
                                                 <input type="number"
-                                                        class="form-control"
-                                                        name="term[]"
-                                                        placeholder="term" >
+                                                        class="form-control jumlahHari"
+                                                        value="{{ $different }}"
+                                                        disabled="true"
+                                                        placeholder="jumlah hari" >
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="number"
+                                                        class="form-control hargaPerHari"
+                                                        name="harga[]"
+                                                        onchange="harga_hotel()"
+                                                        placeholder="Harga" >
                                             </div>
                                         </td>
                                         <td>
                                             <div class="input-group">
                                                 <input type="text"
                                                         class="form-control hargahotel uang"
-                                                       onchange="autosums_hotel()"
-                                                        name="harga[]"
-                                                        placeholder="Harga">
+                                                        name="total[]"
+                                                        placeholder="Total" disabled="true">
                                             </div>
                                         </td>
                                     </tr>
@@ -207,6 +218,7 @@
                                         <td> </td>
                                         <td> </td>
                                         <td> </td>
+                                        <td></td>
                                         <td></td>
                                         <td>
                                             Total
@@ -253,7 +265,9 @@
 @stop
 
 @section('new-script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script>
+
         $(document).ready(function() {
 //            var table = $('#table_supplier').DataTable( {
 //                responsive: true,
@@ -261,7 +275,25 @@
 //            } );
 //
 //            new $.fn.dataTable.FixedHeader( table );
+            moment().format();  
+            $('input[name^="tanggal_check_in"]').each(function() {
+                
+            });
+            var start = moment( $("#tanggal_check_in").val());
+            var end   = moment($("#tanggal_check_out").val());
+            end.from(start);       // "in 5 days"
+            end.from(start, true);
+          //  console.log(end.from(start, true));
+            for(var i = 0;i<document.getElementsByClassName("check-in").length; i++) {
+                var date1 = new Date(document.getElementsByClassName("check-in")[i].value);
+                var date2 = new Date(document.getElementsByClassName("check-out")[i].value);
+                var timeDiff = Math.abs(date2.getTime() - date1.getTime());
 
+                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+                console.log(diffDays);
+            }
+
+            
         } );
         $('#').DataTable({
             'paging'      : true,
@@ -280,26 +312,15 @@
             autoclose: true,
             todayHighlight : true,
             todayBtn : "linked",
-            format : 'yyyy-mm-dd'
+            format : 'mm-dd-yyyy H:i:s'
         });
         $('#datepicker1').datepicker({
             autoclose: true,
             todayHighlight : true,
             todayBtn : "linked",
-            format : 'yyyy-mm-dd'
+            format : 'dd-mm-yyyy H:i:s'
         });
-        $('#datepicker2').datepicker({
-            autoclose: true,
-            todayHighlight : true,
-            todayBtn : "linked",
-            format : 'yyyy-mm-dd'
-        });
-        $('#datepicker3').datepicker({
-            autoclose: true,
-            todayHighlight : true,
-            todayBtn : "linked",
-            format : 'yyyy-mm-dd'
-        });
+        
     </script>
 
 
@@ -435,6 +456,37 @@
             return currency + n.toFixed(0).replace(/./g, function(c, i, a) {
                     return i > 0 && c !== "," && (a.length - i) % 3 === 0 ? "." + c : c;
                 });
+        }
+        function harga_hotel()
+        {   var totalhotel = 0;
+            var hargaPerHari = [];
+            var jumlahHari  = 0;
+            var jumlahTotalPerHari;
+            for(var i = 0;i<document.getElementsByClassName("hargaPerHari").length; i++) {
+                hargaPerHari[i] = document.getElementsByClassName("hargaPerHari")[i].value;
+                jumlahHari      = document.getElementsByClassName("jumlahHari")[i].value;
+                if(!hargaPerHari[i]) {
+                    hargaPerHari[i] = '0.0';
+                }
+                str = Number(hargaPerHari[i]) * Number(jumlahHari);
+                
+                jumlahTotalPerHari = Number(str);
+                totalhotel += Number(str);
+                document.getElementsByClassName("hargahotel")[i].value = format1(jumlahTotalPerHari, 'Rp. ');
+            }
+            document.getElementById("totalhotel").value = format1(totalhotel, 'Rp. ');
+        }
+        function changeDate()
+        {
+            for(var i = 0;i<document.getElementsByClassName("check-in").length; i++) {
+                var date1 = new Date(document.getElementsByClassName("check-in")[i].value);
+                var date2 = new Date(document.getElementsByClassName("check-out")[i].value);
+                var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+
+                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+                document.getElementsByClassName("jumlahHari")[i].value  = diffDays;
+            }
+            harga_hotel();
         }
     </script>
 @stop

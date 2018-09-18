@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller,
     Illuminate\Http\Request;
 use Session;
 use Auth;
+use Carbon;
 
 class TransaksiPesanHotelController extends Controller
 {
@@ -25,10 +26,17 @@ class TransaksiPesanHotelController extends Controller
 
         $data_surat_tugas_h = (new TPSuratTugasH)->get_surat_tugas_H( $id_surat_tugas );
         $data_kota = (new MSupplier)->get_hotel_by_town($data_surat_tugas_h[0]['idKota']);
+
+        $end_date = new Carbon($data_surat_tugas_h[0]['end_date']);
+        $start_date = new Carbon($data_surat_tugas_h[0]['start_date']);
+        $difference = ($end_date->diff($start_date)->days < 1)
+            ? 'today'
+            : $end_date->diffInDays($start_date);
  
        return view('modul_transaksi/surat_tugas/pesan_hotel/pesan_hotel')
            ->with('data_kota',$data_kota)
-           ->with('data_surat_tugas',$data_surat_tugas_h);
+           ->with('data_surat_tugas',$data_surat_tugas_h)
+           ->with('different',$difference);
     }
 
 
@@ -83,7 +91,6 @@ class TransaksiPesanHotelController extends Controller
                     $pesanan_hotel_d->idSuratTugasD     = $surat_tugas_d[0]->id;
                     $pesanan_hotel_d->idKota            = $data_surat_tugas_h[0]['idKota'];
                     $pesanan_hotel_d->idSupplier        = $request->hotel[$ii];
-                    $pesanan_hotel_d->term              = $request->term[$ii];
                     $pesanan_hotel_d->payment_status    = 1;
                     $pesanan_hotel_d->checkin_date      = $request->tanggal_check_in[$ii];
                     $pesanan_hotel_d->checkout_date     = $request->tanggal_check_out[$ii];
