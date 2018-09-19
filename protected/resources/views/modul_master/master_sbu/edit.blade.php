@@ -65,8 +65,10 @@
                                         <select name="golongan" class="form-control">
                                             @foreach ($golongans as $golongan)
                                                 @if( $golongan->id == $sbu[0]->idGolongan)
+
                                                 <option  value="{{ $golongan->id }}" selected="true">{{ $golongan->class_name }}</option>
                                                 @else
+
                                                     <option  value="{{ $golongan->id }}">{{ $golongan->class_name }}</option>
                                                 @endif
                                             @endforeach

@@ -79,8 +79,10 @@ class TransaksiPesanHotelController extends Controller
                     $data_employee  = DB::table('MEmployee')->where('id',$surat_tugas_d[0]->idEmployee)->first();
 
                     $msbu = DB::table('MSBU')->where('idKota',$data_surat_tugas_h[0]['idKota'])->where('idGolongan',$data_employee->idGolongan)->first();
+                    $kota_gagal = DB::table('MKota')->where('id',$data_surat_tugas_h[0]['idKota'])->first();
+                    $golongan_gagal = DB::table('MGolongan')->where('id',$data_employee->idGolongan)->first();
                     if($msbu == null){
-                        Session::flash('gagal',"GAGAL : Data SBU belum ada");
+                        Session::flash('gagal',"GAGAL : Data SBU belum ada pada karyawan bernama $data_employee->employee_name. Anda harus menambahkan dulu di fitur SBU, dengan kota dan golongan yang sesuai karyawan tersebut. Silahkan tambahkan Kota : $kota_gagal->city_name dan Golongan : $golongan_gagal->class_name , pada fitur master SBU. agar karyawan tersebut bisa dipesankan hotel");
                         return redirect()->back();
                     }
                     
