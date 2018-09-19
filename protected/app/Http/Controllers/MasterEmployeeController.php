@@ -110,6 +110,7 @@ class MasterEmployeeController extends Controller
                 $new_employee->photo= '';
             }
             $new_employee->phone            = $request->phone;
+            $new_employee->role     = $request->role;
             $new_employee->updated_by       = $admin;
 //            dd($new_employee);
             $new_employee->update();
