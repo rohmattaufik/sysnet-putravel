@@ -195,8 +195,8 @@
                                         </td>
                                         <td>
                                             <div class="input-group">
-                                                <input type="number"
-                                                        class="form-control hargaPerHari"
+                                                <input type="text"
+                                                        class="form-control hargaPerHari uang"
                                                         name="harga[]"
                                                         onchange="harga_hotel()"
                                                         placeholder="Harga" >
@@ -463,7 +463,8 @@
             var jumlahHari  = 0;
             var jumlahTotalPerHari;
             for(var i = 0;i<document.getElementsByClassName("hargaPerHari").length; i++) {
-                hargaPerHari[i] = document.getElementsByClassName("hargaPerHari")[i].value;
+                hargaPerHari[i] = Number(document.getElementsByClassName("hargaPerHari")[i].value.replace(/\./g,''));
+//                hargaPerHari[i] = document.getElementsByClassName("hargaPerHari")[i].value;
                 jumlahHari      = document.getElementsByClassName("jumlahHari")[i].value;
                 if(!hargaPerHari[i]) {
                     hargaPerHari[i] = '0.0';
