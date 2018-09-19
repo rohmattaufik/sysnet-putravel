@@ -354,8 +354,9 @@
                                                     <div class="input-group">
 
                                                         <input type="file" class="custom-file-input"
-                                                               id="inputGroupFile01" name="file_tiket[]" aria-describedby="inputGroupFileAddon01">
-                                                        <label class="custom-file-label" for="inputGroupFile01">Upload Tiket</label>
+                                                               id="inputGroupFile01" name="file_tiket[]"
+                                                               aria-describedby="inputGroupFileAddon01" required>
+                                                        <label class="custom-file-label" for="inputGroupFile01">Harus Upload Tiket</label>
 
                                                     </div>
                                                 </td>
