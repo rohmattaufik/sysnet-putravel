@@ -51,7 +51,7 @@ class TransaksiPesanHotelController extends Controller
             if($check_hotel_h == null){
                 $pesanan_hotel_h                    = new TPesananHotelH();
                 $pesanan_hotel_h->idSuratTugas_H    = $data_surat_tugas_h[0]['id'];
-                $pesanan_hotel_h->suratPesan_date   = $request->tanggal_surat_tugas;
+                $pesanan_hotel_h->suratPesan_date   = \Carbon\Carbon::parse($request->tanggal_surat_tugas)->format('Y-m-d');
                 $pesanan_hotel_h->order_code        = $generate_number; 
                 $pesanan_hotel_h->start_date        = $data_surat_tugas_h[0]['start_date'];
                 $pesanan_hotel_h->end_date          = $data_surat_tugas_h[0]['end_date'];
@@ -92,8 +92,8 @@ class TransaksiPesanHotelController extends Controller
                     $pesanan_hotel_d->idKota            = $data_surat_tugas_h[0]['idKota'];
                     $pesanan_hotel_d->idSupplier        = $request->hotel[$ii];
                     $pesanan_hotel_d->payment_status    = 1;
-                    $pesanan_hotel_d->checkin_date      = $request->tanggal_check_in[$ii];
-                    $pesanan_hotel_d->checkout_date     = $request->tanggal_check_out[$ii];
+                    $pesanan_hotel_d->checkin_date      = \Carbon\Carbon::parse($request->tanggal_check_in[$ii])->format('Y-m-d');
+                    $pesanan_hotel_d->checkout_date     = \Carbon\Carbon::parse($request->tanggal_check_out[$ii])->format('Y-m-d');
                     $pesanan_hotel_d->voucher_number    = $generate_voucher;
                     $pesanan_hotel_d->AR_price          = (double) str_replace('.','',$request->harga[$ii]);
                     $pesanan_hotel_d->AP_price          = $msbu->value;

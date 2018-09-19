@@ -95,7 +95,7 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-calendar"></i>
                                                             </div>
-                                                            <input type="text" name="tanggal_surat_tugas" value="{{ (\Carbon\Carbon::now()->toDateTimeString())  }}"
+                                                            <input type="text" name="tanggal_surat_tugas" value="{{ (\Carbon\Carbon::now()->format('d-m-Y'))  }}"
                                                                 class="form-control pull-right datepicker" required="true" placeholder="Masukkan Tanggal">
                                                         </div>
                                                     </td>
@@ -172,7 +172,7 @@
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
                                                 <input type="text" name="tanggal_check_in[]" id="start_date" onchange="changeDate()"
-                                                    value="{{ \Carbon\Carbon::parse($data_surat_tugas[0]['start_date'])  }}" class="form-control pull-right check-in datepicker" id="datepicker1">
+                                                    value="{{ \Carbon\Carbon::parse($data_surat_tugas[0]['start_date'])->format('d-m-Y')  }}" class="form-control pull-right check-in datepicker" id="datepicker1">
                                             </div>
                                         </td>
                                         <td>
@@ -181,7 +181,7 @@
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
                                                 <input type="text" name="tanggal_check_out[]" id="end_date" onchange="changeDate()"
-                                                    value="{{ \Carbon\Carbon::parse($data_surat_tugas[0]['end_date'])  }}" class="form-control pull-right check-out datepicker" id="datepicker1">
+                                                    value="{{ \Carbon\Carbon::parse($data_surat_tugas[0]['end_date']) ->format('d-m-Y') }}" class="form-control pull-right check-out datepicker" id="datepicker1">
                                             </div>
                                         </td>
                                         <td>
@@ -312,13 +312,13 @@
             autoclose: true,
             todayHighlight : true,
             todayBtn : "linked",
-            format : 'mm-dd-yyyy H:i:s'
+            format : 'mm-dd-yyyy'
         });
         $('#datepicker1').datepicker({
             autoclose: true,
             todayHighlight : true,
             todayBtn : "linked",
-            format : 'dd-mm-yyyy H:i:s'
+            format : 'dd-mm-yyyy'
         });
         
     </script>
