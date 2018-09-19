@@ -29,6 +29,18 @@
                 </div>
 
                 <div class="box-body">
+                    <div class="box-header with-border">
+                        {{--<h3 class="box-title">Form</h3>--}}
+                        @if(Session::get('gagal'))
+                            <div class="callout callout-danger">
+                                <h4>{{ Session::get('gagal') }}</h4>
+
+                                <p>Data Anda gagal diinput ke database.</p>
+                            </div>
+                        @endif
+                    </div>
+
+
                     <form class="form-horizontal" enctype="multipart/form-data"
                           method="post" action="{{ url(action('MasterEmployeeController@update')) }}">
                         {{ csrf_field() }}

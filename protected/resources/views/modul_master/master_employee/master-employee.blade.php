@@ -40,6 +40,13 @@
                                 <p>Data Anda berhasil dihapus dari database.</p>
                             </div>
                         @endif
+                        @if(Session::get('gagal'))
+                            <div class="callout callout-danger">
+                                <h4>{{ Session::get('gagal') }}</h4>
+
+                                <p>Data Anda gagal diinput ke database.</p>
+                            </div>
+                        @endif
                     </div>
 
                     <form class="form-horizontal" enctype="multipart/form-data"

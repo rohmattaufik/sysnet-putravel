@@ -32,9 +32,14 @@ class MasterEmployeeController extends Controller
 
     public function store( Request $request )
     {
-        $admin  = Auth::user()->id;
 
-        if( !is_null($request) ){
+        $admin  = Auth::user()->id;
+        $nik = DB::table('MEmployee')->where('NIK', $request->nik)->where('flag_active','1')->get();
+        $email = DB::table('MEmployee')->where('email',$request->email)->where('flag_active','1')->get();
+
+
+
+        if( count($nik)<1 || count($email)<1 ){
             $new_employee                   = new MEmployee();
             $new_employee->id               = $request->id;
             $new_employee->NIK              = $request->nik;
@@ -55,12 +60,23 @@ class MasterEmployeeController extends Controller
             $new_employee->created_by       = $admin;
             $new_employee->updated_by       = $admin;
             $new_employee->role             = $request->role;
+            $new_employee->password         = bcrypt($request->password);
+
 //            dd($new_employee);
             $new_employee->create();
 
             Session::flash('sukses', 'Anda berhasil menyimpan data Employee');
             return redirect()->back();
+        } else if(count($nik)>0) {
+            Session::flash("gagal", "Maaf, data gagal disimpan. Karena NIK : $request->nik sudah ada di database.");
+            return redirect()->back();
+        } else if(count($email)>0) {
+            Session::flash("gagal", "Maaf, data gagal disimpan. Karena E-Mail : $request->email sudah ada di database.");
+            return redirect()->back();
         }
+
+        Session::flash("gagal", "Maaf, data gagal disimpan karena input Anda kosong");
+        return redirect()->back();
     }
 
     public function delete( Request $request )
@@ -91,6 +107,8 @@ class MasterEmployeeController extends Controller
     public function update( Request $request )
     {
         $admin  = Auth::user()->id;
+
+
         if( !is_null($request->employee_id) ){
 
             $new_employee                   = new MEmployee( $request->employee_id );
